@@ -48,16 +48,20 @@ Rol en el embudo: **captura de demanda activa** — personas y empresas que ya e
 | Logo cuadrado | 1:1 | 1200×1200 px | 1 |
 | Logo horizontal | 4:1 | 1200×300 px | 1 (opcional) |
 
-Ideas de toma, en orden de prioridad:
+Ideas de toma, con el formato al que mejor se ajusta cada una — una escena completa se lee bien ancha; un detalle o producto suelto se ve mejor en cuadrado o vertical, donde no sobra espacio vacío a los lados:
 
-1. Producto hero individual (una pieza sola, luz natural, fondo limpio del showroom) — mejor para Shopping/búsqueda de producto.
-2. Ambiente completo montado (living o terraza armada) — vende estilo de vida.
-3. Detalle de material/textura (tejido, madera, cerámica) — refuerza percepción de calidad.
-4. Persona usando el mueble — mejor performance en Display/Discover que el producto solo.
-5. Fachada o interior del showroom — refuerza que existe un lugar físico (clave para campaña Local).
-6. Antes/después de un proyecto real — sirve también para el ángulo "Brainworks Proyectos".
-7. Marca en contexto (logo/etiqueta junto a la pieza) — refuerza "importado", no genérico.
-8. Vista amplia del showroom con varias piezas — transmite variedad de catálogo.
+| # | Toma | Mejor formato | Por qué |
+|---|---|---|---|
+| 1 | Ambiente completo montado (living o terraza armada) | Horizontal | La escena entera se lee natural en panorámico — es la imagen "hero" |
+| 2 | Vista amplia del showroom con varias piezas | Horizontal | El formato ancho deja entrar variedad de catálogo sin apretar |
+| 3 | Fachada o interior panorámico del showroom | Horizontal | Un edificio o salón se fotografía naturalmente ancho; refuerza que existe un lugar físico (clave para campaña Local) |
+| 4 | Persona usando el mueble, en plano abierto (ej. familia en la terraza) | Horizontal | Plano abierto deja espacio a los lados; mejor performance en Display/Discover que el producto solo |
+| 5 | Antes/después de un proyecto real | Horizontal (panorámica o dividida) | Sirve también para el ángulo "Brainworks Proyectos" |
+| 6 | Producto hero individual (una pieza sola, luz natural, fondo limpio) | Cuadrada | Mejor para Shopping/búsqueda de producto |
+| 7 | Detalle de material/textura (tejido, madera, cerámica) | Cuadrada o vertical | Close-up, no necesita formato ancho; refuerza percepción de calidad |
+| 8 | Marca en contexto (logo/etiqueta junto a la pieza) | Cuadrada | Toma cerrada; refuerza "importado", no genérico |
+
+Tip de composición para horizontal: cada placement (banner de Display, miniatura de YouTube, Gmail) recorta distinto, así que mantener el sujeto principal centrado dentro del ~80% central de la imagen evita que le corten una esquina importante.
 
 Evitar: fotos de stock genéricas, texto superpuesto pesado (se recorta distinto según placement), fondos con desorden/mala luz, o el logo solo como imagen principal.
 
