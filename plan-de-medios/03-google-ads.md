@@ -38,7 +38,32 @@ Rol en el embudo: **captura de demanda activa** — personas y empresas que ya e
 - Performance Max: set de imágenes de producto/ambiente + logo + video corto (puede reutilizar Reels de Instagram) + títulos y descripciones orientados a "diseño europeo", "interior y exterior", "showroom en Santiago".
 - Mensaje diferenciado por campaña: B2C enfatiza diseño/estilo/showroom; B2B/proyectos enfatiza catálogo de marcas, plazos, asesoría técnica.
 
-## 5.1 Copys de ejemplo — Campaña Genérico B2C
+## 5.1 Especificaciones e ideas de imágenes (Performance Max / Display)
+
+| Formato | Proporción | Tamaño mínimo | Cuántas subir |
+|---|---|---|---|
+| Horizontal | 1.91:1 | 1200×628 px | mínimo 3 (idealmente 5+) |
+| Cuadrada | 1:1 | 1200×1200 px | mínimo 3 |
+| Vertical | 4:5 | 1080×1350 px | recomendado 2-3 |
+| Logo cuadrado | 1:1 | 1200×1200 px | 1 |
+| Logo horizontal | 4:1 | 1200×300 px | 1 (opcional) |
+
+Ideas de toma, en orden de prioridad:
+
+1. Producto hero individual (una pieza sola, luz natural, fondo limpio del showroom) — mejor para Shopping/búsqueda de producto.
+2. Ambiente completo montado (living o terraza armada) — vende estilo de vida.
+3. Detalle de material/textura (tejido, madera, cerámica) — refuerza percepción de calidad.
+4. Persona usando el mueble — mejor performance en Display/Discover que el producto solo.
+5. Fachada o interior del showroom — refuerza que existe un lugar físico (clave para campaña Local).
+6. Antes/después de un proyecto real — sirve también para el ángulo "Brainworks Proyectos".
+7. Marca en contexto (logo/etiqueta junto a la pieza) — refuerza "importado", no genérico.
+8. Vista amplia del showroom con varias piezas — transmite variedad de catálogo.
+
+Evitar: fotos de stock genéricas, texto superpuesto pesado (se recorta distinto según placement), fondos con desorden/mala luz, o el logo solo como imagen principal.
+
+Es la misma sesión de fotos planificada para el pilar "Producto & Showroom" de Instagram (ver [01-instagram.md](01-instagram.md)) — conviene coordinar una sola sesión que cubra ambos usos en vez de duplicar el costo de producción.
+
+## 5.2 Copys de ejemplo — Campaña Genérico B2C
 
 Set de referencia para el anuncio de búsqueda responsivo (RSA) de la campaña "Genérico alta intención B2C". Reutilizar como base y adaptar por grupo de anuncios (interior vs. terraza/exterior).
 
