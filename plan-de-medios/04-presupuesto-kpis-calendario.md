@@ -14,6 +14,25 @@ Adicional, separado de medios pagados: **presupuesto de producción de contenido
 
 > Acción inmediata: definir con Brainworks el presupuesto mensual total disponible para traducir estos porcentajes a montos en CLP, y fijar un mínimo de prueba de 60–90 días antes de reasignar entre canales (los canales B2B como LinkedIn tardan más en mostrar resultados de conversión que Google Search).
 
+## 1.1 Presupuesto mínimo viable (piso técnico, no solo de negocio)
+
+Cada canal tiene un mínimo de gasto por debajo del cual el algoritmo no logra optimizar — Google y Meta necesitan volumen de conversiones para salir de "fase de aprendizaje", y LinkedIn simplemente no entrega impresiones si la puja es muy baja. Poner menos que esto no es "empezar chico": es gastar sin generar señal utilizable.
+
+| Partida | Piso mínimo mensual (CLP) | Por qué |
+|---|---|---|
+| Google Ads | $550.000–700.000 | Volumen de clics suficiente en Search (marca + genérico + proyectos) para acumular ≥15–30 conversiones/mes y pasar a Maximizar conversiones |
+| Meta / Instagram Ads | $300.000–400.000 | Gasto diario mínimo por campaña para salir de fase de aprendizaje |
+| LinkedIn Ads | $250.000–300.000 | CPL más alto de los tres por targeting de nicho (cargo/industria); por debajo de esto casi no hay entrega |
+| Producción de contenido (foto/video showroom — no es pauta) | $350.000–500.000 | Sin esto, IG y LinkedIn orgánicos no tienen material — son gratis en pauta pero no en producción |
+| **Total mínimo viable** | **≈ $1.450.000–1.900.000 / mes** | Para que los tres canales operen simultáneamente con datos reales |
+
+Estas cifras son una estimación de planificación (sin acceso a datos de subasta en tiempo real de Chile); antes de comprometer presupuesto, validar con Google Keyword Planner y los estimadores de Meta Ads Manager / LinkedIn Campaign Manager sobre la cuenta real.
+
+**Si el presupuesto disponible es menor a este piso**, no conviene repartirlo entre los tres canales — mejor secuenciar:
+1. Mes 1–2: todo a Google Ads (mayor intención, retorno más directo) + Instagram/LinkedIn 100% orgánico, sin pauta.
+2. Mes 3+: sumar Meta Ads cuando exista presupuesto para su piso completo.
+3. LinkedIn Ads al final: es el canal más caro por lead — se justifica porque un proyecto B2B vale varias veces su costo mensual, pero solo tiene sentido activarlo con el piso completo, no a medias.
+
 ## 2. Tablero de KPIs (revisión mensual)
 
 | Métrica | Instagram | LinkedIn | Google Ads |
