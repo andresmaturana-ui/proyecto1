@@ -38,6 +38,37 @@ Rol en el embudo: **captura de demanda activa** — personas y empresas que ya e
 - Performance Max: set de imágenes de producto/ambiente + logo + video corto (puede reutilizar Reels de Instagram) + títulos y descripciones orientados a "diseño europeo", "interior y exterior", "showroom en Santiago".
 - Mensaje diferenciado por campaña: B2C enfatiza diseño/estilo/showroom; B2B/proyectos enfatiza catálogo de marcas, plazos, asesoría técnica.
 
+## 5.1 Copys de ejemplo — Campaña Genérico B2C
+
+Set de referencia para el anuncio de búsqueda responsivo (RSA) de la campaña "Genérico alta intención B2C". Reutilizar como base y adaptar por grupo de anuncios (interior vs. terraza/exterior).
+
+**Títulos (30 car. máx.):**
+
+1. Muebles de Diseño Europeo
+2. Brainworks Diseño Chile
+3. Sofás y Sillas de Diseño
+4. Muebles de Terraza Premium
+5. +15 Marcas Europeas
+6. Showroom en Vitacura
+7. Interior y Exterior
+8. Mobiliario de Diseño Italiano
+9. Agenda tu Visita al Showroom
+10. Cotiza tu Proyecto Hoy
+11. Diseño Europeo para tu Hogar
+12. Muebles Exterior de Diseño
+13. Calidad Europea, Stock Chile
+14. Vondom, Magis y Más
+15. Envíos a Todo Chile
+
+**Descripciones (90 car. máx.):**
+
+1. Mobiliario de diseño europeo para interior y exterior. Visita el showroom en Vitacura.
+2. Más de 15 marcas europeas en un solo lugar. Cotiza tu proyecto sin costo.
+3. Mobiliario para proyectos: hoteles, restaurantes y residencias. Cotiza aquí.
+4. Importación directa de Italia, España y Holanda. Calidad garantizada.
+
+Notas: sin signos de exclamación en títulos (rechazados por política de Google); no fijar ("pin") títulos salvo el del nombre de marca si se quiere presencia constante — dejar el resto libre para que el algoritmo rote combinaciones.
+
 ## 6. KPIs del canal
 
 - CPL (costo por lead) por campaña, comparado contra el valor promedio de ticket B2C vs. proyecto B2B.
