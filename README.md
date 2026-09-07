@@ -12,5 +12,7 @@ También incluye:
 
 - **[Audiencias y objetivos](plan-de-medios/00-audiencias-objetivos.md)** — buyer personas, objetivos SMART y el embudo común a los tres canales.
 - **[Presupuesto, KPIs y calendario de implementación](plan-de-medios/04-presupuesto-kpis-calendario.md)** — distribución de inversión sugerida, tablero de métricas y roadmap a 90 días.
+- **[Arquitectura de brainworks.cl](plan-de-medios/05-arquitectura-web.md)** — cómo debe organizarse el sitio (navegación, landings, formularios) para que el tráfico de los 3 canales convierta según el público.
+- **[Presentación PDF](plan-de-medios/presentacion/Brainworks-Sistema-de-Medios.pdf)** — el plan completo en 14 láminas, con análisis de competencia, listo para el equipo.
 
 > Los montos de presupuesto son una referencia inicial de distribución porcentual; deben ajustarse al presupuesto real disponible y revisarse mes a mes con datos reales de rendimiento.
