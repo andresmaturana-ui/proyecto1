@@ -60,6 +60,10 @@ Ideas de toma, con el formato al que mejor se ajusta cada una — una escena com
 | 6 | Producto hero individual (una pieza sola, luz natural, fondo limpio) | Cuadrada | Mejor para Shopping/búsqueda de producto |
 | 7 | Detalle de material/textura (tejido, madera, cerámica) | Cuadrada o vertical | Close-up, no necesita formato ancho; refuerza percepción de calidad |
 | 8 | Marca en contexto (logo/etiqueta junto a la pieza) | Cuadrada | Toma cerrada; refuerza "importado", no genérico |
+| 9 | Producto en ángulo 3/4 sobre fondo neutro, estilo catálogo | Cuadrada | Más "de venta" que el hero individual; útil si conectan Shopping/feed de producto |
+| 10 | Rincón o vignette pequeño (2-3 piezas juntas en una esquina del showroom) | Cuadrada | Punto medio entre el producto solo y el ambiente completo; no necesita el ancho de una habitación entera |
+
+El cuadrado es el formato más versátil de los tres (sirve para feed de Instagram, Display y Shopping) — si solo alcanza para fotografiar en un formato, priorizar este.
 
 Tip de composición para horizontal: cada placement (banner de Display, miniatura de YouTube, Gmail) recorta distinto, así que mantener el sujeto principal centrado dentro del ~80% central de la imagen evita que le corten una esquina importante.
 
