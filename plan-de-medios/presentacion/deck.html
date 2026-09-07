@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Brainworks — Sistema de Medios</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap">
+<style>
+  :root{
+    --bg: #f1ede3;
+    --surface: #fbf9f3;
+    --surface-2: #eae4d3;
+    --ink: #221f19;
+    --ink-soft: #5b5748;
+    --ink-faint: #8b8672;
+    --line: #d9d1bc;
+    --accent: #2c5c52;
+    --accent-ink: #16302a;
+    --accent-soft: #d9e6e1;
+    --warm: #b85c2c;
+    --warm-soft: #f2ddc9;
+    --dark-bg: #17190f;
+    --dark-surface: #1f2216;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ background:#3a3a33; }
+  body{
+    font-family:"Archivo", ui-sans-serif, system-ui, sans-serif;
+    color: var(--ink);
+  }
+  h1,h2,h3,h4{ font-family:"Fraunces", Georgia, serif; font-weight:600; text-wrap:balance; }
+  .eyebrow{
+    font-family:"Archivo", sans-serif; font-size:12.5px; font-weight:700;
+    letter-spacing:.12em; text-transform:uppercase; color: var(--accent);
+  }
+  svg text{ font-family:"Archivo", sans-serif; }
+
+  /* ---- slide shell ---- */
+  .slide{
+    width:1280px; height:720px;
+    position:relative;
+    overflow:hidden;
+    background: var(--bg);
+    display:flex; flex-direction:column;
+    page-break-after: always;
+    break-after: page;
+  }
+  .slide:last-child{ page-break-after:auto; break-after: auto; }
+  .slide-pad{ padding:50px 64px 34px; height:100%; display:flex; flex-direction:column; min-height:0; }
+  .slide-foot{
+    position:absolute; left:64px; right:64px; bottom:16px;
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:11px; color: var(--ink-faint); letter-spacing:.04em;
+    border-top:1px solid var(--line); padding-top:9px;
+  }
+  .slide-foot .fmark{ display:flex; align-items:center; gap:7px; }
+  .slide-foot .fdot{ width:7px; height:7px; border-radius:2px; background:var(--accent); transform:rotate(45deg); }
+  .kicker-row{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px; }
+  .slide h2.title{ font-size:31px; line-height:1.15; margin-bottom:4px; }
+  .slide .sub{ font-size:14.5px; color:var(--ink-soft); max-width:74ch; margin-bottom:22px; }
+  .body{ flex:1; min-height:0; display:flex; flex-direction:column; gap:16px; }
+
+  /* dark cover variant */
+  .slide.dark{ background: var(--dark-bg); color:#ece7d8; }
+  .slide.dark .eyebrow{ color:#8fd4c0; }
+  .slide.dark .slide-foot{ color:#8a8770; border-top-color:#33351f; }
+
+  /* ---- tables ---- */
+  table{ width:100%; border-collapse:collapse; font-size:13.5px; }
+  .tbl-wrap{ border:1px solid var(--line); border-radius:10px; overflow:hidden; background:var(--surface); }
+  th,td{ text-align:left; padding:9px 14px; border-bottom:1px solid var(--line); vertical-align:top; }
+  thead th{
+    font-family:"Archivo"; font-size:10.5px; letter-spacing:.07em; text-transform:uppercase;
+    color:var(--ink-faint); background:var(--surface-2); font-weight:700;
+  }
+  tbody tr:last-child td{ border-bottom:none; }
+  .tag{ display:inline-block; font-size:11px; font-weight:700; padding:2px 8px; border-radius:5px; background:var(--accent-soft); color:var(--accent-ink); white-space:nowrap; }
+  .tag.warm{ background:var(--warm-soft); color:var(--warm); }
+
+  /* ---- cards / grids ---- */
+  .card{ background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:16px 18px; }
+  .grid3{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .grid2{ display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+  .grid4{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+
+  .persona .idx{ font-family:"Fraunces"; font-style:italic; color:var(--ink-faint); font-size:12.5px; }
+  .persona h3{ font-size:16.5px; margin:2px 0 8px; }
+  .persona dl{ display:flex; flex-direction:column; gap:5px; }
+  .persona dt{ font-size:10px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-faint); }
+  .persona dd{ font-size:12.5px; color:var(--ink-soft); line-height:1.4; }
+
+  /* pillars */
+  .pillars{ display:flex; flex-direction:column; gap:9px; }
+  .pillar-row{ display:grid; grid-template-columns:180px 1fr 40px; gap:12px; align-items:center; font-size:13px; }
+  .pillar-track{ height:9px; border-radius:5px; background:var(--surface-2); overflow:hidden; }
+  .pillar-fill{ height:100%; background:var(--accent); border-radius:5px; }
+  .pillar-pct{ font-variant-numeric:tabular-nums; color:var(--ink-soft); text-align:right; font-size:12px; }
+
+  /* week grid */
+  .week-grid{ display:grid; grid-template-columns:repeat(7,1fr); gap:7px; }
+  .week-day{ border:1px solid var(--line); border-radius:9px; padding:9px 8px; background:var(--surface); display:flex; flex-direction:column; gap:5px; }
+  .week-day .d{ font-size:9.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-faint); }
+  .week-day .c{ font-size:11.5px; color:var(--ink-soft); line-height:1.32; }
+
+  /* kpi tiles */
+  .kpi{ background:var(--surface); border:1px solid var(--line); border-radius:11px; padding:14px 16px; }
+  .kpi .label{ font-size:10px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-faint); }
+  .kpi .value{ font-family:"Fraunces"; font-size:23px; font-weight:600; margin-top:5px; color:var(--accent-ink); }
+  .kpi .sub{ font-size:11.5px; color:var(--ink-soft); margin-top:2px; }
+
+  /* budget bar */
+  .budget-bar{ display:flex; height:34px; border-radius:8px; overflow:hidden; border:1px solid var(--line); }
+  .budget-seg{ display:flex; align-items:center; justify-content:center; color:#fff; font-size:12px; font-weight:700; }
+  .legend{ display:flex; gap:22px; margin-top:12px; flex-wrap:wrap; }
+  .legend-item{ display:flex; align-items:center; gap:7px; font-size:12px; color:var(--ink-soft); }
+  .swatch{ width:10px; height:10px; border-radius:3px; }
+
+  ul.plain{ list-style:none; display:flex; flex-direction:column; gap:6px; }
+  ul.plain li{ font-size:13px; color:var(--ink-soft); padding-left:16px; position:relative; }
+  ul.plain li::before{ content:"—"; position:absolute; left:0; color:var(--accent); }
+
+  .num{ font-variant-numeric:tabular-nums; }
+</style>
+</head>
+<body>
+
+<!-- 1. COVER -->
+<section class="slide dark">
+  <div class="slide-pad">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:auto;">
+      <span style="width:11px;height:11px;border-radius:3px;background:#7fbfae;transform:rotate(45deg);display:inline-block;"></span>
+      <span style="font-family:'Fraunces';font-weight:600;letter-spacing:.02em;font-size:15px;">BRAINWORKS</span>
+    </div>
+    <div style="margin-top:120px;">
+      <div class="eyebrow" style="margin-bottom:16px;">Plan de medios · Sep 2026 – Ene 2027</div>
+      <h1 style="font-size:56px; line-height:1.05; max-width:16ch;">Un sistema de medios para diseño de interior y exterior</h1>
+      <p style="font-size:16px; color:#c9c4b1; max-width:56ch; margin-top:20px;">Instagram, LinkedIn y Google Ads trabajando como un solo sistema — con análisis de competencia — para llevar el catálogo europeo de Brainworks a compradores de diseño y a proyectos de arquitectura.</p>
+    </div>
+    <div style="margin-top:auto; display:flex; gap:36px; font-size:12.5px; color:#9b9680; padding-top:30px; border-top:1px solid #33351f;">
+      <span>Preparado para el equipo de marketing</span>
+      <span>Septiembre 2026</span>
+      <span>brainworks.cl · @brainworks_diseno</span>
+    </div>
+  </div>
+</section>
+
+<!-- 2. AGENDA -->
+<section class="slide">
+  <div class="slide-pad">
+    <div class="kicker-row"><span class="eyebrow">Agenda</span></div>
+    <h2 class="title">Qué cubre este sistema</h2>
+    <p class="sub">Ocho bloques: del diagnóstico de mercado a un calendario de puesta en marcha de 90 días.</p>
+    <div class="body">
+      <div class="grid2" style="gap:16px 40px; flex:1;">
+        <div class="card" style="display:flex; gap:14px; align-items:flex-start;"><div style="font-family:'Fraunces';font-style:italic;color:var(--ink-faint);font-size:20px;">01</div><div><h3 style="font-size:15px;margin-bottom:4px;">Objetivos y audiencias</h3><p style="font-size:12.5px;color:var(--ink-soft);">Metas a 90 días y los 3 públicos que compran distinto</p></div></div>
+        <div class="card" style="display:flex; gap:14px; align-items:flex-start;"><div style="font-family:'Fraunces';font-style:italic;color:var(--ink-faint);font-size:20px;">02</div><div><h3 style="font-size:15px;margin-bottom:4px;">Análisis de competencia</h3><p style="font-size:12.5px;color:var(--ink-soft);">Mapa de posicionamiento y benchmark de redes</p></div></div>
+        <div class="card" style="display:flex; gap:14px; align-items:flex-start;"><div style="font-family:'Fraunces';font-style:italic;color:var(--ink-faint);font-size:20px;">03</div><div><h3 style="font-size:15px;margin-bottom:4px;">Sistema Instagram</h3><p style="font-size:12.5px;color:var(--ink-soft);">Pilares, cadencia semanal y estructura de Meta Ads</p></div></div>
+        <div class="card" style="display:flex; gap:14px; align-items:flex-start;"><div style="font-family:'Fraunces';font-style:italic;color:var(--ink-faint);font-size:20px;">04</div><div><h3 style="font-size:15px;margin-bottom:4px;">Sistema LinkedIn</h3><p style="font-size:12.5px;color:var(--ink-soft);">Cómo abrir el canal B2B de arquitectos y proyectos</p></div></div>
+        <div class="card" style="display:flex; gap:14px; align-items:flex-start;"><div style="font-family:'Fraunces';font-style:italic;color:var(--ink-faint);font-size:20px;">05</div><div><h3 style="font-size:15px;margin-bottom:4px;">Sistema Google Ads</h3><p style="font-size:12.5px;color:var(--ink-soft);">Estructura de campañas Search, Shopping y Local</p></div></div>
+        <div class="card" style="display:flex; gap:14px; align-items:flex-start;"><div style="font-family:'Fraunces';font-style:italic;color:var(--ink-faint);font-size:20px;">06</div><div><h3 style="font-size:15px;margin-bottom:4px;">Presupuesto y KPIs</h3><p style="font-size:12.5px;color:var(--ink-soft);">Distribución de inversión y tablero de métricas</p></div></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="fmark"><span class="fdot"></span>Brainworks — Sistema de Medios</span><span>02</span></div>
+  </div>
+</section>
+
+<!-- 3. OBJETIVOS -->
+<section class="slide">
+  <div class="slide-pad">
+    <div class="kicker-row"><span class="eyebrow">01 · Punto de partida</span></div>
+    <h2 class="title">Objetivos a 90 días</h2>
+    <p class="sub">Metas de referencia para el primer trimestre; se calibran contra el baseline real de Analytics/CRM antes de fijarse como definitivas.</p>
+    <div class="body">
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Objetivo</th><th>Métrica</th><th>Meta sugerida</th></tr></thead>
+          <tbody>
+            <tr><td>Generar demanda calificada B2C</td><td>Cotizaciones/leads — Instagram + Google</td><td class="num">+40% vs. baseline</td></tr>
+            <tr><td>Abrir canal B2B de proyectos</td><td>Leads calificados (RFQ) desde LinkedIn</td><td class="num">8–12 / mes al mes 3</td></tr>
+            <tr><td>Capturar búsqueda activa</td><td>CPL en Google Ads Search</td><td class="num">Bajo promedio de categoría</td></tr>
+            <tr><td>Construir marca en Santiago Oriente</td><td>Engagement rate / alcance IG</td><td class="num">ER &gt; 3–4%, +15%/mes</td></tr>
+            <tr><td>Visitas al showroom</td><td>Clics "Cómo llegar" / visitas agendadas</td><td class="num">Medible desde el mes 1</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="fmark"><span class="fdot"></span>Brainworks — Sistema de Medios</span><span>03</span></div>
+  </div>
+</section>
+
+<!-- 4. AUDIENCIAS -->
+<section class="slide">
+  <div class="slide-pad">
+    <div class="kicker-row"><span class="eyebrow">01 · A quién le hablamos</span></div>
+    <h2 class="title">Tres públicos, tres canales</h2>
+    <p class="sub">Instagram y el Search de alta intención hablan a la Persona I. LinkedIn y el Search de proyectos hablan a las Personas II y III.</p>
+    <div class="body">
+      <div class="grid3" style="flex:1;">
+        <div class="card persona"><span class="idx">Persona I</span><h3>Comprador/a de diseño</h3><dl>
+          <dt>Perfil</dt><dd>35–60 años, ABC1 · Las Condes, Vitacura, La Dehesa, Chicureo</dd>
+          <dt>Momento</dt><dd>Remodela, construye casa nueva o amuebla la terraza</dd>
+          <dt>Motivación</dt><dd>Diseño europeo, exclusividad, calidad frente al fast-furniture</dd>
+        </dl></div>
+        <div class="card persona"><span class="idx">Persona II</span><h3>Arquitecto/a o interiorista</h3><dl>
+          <dt>Perfil</dt><dd>Estudio boutique o freelance, Santiago</dd>
+          <dt>Momento</dt><dd>Especificando mobiliario para un proyecto residencial</dd>
+          <dt>Motivación</dt><dd>Catálogo europeo amplio en un proveedor, fichas técnicas, trade</dd>
+        </dl></div>
+        <div class="card persona"><span class="idx">Persona III</span><h3>Comprador de proyecto contract</h3><dl>
+          <dt>Perfil</dt><dd>Procurement de hoteles, restaurantes, inmobiliarias</dd>
+          <dt>Momento</dt><dd>Comprando mobiliario de alto tráfico para un desarrollo</dd>
+          <dt>Motivación</dt><dd>Durabilidad, garantía, volumen, cumplimiento de plazos</dd>
+        </dl></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="fmark"><span class="fdot"></span>Brainworks — Sistema de Medios</span><span>04</span></div>
+  </div>
+</section>
+
+<!-- 5. COMPETENCIA — MAPA -->
+<section class="slide">
+  <div class="slide-pad">
+    <div class="kicker-row"><span class="eyebrow">02 · Análisis de competencia</span></div>
+    <h2 class="title">Mapa de posicionamiento</h2>
+    <p class="sub">Ningún competidor directo combina catálogo europeo curado, interior + exterior y venta a proyectos (contract) a la vez — ese cruce es el espacio propio de Brainworks.</p>
+    <div class="body" style="flex-direction:row; gap:28px; align-items:stretch;">
+      <div class="card" style="flex:1.35; display:flex; align-items:center; justify-content:center;">
+        <svg viewBox="0 0 620 430" width="100%" height="100%" style="max-height:400px;">
+          <!-- axes -->
+          <line x1="70" y1="30" x2="70" y2="380" stroke="#c9c1a8" stroke-width="1.5"/>
+          <line x1="70" y1="380" x2="590" y2="380" stroke="#c9c1a8" stroke-width="1.5"/>
+          <text x="330" y="412" text-anchor="middle" font-size="12.5" font-weight="700" fill="#5b5748" letter-spacing="0.5">Amplitud → también vende a proyectos (B2B / contract)</text>
+          <text x="26" y="205" text-anchor="middle" font-size="12.5" font-weight="700" fill="#5b5748" transform="rotate(-90 26 205)">Curaduría de diseño europeo →</text>
+          <text x="70" y="398" text-anchor="middle" font-size="10.5" fill="#8b8672">Solo retail</text>
+          <text x="590" y="398" text-anchor="end" font-size="10.5" fill="#8b8672">Retail + proyectos</text>
+          <!-- gridlines -->
+          <line x1="330" y1="30" x2="330" y2="380" stroke="#e3ddc9" stroke-width="1" stroke-dasharray="4 4"/>
+          <line x1="70" y1="205" x2="590" y2="205" stroke="#e3ddc9" stroke-width="1" stroke-dasharray="4 4"/>
+
+          <!-- Brainworks -->
+          <circle cx="500" cy="80" r="15" fill="#2c5c52"/>
+          <text x="500" y="60" text-anchor="middle" font-size="13" font-weight="700" fill="#16302a">Brainworks</text>
+          <text x="500" y="105" text-anchor="middle" font-size="10.5" fill="#5b5748">15+ marcas EU · int/ext · contract</text>
+
+          <!-- Milk -->
+          <circle cx="470" cy="150" r="12" fill="#b85c2c"/>
+          <text x="470" y="134" text-anchor="middle" font-size="12" fill="#5b5748">Milk</text>
+          <text x="470" y="177" text-anchor="middle" font-size="10" fill="#8b8672">nacional/vintage · retail + contract</text>
+
+          <!-- The Popular Design -->
+          <circle cx="310" cy="100" r="12" fill="#8b8672"/>
+          <text x="310" y="84" text-anchor="middle" font-size="12" fill="#5b5748">The Popular Design</text>
+          <text x="310" y="127" text-anchor="middle" font-size="10" fill="#8b8672">importado, foco retail masivo</text>
+
+          <!-- Sierra Muebles -->
+          <circle cx="230" cy="255" r="11" fill="#8b8672"/>
+          <text x="230" y="239" text-anchor="middle" font-size="12" fill="#5b5748">Sierra Muebles</text>
+          <text x="230" y="282" text-anchor="middle" font-size="10" fill="#8b8672">diseño brasileño, foco interior</text>
+
+          <!-- Interdesign -->
+          <circle cx="120" cy="170" r="10" fill="#8b8672"/>
+          <text x="120" y="154" text-anchor="middle" font-size="12" fill="#5b5748">Interdesign</text>
+          <text x="120" y="197" text-anchor="middle" font-size="10" fill="#8b8672">objetos + iluminación, nicho</text>
+
+          <!-- Espacio Terraza / TerrazaChic -->
+          <circle cx="330" cy="330" r="11" fill="#8b8672"/>
+          <text x="330" y="314" text-anchor="middle" font-size="12" fill="#5b5748">Espacio Terraza / TerrazaChic</text>
+          <text x="330" y="357" text-anchor="middle" font-size="10" fill="#8b8672">solo exterior, retail</text>
+        </svg>
+      </div>
+      <div style="flex:1; display:flex; flex-direction:column; gap:10px; justify-content:center;">
+        <div class="card"><h3 style="font-size:14px;margin-bottom:4px;">Amenaza directa</h3><p style="font-size:12.5px;color:var(--ink-soft);"><b style="color:var(--ink)">Milk</b> es el único que compite en ambos frentes (retail + "Milk Contract"), aunque con una estética nacional/vintage, no de catálogo europeo curado.</p></div>
+        <div class="card"><h3 style="font-size:14px;margin-bottom:4px;">Espacio en blanco</h3><p style="font-size:12.5px;color:var(--ink-soft);">Nadie ocupa hoy, de forma visible, el cruce "diseño europeo + interior/exterior + proyectos" — el ángulo que LinkedIn debería reforzar.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="fmark"><span class="fdot"></span>Brainworks — Sistema de Medios</span><span>05</span></div>
+  </div>
+</section>
+
+<!-- 6. COMPETENCIA — TABLA + REDES -->
+<section class="slide">
+  <div class="slide-pad">
+    <div class="kicker-row"><span class="eyebrow">02 · Análisis de competencia</span></div>
+    <h2 class="title">Benchmark directo</h2>
+    <p class="sub">Seguidores de Instagram verificados a septiembre de 2026 (fuente: perfiles públicos). Brainworks parte con la cuenta más chica del set — la principal brecha a cerrar en el corto plazo.</p>
+    <div class="body" style="flex-direction:row; gap:28px;">
+      <div style="flex:1.1; display:flex; flex-direction:column; justify-content:center;">
+        <svg viewBox="0 0 520 260" width="100%" height="240">
+          <!-- baseline -->
+          <line x1="120" y1="230" x2="500" y2="230" stroke="#d9d1bc" stroke-width="1"/>
+          <!-- The Popular Design 107k -->
+          <text x="112" y="52" text-anchor="end" font-size="12.5" fill="#5b5748">The Popular Design</text>
+          <rect x="120" y="34" width="380" height="26" rx="4" fill="#e3ddc9"/>
+          <text x="508" y="52" font-size="12.5" font-weight="700" fill="#5b5748">107K</text>
+          <!-- Milk 47k -->
+          <text x="112" y="112" text-anchor="end" font-size="12.5" fill="#5b5748">Milk</text>
+          <rect x="120" y="94" width="167" height="26" rx="4" fill="#b85c2c"/>
+          <text x="295" y="112" font-size="12.5" font-weight="700" fill="#5b5748">47K</text>
+          <!-- Brainworks 14k -->
+          <text x="112" y="172" text-anchor="end" font-size="12.5" font-weight="700" fill="#16302a">Brainworks</text>
+          <rect x="120" y="154" width="50" height="26" rx="4" fill="#2c5c52"/>
+          <text x="178" y="172" font-size="12.5" font-weight="700" fill="#16302a">14K</text>
+          <!-- Sierra / Interdesign n/d -->
+          <text x="112" y="222" text-anchor="end" font-size="11.5" fill="#8b8672">Sierra / Interdesign</text>
+          <rect x="120" y="205" width="0" height="24" rx="4" fill="#e3ddc9"/>
+          <text x="128" y="221" font-size="11" fill="#8b8672">sin dato público</text>
+        </svg>
+      </div>
+      <div class="tbl-wrap" style="flex:1.3;">
+        <table>
+          <thead><tr><th>Marca</th><th>Especialización</th><th>Debilidad explotable</th></tr></thead>
+          <tbody>
+            <tr><td><b>Milk</b></td><td>Nacional/vintage, retail + contract</td><td>No pelea en "diseño europeo curado"</td></tr>
+            <tr><td><b>The Popular Design</b></td><td>Importado, retail masivo</td><td>Poco foco en proyectos/arquitectos</td></tr>
+            <tr><td><b>Sierra Muebles</b></td><td>Diseño brasileño, interior</td><td>No cubre exterior/terraza</td></tr>
+            <tr><td><b>Interdesign</b></td><td>Objetos + iluminación, nicho</td><td>Catálogo acotado, no mobiliario grande</td></tr>
+            <tr><td><b>Espacio Terraza / TerrazaChic</b></td><td>Solo exterior</td><td>No cubre interior ni proyectos</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="fmark"><span class="fdot"></span>Brainworks — Sistema de Medios</span><span>06</span></div>
+  </div>
+</section>
+
+<!-- 7. INSTAGRAM — SISTEMA -->
+<section class="slide">
+  <div class="slide-pad">
+    <div class="kicker-row"><span class="eyebrow">03 · @brainworks_diseno</span></div>
+    <h2 class="title">Sistema Instagram</h2>
+    <p class="sub">Rol: conciencia + consideración B2C. Vitrina del showroom y prueba social de proyectos reales.</p>
+    <div class="body" style="flex-direction:row; gap:24px;">
+      <div class="card" style="flex:1;">
+        <h3 style="font-size:14.5px; margin-bottom:12px;">Pilares de contenido</h3>
+        <div class="pillars">
+          <div class="pillar-row"><span>Producto &amp; Showroom</span><div class="pillar-track"><div class="pillar-fill" style="width:30%"></div></div><span class="pillar-pct">30%</span></div>
+          <div class="pillar-row"><span>Proyectos &amp; Styling</span><div class="pillar-track"><div class="pillar-fill" style="width:25%"></div></div><span class="pillar-pct">25%</span></div>
+          <div class="pillar-row"><span>Educación / Tips</span><div class="pillar-track"><div class="pillar-fill" style="width:15%"></div></div><span class="pillar-pct">15%</span></div>
+          <div class="pillar-row"><span>Detrás de escena</span><div class="pillar-track"><div class="pillar-fill" style="width:15%"></div></div><span class="pillar-pct">15%</span></div>
+          <div class="pillar-row"><span>UGC / Testimonios</span><div class="pillar-track"><div class="pillar-fill" style="width:15%"></div></div><span class="pillar-pct">15%</span></div>
+        </div>
+      </div>
+      <div style="flex:1.25;">
+        <h3 style="font-size:14.5px; margin-bottom:12px;">Semana tipo</h3>
+        <div class="week-grid">
+          <div class="week-day"><span class="d">Lun</span><span class="c">Reel producto/ambiente</span></div>
+          <div class="week-day"><span class="d">Mar</span><span class="c">Carousel tip diseño</span></div>
+          <div class="week-day"><span class="d">Mié</span><span class="c">Reel transformación</span></div>
+          <div class="week-day"><span class="d">Jue</span><span class="c">Post marca de la semana</span></div>
+          <div class="week-day"><span class="d">Vie</span><span class="c">Reel inspiración</span></div>
+          <div class="week-day"><span class="d">Sáb</span><span class="c">Stories showroom/UGC</span></div>
+          <div class="week-day"><span class="d">Dom</span><span class="c">Stories detrás de escena</span></div>
+        </div>
+        <div style="margin-top:14px;" class="card">
+          <p style="font-size:12.5px;color:var(--ink-soft);">Activar <b style="color:var(--ink)">Instagram Shopping</b> vía Meta Commerce Manager para taggear piezas directo en posts y reels.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="fmark"><span class="fdot"></span>Brainworks — Sistema de Medios</span><span>07</span></div>
+  </div>
+</section>
+
+<!-- 8. INSTAGRAM — ADS -->
+<section class="slide">
+  <div class="slide-pad">
+    <div class="kicker-row"><span class="eyebrow">03 · @brainworks_diseno</span></div>
+    <h2 class="title">Meta Ads — estructura de campañas</h2>
+    <p class="sub">Cuatro campañas cubriendo todo el embudo, con retargeting de 90 días como bisagra hacia conversión.</p>
+    <div class="body">
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Campaña</th><th>Objetivo Meta</th><th>Audiencia</th><th>Creativo</th></tr></thead>
+          <tbody>
+            <tr><td><span class="tag">Reconocimiento</span></td><td>Reach / Video views</td><td>Interés en diseño/arquitectura, Santiago Oriente</td><td>Reels de marca y showroom</td></tr>
+            <tr><td><span class="tag">Consideración</span></td><td>Traffic / Engagement</td><td>Lookalike de seguidores y engagers</td><td>Carousels de producto, guías</td></tr>
+            <tr><td><span class="tag warm">Conversión — Leads</span></td><td>Formulario nativo</td><td>Retargeting visitantes web + engagers 90d</td><td>"Solicita cotización" / "Agenda visita"</td></tr>
+            <tr><td><span class="tag warm">Catálogo</span></td><td>Catalog sales</td><td>Vieron producto sin comprar</td><td>Dynamic ads de catálogo</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="grid2" style="margin-top:16px;">
+        <div class="card"><h3 style="font-size:13.5px;margin-bottom:5px;">Geo</h3><p style="font-size:12px;color:var(--ink-soft);">Santiago, prioridad Las Condes, Vitacura, La Reina, Lo Barnechea, Chicureo; extender si hay despacho nacional.</p></div>
+        <div class="card"><h3 style="font-size:13.5px;margin-bottom:5px;">Colaboraciones</h3><p style="font-size:12px;color:var(--ink-soft);">Micro-influencers de deco/arquitectura + arquitectos aliados que etiqueten proyectos reales con piezas Brainworks.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="fmark"><span class="fdot"></span>Brainworks — Sistema de Medios</span><span>08</span></div>
+  </div>
+</section>
+
+<!-- 9. LINKEDIN -->
+<section class="slide">
+  <div class="slide-pad">
+    <div class="kicker-row"><span class="eyebrow">04 · Company page</span></div>
+    <h2 class="title">Sistema LinkedIn</h2>
+    <p class="sub">Rol: demanda B2B entre arquitectos, interioristas y compradores de proyectos contract. Posiciona a Brainworks como proveedor de proyecto, no solo tienda — el ángulo que, según el mapa de competencia, nadie más ocupa.</p>
+    <div class="body" style="flex-direction:row; gap:24px;">
+      <div class="card" style="flex:1;">
+        <h3 style="font-size:14.5px; margin-bottom:12px;">Pilares de contenido</h3>
+        <div class="pillars">
+          <div class="pillar-row"><span>Proyectos &amp; casos</span><div class="pillar-track"><div class="pillar-fill" style="width:40%"></div></div><span class="pillar-pct">40%</span></div>
+          <div class="pillar-row"><span>Producto &amp; marcas EU</span><div class="pillar-track"><div class="pillar-fill" style="width:25%"></div></div><span class="pillar-pct">25%</span></div>
+          <div class="pillar-row"><span>Tendencias contract</span><div class="pillar-track"><div class="pillar-fill" style="width:15%"></div></div><span class="pillar-pct">15%</span></div>
+          <div class="pillar-row"><span>Showroom</span><div class="pillar-track"><div class="pillar-fill" style="width:15%"></div></div><span class="pillar-pct">15%</span></div>
+          <div class="pillar-row"><span>Cultura / equipo</span><div class="pillar-track"><div class="pillar-fill" style="width:5%"></div></div><span class="pillar-pct">5%</span></div>
+        </div>
+      </div>
+      <div style="flex:1; display:flex; flex-direction:column; gap:12px;">
+        <div class="card"><h3 style="font-size:13.5px;margin-bottom:5px;">Cadencia &amp; formato</h3><p style="font-size:12px;color:var(--ink-soft);">3 posts/semana. Prioridad a carousels de proyecto y video corto de showroom — superan a la foto suelta en alcance B2B.</p></div>
+        <div class="card"><h3 style="font-size:13.5px;margin-bottom:5px;">Lead magnet</h3><p style="font-size:12px;color:var(--ink-soft);">Catálogo/portafolio de proyectos en PDF vía Lead Gen Form (email + empresa + rol).</p></div>
+        <div class="card"><h3 style="font-size:13.5px;margin-bottom:5px;">LinkedIn Ads</h3><p style="font-size:12px;color:var(--ink-soft);">Lead Gen Form segmentado por cargo (Arquitecto, Diseñador de Interiores, Procurement) + retargeting de visitantes del sitio.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="fmark"><span class="fdot"></span>Brainworks — Sistema de Medios</span><span>09</span></div>
+  </div>
+</section>
+
+<!-- 10. GOOGLE ADS -->
+<section class="slide">
+  <div class="slide-pad">
+    <div class="kicker-row"><span class="eyebrow">05 · Demanda activa</span></div>
+    <h2 class="title">Sistema Google Ads</h2>
+    <p class="sub">El canal de mayor intención: se protege primero la marca, luego se escala a genérico y a proyecto.</p>
+    <div class="body">
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Campaña</th><th>Tipo</th><th>Ejemplos de keywords</th></tr></thead>
+          <tbody>
+            <tr><td><span class="tag">Marca</span></td><td>Search</td><td>"brainworks", "brainworks diseño"</td></tr>
+            <tr><td><span class="tag">Genérico B2C</span></td><td>Search</td><td>"muebles de diseño Santiago", "sofás de diseño", "muebles de terraza"</td></tr>
+            <tr><td><span class="tag warm">Proyectos / B2B</span></td><td>Search</td><td>"mobiliario para hoteles", "mobiliario contract Chile"</td></tr>
+            <tr><td><span class="tag">Catálogo</span></td><td>Shopping / PMax</td><td>Basado en feed de productos</td></tr>
+            <tr><td><span class="tag">Remarketing</span></td><td>Display</td><td>Visitantes del sitio, 30–90 días</td></tr>
+            <tr><td><span class="tag warm">Showroom</span></td><td>Local</td><td>Extensión de ubicación, "cerca de mí"</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="grid2" style="margin-top:16px;">
+        <div class="card"><h3 style="font-size:13.5px;margin-bottom:5px;">Estrategia de puja</h3><p style="font-size:12px;color:var(--ink-soft);">Mes 1: Maximizar clics para acumular datos. Mes 2+: Maximizar conversiones / CPA objetivo con ≥15–30 conversiones/mes.</p></div>
+        <div class="card"><h3 style="font-size:13.5px;margin-bottom:5px;">Negativas base</h3><p style="font-size:12px;color:var(--ink-soft);">"gratis", "usado", "segunda mano", "ikea", "sodimac", "barato", "réplica", "trabajo".</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="fmark"><span class="fdot"></span>Brainworks — Sistema de Medios</span><span>10</span></div>
+  </div>
+</section>
+
+<!-- 11. PRESUPUESTO -->
+<section class="slide">
+  <div class="slide-pad">
+    <div class="kicker-row"><span class="eyebrow">06 · Inversión</span></div>
+    <h2 class="title">Distribución de presupuesto</h2>
+    <p class="sub">Referencia porcentual — a traducir en CLP según el presupuesto real disponible, y a revisar cada 30 días.</p>
+    <div class="body" style="justify-content:center;">
+      <div class="card">
+        <div class="budget-bar">
+          <div class="budget-seg" style="width:45%; background:#2c5c52;">Google Ads · 45%</div>
+          <div class="budget-seg" style="width:35%; background:#6f8f86;">Meta / IG · 35%</div>
+          <div class="budget-seg" style="width:20%; background:#b85c2c;">LinkedIn · 20%</div>
+        </div>
+        <div class="legend">
+          <div class="legend-item"><span class="swatch" style="background:#2c5c52"></span>Google Ads — mayor intención de compra, B2C y proyectos</div>
+          <div class="legend-item"><span class="swatch" style="background:#6f8f86"></span>Meta/Instagram — marca + demanda B2C, menor CPC</div>
+          <div class="legend-item"><span class="swatch" style="background:#b85c2c"></span>LinkedIn — CPL alto, ticket de proyecto B2B mayor</div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:16px;">
+        <p style="font-size:12.5px;color:var(--ink-soft);">Separado de medios pagados: presupuesto de <b style="color:var(--ink)">producción de contenido</b> (fotografía de producto/showroom, video/Reels, piezas para LinkedIn) — no recortar, ambos canales orgánicos dependen de calidad visual.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="fmark"><span class="fdot"></span>Brainworks — Sistema de Medios</span><span>11</span></div>
+  </div>
+</section>
+
+<!-- 12. KPIs -->
+<section class="slide">
+  <div class="slide-pad">
+    <div class="kicker-row"><span class="eyebrow">06 · Medición</span></div>
+    <h2 class="title">Tablero de KPIs</h2>
+    <p class="sub">Reporte mensual único que consolide estas métricas por canal y etapa del embudo.</p>
+    <div class="body">
+      <div class="grid4">
+        <div class="kpi"><div class="label">Instagram</div><div class="value">ER 3–4%+</div><div class="sub">Engagement rate objetivo</div></div>
+        <div class="kpi"><div class="label">LinkedIn</div><div class="value">8–12</div><div class="sub">Leads RFQ / mes al mes 3</div></div>
+        <div class="kpi"><div class="label">Google Ads</div><div class="value">&gt;85%</div><div class="sub">Share of impression, marca</div></div>
+        <div class="kpi"><div class="label">Cruzado</div><div class="value">1 CRM</div><div class="sub">Fuente única de leads por canal</div></div>
+      </div>
+      <div class="tbl-wrap" style="margin-top:16px;">
+        <table>
+          <thead><tr><th>Métrica</th><th>Instagram</th><th>LinkedIn</th><th>Google Ads</th></tr></thead>
+          <tbody>
+            <tr><td>Alcance / impresiones</td><td>✔</td><td>✔</td><td>✔ (Display/PMax)</td></tr>
+            <tr><td>Leads / cotizaciones</td><td>✔</td><td>✔ (RFQ calificado)</td><td>✔</td></tr>
+            <tr><td>CPL</td><td>✔ (ads)</td><td>✔ (ads)</td><td>✔</td></tr>
+            <tr><td>Visitas a showroom agendadas</td><td>✔</td><td>✔</td><td>✔ (Local)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="fmark"><span class="fdot"></span>Brainworks — Sistema de Medios</span><span>12</span></div>
+  </div>
+</section>
+
+<!-- 13. CALENDARIO -->
+<section class="slide">
+  <div class="slide-pad">
+    <div class="kicker-row"><span class="eyebrow">07 · Puesta en marcha</span></div>
+    <h2 class="title">Calendario de implementación — 90 días</h2>
+    <div class="body" style="flex-direction:row; gap:18px;">
+      <div class="card" style="flex:1;"><h3 style="font-size:14px;">Mes 1 — Fundaciones</h3><ul class="plain" style="margin-top:10px;">
+        <li>Tracking: GA4, conversiones Google, Meta Pixel/CAPI, LinkedIn Insight Tag</li>
+        <li>Perfiles optimizados + banco de contenido (foto/video showroom)</li>
+        <li>Lanzamiento Search de marca y genérico en Google</li>
+        <li>Cadencia orgánica en IG + primeros 3 posts de proyecto en LinkedIn</li>
+      </ul></div>
+      <div class="card" style="flex:1;"><h3 style="font-size:14px;">Mes 2 — Escalamiento</h3><ul class="plain" style="margin-top:10px;">
+        <li>Meta Ads: reconocimiento + consideración, primer test de leads</li>
+        <li>LinkedIn Ads: Lead Gen Form con descarga de catálogo</li>
+        <li>Google Ads a Maximizar conversiones; Shopping/PMax si el feed está listo</li>
+        <li>Revisión semanal de términos de búsqueda</li>
+      </ul></div>
+      <div class="card" style="flex:1;"><h3 style="font-size:14px;">Mes 3 — Optimización</h3><ul class="plain" style="margin-top:10px;">
+        <li>Retargeting cruzado: web → Meta + Display + LinkedIn</li>
+        <li>Reporte comparativo de CPL/ROAS → reasignación de presupuesto</li>
+        <li>Test de campaña Local para visitas al showroom</li>
+        <li>Definición del próximo ciclo trimestral de contenido</li>
+      </ul></div>
+    </div>
+    <div class="slide-foot"><span class="fmark"><span class="fdot"></span>Brainworks — Sistema de Medios</span><span>13</span></div>
+  </div>
+</section>
+
+<!-- 14. CIERRE -->
+<section class="slide dark">
+  <div class="slide-pad">
+    <div style="display:flex; align-items:center; gap:10px;">
+      <span style="width:11px;height:11px;border-radius:3px;background:#7fbfae;transform:rotate(45deg);display:inline-block;"></span>
+      <span style="font-family:'Fraunces';font-weight:600;letter-spacing:.02em;font-size:15px;">BRAINWORKS</span>
+    </div>
+    <div style="margin-top:110px;">
+      <div class="eyebrow" style="margin-bottom:16px;">Próximos pasos</div>
+      <h1 style="font-size:38px; line-height:1.2; max-width:26ch;">Tres decisiones para destrabar el arranque</h1>
+      <div class="grid3" style="margin-top:34px; gap:20px;">
+        <div style="border-left:2px solid #7fbfae; padding-left:16px;"><h3 style="font-size:15px;color:#ece7d8;">1. Confirmar presupuesto</h3><p style="font-size:12.5px;color:#c9c4b1;margin-top:6px;">Traducir el split 45/35/20 a CLP reales por canal.</p></div>
+        <div style="border-left:2px solid #7fbfae; padding-left:16px;"><h3 style="font-size:15px;color:#ece7d8;">2. Habilitar tracking</h3><p style="font-size:12.5px;color:#c9c4b1;margin-top:6px;">GA4, Meta Pixel/CAPI, LinkedIn Insight Tag y feed de Merchant Center.</p></div>
+        <div style="border-left:2px solid #7fbfae; padding-left:16px;"><h3 style="font-size:15px;color:#ece7d8;">3. Banco de contenido</h3><p style="font-size:12.5px;color:#c9c4b1;margin-top:6px;">Sesión de foto/video en el showroom antes de la semana 3.</p></div>
+      </div>
+    </div>
+    <div style="margin-top:auto; display:flex; gap:36px; font-size:12.5px; color:#9b9680; padding-top:30px; border-top:1px solid #33351f;">
+      <span>Brainworks — Sistema de Medios</span>
+      <span>brainworks.cl · @brainworks_diseno</span>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
