@@ -20,6 +20,18 @@ Rol en el embudo: **captura de demanda activa** — personas y empresas que ya e
 | Display remarketing | Display | Recuperar visitantes que no convirtieron | Audiencia: visitantes del sitio 30–90 días, por categoría vista |
 | Local (showroom) | Local campaign / Search con extensión de ubicación | Impulsar visitas al showroom El Golf/Vitacura | Búsquedas con intención "cerca de mí", extensión de ubicación en todas las campañas Search |
 
+## 2.1 Nota — Campaña Inteligente vs. Búsqueda estándar
+
+Durante la creación de la primera campaña, el asistente de Google mostró el flujo de **Campaña Inteligente (Smart Campaign)** (temas de palabras clave en vez de keywords con concordancia, puja 100% automática, sin negativas propias, targeting de ubicación sin ajuste de puja por zona). Es un producto más simple/automatizado que la campaña de Búsqueda estándar asumida en el resto de esta sección (fases de puja manual → Maximizar conversiones, negativas, concordancia de frase/exacta). Sirve para partir rápido, pero para el nivel de control que necesita el sistema completo (Marca / Genérico / Proyectos como campañas separadas, negativas propias, puja distinta por zona) conviene evaluar migrar a Búsqueda estándar una vez que haya volumen de conversión.
+
+## 2.2 Segmentación geográfica — Campaña Genérico B2C
+
+Hallazgo durante el setup: Brainworks ya ha recibido pedidos reales **desde Arica hasta Temuco** — la demanda real es nacional, no solo Santiago Oriente como asumía la persona B2C original (ver [00-audiencias-objetivos.md](00-audiencias-objetivos.md)).
+
+- Usar segmentación por **regiones/ciudades**, no por radio alrededor de una dirección — un radio centrado en el showroom de Vitacura dejaría fuera toda la demanda ya comprobada fuera de Santiago.
+- Regiones a incluir (cubriendo el rango confirmado): Arica y Parinacota, Tarapacá, Antofagasta, Atacama, Coquimbo, Valparaíso, Metropolitana, O'Higgins, Maule, Ñuble, Biobío, La Araucanía. Confirmar con el equipo si también ha habido pedidos más al sur (Los Ríos, Los Lagos, Aysén, Magallanes) — si el despacho nacional no tiene restricción real, puede ser más simple segmentar "Chile" completo.
+- Limitación de Smart Campaign (ver 2.1): no permite pujar distinto por zona — todas las regiones compiten igual. En Búsqueda estándar sí se podría pujar más alto en Santiago Oriente (mayor probabilidad de visita a showroom) y más bajo en regiones lejanas (solo venta a distancia), otro argumento para migrar más adelante.
+
 ## 3. Negativas y control de calidad
 
 - Negativas transversales: "gratis", "usado", "segunda mano", "ikea", "sodimac", "barato", "réplica", "trabajo" (para no atraer búsquedas de empleo).
