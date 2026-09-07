@@ -60,14 +60,22 @@ Set de referencia para el anuncio de búsqueda responsivo (RSA) de la campaña "
 14. Vondom, Magis y Más
 15. Envíos a Todo Chile
 
-**Descripciones (90 car. máx.):**
+**Descripciones (90 car. máx.; las primeras dos también caben en formularios con límite de 60/90):**
 
-1. Mobiliario de diseño europeo para interior y exterior. Visita el showroom en Vitacura.
-2. Más de 15 marcas europeas en un solo lugar. Cotiza tu proyecto sin costo.
-3. Mobiliario para proyectos: hoteles, restaurantes y residencias. Cotiza aquí.
-4. Importación directa de Italia, España y Holanda. Calidad garantizada.
+1. Mobiliario de diseño europeo para interior y exterior. Visita el showroom en Vitacura. (86)
+2. Más de 15 marcas europeas en un solo lugar. Cotiza tu proyecto sin costo. (73)
+3. Mobiliario para proyectos: hoteles, restaurantes y residencias. Cotiza aquí. (76)
+4. Importación directa de Italia, España y Holanda. Calidad garantizada. (69)
+5. Diseño de interior y exterior en un solo lugar. (47)
+6. Piezas de diseño para tu casa, oficina o terraza. (49)
+7. Muebles de diseño con stock disponible en Chile. (48)
+8. Agenda tu visita al showroom y conoce el catálogo completo. (59)
+9. Sofás, sillas, mesas y mobiliario de exterior de diseño. (56)
+10. Encuentra piezas únicas de Vondom, Magis, BD Barcelona y más. (61)
+11. Envíos a todo Chile y hasta 12 cuotas sin interés. (50)
+12. Asesoría de diseño para proyectos residenciales y comerciales. (62)
 
-Notas: sin signos de exclamación en títulos (rechazados por política de Google); no fijar ("pin") títulos salvo el del nombre de marca si se quiere presencia constante — dejar el resto libre para que el algoritmo rote combinaciones.
+Notas: sin signos de exclamación en títulos (rechazados por política de Google); no fijar ("pin") títulos salvo el del nombre de marca si se quiere presencia constante — dejar el resto libre para que el algoritmo rote combinaciones. Al elegir cuáles cargar, mezclar ángulos distintos (producto, marca/catálogo, CTA, beneficio) en vez de repetir la misma idea — mejora el "Ad Strength".
 
 ## 6. KPIs del canal
 
