@@ -108,6 +108,24 @@ Set de referencia para el anuncio de búsqueda responsivo (RSA) de la campaña "
 11. Envíos a todo Chile y hasta 12 cuotas sin interés. (50)
 12. Asesoría de diseño para proyectos residenciales y comerciales. (62)
 
+## 5.3 Términos de búsqueda — Campaña Genérico B2C
+
+Lista ampliada para el paso "Elige los términos que buscan tus clientes en Google" (o para armar los grupos de anuncios de una campaña estándar). Agrupada por subtema para elegir según el ángulo del grupo de anuncios; en el asistente simplificado se ingresan como frases sueltas.
+
+**Muebles de diseño (general):** muebles de diseño · muebles de diseño Santiago · tienda de muebles de diseño · muebles de diseño europeos · muebles importados Chile · muebles italianos Chile · mobiliario de diseño
+
+**Living — sofás y sillas:** sofás de diseño · sillas de diseño · sillas de diseño europeas · sillones de diseño · muebles para living
+
+**Comedor:** mesas de diseño · mesas de comedor de diseño
+
+**Terraza y exterior:** muebles de terraza · muebles de exterior · mobiliario exterior diseño · muebles para terraza y jardín · sillas de exterior diseño
+
+**Iluminación:** lámparas de diseño · iluminación de diseño
+
+**Showroom / marca:** showroom de muebles Santiago · tienda de diseño Vitacura
+
+Revisar cualquier término "sugerido" que el asistente saque automáticamente del sitio antes de aceptarlo (puede traer búsquedas genéricas de decoración sin intención de compra) y excluir siempre la lista de negativas ya definida en la sección 3. Usar concordancia de frase o exacta al empezar, según lo indicado en "Estrategias de puja".
+
 Notas: sin signos de exclamación en títulos (rechazados por política de Google); no fijar ("pin") títulos salvo el del nombre de marca si se quiere presencia constante — dejar el resto libre para que el algoritmo rote combinaciones. Al elegir cuáles cargar, mezclar ángulos distintos (producto, marca/catálogo, CTA, beneficio) en vez de repetir la misma idea — mejora el "Ad Strength".
 
 ## 6. KPIs del canal
