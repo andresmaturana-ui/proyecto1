@@ -21,7 +21,8 @@ Catálogo: +300 productos de 9 marcas (Vondom, BD Barcelona, Plust, Scab, OMP, I
 **Fricciones detectadas:**
 - Dos contactos distintos (`tienda@brainworks.cl` / `info@brainworks.cl`, dos teléfonos) sin que quede claro cuál usar según el tipo de consulta.
 - El subdominio `2024.brainworks.cl/shop/` sigue indexado junto al sitio vigente — confunde a usuarios y diluye el "quality score" de las campañas de Google Ads que apunten a `/shop/`.
-- Direcciones de showroom inconsistentes entre fuentes históricas (Barrio Italia, La Reina, El Golf/Vitacura) — el sitio debe mostrar **una sola dirección vigente** en todas partes (header, footer, página de showroom, Google Business Profile).
+- Direcciones de showroom inconsistentes entre fuentes históricas (Barrio Italia, La Reina, El Golf/Vitacura) — el sitio debe mostrar **una sola dirección vigente** en todas partes (header, footer, página de showroom, Google Business Profile). Confirmado en vivo durante la auditoría: el Business Portfolio de Meta muestra "cristal de abelli. 3021, santiago... 77750500" (código postal de 8 dígitos, no válido en Chile) y la extensión de ubicación de Google Ads (tomada de Google Business Profile) muestra "Cristal de Abellia 3021, Las Condes" — ni la calle ni la comuna coinciden entre ambas fuentes. Corregir la ficha de Google Business Profile con la dirección real antes de activar extensiones de ubicación en campañas.
+- Igual patrón con el teléfono: han aparecido +56 9 7307 5604 (showroom), +56 2 243 80 550 (tienda) y +56 9 9527 4895 (Business Portfolio de Meta) — definir uno solo como oficial antes de cargarlo en el botón de llamada de Google Ads.
 - "Brainworks Proyectos" (el ángulo B2B) no tiene visibilidad de primer nivel — hoy el sitio se lee principalmente como tienda retail.
 
 ## 2. El problema de fondo
