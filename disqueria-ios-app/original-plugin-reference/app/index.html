@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet data-dc-atomics><meta name="design_doc_mode" content="canvas">
+<meta name="theme-color" content="#111111">
+<meta name="referrer" content="no-referrer">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script src="https://unpkg.com/@zxing/library@0.20.0/umd/index.min.js"></script>
+<style>
+body{margin:0;background:#E5E5EA;font-family:-apple-system,system-ui,sans-serif;color:#000;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+input,textarea,button{font-family:inherit}
+::placeholder{color:rgba(60,60,67,.4)}
+.da-frame-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:36px}
+.da-frame{width:402px;min-height:874px;background:#F2F2F7;border-radius:44px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.25);display:flex;flex-direction:column;position:relative}
+@media (max-width:480px){
+.da-frame-wrap{padding:0;min-height:100vh}
+.da-frame{width:100vw;min-height:100vh;height:100vh;border-radius:0;box-shadow:none}
+}
+</style></helmet>
+
+<section class="da-frame-wrap">
+<div class="da-frame">
+
+<div style="padding:10px 18px;display:flex;align-items:center;justify-content:space-between;background:#fff;border-bottom:1px solid rgba(60,60,67,.15);flex:none">
+<div style="display:flex;align-items:center;gap:10px;min-width:0">
+<sc-if value="{{ hasStoreLogo }}" hint-placeholder-val="{{ false }}">
+<div style="{{ storeLogoStyle }}"></div>
+</sc-if>
+<sc-if value="{{ hasNoStoreLogo }}" hint-placeholder-val="{{ true }}">
+<div style="width:26px;height:26px;border-radius:7px;background:#111111;color:#fff;display:flex;align-items:center;justify-content:center;font:700 13px/1 -apple-system,sans-serif;flex:none">{{ storeInitial }}</div>
+</sc-if>
+<div style="font:700 13px/1.2 -apple-system,sans-serif;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ storeLabel }}</div>
+<div style="width:7px;height:7px;border-radius:50%;flex:none;background:{{ statusColor }}"></div>
+</div>
+<sc-if value="{{ isLoggedIn }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;align-items:center;gap:14px;flex:none">
+<button onClick="{{ goSettings }}" style="border:none;background:transparent;color:#111111;font:500 12.5px/1 -apple-system,sans-serif;cursor:pointer">Ajustes</button>
+<button onClick="{{ logout }}" style="border:none;background:transparent;color:#111111;font:500 12.5px/1 -apple-system,sans-serif;cursor:pointer">Salir</button>
+</div>
+</sc-if>
+</div>
+
+<div style="flex:1;display:flex;flex-direction:column;overflow:hidden">
+
+<sc-if value="{{ isLogin }}" hint-placeholder-val="{{ true }}">
+<div style="flex:1;display:flex;flex-direction:column;padding:40px 24px;gap:20px">
+<div style="display:flex;flex-direction:column;gap:6px;align-items:center;margin-bottom:8px">
+<div style="width:64px;height:64px;border-radius:16px;background:#111111;color:#fff;display:flex;align-items:center;justify-content:center;font:700 26px/1 -apple-system,sans-serif">D</div>
+<div style="font:700 19px/1.2 -apple-system,sans-serif;margin-top:6px">Disquería App</div>
+<div style="font:400 13px/1.4 -apple-system,sans-serif;color:rgba(60,60,67,.55);text-align:center">Conecta la app a tu propia tienda WordPress/WooCommerce</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<input value="{{ siteUrl }}" onChange="{{ setSiteUrl }}" placeholder="URL de tu tienda (ej. tudisqueria.cl)" autoCapitalize="none" style="padding:14px;border-radius:10px;border:1px solid rgba(60,60,67,.2);background:#fff;font:400 15px/1 -apple-system,sans-serif"/>
+<input value="{{ username }}" onChange="{{ setUsername }}" placeholder="usuario de WordPress" autoCapitalize="none" style="padding:12px;border-radius:10px;border:1px solid rgba(60,60,67,.2);background:#fff;font:400 14px/1 -apple-system,sans-serif"/>
+<input value="{{ appPassword }}" onChange="{{ setAppPassword }}" placeholder="contraseña de aplicación" style="padding:12px;border-radius:10px;border:1px solid rgba(60,60,67,.2);background:#fff;font:400 14px/1 ui-monospace,monospace"/>
+</div>
+<sc-if value="{{ loginError }}">
+<div style="padding:11px 13px;border-radius:9px;background:#FFEBEB;color:#B32323;font:400 12.5px/1.4 -apple-system,sans-serif">{{ loginError }}</div>
+</sc-if>
+<button onClick="{{ loginManual }}" style="border:none;background:#111111;color:#fff;border-radius:11px;padding:15px;font:600 15px/1 -apple-system,sans-serif;cursor:pointer">Entrar</button>
+<div style="font:400 11px/1.4 -apple-system,sans-serif;color:rgba(60,60,67,.4)">Genera una contraseña de aplicación en tu WordPress: Usuarios → Perfil → Contraseñas de aplicación.</div>
+<div style="display:flex;align-items:center;gap:10px;margin:2px 0"><div style="flex:1;height:1px;background:rgba(60,60,67,.15)"></div><div style="font:500 11px/1 -apple-system,sans-serif;color:rgba(60,60,67,.4)">o automático</div><div style="flex:1;height:1px;background:rgba(60,60,67,.15)"></div></div>
+<button onClick="{{ connectWp }}" style="border:1px solid #111111;background:#fff;color:#111111;border-radius:11px;padding:12px;font:600 13.5px/1 -apple-system,sans-serif;cursor:pointer">Conectar con mi tienda</button>
+<div style="font:400 11px/1.4 -apple-system,sans-serif;color:rgba(60,60,67,.4)">Te lleva a iniciar sesión en tu WordPress. Usa esto solo si sabes que el navegador no tiene otra cuenta de WordPress guardada — si no, prefiere el método manual arriba.</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isSettings }}">
+<div style="flex:1;overflow:auto;display:flex;flex-direction:column">
+<div style="padding:16px 20px 10px;display:flex;align-items:center;gap:10px">
+<button onClick="{{ goScan }}" style="border:none;background:transparent;font:400 22px/1 -apple-system,sans-serif;color:#111111;cursor:pointer;padding:0">‹</button>
+<div style="flex:1;font:700 18px/1 -apple-system,sans-serif">Ajustes</div>
+</div>
+<div style="padding:6px 20px 24px;display:flex;flex-direction:column;gap:18px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<div style="font:600 13px/1 -apple-system,sans-serif">Categoría de WooCommerce</div>
+<input value="{{ defaultCategoryId }}" onChange="{{ setDefaultCategoryId }}" placeholder="ID de categoría (ej. 12)" style="padding:12px;border-radius:9px;border:1px solid rgba(60,60,67,.2);background:#fff;font:400 13.5px/1 ui-monospace,monospace"/>
+<div style="font:400 11.5px/1.4 -apple-system,sans-serif;color:rgba(60,60,67,.45)">Se aplica por defecto a los productos que subas. Puedes revisarla en cada producto antes de publicar.</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<div style="font:600 13px/1 -apple-system,sans-serif">Clave de Discogs (opcional)</div>
+<input value="{{ discogsToken }}" onChange="{{ setDiscogsToken }}" placeholder="Personal access token" style="padding:12px;border-radius:9px;border:1px solid rgba(60,60,67,.2);background:#fff;font:400 13px/1 ui-monospace,monospace"/>
+<div style="font:400 11.5px/1.4 -apple-system,sans-serif;color:rgba(60,60,67,.45)">Sin esto, Discogs no muestra las portadas en la lista de resultados de la búsqueda. Genera una gratis en discogs.com → Configuración → Desarrolladores → Generar nuevo token.</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:2px">
+<div style="font:600 13px/1 -apple-system,sans-serif;margin-bottom:6px">Datos de Discogs a incluir en el producto</div>
+<sc-for list="{{ fieldToggles }}" as="t" hint-placeholder-count="10">
+<div onClick="{{ t.toggle }}" style="display:flex;align-items:center;justify-content:space-between;padding:12px 13px;background:#fff;border-bottom:1px solid rgba(60,60,67,.08);cursor:pointer">
+<div style="font:500 13.5px/1.3 -apple-system,sans-serif">{{ t.label }}</div>
+<div style="{{ t.pillStyle }}"><div style="{{ t.knobStyle }}"></div></div>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isScan }}">
+<div style="flex:1;display:flex;flex-direction:column">
+<div style="padding:16px 20px 10px;display:flex;align-items:center;justify-content:space-between">
+<div style="font:700 20px/1 -apple-system,sans-serif">Escanear</div>
+<div style="font:500 11px/1 ui-monospace,monospace;color:rgba(60,60,67,.5)">PASO 1/6</div>
+</div>
+<div style="padding:0 20px 4px;font:400 13px/1.4 -apple-system,sans-serif;color:rgba(60,60,67,.55)">Escanea el código de barras que está en la carátula o contraportada del disco, o ingresa el número manualmente abajo.</div>
+<div style="padding:0 20px;display:flex;flex-direction:column;gap:12px">
+<sc-if value="{{ cameraSupported }}" hint-placeholder-val="{{ true }}">
+<sc-if value="{{ cameraActive }}">
+<div style="position:relative;border-radius:12px;overflow:hidden;background:#000;height:220px">
+<video ref="{{ videoRef }}" autoPlay="{{ true }}" playsInline="{{ true }}" muted="{{ true }}" style="width:100%;height:100%;object-fit:cover"></video>
+<div style="position:absolute;inset:20px;border:2px solid #fff;border-radius:8px;opacity:.7;pointer-events:none"></div>
+<button onClick="{{ stopCamera }}" style="position:absolute;bottom:10px;right:10px;border:none;background:rgba(0,0,0,.5);color:#fff;border-radius:8px;padding:8px 12px;font:500 12px/1 -apple-system,sans-serif;cursor:pointer">Cerrar cámara</button>
+</div>
+</sc-if>
+<sc-if value="{{ cameraInactive }}" hint-placeholder-val="{{ true }}">
+<button onClick="{{ startBarcodeCamera }}" style="border:1px solid #111111;background:#EDEDED;color:#111111;border-radius:11px;padding:13px;font:600 14px/1 -apple-system,sans-serif;cursor:pointer">Escanear con cámara</button>
+</sc-if>
+</sc-if>
+<sc-if value="{{ cameraUnsupported }}">
+<div style="font:400 12px/1.5 -apple-system,sans-serif;color:rgba(60,60,67,.5);padding:10px 12px;background:#fff;border-radius:9px">Tu navegador no soporta lectura de códigos por cámara. Ingresa el código manualmente abajo.</div>
+</sc-if>
+<div style="display:flex;gap:8px">
+<input value="{{ barcodeInput }}" onChange="{{ setBarcode }}" placeholder="Código de barras (EAN/UPC)" style="flex:1;padding:13px;border-radius:10px;border:1px solid rgba(60,60,67,.2);background:#fff;font:400 15px/1 ui-monospace,monospace"/>
+</div>
+<sc-if value="{{ lookupError }}">
+<div style="padding:11px 13px;border-radius:9px;background:#FFEBEB;color:#B32323;font:400 12.5px/1.4 -apple-system,sans-serif">{{ lookupError }}</div>
+</sc-if>
+<button onClick="{{ lookup }}" disabled="{{ lookupBusy }}" style="border:none;background:#111111;color:#fff;border-radius:11px;padding:14px;font:600 14.5px/1 -apple-system,sans-serif;cursor:pointer">{{ lookupLabel }}</button>
+</div>
+<sc-if value="{{ hasQueue }}">
+<div onClick="{{ goList }}" style="margin:16px 20px 0;display:flex;align-items:center;justify-content:space-between;padding:11px 13px;border-radius:10px;background:#fff;cursor:pointer">
+<div style="font:500 12px/1 ui-monospace,monospace;color:rgba(60,60,67,.6)">Ver mis productos publicados</div>
+<div style="font:500 12px/1 -apple-system,sans-serif;color:#111111">abrir ›</div>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ isMatch }}">
+<div style="flex:1;display:flex;flex-direction:column;overflow:hidden">
+<div style="padding:16px 20px 10px;display:flex;align-items:center;gap:10px">
+<button onClick="{{ goScan }}" style="border:none;background:transparent;font:400 22px/1 -apple-system,sans-serif;color:#111111;cursor:pointer;padding:0">‹</button>
+<div style="flex:1;font:700 18px/1 -apple-system,sans-serif">Resultados del código</div>
+</div>
+<div style="flex:1;overflow:auto;padding:6px 20px 16px;display:flex;flex-direction:column;gap:10px">
+<sc-if value="{{ noResults }}">
+<div style="padding:16px;background:#fff;border-radius:10px;font:400 13.5px/1.5 -apple-system,sans-serif;color:rgba(60,60,67,.6)">Discogs no encontró ediciones para ese código. Verifica el número o agrega el release manualmente después.</div>
+</sc-if>
+<sc-for list="{{ results }}" as="r" hint-placeholder-count="0">
+<div onClick="{{ r.pick }}" style="display:flex;gap:12px;padding:11px;background:#fff;border-radius:11px;border:1px solid rgba(60,60,67,.12);cursor:pointer">
+<div style="{{ r.thumbStyle }}"></div>
+<div style="display:flex;flex-direction:column;gap:3px;min-width:0">
+<div style="font:600 13.5px/1.3 -apple-system,sans-serif;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ r.title }}</div>
+<div style="font:400 11.5px/1.4 ui-monospace,monospace;color:rgba(60,60,67,.55)">{{ r.meta }}</div>
+</div>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isNewUsed }}">
+<div style="flex:1;display:flex;flex-direction:column;overflow:hidden">
+<div style="padding:16px 20px 10px;display:flex;align-items:center;gap:10px">
+<button onClick="{{ goMatch }}" style="border:none;background:transparent;font:400 22px/1 -apple-system,sans-serif;color:#111111;cursor:pointer;padding:0">‹</button>
+<div style="flex:1;font:700 18px/1 -apple-system,sans-serif">Estado del disco</div>
+<div style="font:500 11px/1 ui-monospace,monospace;color:rgba(60,60,67,.5)">2/6</div>
+</div>
+<sc-if value="{{ hasCoverPreview }}" hint-placeholder-val="{{ false }}">
+<div style="margin:0 20px 14px;display:flex;align-items:center;gap:10px;padding:10px;background:#fff;border-radius:10px">
+<div style="{{ coverPreviewStyle }}"></div>
+<div style="font:400 11.5px/1.4 ui-monospace,monospace;color:rgba(60,60,67,.55)">Portada encontrada en Discogs</div>
+</div>
+</sc-if>
+<div style="padding:0 20px;display:flex;flex-direction:column;gap:10px">
+<div style="font:400 13px/1.4 -apple-system,sans-serif;color:rgba(60,60,67,.55)">Elige si el disco es nuevo (sellado/sin uso) o usado. Si es usado, luego podrás fotografiarlo y calificar su estado.</div>
+<div style="display:flex;gap:10px">
+<button onClick="{{ pickNewFlow }}" style="flex:1;border:1px solid #111111;background:#fff;color:#111111;border-radius:11px;padding:16px;font:600 14.5px/1 -apple-system,sans-serif;cursor:pointer">Nuevo</button>
+<button onClick="{{ pickUsedFlow }}" style="flex:1;border:none;background:#111111;color:#fff;border-radius:11px;padding:16px;font:600 14.5px/1 -apple-system,sans-serif;cursor:pointer">Usado</button>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isPhotos }}">
+<div style="flex:1;display:flex;flex-direction:column;overflow:hidden">
+<div style="padding:16px 20px 10px;display:flex;align-items:center;gap:10px">
+<button onClick="{{ goNewUsed }}" style="border:none;background:transparent;font:400 22px/1 -apple-system,sans-serif;color:#111111;cursor:pointer;padding:0">‹</button>
+<div style="flex:1;font:700 18px/1 -apple-system,sans-serif">{{ photoLabel }}</div>
+<div style="font:500 11px/1 ui-monospace,monospace;color:rgba(60,60,67,.5)">3/6</div>
+</div>
+<div style="padding:0 20px 4px;font:400 13px/1.4 -apple-system,sans-serif;color:rgba(60,60,67,.55)">Fotografía la carátula y el disco para mostrar su estado real. Es opcional, puedes omitirlo.</div>
+<div style="padding:0 20px;display:flex;flex-direction:column;gap:14px">
+<sc-if value="{{ camActive }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative;border-radius:12px;overflow:hidden;background:#000;height:280px">
+<video ref="{{ videoRef }}" autoPlay="{{ true }}" playsInline="{{ true }}" muted="{{ true }}" style="width:100%;height:100%;object-fit:cover"></video>
+<button onClick="{{ takePhoto }}" style="position:absolute;bottom:12px;left:50%;transform:translateX(-50%);width:60px;height:60px;border-radius:50%;border:4px solid rgba(255,255,255,.35);background:#fff;cursor:pointer"></button>
+</div>
+</sc-if>
+<sc-if value="{{ camInactive }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;gap:10px">
+<sc-for list="{{ slots }}" as="p" hint-placeholder-count="0">
+<sc-if value="{{ p.filled }}" hint-placeholder-val="{{ false }}">
+<div style="{{ p.srcStyle }}">
+<div style="position:absolute;top:5px;left:5px;background:rgba(0,0,0,.55);color:#fff;font:500 10px/1 ui-monospace,monospace;padding:3px 6px;border-radius:4px">{{ p.label }}</div>
+<button onClick="{{ p.remove }}" style="position:absolute;top:5px;right:5px;width:22px;height:22px;border-radius:50%;border:none;background:rgba(0,0,0,.55);color:#fff;font:600 13px/1 -apple-system,sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center">×</button>
+</div>
+</sc-if>
+<sc-if value="{{ p.empty }}" hint-placeholder-val="{{ true }}">
+<div style="flex:1;border-radius:10px;height:100px;border:1.5px dashed rgba(60,60,67,.25);display:flex;align-items:center;justify-content:center;font:400 11px/1.3 ui-monospace,monospace;color:rgba(60,60,67,.4)">{{ p.label }}</div>
+</sc-if>
+</sc-for>
+</div>
+<button onClick="{{ startPhotoCamera }}" style="border:1px solid #111111;background:#EDEDED;color:#111111;border-radius:11px;padding:13px;font:600 14px/1 -apple-system,sans-serif;cursor:pointer">Abrir cámara</button>
+</sc-if>
+<sc-if value="{{ camUnsupported }}">
+<div style="font:400 12px/1.5 -apple-system,sans-serif;color:#B32323;padding:10px 12px;background:#FFEBEB;border-radius:9px">No se pudo acceder a la cámara. Revisa los permisos del navegador.</div>
+</sc-if>
+<div style="display:flex;gap:10px">
+<sc-if value="{{ hasAnyPhoto }}" hint-placeholder-val="{{ false }}">
+<button onClick="{{ goCondition }}" style="flex:1;border:none;background:#111111;color:#fff;border-radius:11px;padding:14px;font:600 14.5px/1 -apple-system,sans-serif;cursor:pointer">Continuar</button>
+</sc-if>
+<sc-if value="{{ hasNoPhoto }}" hint-placeholder-val="{{ true }}">
+<button onClick="{{ goCondition }}" style="flex:1;border:1px solid rgba(60,60,67,.2);background:#fff;color:rgba(60,60,67,.65);border-radius:11px;padding:14px;font:600 14.5px/1 -apple-system,sans-serif;cursor:pointer">Omitir fotos</button>
+</sc-if>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isCondition }}">
+<div style="flex:1;display:flex;flex-direction:column;overflow:hidden">
+<div style="padding:16px 20px 10px;display:flex;align-items:center;gap:10px">
+<button onClick="{{ goPhotos }}" style="border:none;background:transparent;font:400 22px/1 -apple-system,sans-serif;color:#111111;cursor:pointer;padding:0">‹</button>
+<div style="flex:1;font:700 18px/1 -apple-system,sans-serif">Condición</div>
+<div style="font:500 11px/1 ui-monospace,monospace;color:rgba(60,60,67,.5)">4/6</div>
+</div>
+<div style="flex:1;overflow:auto;padding:14px 20px;display:flex;flex-direction:column;gap:20px">
+<div style="font:400 13px/1.4 -apple-system,sans-serif;color:rgba(60,60,67,.55);margin-top:-6px">Califica el disco y la carátula por separado, usando la escala Goldmine (Mint es el mejor estado, Good el más gastado).</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<div style="font:600 13px/1 -apple-system,sans-serif">Estado del disco (sin la carátula)</div>
+<div style="display:flex;flex-wrap:wrap;gap:7px">
+<sc-for list="{{ mediaGrades }}" as="g" hint-placeholder-count="6">
+<sc-if value="{{ g.sel }}" hint-placeholder-val="{{ true }}"><button onClick="{{ g.pick }}" style="border:1.5px solid #111111;background:#111111;color:#fff;border-radius:8px;padding:9px 12px;font:600 12.5px/1 ui-monospace,monospace;cursor:pointer">{{ g.id }}</button></sc-if>
+<sc-if value="{{ g.unsel }}"><button onClick="{{ g.pick }}" style="border:1px solid rgba(60,60,67,.2);background:#fff;color:rgba(60,60,67,.65);border-radius:8px;padding:9px 12px;font:500 12.5px/1 ui-monospace,monospace;cursor:pointer">{{ g.id }}</button></sc-if>
+</sc-for>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<div style="font:600 13px/1 -apple-system,sans-serif">Estado de la carátula</div>
+<div style="display:flex;flex-wrap:wrap;gap:7px">
+<sc-for list="{{ sleeveGrades }}" as="g" hint-placeholder-count="6">
+<sc-if value="{{ g.sel }}" hint-placeholder-val="{{ true }}"><button onClick="{{ g.pick }}" style="border:1.5px solid #111111;background:#111111;color:#fff;border-radius:8px;padding:9px 12px;font:600 12.5px/1 ui-monospace,monospace;cursor:pointer">{{ g.id }}</button></sc-if>
+<sc-if value="{{ g.unsel }}"><button onClick="{{ g.pick }}" style="border:1px solid rgba(60,60,67,.2);background:#fff;color:rgba(60,60,67,.65);border-radius:8px;padding:9px 12px;font:500 12.5px/1 ui-monospace,monospace;cursor:pointer">{{ g.id }}</button></sc-if>
+</sc-for>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:7px">
+<div style="font:600 13px/1 -apple-system,sans-serif">Notas</div>
+<textarea value="{{ notes }}" onChange="{{ setNotes }}" placeholder="Roce leve en la contraportada…" style="min-height:70px;resize:none;padding:11px;border-radius:9px;border:1px solid rgba(60,60,67,.2);background:#fff;font:400 13.5px/1.5 -apple-system,sans-serif"></textarea>
+</div>
+</div>
+<div style="padding:12px 20px 20px;background:#fff;border-top:1px solid rgba(60,60,67,.12)">
+<button onClick="{{ goDetails }}" style="width:100%;border:none;background:#111111;color:#fff;border-radius:11px;padding:14px;font:600 14.5px/1 -apple-system,sans-serif;cursor:pointer">Revisar datos</button>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isDetails }}">
+<div style="flex:1;display:flex;flex-direction:column;overflow:hidden">
+<div style="padding:16px 20px 10px;display:flex;align-items:center;gap:10px">
+<button onClick="{{ goBackFromDetails }}" style="border:none;background:transparent;font:400 22px/1 -apple-system,sans-serif;color:#111111;cursor:pointer;padding:0">‹</button>
+<div style="flex:1;font:700 18px/1 -apple-system,sans-serif">Datos</div>
+<div style="font:500 11px/1 ui-monospace,monospace;color:rgba(60,60,67,.5)">5/6</div>
+</div>
+<div style="flex:1;overflow:auto;padding:6px 20px 16px;display:flex;flex-direction:column;gap:16px">
+<div style="font:400 13px/1.4 -apple-system,sans-serif;color:rgba(60,60,67,.55)">Esto es lo que trajimos de Discogs. Revisa la etiqueta y elige o crea las categorías de tu tienda antes de continuar.</div>
+<div style="background:#fff;border-radius:10px;overflow:hidden">
+<sc-for list="{{ fields }}" as="f" hint-placeholder-count="6">
+<div style="display:flex;justify-content:space-between;gap:10px;padding:11px 13px;border-bottom:1px solid rgba(60,60,67,.08)">
+<div style="font:400 11.5px/1 ui-monospace,monospace;color:rgba(60,60,67,.45);flex:none;width:80px">{{ f.k }}</div>
+<div style="font:500 13px/1.35 -apple-system,sans-serif;text-align:right">{{ f.v }}</div>
+</div>
+</sc-for>
+<div style="font:400 11px/1.4 -apple-system,sans-serif;color:rgba(60,60,67,.4);padding:10px 13px">Estos campos se toman de Ajustes. Cámbialos ahí si falta algo.</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:7px">
+<div style="font:600 13px/1 -apple-system,sans-serif">Etiqueta (género/estilo)</div>
+<input value="{{ tagInput }}" onChange="{{ setTag }}" placeholder="ej. Rock progresivo" style="padding:12px;border-radius:9px;border:1px solid rgba(60,60,67,.2);background:#fff;font:400 13.5px/1 -apple-system,sans-serif"/>
+<div style="font:400 11.5px/1.4 -apple-system,sans-serif;color:rgba(60,60,67,.45)">Se usará como etiqueta del producto. Si no existe en la tienda, se crea sola.</div>
+</div>
+<sc-if value="{{ noCategories }}">
+<div style="font:400 12px/1.4 -apple-system,sans-serif;color:rgba(60,60,67,.5);padding:10px 12px;background:#fff;border-radius:9px">No se pudieron cargar las categorías de tu tienda.{{ categoriesErrorSuffix }}</div>
+</sc-if>
+<div style="display:flex;flex-direction:column;gap:7px">
+<div style="font:600 13px/1 -apple-system,sans-serif">Formato</div>
+<div style="display:flex;flex-wrap:wrap;gap:7px">
+<sc-for list="{{ formatCatChips }}" as="c" hint-placeholder-count="3">
+<sc-if value="{{ c.sel }}" hint-placeholder-val="{{ true }}"><button onClick="{{ c.pick }}" style="border:1.5px solid #111111;background:#111111;color:#fff;border-radius:9px;padding:10px 13px;font:600 12.5px/1 -apple-system,sans-serif;cursor:pointer">{{ c.label }}</button></sc-if>
+<sc-if value="{{ c.unsel }}"><button onClick="{{ c.pick }}" style="border:1px solid rgba(60,60,67,.2);background:#fff;color:rgba(60,60,67,.65);border-radius:9px;padding:10px 13px;font:500 12.5px/1 -apple-system,sans-serif;cursor:pointer">{{ c.label }}</button></sc-if>
+<sc-if value="{{ c.missing }}"><button onClick="{{ c.pick }}" disabled="{{ c.busy }}" style="border:1px dashed rgba(60,60,67,.4);background:#fff;color:rgba(60,60,67,.6);border-radius:9px;padding:10px 13px;font:500 12.5px/1 -apple-system,sans-serif;cursor:pointer">{{ c.label }} · {{ c.createLabel }}</button></sc-if>
+</sc-for>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:7px">
+<div style="font:600 13px/1 -apple-system,sans-serif">Condición</div>
+<sc-if value="{{ noConditionCats }}">
+<div style="font:400 11.5px/1.4 -apple-system,sans-serif;color:rgba(60,60,67,.45)">Crea categorías "Nuevo" y "Usado" en tu tienda para poder elegirlas aquí.</div>
+</sc-if>
+<div style="display:flex;flex-wrap:wrap;gap:7px">
+<sc-for list="{{ conditionCatChips }}" as="c" hint-placeholder-count="2">
+<sc-if value="{{ c.sel }}" hint-placeholder-val="{{ true }}"><button onClick="{{ c.pick }}" style="border:1.5px solid #111111;background:#111111;color:#fff;border-radius:9px;padding:10px 13px;font:600 12.5px/1 -apple-system,sans-serif;cursor:pointer">{{ c.label }}</button></sc-if>
+<sc-if value="{{ c.unsel }}"><button onClick="{{ c.pick }}" style="border:1px solid rgba(60,60,67,.2);background:#fff;color:rgba(60,60,67,.65);border-radius:9px;padding:10px 13px;font:500 12.5px/1 -apple-system,sans-serif;cursor:pointer">{{ c.label }}</button></sc-if>
+<sc-if value="{{ c.missing }}"><button onClick="{{ c.pick }}" disabled="{{ c.busy }}" style="border:1px dashed rgba(60,60,67,.4);background:#fff;color:rgba(60,60,67,.6);border-radius:9px;padding:10px 13px;font:500 12.5px/1 -apple-system,sans-serif;cursor:pointer">{{ c.label }} · {{ c.createLabel }}</button></sc-if>
+</sc-for>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:7px">
+<div style="font:600 13px/1 -apple-system,sans-serif">Estilo musical (de Discogs)</div>
+<div style="display:flex;flex-wrap:wrap;gap:7px">
+<sc-for list="{{ genreCatChips }}" as="c" hint-placeholder-count="3">
+<sc-if value="{{ c.sel }}" hint-placeholder-val="{{ true }}"><button onClick="{{ c.pick }}" style="border:1.5px solid #111111;background:#111111;color:#fff;border-radius:9px;padding:10px 13px;font:600 12.5px/1 -apple-system,sans-serif;cursor:pointer">{{ c.label }}</button></sc-if>
+<sc-if value="{{ c.unsel }}"><button onClick="{{ c.pick }}" style="border:1px solid rgba(60,60,67,.2);background:#fff;color:rgba(60,60,67,.65);border-radius:9px;padding:10px 13px;font:500 12.5px/1 -apple-system,sans-serif;cursor:pointer">{{ c.label }}</button></sc-if>
+<sc-if value="{{ c.missing }}"><button onClick="{{ c.pick }}" disabled="{{ c.busy }}" style="border:1px dashed rgba(60,60,67,.4);background:#fff;color:rgba(60,60,67,.6);border-radius:9px;padding:10px 13px;font:500 12.5px/1 -apple-system,sans-serif;cursor:pointer">{{ c.label }} · {{ c.createLabel }}</button></sc-if>
+</sc-for>
+</div>
+</div>
+</div>
+<div style="padding:12px 20px 20px;background:#fff;border-top:1px solid rgba(60,60,67,.12)">
+<button onClick="{{ goPrice }}" style="width:100%;border:none;background:#111111;color:#fff;border-radius:11px;padding:14px;font:600 14.5px/1 -apple-system,sans-serif;cursor:pointer">Poner precio</button>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isPrice }}">
+<div style="flex:1;display:flex;flex-direction:column;overflow:hidden">
+<div style="padding:16px 20px 10px;display:flex;align-items:center;gap:10px">
+<button onClick="{{ goDetails }}" style="border:none;background:transparent;font:400 22px/1 -apple-system,sans-serif;color:#111111;cursor:pointer;padding:0">‹</button>
+<div style="flex:1;font:700 18px/1 -apple-system,sans-serif">Precio y publicar</div>
+<div style="font:500 11px/1 ui-monospace,monospace;color:rgba(60,60,67,.5)">6/6</div>
+</div>
+<div style="flex:1;overflow:auto;padding:6px 20px 16px;display:flex;flex-direction:column;gap:16px">
+<div style="font:400 13px/1.4 -apple-system,sans-serif;color:rgba(60,60,67,.55)">Ingresa el precio de venta y cuántas unidades tienes disponibles, y publica el producto en tu tienda.</div>
+<div style="display:flex;align-items:center;gap:8px;padding:0 14px;border-radius:11px;border:1.5px solid #111111;background:#fff">
+<span style="font:600 22px/1 -apple-system,sans-serif;color:rgba(60,60,67,.35)">$</span>
+<input value="{{ price }}" onChange="{{ setPrice }}" style="flex:1;border:none;outline:none;background:transparent;padding:14px 0;font:700 24px/1 -apple-system,sans-serif;color:#000"/>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<div style="font:600 12.5px/1 -apple-system,sans-serif;color:rgba(60,60,67,.6)">Cantidad en stock</div>
+<input value="{{ stock }}" onChange="{{ setStock }}" placeholder="Ej. 1" style="padding:13px;border-radius:10px;border:1px solid rgba(60,60,67,.2);background:#fff;font:400 15px/1 -apple-system,sans-serif;outline:none"/>
+</div>
+<sc-if value="{{ publishError }}">
+<div style="padding:12px 13px;border-radius:9px;background:#FFEBEB;color:#B32323;font:400 12.5px/1.5 -apple-system,sans-serif;white-space:pre-wrap">{{ publishError }}</div>
+</sc-if>
+<sc-if value="{{ showCorsHelp }}">
+<div style="padding:12px 13px;border-radius:9px;background:#FFF6DA;font:400 11.5px/1.6 ui-monospace,monospace;color:#7A5D00;white-space:pre-wrap">{{ corsSnippet }}</div>
+</sc-if>
+</div>
+<div style="padding:12px 20px 20px;background:#fff;border-top:1px solid rgba(60,60,67,.12)">
+<button onClick="{{ publish }}" disabled="{{ publishBusy }}" style="width:100%;border:none;background:#111111;color:#fff;border-radius:11px;padding:14px;font:600 14.5px/1 -apple-system,sans-serif;cursor:pointer">{{ publishLabel }}</button>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isDone }}">
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:30px">
+<div style="width:52px;height:52px;border-radius:50%;background:#34C759;display:flex;align-items:center;justify-content:center;font:400 24px/1 -apple-system,sans-serif;color:#fff">✓</div>
+<div style="font:700 20px/1.3 -apple-system,sans-serif;text-align:center">Producto creado</div>
+<div style="font:400 13.5px/1.5 -apple-system,sans-serif;color:rgba(60,60,67,.6);text-align:center;word-break:break-all">{{ doneMsg }}</div>
+<button onClick="{{ scanAnother }}" style="border:none;background:#111111;color:#fff;border-radius:11px;padding:14px 20px;font:600 14px/1 -apple-system,sans-serif;cursor:pointer">Escanear otro</button>
+</div>
+</sc-if>
+
+<sc-if value="{{ isList }}">
+<div style="flex:1;display:flex;flex-direction:column;overflow:hidden">
+<div style="padding:16px 20px 10px;display:flex;align-items:center;gap:10px">
+<button onClick="{{ goScan }}" style="border:none;background:transparent;font:400 22px/1 -apple-system,sans-serif;color:#111111;cursor:pointer;padding:0">‹</button>
+<div style="flex:1;font:700 18px/1 -apple-system,sans-serif">Mis productos</div>
+</div>
+<sc-if value="{{ listError }}">
+<div style="margin:0 20px;padding:11px 13px;border-radius:9px;background:#FFEBEB;color:#B32323;font:400 12.5px/1.4 -apple-system,sans-serif">{{ listError }}</div>
+</sc-if>
+<div style="flex:1;overflow:auto;padding:6px 20px 16px;display:flex;flex-direction:column;gap:9px">
+<sc-for list="{{ products }}" as="p" hint-placeholder-count="0">
+<div style="display:flex;flex-direction:column;gap:8px;padding:12px;background:#fff;border-radius:10px">
+<div style="display:flex;align-items:center;gap:10px">
+<div style="{{ p.thumbStyle }}"></div>
+<div style="flex:1;min-width:0;display:flex;justify-content:space-between;gap:10px">
+<div style="font:500 13px/1.3 -apple-system,sans-serif;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ p.title }}</div>
+<div style="font:600 13px/1 -apple-system,sans-serif;flex:none">{{ p.priceLabel }}</div>
+</div>
+</div>
+<div style="display:flex;gap:8px">
+<button onClick="{{ p.edit }}" style="flex:1;border:1px solid rgba(60,60,67,.2);background:#fff;color:#111111;border-radius:8px;padding:8px;font:600 12px/1 -apple-system,sans-serif;cursor:pointer">Editar</button>
+<button onClick="{{ p.remove }}" style="flex:1;border:1px solid #FFB3B3;background:#fff;color:#B32323;border-radius:8px;padding:8px;font:600 12px/1 -apple-system,sans-serif;cursor:pointer">Eliminar</button>
+</div>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isEditProduct }}">
+<div style="flex:1;display:flex;flex-direction:column;overflow:hidden">
+<div style="padding:16px 20px 10px;display:flex;align-items:center;gap:10px">
+<button onClick="{{ cancelEdit }}" style="border:none;background:transparent;font:400 22px/1 -apple-system,sans-serif;color:#111111;cursor:pointer;padding:0">‹</button>
+<div style="flex:1;font:700 18px/1 -apple-system,sans-serif">Editar producto</div>
+</div>
+<div style="flex:1;overflow:auto;padding:6px 20px 16px;display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;flex-direction:column;gap:6px">
+<div style="font:600 12.5px/1 -apple-system,sans-serif;color:rgba(60,60,67,.6)">Nombre</div>
+<input value="{{ editTitle }}" onChange="{{ setEditTitle }}" style="padding:13px;border-radius:10px;border:1px solid rgba(60,60,67,.2);background:#fff;font:400 15px/1 -apple-system,sans-serif"/>
+</div>
+<div style="display:flex;align-items:center;gap:8px;padding:0 14px;border-radius:11px;border:1.5px solid #111111;background:#fff">
+<span style="font:600 22px/1 -apple-system,sans-serif;color:rgba(60,60,67,.35)">$</span>
+<input value="{{ editPrice }}" onChange="{{ setEditPrice }}" style="flex:1;border:none;outline:none;background:transparent;padding:14px 0;font:700 24px/1 -apple-system,sans-serif;color:#000"/>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<div style="font:600 12.5px/1 -apple-system,sans-serif;color:rgba(60,60,67,.6)">Cantidad en stock</div>
+<input value="{{ editStock }}" onChange="{{ setEditStock }}" placeholder="Ej. 1" style="padding:13px;border-radius:10px;border:1px solid rgba(60,60,67,.2);background:#fff;font:400 15px/1 -apple-system,sans-serif;outline:none"/>
+</div>
+<sc-if value="{{ editError }}">
+<div style="padding:12px 13px;border-radius:9px;background:#FFEBEB;color:#B32323;font:400 12.5px/1.5 -apple-system,sans-serif;white-space:pre-wrap">{{ editError }}</div>
+</sc-if>
+</div>
+<div style="padding:12px 20px 20px;background:#fff;border-top:1px solid rgba(60,60,67,.12)">
+<button onClick="{{ saveEdit }}" disabled="{{ editBusy }}" style="width:100%;border:none;background:#111111;color:#fff;border-radius:11px;padding:14px;font:600 14.5px/1 -apple-system,sans-serif;cursor:pointer">{{ saveEditLabel }}</button>
+</div>
+</div>
+</sc-if>
+
+</div>
+</div>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const GRADES = [["M","Mint"],["NM","Near Mint"],["VG+","Very Good Plus"],["VG","Very Good"],["G+","Good Plus"],["G","Good"]];
+const DISCOGS_CONSUMER_KEY = "sbBMwBKZwDMQUYnLIQbz";
+const DISCOGS_CONSUMER_SECRET = "vJqoyJcKNydxgHpIWGRukFbwzEcLgXIi";
+const FIELD_DEFS = [
+  ["fTitle", "Título"], ["fArtist", "Artista"], ["fYear", "Año"], ["fLabel", "Sello discográfico"],
+  ["fCountry", "País"], ["fGenre", "Género/Estilo"], ["fFormat", "Formato"], ["fTracklist", "Tracklist"],
+  ["fCover", "Portada/imagen"], ["fNotes", "Notas del release"]
+];
+
+class Component extends DCLogic {
+  state = {
+    screen: "login", siteUrl: "", username: "", appPassword: "", loginBusy: false, loginError: "",
+    token: null, displayName: "",
+    barcodeInput: "", lookupBusy: false, lookupError: "", results: [],
+    cameraSupported: true,
+    cameraActive: false, camMode: null,
+    selected: null, fullRelease: null,
+    photo1: null, photo2: null,
+    media: "VG+", sleeve: "VG+", notes: "", conditionType: "usado",
+    tagInput: "", price: "", stock: "",
+    publishBusy: false, publishError: "", showCorsHelp: false, doneMsg: "",
+    products: [], listError: "",
+    categories: [], selectedFormatCat: null, selectedConditionCat: null, selectedGenreCats: [], genreGuesses: [],
+    defaultCategoryId: "", siteName: "", siteLogo: "", discogsToken: "",
+    fieldToggles: Object.fromEntries(FIELD_DEFS.map(([k]) => [k, true]))
+  };
+
+  componentDidMount() {
+    const qp = new URLSearchParams(window.location.search);
+    if (qp.get("user_login") && qp.get("password")) {
+      const siteUrl = this.normalizeSite(qp.get("site_url") || this.state.siteUrl);
+      const username = qp.get("user_login");
+      const appPassword = qp.get("password");
+      localStorage.setItem("disqueria_app_auth", JSON.stringify({ siteUrl, username, appPassword }));
+      window.history.replaceState(null, "", window.location.pathname);
+      this.setState({ siteUrl, username, appPassword, token: "ok", displayName: username, screen: "scan" });
+      this.loadSettings(siteUrl);
+      this.loadCategories();
+      this.loadSiteInfo(siteUrl);
+      return;
+    }
+    try {
+      const saved = JSON.parse(localStorage.getItem("disqueria_app_auth") || "null");
+      if (saved && saved.appPassword && saved.siteUrl) {
+        this.setState({ token: "ok", username: saved.username, appPassword: saved.appPassword, displayName: saved.username || "", siteUrl: saved.siteUrl, screen: "scan" });
+        this.loadSettings(saved.siteUrl);
+        this.loadCategories();
+        this.loadSiteInfo(saved.siteUrl);
+      }
+    } catch (e) {}
+  }
+
+  loadCategories = async () => {
+    try {
+      const res = await fetch(this.apiBase() + "/disqueria/v1/categories", { headers: this.authHeaders() });
+      const data = await res.json();
+      if (res.ok && Array.isArray(data)) this.setState({ categories: data, categoriesError: "" });
+      else this.setState({ categoriesError: data.message || JSON.stringify(data) });
+    } catch (e) { this.setState({ categoriesError: e.message }); }
+  };
+
+  createCategory = async (name) => {
+    if (!window.confirm('Crear categoría "' + name + '" en tu tienda?')) return;
+    this.setState({ creatingCatName: name });
+    try {
+      const res = await fetch(this.apiBase() + "/disqueria/v1/categories", {
+        method: "POST", headers: { ...this.authHeaders(), "Content-Type": "application/json" },
+        body: JSON.stringify({ name })
+      });
+      const data = await res.json();
+      if (!res.ok || !data.id) throw new Error(data.message || "no se pudo crear");
+      this.setState(s => ({
+        categories: [...s.categories, { id: data.id, name: data.name || name }],
+        selectedGenreCats: [...s.selectedGenreCats, data.id],
+        genreGuesses: s.genreGuesses.map(g => g.name === name ? { name, cat: { id: data.id, name: data.name || name } } : g),
+        creatingCatName: ""
+      }));
+    } catch (e) {
+      this.setState({ creatingCatName: "", listError: "No se pudo crear la categoría: " + e.message });
+    }
+  };
+
+  findCategory = (keywords) => {
+    const cats = this.state.categories || [];
+    for (const kw of keywords) {
+      const hit = cats.find(c => c.name.toLowerCase().includes(kw));
+      if (hit) return hit;
+    }
+    return null;
+  };
+
+  normalizeSite = (raw) => {
+    let v = (raw || "").trim().replace(/\/+$/, "");
+    if (v && !/^https?:\/\//i.test(v)) v = "https://" + v;
+    return v;
+  };
+  apiBase = () => this.normalizeSite(this.state.siteUrl) + "/wp-json";
+  settingsKey = (site) => "disqueria_app_settings_" + this.normalizeSite(site || this.state.siteUrl);
+
+  loadSettings = (site) => {
+    try {
+      const saved = JSON.parse(localStorage.getItem(this.settingsKey(site)) || "null");
+      if (saved) this.setState({ defaultCategoryId: saved.defaultCategoryId || "", discogsToken: saved.discogsToken || "", fieldToggles: { ...this.state.fieldToggles, ...(saved.fieldToggles || {}) } });
+    } catch (e) {}
+  };
+  saveSettings = () => {
+    localStorage.setItem(this.settingsKey(), JSON.stringify({ defaultCategoryId: this.state.defaultCategoryId, discogsToken: this.state.discogsToken, fieldToggles: this.state.fieldToggles }));
+  };
+
+  setSiteUrl = (e) => this.setState({ siteUrl: e.target.value });
+  setUsername = (e) => this.setState({ username: e.target.value });
+  setAppPassword = (e) => this.setState({ appPassword: e.target.value });
+
+  authPair = () => this.state.username.trim() + ":" + this.state.appPassword.replace(/\s+/g, "");
+  authHeader = () => "Basic " + btoa(unescape(encodeURIComponent(this.authPair())));
+  authHeaders = () => ({ Authorization: this.authHeader(), "X-Disqueria-Auth": btoa(unescape(encodeURIComponent(this.authPair()))) });
+
+  connectWp = () => {
+    if (!this.state.siteUrl.trim()) { this.setState({ loginError: "Ingresa la URL de tu tienda." }); return; }
+    const site = this.normalizeSite(this.state.siteUrl);
+    const returnUrl = window.location.origin + window.location.pathname;
+    window.location.href = site + "/wp-admin/authorize-application.php?app_name=" + encodeURIComponent("Disquer\u00eda App") + "&success_url=" + encodeURIComponent(returnUrl);
+  };
+
+  loginManual = () => {
+    if (!this.state.siteUrl.trim() || !this.state.username.trim() || !this.state.appPassword.trim()) {
+      this.setState({ loginError: "Completa tienda, usuario y contraseña de aplicación." }); return;
+    }
+    const siteUrl = this.normalizeSite(this.state.siteUrl);
+    localStorage.setItem("disqueria_app_auth", JSON.stringify({ siteUrl, username: this.state.username, appPassword: this.state.appPassword }));
+    this.setState({ siteUrl, token: "ok", displayName: this.state.username, screen: "scan", loginError: "" });
+    this.loadSettings(siteUrl);
+    this.loadCategories();
+    this.loadSiteInfo(siteUrl);
+  };
+
+  loadSiteInfo = async (site) => {
+    try {
+      const res = await fetch(this.normalizeSite(site) + "/wp-json/disqueria/v1/site-info");
+      const data = await res.json();
+      if (res.ok) this.setState({ siteName: data.name || "", siteLogo: data.logo || "" });
+    } catch (e) {}
+  };
+
+  logout = () => { localStorage.removeItem("disqueria_app_auth"); this.setState({ token: null, screen: "login", username: "", appPassword: "" }); };
+
+  go = (s) => this.setState({ screen: s });
+  goSettings = () => this.setState({ screen: "settings" });
+  goScanFromSettings = () => { this.saveSettings(); this.setState({ screen: "scan" }); };
+  resetScan = () => this.setState({
+    screen: "scan", selected: null, fullRelease: null, coverUrl: "",
+    photo1: null, photo2: null,
+    selectedFormatCat: null, selectedConditionCat: null, selectedGenreCats: [], genreGuesses: [], formatGuess: null, conditionGuess: null,
+    media: "VG+", sleeve: "VG+", notes: "", conditionType: "usado",
+    categoriesInput: this.state.defaultCategoryId, tagInput: "", price: "", stock: "",
+    barcodeInput: "", results: []
+  });
+  removePhoto = (slot) => this.setState({ [slot]: null });
+  pickNewFlow = () => {
+    const cat = this.findCategory(["nuevo", "new"]);
+    this.setState({ conditionType: "nuevo", media: "M", sleeve: "M", selectedConditionCat: cat ? cat.id : null, conditionGuess: { name: "Nuevo", cat }, screen: "details" });
+  };
+  pickUsedFlow = () => {
+    const cat = this.findCategory(["usado", "used"]);
+    this.setState({ conditionType: "usado", selectedConditionCat: cat ? cat.id : null, conditionGuess: { name: "Usado", cat }, screen: "photos" });
+  };
+  goNewUsed = () => this.go("newused");
+  goBackFromDetails = () => this.go(this.state.conditionType === "nuevo" ? "newused" : "condition");
+  createNamedCategory = async (name, kind) => {
+    if (!window.confirm('Crear categoría "' + name + '" en tu tienda?')) return;
+    this.setState({ creatingCatName: name });
+    try {
+      const res = await fetch(this.apiBase() + "/disqueria/v1/categories", {
+        method: "POST", headers: { ...this.authHeaders(), "Content-Type": "application/json" },
+        body: JSON.stringify({ name })
+      });
+      const data = await res.json();
+      if (!res.ok || !data.id) throw new Error(data.message || "no se pudo crear");
+      const cat = { id: data.id, name: data.name || name };
+      this.setState(s => {
+        const next = { categories: [...s.categories, cat], creatingCatName: "" };
+        if (kind === "format") { next.selectedFormatCat = cat.id; next.formatGuess = { name, cat }; }
+        if (kind === "condition") { next.selectedConditionCat = cat.id; next.conditionGuess = { name, cat }; }
+        return next;
+      });
+    } catch (e) {
+      this.setState({ creatingCatName: "", listError: "No se pudo crear la categoría: " + e.message });
+    }
+  };
+  setBarcode = (e) => this.setState({ barcodeInput: e.target.value });
+
+  setDefaultCategoryId = (e) => this.setState({ defaultCategoryId: e.target.value });
+  setDiscogsToken = (e) => this.setState({ discogsToken: e.target.value.trim() }, this.saveSettings);
+  toggleField = (key) => this.setState(s => ({ fieldToggles: { ...s.fieldToggles, [key]: !s.fieldToggles[key] } }), this.saveSettings);
+
+  lookup = async () => {
+    const code = this.state.barcodeInput.trim();
+    if (!code) { this.setState({ lookupError: "Ingresa un código." }); return; }
+    this.setState({ lookupBusy: true, lookupError: "", results: [] });
+    try {
+      const url = "https://api.discogs.com/database/search?barcode=" + encodeURIComponent(code) + "&type=release";
+      const dHeaders = { "User-Agent": "DisqueriaApp/1.0" };
+      if (this.state.discogsToken) dHeaders.Authorization = "Discogs token=" + this.state.discogsToken;
+      else dHeaders.Authorization = "Discogs key=" + DISCOGS_CONSUMER_KEY + ", secret=" + DISCOGS_CONSUMER_SECRET;
+      const res = await fetch(url, { headers: dHeaders });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Error de Discogs");
+      const results = (data.results || []).map(r => ({
+        id: r.id, title: r.title, thumbStyle: { width: "56px", height: "56px", borderRadius: "6px", flexShrink: 0, backgroundColor: "#DCDCE1", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundImage: (r.thumb || r.cover_image) ? 'url("https://images.weserv.nl/?url=' + encodeURIComponent((r.thumb || r.cover_image).replace(/^https?:\/\//, "")) + '")' : "none" },
+        meta: [r.year, (r.label || [])[0], (r.format || []).join("/"), r.country].filter(Boolean).join(" · "),
+        pick: () => this.pickResult(r)
+      }));
+      this.setState({ lookupBusy: false, results, screen: "match" });
+    } catch (e) {
+      this.setState({ lookupBusy: false, lookupError: "Error consultando Discogs: " + e.message });
+    }
+  };
+
+  pickResult = async (r) => {
+    this.setState({ selected: r, screen: "newused" });
+    try {
+      const res = await fetch("https://api.discogs.com/releases/" + r.id);
+      const full = await res.json();
+      const img = (full.images && full.images[0]) ? (full.images[0].uri || full.images[0].resource_url) : (r.thumb || "");
+      const tag = (full.styles && full.styles[0]) || (full.genres && full.genres[0]) || "";
+
+      const fmtName = ((full.formats || [])[0] || {}).name || "";
+      const fmtKeywordMap = { vinyl: ["vinilo", "vinyl", "lp"], cd: ["cd"], cassette: ["cassette", "cinta"] };
+      const fmtLabelMap = { vinyl: "Vinilo", cd: "CD", cassette: "Cassette" };
+      const fmtLower = fmtName.toLowerCase();
+      let fmtKind = "";
+      if (fmtLower.includes("vinyl")) fmtKind = "vinyl";
+      else if (fmtLower.includes("cd")) fmtKind = "cd";
+      else if (fmtLower.includes("cassette")) fmtKind = "cassette";
+      const fmtKeywords = fmtKind ? fmtKeywordMap[fmtKind] : [];
+      const formatCat = fmtKeywords.length ? this.findCategory(fmtKeywords) : null;
+      const formatGuess = fmtKind ? { name: fmtLabelMap[fmtKind], cat: formatCat } : null;
+
+      const genres = [...(full.genres || []), ...(full.styles || [])].filter((v, i, a) => a.indexOf(v) === i).slice(0, 3);
+      const genreGuesses = genres.map(name => ({ name, cat: this.findCategory([name.toLowerCase()]) }));
+      const genreIds = genreGuesses.filter(g => g.cat).map(g => g.cat.id);
+
+      this.setState({ fullRelease: full, coverUrl: img, tagInput: tag, selectedFormatCat: formatCat ? formatCat.id : null, formatGuess, genreGuesses, selectedGenreCats: genreIds });
+    } catch (e) {}
+  };
+
+  videoRef = (el) => { this.videoEl = el; };
+
+  startBarcodeCamera = async () => {
+    this.setState({ cameraActive: true, camMode: "barcode" });
+    setTimeout(async () => {
+      try {
+        if (!this.zxingReader) this.zxingReader = new window.ZXing.BrowserMultiFormatReader();
+        await this.zxingReader.decodeFromConstraints(
+          { video: { facingMode: "environment" } }, this.videoEl,
+          (result) => { if (result) { this.setState({ barcodeInput: result.getText() }); this.stopCamera(); this.lookup(); } }
+        );
+      } catch (e) {
+        this.setState({ cameraActive: false, lookupError: "No se pudo abrir la cámara: " + e.message });
+      }
+    }, 50);
+  };
+
+  stopCamera = () => {
+    if (this.zxingReader) { try { this.zxingReader.reset(); } catch (e) {} }
+    if (this.stream) this.stream.getTracks().forEach(t => t.stop());
+    this.stream = null;
+    this.setState({ cameraActive: false, camMode: null });
+  };
+
+  startPhotoCamera = async () => {
+    this.setState({ cameraActive: true, camMode: "photo" });
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+      this.stream = stream;
+      setTimeout(() => { if (this.videoEl) this.videoEl.srcObject = stream; }, 50);
+    } catch (e) {
+      this.setState({ cameraActive: false, lookupError: "No se pudo abrir la cámara: " + e.message });
+    }
+  };
+
+  takePhoto = () => {
+    const v = this.videoEl;
+    if (!v) return;
+    const canvas = document.createElement("canvas");
+    canvas.width = v.videoWidth; canvas.height = v.videoHeight;
+    canvas.getContext("2d").drawImage(v, 0, 0);
+    const dataUrl = canvas.toDataURL("image/jpeg", 0.85);
+    const slot = this.state.photo1 ? "photo2" : "photo1";
+    this.setState({ [slot]: dataUrl });
+    this.stopCamera();
+  };
+
+  setNotes = (e) => this.setState({ notes: e.target.value });
+  setCategories = (e) => this.setState({ categoriesInput: e.target.value });
+  setTag = (e) => this.setState({ tagInput: e.target.value });
+  setPrice = (e) => this.setState({ price: e.target.value.replace(/[^0-9]/g, "") });
+  setStock = (e) => this.setState({ stock: e.target.value.replace(/[^0-9]/g, "") });
+  goList = () => { this.setState({ screen: "list" }); this.loadList(); };
+
+  loadList = async () => {
+    this.setState({ listError: "", products: [] });
+    try {
+      const res = await fetch(this.apiBase() + "/disqueria/v1/products", { headers: this.authHeaders() });
+      const data = await res.json();
+      if (!res.ok) throw new Error((data.message || JSON.stringify(data)) + " (usuario: " + this.state.username + ")");
+      const list = (Array.isArray(data) ? data : data.products || []).map(p => ({
+        id: p.id, title: p.name || "(sin título)", priceLabel: p.regular_price ? "$" + p.regular_price : "—",
+        regularPrice: p.regular_price || "", stockQuantity: p.stock_quantity != null ? String(p.stock_quantity) : "",
+        thumb: p.featured_image || ""
+      })).map(p => ({ ...p, thumbStyle: { width: "40px", height: "40px", borderRadius: "6px", flexShrink: 0, backgroundColor: "#DCDCE1", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundImage: p.thumb ? 'url("' + p.thumb + '")' : "none" } }));
+      this.setState({ products: list });
+    } catch (e) {
+      this.setState({ listError: "No se pudo cargar: " + e.message });
+    }
+  };
+
+  startEdit = (p) => this.setState({
+    screen: "editProduct", editId: p.id, editTitle: p.title, editPrice: p.regularPrice, editStock: p.stockQuantity,
+    editBusy: false, editError: ""
+  });
+  cancelEdit = () => this.setState({ screen: "list" });
+  setEditTitle = (e) => this.setState({ editTitle: e.target.value });
+  setEditPrice = (e) => this.setState({ editPrice: e.target.value.replace(/[^0-9]/g, "") });
+  setEditStock = (e) => this.setState({ editStock: e.target.value.replace(/[^0-9]/g, "") });
+
+  saveEdit = async () => {
+    this.setState({ editBusy: true, editError: "" });
+    try {
+      const res = await fetch(this.apiBase() + "/disqueria/v1/products/" + this.state.editId, {
+        method: "PUT",
+        headers: { ...this.authHeaders(), "Content-Type": "application/json" },
+        body: JSON.stringify({ name: this.state.editTitle, regular_price: this.state.editPrice, stock_quantity: this.state.editStock ? Number(this.state.editStock) : undefined })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || JSON.stringify(data));
+      this.setState({ editBusy: false, screen: "list" });
+      this.loadList();
+    } catch (e) {
+      this.setState({ editBusy: false, editError: "No se pudo guardar: " + e.message });
+    }
+  };
+
+  deleteProduct = async (p) => {
+    if (!window.confirm('¿Eliminar "' + p.title + '"? Esta acción no se puede deshacer.')) return;
+    this.setState({ listError: "" });
+    try {
+      const res = await fetch(this.apiBase() + "/disqueria/v1/products/" + p.id, {
+        method: "DELETE",
+        headers: this.authHeaders()
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.message || JSON.stringify(data));
+      }
+      this.setState({ products: this.state.products.filter(x => x.id !== p.id) });
+    } catch (e) {
+      this.setState({ listError: "No se pudo eliminar: " + e.message });
+    }
+  };
+
+  uploadMedia = async (dataUrl, filename) => {
+    try {
+      const blob = await (await fetch(dataUrl)).blob();
+      const res = await fetch(this.apiBase() + "/disqueria/v1/media", {
+        method: "POST",
+        headers: { ...this.authHeaders(), "Content-Disposition": 'attachment; filename="' + filename + '"', "Content-Type": "image/jpeg" },
+        body: blob
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Error subiendo foto");
+      return data.source_url || "";
+    } catch (e) {
+      throw new Error("Subiendo " + filename + ": " + e.message);
+    }
+  };
+
+  resolveTagId = async (name) => {
+    const res = await fetch(this.apiBase() + "/disqueria/v1/resolve-tag", {
+      method: "POST", headers: { ...this.authHeaders(), "Content-Type": "application/json" },
+      body: JSON.stringify({ name })
+    });
+    const data = await res.json();
+    if (!res.ok || !data.id) throw new Error(data.message || "no se pudo crear/buscar la etiqueta");
+    return data.id;
+  };
+
+  publish = async () => {
+    this.setState({ publishBusy: true, publishError: "", showCorsHelp: false });
+    try {
+      const tg = this.state.fieldToggles;
+      const galleryUrls = [];
+      if (this.state.photo1) galleryUrls.push(await this.uploadMedia(this.state.photo1, "caratula.jpg"));
+      if (this.state.photo2) galleryUrls.push(await this.uploadMedia(this.state.photo2, "medio.jpg"));
+      let discogsMediaUrl = "";
+      if (tg.fCover && this.state.coverUrl) {
+        const proxied = "https://images.weserv.nl/?url=" + encodeURIComponent(this.state.coverUrl.replace(/^https?:\/\//, ""));
+        try { discogsMediaUrl = await this.uploadMedia(proxied, "discogs-cover.jpg"); }
+        catch (e) {
+          try { discogsMediaUrl = await this.uploadMedia(this.state.coverUrl, "discogs-cover.jpg"); }
+          catch (e2) { discogsMediaUrl = ""; }
+        }
+      }
+
+      const r = this.state.selected || {};
+      const full = this.state.fullRelease || {};
+      const title = r.title || "Producto";
+      const cats = [this.state.selectedFormatCat, this.state.selectedConditionCat, ...this.state.selectedGenreCats].filter(Boolean).map(String);
+
+      const artistNames = (full.artists || []).map(a => a.name.replace(/\s*\(\d+\)$/, "")).join(", ");
+      const labelNames = (full.labels || []).map(l => l.name).join(", ");
+      const genreStr = [...(full.genres || []), ...(full.styles || [])].filter((v, i, a) => a.indexOf(v) === i).join(", ");
+      const formatStr = (full.formats || []).map(f => f.name).join(", ");
+      const trackNames = (full.tracklist || []).map(t => t.position ? (t.position + ". " + t.title) : t.title).join("\n");
+
+      const bits = [];
+      if (tg.fArtist && artistNames) bits.push(artistNames);
+      if (tg.fYear && full.year) bits.push(String(full.year));
+      if (tg.fLabel && labelNames) bits.push(labelNames);
+      if (tg.fCountry && full.country) bits.push(full.country);
+      if (tg.fGenre && genreStr) bits.push(genreStr);
+      if (tg.fFormat && formatStr) bits.push(formatStr);
+      const discogsLine = bits.join(" · ");
+      const conditionLine = this.state.conditionType === "nuevo" ? "Estado: Nuevo" : "Estado del disco: " + this.state.media + " · Estado de la carátula: " + this.state.sleeve;
+      const tracklistLine = tg.fTracklist && trackNames ? "Tracklist:\n" + trackNames : "";
+      const notesLine = tg.fNotes && full.notes ? "Notas: " + full.notes : "";
+      const shortDesc = [discogsLine, conditionLine, tracklistLine, notesLine, this.state.notes].filter(Boolean).join("\n\n");
+
+      const body = {
+        name: title,
+        type: "simple",
+        regular_price: String(this.state.price || "0"),
+        manage_stock: true,
+        stock_quantity: parseInt(this.state.stock || "0", 10),
+        description: this.state.notes || "",
+        short_description: shortDesc,
+        categories: cats,
+        meta_data: [
+          { key: "condicion_medio", value: this.state.media },
+          { key: "condicion_caratula", value: this.state.sleeve },
+          { key: "discogs_release_id", value: String(r.id || "") }
+        ]
+      };
+
+      let tagWarning = "";
+      const tagToUse = this.state.tagInput.trim();
+      if (tagToUse) {
+        try {
+          const tagId = await this.resolveTagId(tagToUse);
+          if (tagId) body.tags = [{ id: tagId }];
+          else tagWarning = "Aviso: la etiqueta no se pudo resolver a un ID.";
+        } catch (e) {
+          tagWarning = "Aviso: no se pudo crear/asignar la etiqueta (" + e.message + ")";
+        }
+      }
+
+      if (discogsMediaUrl) body.featured_image = { src: discogsMediaUrl };
+      else if (galleryUrls[0]) body.featured_image = { src: galleryUrls[0] };
+      if (galleryUrls.length) body.gallery_images = galleryUrls.map(u => ({ src: u }));
+      if (discogsMediaUrl && galleryUrls.length) body.gallery_images.push({ src: discogsMediaUrl });
+
+      let res, data;
+      try {
+        res = await fetch(this.apiBase() + "/disqueria/v1/products", {
+          method: "POST",
+          headers: { ...this.authHeaders(), "Content-Type": "application/json" },
+          body: JSON.stringify(body)
+        });
+        data = await res.json();
+      } catch (e) {
+        throw new Error("Creando producto: " + e.message);
+      }
+      if (!res.ok) throw new Error(data.message || JSON.stringify(data));
+
+      this.setState({ publishBusy: false, screen: "done", doneMsg: "Creado: " + (data.name || "") + " (id " + data.id + ")" + (data.permalink ? "\n" + data.permalink : "") + (tagWarning ? "\n\n" + tagWarning : "") });
+    } catch (e) {
+      const corsLike = e.message === "Failed to fetch" || /cors/i.test(e.message);
+      this.setState({ publishBusy: false, publishError: "Error al publicar: " + e.message, showCorsHelp: corsLike });
+    }
+  };
+
+  renderVals() {
+    const s = this.state;
+    const grades = (key) => GRADES.map(([id]) => ({ id, sel: s[key] === id, unsel: s[key] !== id, pick: () => this.setState({ [key]: id }) }));
+    const r = s.selected || {}; const full = s.fullRelease || {};
+    const tg = s.fieldToggles;
+    const artistNames = (full.artists || []).map(a => a.name.replace(/\s*\(\d+\)$/, "")).join(", ");
+    const fields = s.selected ? [
+      tg.fTitle && { k: "título", v: r.title || "—" },
+      tg.fArtist && { k: "artista", v: artistNames || "—" },
+      tg.fYear && { k: "año", v: (full.year || "").toString() || "—" },
+      tg.fLabel && { k: "sello", v: (full.labels || []).map(l => l.name).join(", ") || "—" },
+      tg.fCountry && { k: "país", v: full.country || "—" },
+      tg.fGenre && { k: "género", v: [...(full.genres || []), ...(full.styles || [])].filter((v, i, a) => a.indexOf(v) === i).join(", ") || "—" },
+      tg.fFormat && { k: "formato", v: (full.formats || []).map(f => f.name).join(", ") || "—" },
+      tg.fTracklist && { k: "tracklist", v: (full.tracklist || []).map(t => t.position ? (t.position + ". " + t.title) : t.title).join(" / ") || "—" },
+      tg.fNotes && { k: "notas", v: full.notes ? (full.notes.length > 60 ? full.notes.slice(0, 60) + "…" : full.notes) : "—" }
+    ].filter(Boolean) : [];
+
+    return {
+      isLogin: s.screen === "login", isSettings: s.screen === "settings", isScan: s.screen === "scan", isMatch: s.screen === "match",
+      isPhotos: s.screen === "photos", isCondition: s.screen === "condition", isDetails: s.screen === "details",
+      isPrice: s.screen === "price", isDone: s.screen === "done", isList: s.screen === "list", isNewUsed: s.screen === "newused",
+      isEditProduct: s.screen === "editProduct",
+      isLoggedIn: !!s.token,
+      statusColor: s.token ? "#34C759" : "#FF3B30",
+      storeLabel: s.token ? (s.siteName ? s.siteName + " App" : this.normalizeSite(s.siteUrl).replace(/^https?:\/\//, "")) : "Disquería App",
+      hasStoreLogo: !!s.siteLogo, hasNoStoreLogo: !s.siteLogo,
+      storeLogoStyle: { width: "26px", height: "26px", borderRadius: "7px", flex: "none", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundImage: s.siteLogo ? 'url("' + s.siteLogo + '")' : "none" },
+      storeInitial: s.siteName ? s.siteName.charAt(0).toUpperCase() : "D",
+
+      siteUrl: s.siteUrl, setSiteUrl: this.setSiteUrl,
+      username: s.username, setUsername: this.setUsername, appPassword: s.appPassword, setAppPassword: this.setAppPassword,
+      loginError: s.loginError, connectWp: this.connectWp, loginManual: this.loginManual,
+
+      goSettings: this.goSettings, goScan: this.goScanFromSettings,
+      defaultCategoryId: s.defaultCategoryId, setDefaultCategoryId: this.setDefaultCategoryId,
+      discogsToken: s.discogsToken, setDiscogsToken: this.setDiscogsToken,
+      fieldToggles: FIELD_DEFS.map(([key, label]) => ({
+        key, label, toggle: () => this.toggleField(key),
+        pillStyle: { width: "42px", height: "24px", borderRadius: "12px", background: tg[key] ? "#34C759" : "#DCDCE1", position: "relative", flexShrink: 0, transition: "background .15s" },
+        knobStyle: { width: "20px", height: "20px", borderRadius: "50%", background: "#fff", position: "absolute", top: "2px", left: tg[key] ? "20px" : "2px", boxShadow: "0 1px 3px rgba(0,0,0,.3)", transition: "left .15s" }
+      })),
+
+      barcodeInput: s.barcodeInput, setBarcode: this.setBarcode,
+      lookup: this.lookup, lookupBusy: s.lookupBusy, lookupError: s.lookupError,
+      lookupLabel: s.lookupBusy ? "Buscando en Discogs…" : "Buscar en Discogs",
+      hasQueue: true, goList: this.goList,
+
+      cameraSupported: s.cameraSupported, cameraUnsupported: !s.cameraSupported,
+      cameraActive: s.cameraActive && s.camMode === "barcode", cameraInactive: !(s.cameraActive && s.camMode === "barcode"),
+      startBarcodeCamera: this.startBarcodeCamera, stopCamera: this.stopCamera, videoRef: this.videoRef,
+
+      goMatch: () => this.go("match"), goPhotos: () => this.go("photos"),
+      goDetails: () => this.go("details"), goPrice: () => this.go("price"),
+
+      results: s.results, noResults: s.screen === "match" && s.results.length === 0,
+
+      photoLabel: s.photo1 && s.photo2 ? "Fotos listas" : !s.photo1 ? "Fotos (opcional)" : "Foto 2 · el medio",
+      hasCoverPreview: !!s.coverUrl,
+      coverPreviewStyle: { width: "48px", height: "48px", borderRadius: "6px", flexShrink: 0, backgroundColor: "#DCDCE1", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundImage: s.coverUrl ? 'url("https://images.weserv.nl/?url=' + encodeURIComponent(s.coverUrl.replace(/^https?:\/\//, "")) + '")' : "none" },
+      camActive: s.cameraActive && s.camMode === "photo", camInactive: !(s.cameraActive && s.camMode === "photo"),
+      camUnsupported: false,
+      startPhotoCamera: this.startPhotoCamera, takePhoto: this.takePhoto,
+      slots: [
+        { label: "carátula", filled: !!s.photo1, empty: !s.photo1, srcStyle: { flex: 1, position: "relative", borderRadius: "10px", overflow: "hidden", height: "100px", border: "1.5px solid #111111", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundImage: s.photo1 ? 'url("' + s.photo1 + '")' : "none" }, remove: () => this.removePhoto("photo1") },
+        { label: "medio", filled: !!s.photo2, empty: !s.photo2, srcStyle: { flex: 1, position: "relative", borderRadius: "10px", overflow: "hidden", height: "100px", border: "1.5px solid #111111", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundImage: s.photo2 ? 'url("' + s.photo2 + '")' : "none" }, remove: () => this.removePhoto("photo2") }
+      ],
+      hasAnyPhoto: !!(s.photo1 || s.photo2), hasNoPhoto: !(s.photo1 || s.photo2),
+      goCondition: () => this.go("condition"),
+
+      mediaGrades: grades("media"), sleeveGrades: grades("sleeve"),
+      notes: s.notes, setNotes: this.setNotes,
+      pickNewFlow: this.pickNewFlow, pickUsedFlow: this.pickUsedFlow, goNewUsed: this.goNewUsed, goBackFromDetails: this.goBackFromDetails,
+
+      fields, tagInput: s.tagInput, setTag: this.setTag,
+      noCategories: !s.categories.length,
+      categoriesErrorSuffix: s.categoriesError ? (" (" + s.categoriesError + ")") : "",
+      formatCatChips: [
+        ...(s.categories || []).filter(c => /vinilo|vinyl|\blp\b|\bcd\b|cassette|cinta/i.test(c.name)).map(c => ({ id: c.id, label: c.name, missing: false, sel: s.selectedFormatCat === c.id, unsel: s.selectedFormatCat !== c.id, pick: () => this.setState({ selectedFormatCat: c.id }) })),
+        ...(s.formatGuess && !s.formatGuess.cat ? [{ id: "new-" + s.formatGuess.name, label: s.formatGuess.name, missing: true, busy: s.creatingCatName === s.formatGuess.name, createLabel: s.creatingCatName === s.formatGuess.name ? "creando…" : "crear", pick: () => this.createNamedCategory(s.formatGuess.name, "format") }] : [])
+      ],
+      noConditionCats: !(s.categories || []).some(c => /nuevo|usado|new|used/i.test(c.name)) && !s.conditionGuess,
+      conditionCatChips: [
+        ...(s.categories || []).filter(c => /nuevo|usado|new|used/i.test(c.name)).map(c => ({ id: c.id, label: c.name, missing: false, sel: s.selectedConditionCat === c.id, unsel: s.selectedConditionCat !== c.id, pick: () => this.setState({ selectedConditionCat: c.id }) })),
+        ...(s.conditionGuess && !s.conditionGuess.cat ? [{ id: "new-" + s.conditionGuess.name, label: s.conditionGuess.name, missing: true, busy: s.creatingCatName === s.conditionGuess.name, createLabel: s.creatingCatName === s.conditionGuess.name ? "creando…" : "crear", pick: () => this.createNamedCategory(s.conditionGuess.name, "condition") }] : [])
+      ],
+      genreCatChips: (s.genreGuesses || []).map(g => g.cat ? { id: g.cat.id, label: g.cat.name, missing: false, sel: s.selectedGenreCats.includes(g.cat.id), unsel: !s.selectedGenreCats.includes(g.cat.id), pick: () => this.setState(st => ({ selectedGenreCats: st.selectedGenreCats.includes(g.cat.id) ? st.selectedGenreCats.filter(id => id !== g.cat.id) : [...st.selectedGenreCats, g.cat.id] })) } : { id: g.name, label: g.name, missing: true, busy: s.creatingCatName === g.name, createLabel: s.creatingCatName === g.name ? "creando…" : "crear", pick: () => this.createCategory(g.name) }),
+
+      price: s.price, setPrice: this.setPrice,
+      stock: s.stock, setStock: this.setStock,
+      publish: this.publish, publishBusy: s.publishBusy, publishError: s.publishError,
+      publishLabel: s.publishBusy ? "Publicando…" : "Publicar en mi tienda",
+      showCorsHelp: s.showCorsHelp,
+      corsSnippet: "Si esto falla por CORS, agrega en functions.php del tema:\n\nadd_action('rest_api_init', function () {\n  header('Access-Control-Allow-Origin: *');\n  header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');\n  header('Access-Control-Allow-Headers: Authorization, Content-Type');\n}, 15);",
+
+      scanAnother: this.resetScan,
+      doneMsg: s.doneMsg,
+      products: (s.products || []).map(p => ({ ...p, edit: () => this.startEdit(p), remove: () => this.deleteProduct(p) })),
+      listError: s.listError,
+
+      editTitle: s.editTitle, setEditTitle: this.setEditTitle,
+      editPrice: s.editPrice, setEditPrice: this.setEditPrice,
+      editStock: s.editStock, setEditStock: this.setEditStock,
+      editError: s.editError, saveEdit: this.saveEdit, cancelEdit: this.cancelEdit,
+      saveEditLabel: s.editBusy ? "Guardando…" : "Guardar cambios",
+
+      logout: this.logout
+    };
+  }
+}
+
+</script>
+</body>
+</html>

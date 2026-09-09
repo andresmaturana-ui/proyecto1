@@ -1,0 +1,37 @@
+name: DisqueriaApp
+options:
+  bundleIdPrefix: com.disqueriaapp
+  deploymentTarget:
+    iOS: "16.0"
+  createIntermediateGroups: true
+configs:
+  Debug: debug
+  Release: release
+targets:
+  DisqueriaApp:
+    type: application
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - path: DisqueriaApp
+    info:
+      path: Generated/Info.plist
+      properties:
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        UIRequiresFullScreen: true
+        NSCameraUsageDescription: "Disquería App usa la cámara para escanear el código de barras del disco y para fotografiar su estado."
+        CFBundleURLTypes:
+          - CFBundleURLName: com.disqueriaapp.ios.auth
+            CFBundleURLSchemes:
+              - disqueriaapp
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.disqueriaapp.ios
+        PRODUCT_NAME: "Disquería App"
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        SWIFT_VERSION: "5.0"
+        TARGETED_DEVICE_FAMILY: "1"
+        IPHONEOS_DEPLOYMENT_TARGET: "16.0"
