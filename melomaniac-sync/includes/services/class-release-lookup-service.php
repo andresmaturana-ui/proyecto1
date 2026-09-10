@@ -288,10 +288,21 @@ class Melomaniac_Sync_Release_Lookup_Service {
 			$release = $this->fetch_musicbrainz_release( $id );
 		} elseif ( 'discogs' === $source ) {
 			$release = $this->fetch_discogs_release( $id );
+		} elseif ( '' === $source ) {
+			// The browser sent no source at all, which is what an outdated
+			// cached script does: older versions posted different field names.
+			return new WP_Error(
+				'melomaniac_sync_stale_assets',
+				__( 'La página quedó con una versión vieja del plugin en caché. Recargá con Ctrl+F5 (Cmd+Shift+R en Mac) y volvé a intentar.', 'melomaniac-sync' )
+			);
 		} else {
 			return new WP_Error(
 				'melomaniac_sync_unknown_source',
-				__( 'Fuente de datos desconocida.', 'melomaniac-sync' )
+				sprintf(
+					/* translators: %s: the data source that was requested. */
+					__( 'Fuente de datos desconocida: %s', 'melomaniac-sync' ),
+					$source
+				)
 			);
 		}
 

@@ -16,6 +16,7 @@ defined( 'ABSPATH' ) || exit;
 $melomaniac_probes      = isset( $data['probes'] ) ? $data['probes'] : array();
 $melomaniac_ran         = ! empty( $data['ran'] );
 $melomaniac_environment = isset( $data['environment'] ) ? $data['environment'] : array();
+$melomaniac_flushed     = ! empty( $data['flushed'] );
 
 $melomaniac_states = array(
 	'ok'      => __( 'Bien', 'melomaniac-sync' ),
@@ -108,6 +109,26 @@ $melomaniac_states = array(
 				<?php esc_html_e( 'Un código 400 o 404 también cuenta como conexión buena: significa que el servicio contestó. Lo único preocupante es que no conteste nada.', 'melomaniac-sync' ); ?>
 			</p>
 		<?php endif; ?>
+	</div>
+
+	<div class="melomaniac-card">
+		<h2><?php esc_html_e( 'Búsquedas guardadas', 'melomaniac-sync' ); ?></h2>
+		<p class="description">
+			<?php esc_html_e( 'Melomaniac Sync guarda un día lo que encuentra, para no repetir peticiones. Si un disco quedó guardado con datos equivocados, vaciá esto y volvé a escanearlo.', 'melomaniac-sync' ); ?>
+		</p>
+
+		<?php if ( $melomaniac_flushed ) : ?>
+			<div class="notice notice-success inline"><p><?php esc_html_e( 'Se vaciaron las búsquedas guardadas.', 'melomaniac-sync' ); ?></p></div>
+		<?php endif; ?>
+
+		<form method="post">
+			<?php wp_nonce_field( Melomaniac_Sync_Diagnostics_Page::NONCE_FLUSH ); ?>
+			<p>
+				<button type="submit" name="melomaniac_sync_flush_cache" value="1" class="button">
+					<?php esc_html_e( 'Vaciar las búsquedas guardadas', 'melomaniac-sync' ); ?>
+				</button>
+			</p>
+		</form>
 	</div>
 
 	<div class="melomaniac-card">

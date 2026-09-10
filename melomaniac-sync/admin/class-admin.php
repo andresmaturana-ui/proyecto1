@@ -28,6 +28,25 @@ class Melomaniac_Sync_Admin {
 	}
 
 	/**
+	 * Cache-busting version for one asset.
+	 *
+	 * Uses the file's own modification time rather than the plugin version:
+	 * during development the version rarely changes, and a browser holding a
+	 * stale script while the server runs new PHP fails in ways that look like
+	 * a bug in the feature rather than a caching problem.
+	 *
+	 * @param string $relative_path Path relative to the plugin root.
+	 * @return string
+	 */
+	private static function asset_version( $relative_path ) {
+		$path = MELOMANIAC_SYNC_PATH . $relative_path;
+
+		$mtime = file_exists( $path ) ? filemtime( $path ) : 0;
+
+		return $mtime ? MELOMANIAC_SYNC_VERSION . '.' . $mtime : MELOMANIAC_SYNC_VERSION;
+	}
+
+	/**
 	 * Loads CSS and JS on the plugin's own screens only.
 	 *
 	 * @param string $hook_suffix Current admin page.
@@ -42,7 +61,7 @@ class Melomaniac_Sync_Admin {
 			'melomaniac-sync-admin',
 			MELOMANIAC_SYNC_URL . 'assets/css/admin.css',
 			array(),
-			MELOMANIAC_SYNC_VERSION
+			self::asset_version( 'assets/css/admin.css' )
 		);
 
 		wp_enqueue_media();
@@ -51,7 +70,7 @@ class Melomaniac_Sync_Admin {
 			'melomaniac-sync-camera',
 			MELOMANIAC_SYNC_URL . 'assets/js/camera-scanner.js',
 			array(),
-			MELOMANIAC_SYNC_VERSION,
+			self::asset_version( 'assets/js/camera-scanner.js' ),
 			true
 		);
 
@@ -59,7 +78,7 @@ class Melomaniac_Sync_Admin {
 			'melomaniac-sync-scan',
 			MELOMANIAC_SYNC_URL . 'assets/js/scan.js',
 			array( 'melomaniac-sync-camera' ),
-			MELOMANIAC_SYNC_VERSION,
+			self::asset_version( 'assets/js/scan.js' ),
 			true
 		);
 
@@ -67,7 +86,7 @@ class Melomaniac_Sync_Admin {
 			'melomaniac-sync-manual-form',
 			MELOMANIAC_SYNC_URL . 'assets/js/manual-form.js',
 			array( 'jquery' ),
-			MELOMANIAC_SYNC_VERSION,
+			self::asset_version( 'assets/js/manual-form.js' ),
 			true
 		);
 

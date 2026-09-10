@@ -40,7 +40,7 @@ msgstr ""
 msgid "%1$s (a los %2$d ms)"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:92
+#: admin/views/page-diagnostics.php:93
 msgid "%d ms"
 msgstr ""
 
@@ -66,7 +66,7 @@ msgstr ""
 
 #: admin/class-admin-menu.php:119
 #: admin/class-admin-menu.php:120
-#: admin/views/page-diagnostics.php:135
+#: admin/views/page-diagnostics.php:156
 msgid "Ajustes"
 msgstr ""
 
@@ -86,7 +86,7 @@ msgstr ""
 msgid "Alcanzaste el límite mensual de discos."
 msgstr ""
 
-#: admin/class-admin.php:90
+#: admin/class-admin.php:109
 msgid "Algo falló. Intentá de nuevo."
 msgstr ""
 
@@ -107,7 +107,7 @@ msgstr ""
 msgid "Año"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:21
+#: admin/views/page-diagnostics.php:22
 msgid "Bien"
 msgstr ""
 
@@ -119,7 +119,7 @@ msgstr ""
 msgid "Borrador es lo recomendado: te deja revisar precio y stock antes de que el disco salga a la venta."
 msgstr ""
 
-#: admin/class-admin.php:87
+#: admin/class-admin.php:106
 msgid "Buscando en MusicBrainz…"
 msgstr ""
 
@@ -139,11 +139,15 @@ msgstr ""
 msgid "Buscar en MusicBrainz"
 msgstr ""
 
+#: admin/views/page-diagnostics.php:115
+msgid "Búsquedas guardadas"
+msgstr ""
+
 #: includes/services/class-release-dto.php:163
 msgid "CD"
 msgstr ""
 
-#: admin/class-admin.php:89
+#: admin/class-admin.php:108
 msgid "Cargando los datos del disco…"
 msgstr ""
 
@@ -163,7 +167,7 @@ msgstr ""
 msgid "Categoría por formato"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:31
+#: admin/views/page-diagnostics.php:32
 msgid "Comprueba si este servidor puede alcanzar los servicios que Melomaniac Sync necesita. Si un escaneo falla con \"Operation timed out\", la respuesta está acá."
 msgstr ""
 
@@ -171,7 +175,7 @@ msgstr ""
 msgid "Con un lector USB, dejá el cursor en el campo y disparalo: el lector escribe el código y confirma solo."
 msgstr ""
 
-#: admin/views/page-diagnostics.php:35
+#: admin/views/page-diagnostics.php:36
 msgid "Conexión con los servicios"
 msgstr ""
 
@@ -187,7 +191,7 @@ msgstr ""
 msgid "Cover Art Archive"
 msgstr ""
 
-#: admin/class-admin.php:88
+#: admin/class-admin.php:107
 msgid "Creando el producto…"
 msgstr ""
 
@@ -203,7 +207,7 @@ msgstr ""
 msgid "Cuánto espera a MusicBrainz, Cover Art Archive y Discogs antes de darse por vencido. Si ves errores de \"timed out\", subilo y revisá %s."
 msgstr ""
 
-#: admin/views/page-diagnostics.php:55
+#: admin/views/page-diagnostics.php:56
 msgid "Código"
 msgstr ""
 
@@ -232,13 +236,13 @@ msgstr ""
 msgid "Detectar sola"
 msgstr ""
 
-#: admin/class-admin.php:97
+#: admin/class-admin.php:116
 msgid "Detener la cámara"
 msgstr ""
 
 #: admin/class-admin-menu.php:132
 #: admin/class-admin-menu.php:133
-#: admin/views/page-diagnostics.php:28
+#: admin/views/page-diagnostics.php:29
 #: admin/views/page-settings.php:244
 #: admin/views/page-settings.php:268
 msgid "Diagnóstico"
@@ -273,7 +277,7 @@ msgstr ""
 msgid "Dominios permitidos"
 msgstr ""
 
-#: admin/class-admin.php:92
+#: admin/class-admin.php:111
 #: admin/class-scan-page.php:77
 msgid "Editar el producto"
 msgstr ""
@@ -294,7 +298,7 @@ msgstr ""
 msgid "El identificador de Discogs no es válido."
 msgstr ""
 
-#: includes/services/class-release-lookup-service.php:317
+#: includes/services/class-release-lookup-service.php:328
 msgid "El identificador de MusicBrainz no es válido."
 msgstr ""
 
@@ -314,8 +318,8 @@ msgstr ""
 msgid "El servidor no pudo resolver el dominio. Es un problema de DNS del hosting."
 msgstr ""
 
-#: admin/class-admin.php:98
-#: admin/class-admin.php:109
+#: admin/class-admin.php:117
+#: admin/class-admin.php:128
 msgid "Elegir la portada"
 msgstr ""
 
@@ -323,18 +327,18 @@ msgstr ""
 msgid "Elegí la que tenés en la mano para ver su ficha completa antes de crear el producto."
 msgstr ""
 
-#: admin/views/page-diagnostics.php:114
+#: admin/views/page-diagnostics.php:135
 msgid "Entorno"
 msgstr ""
 
-#: admin/class-admin.php:96
+#: admin/class-admin.php:115
 #: admin/views/page-scan.php:56
 msgid "Escanear con la cámara"
 msgstr ""
 
 #: admin/class-admin-menu.php:106
 #: admin/class-admin-menu.php:107
-#: admin/class-admin.php:127
+#: admin/class-admin.php:146
 #: admin/views/page-scan.php:21
 msgid "Escanear disco"
 msgstr ""
@@ -351,7 +355,7 @@ msgstr ""
 msgid "Estado al crearse"
 msgstr ""
 
-#: admin/class-admin.php:93
+#: admin/class-admin.php:112
 msgid "Este navegador no puede escanear con la cámara. Usá Chrome o Edge, o un lector USB."
 msgstr ""
 
@@ -359,7 +363,7 @@ msgstr ""
 msgid "Etiqueta de género"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:23
+#: admin/views/page-diagnostics.php:24
 msgid "Falla"
 msgstr ""
 
@@ -386,8 +390,8 @@ msgstr ""
 msgid "Formato"
 msgstr ""
 
-#: includes/services/class-release-lookup-service.php:294
-msgid "Fuente de datos desconocida."
+#: includes/services/class-release-lookup-service.php:303
+msgid "Fuente de datos desconocida: %s"
 msgstr ""
 
 #: admin/views/page-settings.php:38
@@ -411,20 +415,24 @@ msgstr ""
 msgid "Género"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:37
+#: admin/views/page-diagnostics.php:38
 msgid "Hace una petición real a cada servicio y mide cuánto tarda. Puede demorar si el hosting está bloqueando la salida."
 msgstr ""
 
-#: admin/class-admin.php:91
+#: admin/class-admin.php:110
 msgid "Ingresá o escaneá un código de barra."
 msgstr ""
 
-#: includes/services/class-release-lookup-service.php:349
+#: includes/services/class-release-lookup-service.php:360
 msgid "La búsqueda en Discogs está desactivada o sin token."
 msgstr ""
 
-#: admin/class-admin.php:95
+#: admin/class-admin.php:114
 msgid "La cámara solo funciona sobre HTTPS."
+msgstr ""
+
+#: includes/services/class-release-lookup-service.php:296
+msgid "La página quedó con una versión vieja del plugin en caché. Recargá con Ctrl+F5 (Cmd+Shift+R en Mac) y volvé a intentar."
 msgstr ""
 
 #: includes/integrations/discogs/class-discogs-client.php:191
@@ -458,6 +466,10 @@ msgstr ""
 msgid "Melomaniac Sync busca primero en MusicBrainz, que es abierto y no necesita credenciales. Si el disco no está ahí, consulta Discogs con el token de tu tienda."
 msgstr ""
 
+#: admin/views/page-diagnostics.php:117
+msgid "Melomaniac Sync guarda un día lo que encuentra, para no repetir peticiones. Si un disco quedó guardado con datos equivocados, vaciá esto y volvé a escanearlo."
+msgstr ""
+
 #: includes/class-activator.php:79
 msgid "Melomaniac Sync necesita WooCommerce activo para funcionar."
 msgstr ""
@@ -470,7 +482,7 @@ msgstr ""
 msgid "MusicBrainz"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:142
+#: admin/views/page-diagnostics.php:163
 msgid "MusicBrainz bloquea las IP que hacen más de una petición por segundo. Si compartís IP con otros sitios, puede que el bloqueo no sea por tu tienda."
 msgstr ""
 
@@ -503,7 +515,7 @@ msgstr ""
 msgid "No es este disco, cargarlo a mano"
 msgstr ""
 
-#: admin/class-admin.php:94
+#: admin/class-admin.php:113
 msgid "No se pudo acceder a la cámara. Revisá los permisos del navegador."
 msgstr ""
 
@@ -532,7 +544,7 @@ msgstr ""
 msgid "No tenés permisos para usar esta pantalla."
 msgstr ""
 
-#: admin/class-diagnostics-page.php:46
+#: admin/class-diagnostics-page.php:51
 #: admin/class-settings-page.php:170
 msgid "No tenés permisos para ver esta pantalla."
 msgstr ""
@@ -604,7 +616,7 @@ msgstr ""
 msgid "Pro (30 discos al mes) o Premium (discos ilimitados + carga masiva)"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:44
+#: admin/views/page-diagnostics.php:45
 msgid "Probar la conexión ahora"
 msgstr ""
 
@@ -625,7 +637,7 @@ msgstr ""
 msgid "Quitar"
 msgstr ""
 
-#: admin/class-admin.php:111
+#: admin/class-admin.php:130
 msgid "Quitar la portada"
 msgstr ""
 
@@ -641,7 +653,7 @@ msgstr ""
 msgid "Requisitos no cumplidos"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:57
+#: admin/views/page-diagnostics.php:58
 msgid "Resolvió a"
 msgstr ""
 
@@ -658,11 +670,11 @@ msgstr ""
 msgid "Responde bien."
 msgstr ""
 
-#: admin/views/page-diagnostics.php:22
+#: admin/views/page-diagnostics.php:23
 msgid "Responde, con reparos"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:54
+#: admin/views/page-diagnostics.php:55
 msgid "Resultado"
 msgstr ""
 
@@ -691,6 +703,10 @@ msgstr ""
 msgid "Se necesita al menos artista o título para buscar."
 msgstr ""
 
+#: admin/views/page-diagnostics.php:121
+msgid "Se vaciaron las búsquedas guardadas."
+msgstr ""
+
 #: admin/views/partial-manual-form.php:77
 #: admin/views/partial-result-preview.php:25
 #: includes/services/class-product-factory.php:255
@@ -698,11 +714,11 @@ msgstr ""
 msgid "Sello"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:53
+#: admin/views/page-diagnostics.php:54
 msgid "Servicio"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:139
+#: admin/views/page-diagnostics.php:160
 msgid "Si arriba dice que no resolvió el dominio, es DNS del hosting."
 msgstr ""
 
@@ -710,15 +726,15 @@ msgstr ""
 msgid "Si dejás \"Detectar sola\", Melomaniac Sync busca entre tus categorías una que coincida con el formato."
 msgstr ""
 
-#: admin/views/page-diagnostics.php:128
+#: admin/views/page-diagnostics.php:149
 msgid "Si el tiempo de espera se agota"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:141
+#: admin/views/page-diagnostics.php:162
 msgid "Si no pasa nada de lo anterior, pedile a tu hosting que permita conexiones HTTPS salientes a musicbrainz.org, coverartarchive.org y api.discogs.com. Muchos hostings compartidos las bloquean por defecto."
 msgstr ""
 
-#: admin/views/page-diagnostics.php:140
+#: admin/views/page-diagnostics.php:161
 msgid "Si resolvió solo a IPv6 y falla, el hosting no tiene salida IPv6 funcionando. Pediles que la arreglen o que fuercen IPv4."
 msgstr ""
 
@@ -726,7 +742,7 @@ msgstr ""
 msgid "Sin portada en Cover Art Archive"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:24
+#: admin/views/page-diagnostics.php:25
 msgid "Sin probar"
 msgstr ""
 
@@ -746,7 +762,7 @@ msgstr ""
 msgid "Subir o elegir una imagen"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:134
+#: admin/views/page-diagnostics.php:155
 msgid "Subí el tiempo de espera en %s. Si la conexión es lenta pero funciona, con 30 segundos suele alcanzar."
 msgstr ""
 
@@ -758,7 +774,7 @@ msgstr ""
 msgid "Sí, y eso rompe el plugin"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:56
+#: admin/views/page-diagnostics.php:57
 msgid "Tardó"
 msgstr ""
 
@@ -782,7 +798,7 @@ msgstr ""
 msgid "Título del álbum"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:108
+#: admin/views/page-diagnostics.php:109
 msgid "Un código 400 o 404 también cuenta como conexión buena: significa que el servicio contestó. Lo único preocupante es que no conteste nada."
 msgstr ""
 
@@ -798,9 +814,13 @@ msgstr ""
 msgid "Usar esta edición"
 msgstr ""
 
-#: admin/class-admin.php:99
-#: admin/class-admin.php:110
+#: admin/class-admin.php:118
+#: admin/class-admin.php:129
 msgid "Usar esta imagen"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:128
+msgid "Vaciar las búsquedas guardadas"
 msgstr ""
 
 #: includes/licensing/class-usage.php:179
@@ -867,7 +887,7 @@ msgstr ""
 msgid "no detectada"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:100
+#: admin/views/page-diagnostics.php:101
 msgid "no resolvió"
 msgstr ""
 

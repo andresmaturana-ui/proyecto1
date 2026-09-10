@@ -21,6 +21,11 @@ class Melomaniac_Sync_Diagnostics_Page {
 	const NONCE_ACTION = 'melomaniac_sync_run_diagnostics';
 
 	/**
+	 * Nonce action for the cache reset button.
+	 */
+	const NONCE_FLUSH = 'melomaniac_sync_flush_cache';
+
+	/**
 	 * Connectivity checker.
 	 *
 	 * @var Melomaniac_Sync_Connectivity_Check
@@ -46,7 +51,8 @@ class Melomaniac_Sync_Diagnostics_Page {
 			wp_die( esc_html__( 'No tenés permisos para ver esta pantalla.', 'melomaniac-sync' ) );
 		}
 
-		$probes = array();
+		$probes  = array();
+		$flushed = false;
 
 		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce checked right below.
 		if ( isset( $_POST['melomaniac_sync_run_probes'] ) ) {
@@ -54,11 +60,19 @@ class Melomaniac_Sync_Diagnostics_Page {
 			$probes = $this->check->run_all();
 		}
 
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce checked right below.
+		if ( isset( $_POST['melomaniac_sync_flush_cache'] ) ) {
+			check_admin_referer( self::NONCE_FLUSH );
+			Melomaniac_Sync_Cache::flush();
+			$flushed = true;
+		}
+
 		Melomaniac_Sync_Admin::render_view(
 			'page-diagnostics',
 			array(
 				'probes'      => $probes,
 				'ran'         => ! empty( $probes ),
+				'flushed'     => $flushed,
 				'environment' => $this->check->environment(),
 			)
 		);
