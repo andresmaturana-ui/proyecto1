@@ -64,6 +64,7 @@ class Melomaniac_Sync_Settings {
 			'default_price'   => '0',
 			'default_stock'   => 1,
 			'genre_tag'       => true,
+			'http_timeout'    => 15,
 		);
 	}
 
@@ -276,6 +277,30 @@ class Melomaniac_Sync_Settings {
 		}
 
 		update_option( self::OPTION_CATEGORY_MAP, $clean, false );
+	}
+
+	/**
+	 * Seconds to wait for an external service before giving up.
+	 *
+	 * Raised from the old hard-coded 15 on request: slow shared hosts and
+	 * congested links can need more, and a timeout costs the whole lookup.
+	 *
+	 * @return int
+	 */
+	public static function http_timeout() {
+		$timeout = (int) self::get( 'http_timeout', 15 );
+
+		// Below 5 nothing ever completes; above 60 PHP itself usually dies first.
+		if ( $timeout < 5 || $timeout > 60 ) {
+			$timeout = 15;
+		}
+
+		/**
+		 * Filters the outbound request timeout, in seconds.
+		 *
+		 * @param int $timeout Seconds.
+		 */
+		return (int) apply_filters( 'melomaniac_sync_http_timeout', $timeout );
 	}
 
 	/**

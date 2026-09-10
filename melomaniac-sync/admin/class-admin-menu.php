@@ -23,6 +23,11 @@ class Melomaniac_Sync_Admin_Menu {
 	const PAGE_SETTINGS = 'melomaniac-sync-settings';
 
 	/**
+	 * Slug of the diagnostics screen.
+	 */
+	const PAGE_DIAGNOSTICS = 'melomaniac-sync-diagnostics';
+
+	/**
 	 * Hook suffixes of the screens this plugin owns.
 	 *
 	 * @var string[]
@@ -44,17 +49,27 @@ class Melomaniac_Sync_Admin_Menu {
 	private $settings_page;
 
 	/**
+	 * Diagnostics screen controller.
+	 *
+	 * @var Melomaniac_Sync_Diagnostics_Page
+	 */
+	private $diagnostics_page;
+
+	/**
 	 * Constructor.
 	 *
-	 * @param Melomaniac_Sync_Scan_Page     $scan_page     Scan screen controller.
-	 * @param Melomaniac_Sync_Settings_Page $settings_page Settings screen controller.
+	 * @param Melomaniac_Sync_Scan_Page        $scan_page        Scan screen controller.
+	 * @param Melomaniac_Sync_Settings_Page    $settings_page    Settings screen controller.
+	 * @param Melomaniac_Sync_Diagnostics_Page $diagnostics_page Diagnostics screen controller.
 	 */
 	public function __construct(
 		Melomaniac_Sync_Scan_Page $scan_page,
-		Melomaniac_Sync_Settings_Page $settings_page
+		Melomaniac_Sync_Settings_Page $settings_page,
+		Melomaniac_Sync_Diagnostics_Page $diagnostics_page
 	) {
-		$this->scan_page     = $scan_page;
-		$this->settings_page = $settings_page;
+		$this->scan_page        = $scan_page;
+		$this->settings_page    = $settings_page;
+		$this->diagnostics_page = $diagnostics_page;
 	}
 
 	/**
@@ -111,6 +126,28 @@ class Melomaniac_Sync_Admin_Menu {
 		if ( $settings_hook ) {
 			self::$screen_hooks[] = $settings_hook;
 		}
+
+		$diagnostics_hook = add_submenu_page(
+			self::PAGE_SCAN,
+			__( 'Diagnóstico', 'melomaniac-sync' ),
+			__( 'Diagnóstico', 'melomaniac-sync' ),
+			Melomaniac_Sync_Plugin::CAPABILITY,
+			self::PAGE_DIAGNOSTICS,
+			array( $this->diagnostics_page, 'render' )
+		);
+
+		if ( $diagnostics_hook ) {
+			self::$screen_hooks[] = $diagnostics_hook;
+		}
+	}
+
+	/**
+	 * URL of the diagnostics screen.
+	 *
+	 * @return string
+	 */
+	public static function diagnostics_url() {
+		return add_query_arg( array( 'page' => self::PAGE_DIAGNOSTICS ), admin_url( 'admin.php' ) );
 	}
 
 	/**

@@ -343,3 +343,60 @@
 .melomaniac-field-toggles label {
 	white-space: nowrap;
 }
+
+/* Diagnostics screen */
+
+.melomaniac-probe-table {
+	margin-top: 1em;
+}
+
+.melomaniac-probe-table td {
+	vertical-align: top;
+}
+
+.melomaniac-probe-table .description {
+	margin: 0.3em 0 0;
+}
+
+.melomaniac-probe-state {
+	display: inline-block;
+	padding: 0.15em 0.6em;
+	font-size: 12px;
+	font-weight: 600;
+	border-radius: 3px;
+}
+
+.melomaniac-probe-state.is-ok {
+	color: #005c12;
+	background: #d5f5dd;
+}
+
+.melomaniac-probe-state.is-warn {
+	color: #68510a;
+	background: #fcf2cd;
+}
+
+.melomaniac-probe-state.is-fail {
+	color: #8a1f21;
+	background: #fbdcdd;
+}
+
+.melomaniac-probe-state.is-skipped {
+	color: #50575e;
+	background: #f0f0f1;
+}
+
+.melomaniac-probe-message {
+	max-width: 34em;
+	margin: 0.5em 0 0;
+}
+
+.melomaniac-probe-note {
+	margin-top: 1em;
+}
+
+.melomaniac-troubleshoot {
+	max-width: 56em;
+	margin: 0.5em 0 0 1.5em;
+	line-height: 1.7;
+}

@@ -22,11 +22,6 @@ class Melomaniac_Sync_Cover_Art_Client {
 	const BASE = 'https://coverartarchive.org/release/';
 
 	/**
-	 * Request timeout in seconds.
-	 */
-	const TIMEOUT = 15;
-
-	/**
 	 * Logger.
 	 *
 	 * @var Melomaniac_Sync_Logger
@@ -70,7 +65,7 @@ class Melomaniac_Sync_Cover_Art_Client {
 		$response = wp_remote_get(
 			self::BASE . rawurlencode( $mbid ),
 			array(
-				'timeout'    => self::TIMEOUT,
+				'timeout'    => Melomaniac_Sync_Settings::http_timeout(),
 				'user-agent' => sprintf( 'MelomaniacSync/%s ( %s )', MELOMANIAC_SYNC_VERSION, home_url( '/' ) ),
 				'headers'    => array( 'Accept' => 'application/json' ),
 			)

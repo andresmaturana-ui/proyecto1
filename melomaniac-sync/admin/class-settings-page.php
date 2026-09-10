@@ -98,6 +98,14 @@ class Melomaniac_Sync_Settings_Page {
 			$values['default_stock'] = absint( wp_unslash( $_POST['default_stock'] ) );
 		}
 
+		if ( isset( $_POST['http_timeout'] ) ) {
+			$timeout = absint( wp_unslash( $_POST['http_timeout'] ) );
+
+			if ( $timeout >= 5 && $timeout <= 60 ) {
+				$values['http_timeout'] = $timeout;
+			}
+		}
+
 		// Checkboxes are absent when unticked, so they are read unconditionally.
 		$values['discogs_enabled'] = ! empty( $_POST['discogs_enabled'] );
 		$values['import_cover']    = ! empty( $_POST['import_cover'] );

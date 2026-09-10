@@ -36,6 +36,18 @@ msgstr[1] ""
 msgid "%1$d de %2$d discos usados este mes."
 msgstr ""
 
+#: includes/support/class-connectivity-check.php:229
+msgid "%1$s (a los %2$d ms)"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:92
+msgid "%d ms"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:283
+msgid "%d segundos"
+msgstr ""
+
 #: includes/helpers/functions-reference-links.php:88
 msgid "Abre la búsqueda en discogs.com. Copiá a mano los datos que quieras usar."
 msgstr ""
@@ -44,12 +56,17 @@ msgstr ""
 msgid "Acercá el código de barra al centro del recuadro."
 msgstr ""
 
+#: includes/support/class-connectivity-check.php:290
+msgid "Action Scheduler disponible"
+msgstr ""
+
 #: admin/views/page-settings.php:189
 msgid "Agregar el género principal como etiqueta del producto"
 msgstr ""
 
-#: admin/class-admin-menu.php:104
-#: admin/class-admin-menu.php:105
+#: admin/class-admin-menu.php:119
+#: admin/class-admin-menu.php:120
+#: admin/views/page-diagnostics.php:135
 msgid "Ajustes"
 msgstr ""
 
@@ -73,7 +90,7 @@ msgstr ""
 msgid "Algo falló. Intentá de nuevo."
 msgstr ""
 
-#: admin/views/page-settings.php:259
+#: admin/views/page-settings.php:285
 msgid "Anotar fallas de MusicBrainz, Discogs y portadas en el log de WordPress"
 msgstr ""
 
@@ -88,6 +105,10 @@ msgstr ""
 #: includes/services/class-product-factory.php:256
 #: includes/support/class-settings.php:41
 msgid "Año"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:21
+msgid "Bien"
 msgstr ""
 
 #: admin/views/page-settings.php:118
@@ -142,8 +163,16 @@ msgstr ""
 msgid "Categoría por formato"
 msgstr ""
 
+#: admin/views/page-diagnostics.php:31
+msgid "Comprueba si este servidor puede alcanzar los servicios que Melomaniac Sync necesita. Si un escaneo falla con \"Operation timed out\", la respuesta está acá."
+msgstr ""
+
 #: admin/views/page-scan.php:61
 msgid "Con un lector USB, dejá el cursor en el campo y disparalo: el lector escribe el código y confirma solo."
+msgstr ""
+
+#: admin/views/page-diagnostics.php:35
+msgid "Conexión con los servicios"
 msgstr ""
 
 #: admin/views/page-settings.php:100
@@ -152,6 +181,10 @@ msgstr ""
 
 #: admin/views/page-settings.php:47
 msgid "Contacto para MusicBrainz"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:77
+msgid "Cover Art Archive"
 msgstr ""
 
 #: admin/class-admin.php:88
@@ -166,9 +199,21 @@ msgstr ""
 msgid "Crear producto como borrador"
 msgstr ""
 
+#: admin/views/page-settings.php:267
+msgid "Cuánto espera a MusicBrainz, Cover Art Archive y Discogs antes de darse por vencido. Si ves errores de \"timed out\", subilo y revisá %s."
+msgstr ""
+
+#: admin/views/page-diagnostics.php:55
+msgid "Código"
+msgstr ""
+
 #: admin/views/page-scan.php:38
 #: admin/views/partial-result-preview.php:29
 msgid "Código de barra"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:66
+msgid "Datos de los discos. Sin esto el plugin no puede buscar nada."
 msgstr ""
 
 #: admin/views/partial-result-preview.php:120
@@ -191,7 +236,11 @@ msgstr ""
 msgid "Detener la cámara"
 msgstr ""
 
+#: admin/class-admin-menu.php:132
+#: admin/class-admin-menu.php:133
+#: admin/views/page-diagnostics.php:28
 #: admin/views/page-settings.php:244
+#: admin/views/page-settings.php:268
 msgid "Diagnóstico"
 msgstr ""
 
@@ -199,20 +248,29 @@ msgstr ""
 msgid "Disco %d"
 msgstr ""
 
-#: includes/integrations/discogs/class-discogs-client.php:175
+#: includes/support/class-connectivity-check.php:95
+#: includes/support/class-connectivity-check.php:108
+msgid "Discogs"
+msgstr ""
+
+#: includes/integrations/discogs/class-discogs-client.php:170
 msgid "Discogs no tiene ese lanzamiento."
 msgstr ""
 
-#: includes/integrations/discogs/class-discogs-client.php:168
+#: includes/integrations/discogs/class-discogs-client.php:163
 msgid "Discogs rechazó el token de la tienda. Revisalo en Melomaniac Sync → Ajustes."
 msgstr ""
 
-#: includes/integrations/discogs/class-discogs-client.php:184
+#: includes/integrations/discogs/class-discogs-client.php:179
 msgid "Discogs respondió con el código %d."
 msgstr ""
 
 #: admin/views/partial-plan-summary.php:43
 msgid "Discos ilimitados este mes."
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:296
+msgid "Dominios permitidos"
 msgstr ""
 
 #: admin/class-admin.php:92
@@ -232,7 +290,7 @@ msgstr ""
 msgid "El detalle es libre y se guarda tal cual en la ficha del producto."
 msgstr ""
 
-#: includes/integrations/discogs/class-discogs-client.php:103
+#: includes/integrations/discogs/class-discogs-client.php:98
 msgid "El identificador de Discogs no es válido."
 msgstr ""
 
@@ -244,6 +302,18 @@ msgstr ""
 msgid "El plan Premium suma discos ilimitados y carga masiva por código de barra."
 msgstr ""
 
+#: includes/support/class-connectivity-check.php:178
+msgid "El servidor llega, pero está limitando las peticiones en este momento."
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:176
+msgid "El servidor llega, pero rechazó la credencial. Revisá el token."
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:217
+msgid "El servidor no pudo resolver el dominio. Es un problema de DNS del hosting."
+msgstr ""
+
 #: admin/class-admin.php:98
 #: admin/class-admin.php:109
 msgid "Elegir la portada"
@@ -253,13 +323,17 @@ msgstr ""
 msgid "Elegí la que tenés en la mano para ver su ficha completa antes de crear el producto."
 msgstr ""
 
+#: admin/views/page-diagnostics.php:114
+msgid "Entorno"
+msgstr ""
+
 #: admin/class-admin.php:96
 #: admin/views/page-scan.php:56
 msgid "Escanear con la cámara"
 msgstr ""
 
-#: admin/class-admin-menu.php:91
-#: admin/class-admin-menu.php:92
+#: admin/class-admin-menu.php:106
+#: admin/class-admin-menu.php:107
 #: admin/class-admin.php:127
 #: admin/views/page-scan.php:21
 msgid "Escanear disco"
@@ -285,6 +359,14 @@ msgstr ""
 msgid "Etiqueta de género"
 msgstr ""
 
+#: admin/views/page-diagnostics.php:23
+msgid "Falla"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:225
+msgid "Falló la verificación del certificado. El hosting tiene los certificados raíz desactualizados."
+msgstr ""
+
 #: includes/services/class-product-factory.php:50
 msgid "Falta el artista o el título del álbum."
 msgstr ""
@@ -293,7 +375,7 @@ msgstr ""
 msgid "Falta el producto a publicar."
 msgstr ""
 
-#: includes/integrations/discogs/class-discogs-client.php:123
+#: includes/integrations/discogs/class-discogs-client.php:118
 msgid "Falta el token de Discogs de la tienda. Agregalo en Melomaniac Sync → Ajustes."
 msgstr ""
 
@@ -320,13 +402,17 @@ msgstr ""
 msgid "Gratis"
 msgstr ""
 
-#: admin/views/page-settings.php:269
+#: admin/views/page-settings.php:295
 msgid "Guardar ajustes"
 msgstr ""
 
 #: admin/views/partial-result-preview.php:64
 #: includes/support/class-settings.php:44
 msgid "Género"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:37
+msgid "Hace una petición real a cada servicio y mide cuánto tarda. Puede demorar si el hosting está bloqueando la salida."
 msgstr ""
 
 #: admin/class-admin.php:91
@@ -341,11 +427,11 @@ msgstr ""
 msgid "La cámara solo funciona sobre HTTPS."
 msgstr ""
 
-#: includes/integrations/discogs/class-discogs-client.php:196
+#: includes/integrations/discogs/class-discogs-client.php:191
 msgid "La respuesta de Discogs no se pudo interpretar."
 msgstr ""
 
-#: includes/integrations/musicbrainz/class-musicbrainz-client.php:202
+#: includes/integrations/musicbrainz/class-musicbrainz-client.php:197
 msgid "La respuesta de MusicBrainz no se pudo interpretar."
 msgstr ""
 
@@ -363,8 +449,8 @@ msgstr ""
 msgid "Los campos que desmarques no aparecen en la ficha, aunque Melomaniac Sync los haya encontrado."
 msgstr ""
 
-#: admin/class-admin-menu.php:76
-#: admin/class-admin-menu.php:77
+#: admin/class-admin-menu.php:91
+#: admin/class-admin-menu.php:92
 msgid "Melomaniac Sync"
 msgstr ""
 
@@ -380,7 +466,15 @@ msgstr ""
 msgid "Melomaniac Sync requiere PHP 7.4 o superior."
 msgstr ""
 
-#: includes/integrations/musicbrainz/class-musicbrainz-client.php:180
+#: includes/support/class-connectivity-check.php:59
+msgid "MusicBrainz"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:142
+msgid "MusicBrainz bloquea las IP que hacen más de una petición por segundo. Si compartís IP con otros sitios, puede que el bloqueo no sea por tu tienda."
+msgstr ""
+
+#: includes/integrations/musicbrainz/class-musicbrainz-client.php:175
 msgid "MusicBrainz no tiene ese lanzamiento."
 msgstr ""
 
@@ -392,12 +486,17 @@ msgstr ""
 msgid "MusicBrainz no tiene ningún disco con el código %s. Completá los datos y creamos el borrador igual."
 msgstr ""
 
-#: includes/integrations/musicbrainz/class-musicbrainz-client.php:191
+#: includes/integrations/musicbrainz/class-musicbrainz-client.php:186
 msgid "MusicBrainz respondió con el código %d."
 msgstr ""
 
 #: admin/views/partial-candidate-list.php:75
 msgid "Ninguna es, cargarlo a mano"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:289
+#: includes/support/class-connectivity-check.php:292
+msgid "No"
 msgstr ""
 
 #: admin/views/partial-result-preview.php:108
@@ -433,7 +532,8 @@ msgstr ""
 msgid "No tenés permisos para usar esta pantalla."
 msgstr ""
 
-#: admin/class-settings-page.php:162
+#: admin/class-diagnostics-page.php:46
+#: admin/class-settings-page.php:170
 msgid "No tenés permisos para ver esta pantalla."
 msgstr ""
 
@@ -448,7 +548,7 @@ msgstr ""
 msgid "Otro"
 msgstr ""
 
-#: admin/views/page-settings.php:262
+#: admin/views/page-settings.php:288
 msgid "Para que el archivo se escriba, wp-config.php necesita WP_DEBUG y WP_DEBUG_LOG en true. Dejalo apagado salvo que estés buscando un problema."
 msgstr ""
 
@@ -463,6 +563,14 @@ msgstr ""
 msgid "Pendiente de revisión"
 msgstr ""
 
+#: includes/support/class-connectivity-check.php:287
+msgid "Peticiones externas bloqueadas en wp-config"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:286
+msgid "Plan"
+msgstr ""
+
 #: admin/views/partial-plan-summary.php:36
 msgid "Plan actual: %s"
 msgstr ""
@@ -470,6 +578,10 @@ msgstr ""
 #: admin/views/page-settings.php:164
 #: admin/views/partial-manual-form.php:152
 msgid "Portada"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:81
+msgid "Portadas. Si falla, los productos se crean sin imagen."
 msgstr ""
 
 #: admin/views/page-settings.php:136
@@ -490,6 +602,10 @@ msgstr ""
 
 #: includes/licensing/class-licensing.php:167
 msgid "Pro (30 discos al mes) o Premium (discos ilimitados + carga masiva)"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:44
+msgid "Probar la conexión ahora"
 msgstr ""
 
 #: admin/views/page-settings.php:107
@@ -517,7 +633,7 @@ msgstr ""
 msgid "Qué entra en la descripción"
 msgstr ""
 
-#: admin/views/page-settings.php:249
+#: admin/views/page-settings.php:275
 msgid "Registro"
 msgstr ""
 
@@ -525,15 +641,44 @@ msgstr ""
 msgid "Requisitos no cumplidos"
 msgstr ""
 
+#: admin/views/page-diagnostics.php:57
+msgid "Resolvió a"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:97
+#: includes/support/class-connectivity-check.php:115
+msgid "Respaldo cuando MusicBrainz no tiene el disco."
+msgstr ""
+
 #: admin/views/page-settings.php:90
 msgid "Respaldo en Discogs"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:180
+msgid "Responde bien."
+msgstr ""
+
+#: admin/views/page-diagnostics.php:22
+msgid "Responde, con reparos"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:54
+msgid "Resultado"
 msgstr ""
 
 #: admin/views/partial-reference-links.php:45
 msgid "Se abren en una pestaña nueva. Melomaniac Sync no copia nada de esos sitios: lo que quieras usar lo pegás vos en el formulario."
 msgstr ""
 
-#: includes/integrations/discogs/class-discogs-client.php:160
+#: includes/support/class-connectivity-check.php:204
+msgid "Se agotaron los %d segundos sin recibir un solo byte, y el dominio solo resolvió a IPv6. Si el servidor no tiene salida IPv6 funcionando, las conexiones quedan colgadas hasta el timeout. Pedile a tu hosting que habilite IPv6 o que fuerce IPv4."
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:211
+msgid "Se agotaron los %d segundos sin recibir un solo byte. El hosting está descartando la conexión de salida, o la IP del sitio está bloqueada. Pedile a tu hosting que permita conexiones HTTPS salientes a este dominio, o subí el tiempo de espera más abajo."
+msgstr ""
+
+#: includes/integrations/discogs/class-discogs-client.php:155
 msgid "Se alcanzó el límite de peticiones de Discogs."
 msgstr ""
 
@@ -542,7 +687,7 @@ msgstr ""
 msgid "Se creó el borrador \"%s\"."
 msgstr ""
 
-#: includes/integrations/musicbrainz/class-musicbrainz-client.php:95
+#: includes/integrations/musicbrainz/class-musicbrainz-client.php:90
 msgid "Se necesita al menos artista o título para buscar."
 msgstr ""
 
@@ -553,12 +698,40 @@ msgstr ""
 msgid "Sello"
 msgstr ""
 
+#: admin/views/page-diagnostics.php:53
+msgid "Servicio"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:139
+msgid "Si arriba dice que no resolvió el dominio, es DNS del hosting."
+msgstr ""
+
 #: admin/views/page-settings.php:218
 msgid "Si dejás \"Detectar sola\", Melomaniac Sync busca entre tus categorías una que coincida con el formato."
 msgstr ""
 
+#: admin/views/page-diagnostics.php:128
+msgid "Si el tiempo de espera se agota"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:141
+msgid "Si no pasa nada de lo anterior, pedile a tu hosting que permita conexiones HTTPS salientes a musicbrainz.org, coverartarchive.org y api.discogs.com. Muchos hostings compartidos las bloquean por defecto."
+msgstr ""
+
+#: admin/views/page-diagnostics.php:140
+msgid "Si resolvió solo a IPv6 y falla, el hosting no tiene salida IPv6 funcionando. Pediles que la arreglen o que fuercen IPv4."
+msgstr ""
+
 #: admin/views/partial-result-preview.php:44
 msgid "Sin portada en Cover Art Archive"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:24
+msgid "Sin probar"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:99
+msgid "Sin token configurado, no se prueba."
 msgstr ""
 
 #: admin/views/page-settings.php:85
@@ -573,8 +746,32 @@ msgstr ""
 msgid "Subir o elegir una imagen"
 msgstr ""
 
+#: admin/views/page-diagnostics.php:134
+msgid "Subí el tiempo de espera en %s. Si la conexión es lenta pero funciona, con 30 segundos suele alcanzar."
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:291
+msgid "Sí"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:288
+msgid "Sí, y eso rompe el plugin"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:56
+msgid "Tardó"
+msgstr ""
+
 #: admin/views/partial-plan-summary.php:60
 msgid "Te estás acercando al tope del mes."
+msgstr ""
+
+#: admin/views/page-settings.php:250
+msgid "Tiempo de espera"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:281
+msgid "Tiempo de espera configurado"
 msgstr ""
 
 #: admin/views/page-settings.php:64
@@ -583,6 +780,10 @@ msgstr ""
 
 #: admin/views/partial-manual-form.php:69
 msgid "Título del álbum"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:108
+msgid "Un código 400 o 404 también cuenta como conexión buena: significa que el servicio contestó. Lo único preocupante es que no conteste nada."
 msgstr ""
 
 #: admin/views/page-settings.php:58
@@ -626,8 +827,28 @@ msgstr ""
 msgid "Verificá si el disco existe con otro código de barra."
 msgstr ""
 
+#: includes/support/class-connectivity-check.php:278
+msgid "Versión de PHP"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:279
+msgid "Versión de WooCommerce"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:277
+msgid "Versión de WordPress"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:280
+msgid "Versión del plugin"
+msgstr ""
+
 #: includes/services/class-release-dto.php:162
 msgid "Vinilo"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:221
+msgid "WordPress tiene las peticiones externas bloqueadas por configuración (WP_HTTP_BLOCK_EXTERNAL en wp-config.php)."
 msgstr ""
 
 #: includes/services/class-product-factory.php:69
@@ -636,6 +857,22 @@ msgstr ""
 
 #: admin/class-scan-page.php:86
 msgid "Ya existía un producto para este disco: \"%s\"."
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:277
+msgid "desconocida"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:279
+msgid "no detectada"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:100
+msgid "no resolvió"
+msgstr ""
+
+#: admin/views/page-settings.php:262
+msgid "segundos"
 msgstr ""
 
 #: admin/views/partial-reference-links.php:29

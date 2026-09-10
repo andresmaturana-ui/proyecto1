@@ -96,6 +96,7 @@ final class Melomaniac_Sync_Plugin {
 			'includes/support/class-logger.php',
 			'includes/support/class-cache.php',
 			'includes/support/class-settings.php',
+			'includes/support/class-connectivity-check.php',
 			'includes/licensing/class-licensing.php',
 			'includes/licensing/class-usage.php',
 			'includes/helpers/functions-reference-links.php',
@@ -121,6 +122,7 @@ final class Melomaniac_Sync_Plugin {
 					'admin/class-manual-entry-handler.php',
 					'admin/class-settings-page.php',
 					'admin/class-quick-publish.php',
+					'admin/class-diagnostics-page.php',
 				)
 			);
 		}
@@ -149,7 +151,10 @@ final class Melomaniac_Sync_Plugin {
 
 		$menu = new Melomaniac_Sync_Admin_Menu(
 			new Melomaniac_Sync_Scan_Page( $this->lookup_service() ),
-			$settings_page
+			$settings_page,
+			new Melomaniac_Sync_Diagnostics_Page(
+				new Melomaniac_Sync_Connectivity_Check( $this->logger() )
+			)
 		);
 		$menu->register();
 

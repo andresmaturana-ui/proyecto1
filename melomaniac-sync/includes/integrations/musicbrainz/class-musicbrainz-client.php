@@ -21,11 +21,6 @@ class Melomaniac_Sync_MusicBrainz_Client {
 	const API_BASE = 'https://musicbrainz.org/ws/2/';
 
 	/**
-	 * Request timeout in seconds.
-	 */
-	const TIMEOUT = 15;
-
-	/**
 	 * Rate limiter shared across processes.
 	 *
 	 * @var Melomaniac_Sync_Rate_Limiter
@@ -137,7 +132,7 @@ class Melomaniac_Sync_MusicBrainz_Client {
 		$response = wp_remote_get(
 			$url,
 			array(
-				'timeout'    => self::TIMEOUT,
+				'timeout'    => Melomaniac_Sync_Settings::http_timeout(),
 				'user-agent' => $this->user_agent(),
 				'headers'    => array(
 					'Accept' => 'application/json',
@@ -161,7 +156,7 @@ class Melomaniac_Sync_MusicBrainz_Client {
 			$response = wp_remote_get(
 				$url,
 				array(
-					'timeout'    => self::TIMEOUT,
+					'timeout'    => Melomaniac_Sync_Settings::http_timeout(),
 					'user-agent' => $this->user_agent(),
 					'headers'    => array( 'Accept' => 'application/json' ),
 				)

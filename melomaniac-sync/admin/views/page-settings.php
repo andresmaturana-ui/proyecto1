@@ -246,6 +246,32 @@ $melomaniac_flash      = isset( $data['flash'] ) ? (string) $data['flash'] : '';
 		<table class="form-table" role="presentation">
 			<tbody>
 			<tr>
+				<th scope="row">
+					<label for="melomaniac-http-timeout"><?php esc_html_e( 'Tiempo de espera', 'melomaniac-sync' ); ?></label>
+				</th>
+				<td>
+					<input
+						type="number"
+						id="melomaniac-http-timeout"
+						name="http_timeout"
+						class="small-text"
+						min="5"
+						max="60"
+						value="<?php echo esc_attr( (string) ( isset( $melomaniac_settings['http_timeout'] ) ? $melomaniac_settings['http_timeout'] : 15 ) ); ?>"
+					/>
+					<?php esc_html_e( 'segundos', 'melomaniac-sync' ); ?>
+					<p class="description">
+						<?php
+						printf(
+							/* translators: %s: link to the diagnostics screen. */
+							esc_html__( 'Cuánto espera a MusicBrainz, Cover Art Archive y Discogs antes de darse por vencido. Si ves errores de "timed out", subilo y revisá %s.', 'melomaniac-sync' ),
+							'<a href="' . esc_url( Melomaniac_Sync_Admin_Menu::diagnostics_url() ) . '">' . esc_html__( 'Diagnóstico', 'melomaniac-sync' ) . '</a>'
+						);
+						?>
+					</p>
+				</td>
+			</tr>
+			<tr>
 				<th scope="row"><?php esc_html_e( 'Registro', 'melomaniac-sync' ); ?></th>
 				<td>
 					<label for="melomaniac-logging">
