@@ -96,6 +96,8 @@ final class Melomaniac_Sync_Plugin {
 			'includes/support/class-logger.php',
 			'includes/support/class-cache.php',
 			'includes/support/class-settings.php',
+			'includes/licensing/class-licensing.php',
+			'includes/licensing/class-usage.php',
 			'includes/helpers/functions-reference-links.php',
 			'includes/integrations/musicbrainz/class-rate-limiter.php',
 			'includes/integrations/musicbrainz/class-musicbrainz-client.php',
@@ -133,6 +135,8 @@ final class Melomaniac_Sync_Plugin {
 	 */
 	private function register_hooks() {
 		add_action( 'init', array( $this, 'load_textdomain' ) );
+
+		Melomaniac_Sync_Licensing::register();
 
 		if ( ! is_admin() ) {
 			return;

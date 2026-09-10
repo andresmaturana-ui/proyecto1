@@ -26,6 +26,10 @@ define( 'MELOMANIAC_SYNC_PATH', plugin_dir_path( __FILE__ ) );
 define( 'MELOMANIAC_SYNC_URL', plugin_dir_url( __FILE__ ) );
 define( 'MELOMANIAC_SYNC_BASENAME', plugin_basename( __FILE__ ) );
 
+// Freemius requires loading unconditionally and as early as possible, before
+// this plugin registers any hook of its own.
+require_once MELOMANIAC_SYNC_PATH . 'includes/licensing/class-freemius.php';
+
 require_once MELOMANIAC_SYNC_PATH . 'includes/class-activator.php';
 require_once MELOMANIAC_SYNC_PATH . 'includes/class-deactivator.php';
 require_once MELOMANIAC_SYNC_PATH . 'includes/class-plugin.php';

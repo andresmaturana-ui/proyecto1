@@ -51,6 +51,14 @@ class Melomaniac_Sync_Product_Factory {
 			);
 		}
 
+		if ( ! Melomaniac_Sync_Usage::has_quota() ) {
+			return new WP_Error(
+				'melomaniac_sync_quota_exceeded',
+				Melomaniac_Sync_Usage::limit_reached_message(),
+				array( 'upgrade_url' => Melomaniac_Sync_Licensing::upgrade_url() )
+			);
+		}
+
 		$existing = $this->find_duplicate( $release );
 
 		if ( $existing > 0 ) {
@@ -100,6 +108,8 @@ class Melomaniac_Sync_Product_Factory {
 				__( 'No se pudo guardar el producto.', 'melomaniac-sync' )
 			);
 		}
+
+		Melomaniac_Sync_Usage::record_disc();
 
 		$this->save_meta( $product_id, $release );
 		$this->assign_format_category( $product_id, $release );
