@@ -3,19 +3,23 @@
  * Manual reference links.
  *
  * ============================================================================
- * HARD RULE FOR THIS FILE AND THE WHOLE PLUGIN
+ * WHAT THIS FILE IS, AND WHAT IT IS NOT
  * ============================================================================
- * These functions build URL strings and nothing else. They exist so a human can
- * click through and read a page in their own browser.
+ * These functions build URL strings and nothing else, so a human can click
+ * through and read a page in their own browser. They never fetch anything.
  *
- * The plugin MUST NOT, in any phase and under any circumstance:
- *   - send automated HTTP requests to discogs.com,
- *   - scrape, parse or cache discogs.com markup or responses,
- *   - use the Discogs API, authenticated or not.
+ * Automated access to Discogs does exist in this plugin, but it lives only in
+ * includes/integrations/discogs/ and it is bound by two rules:
  *
- * There is deliberately no HTTP client for Discogs anywhere in this codebase.
- * If you are about to add one, the answer is no. The shop owner copies and
- * pastes whatever they decide to use, by hand.
+ *   - It runs server-side with the store's own personal access token, taken
+ *     from the settings screen. No credential is ever shipped inside the
+ *     plugin, and the token never reaches the browser.
+ *   - It is a fallback, consulted only when MusicBrainz has no match. Discogs
+ *     images in particular carry usage restrictions that Cover Art Archive
+ *     images do not, which is why MusicBrainz is always asked first.
+ *
+ * Scraping discogs.com markup is still never acceptable: use the API or a
+ * manual link, nothing in between.
  * ============================================================================
  *
  * @package Melomaniac_Sync
@@ -98,8 +102,8 @@ function melomaniac_sync_reference_links( $barcode, $extra = '' ) {
 	/**
 	 * Filters the manual reference links.
 	 *
-	 * Anything added here must be a plain link for a human to click. This hook
-	 * is not a place to register an automated data source.
+	 * Anything added here must be a plain link for a human to click. Automated
+	 * data sources belong in includes/integrations/, not on this hook.
 	 *
 	 * @param array[] $links   Reference links.
 	 * @param string  $barcode Barcode.

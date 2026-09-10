@@ -51,6 +51,7 @@ class Melomaniac_Sync_MusicBrainz_Response_Parser {
 	public function parse_release( array $release ) {
 		$dto = new Melomaniac_Sync_Release_DTO();
 
+		$dto->source  = 'musicbrainz';
 		$dto->mbid    = isset( $release['id'] ) ? sanitize_text_field( $release['id'] ) : '';
 		$dto->title   = isset( $release['title'] ) ? sanitize_text_field( $release['title'] ) : '';
 		$dto->barcode = isset( $release['barcode'] ) ? preg_replace( '/\D/', '', (string) $release['barcode'] ) : '';

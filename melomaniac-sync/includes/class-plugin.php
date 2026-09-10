@@ -95,11 +95,14 @@ final class Melomaniac_Sync_Plugin {
 		$files = array(
 			'includes/support/class-logger.php',
 			'includes/support/class-cache.php',
+			'includes/support/class-settings.php',
 			'includes/helpers/functions-reference-links.php',
 			'includes/integrations/musicbrainz/class-rate-limiter.php',
 			'includes/integrations/musicbrainz/class-musicbrainz-client.php',
 			'includes/integrations/musicbrainz/class-response-parser.php',
 			'includes/integrations/musicbrainz/class-cover-art-client.php',
+			'includes/integrations/discogs/class-discogs-client.php',
+			'includes/integrations/discogs/class-discogs-response-parser.php',
 			'includes/services/class-release-dto.php',
 			'includes/services/class-release-lookup-service.php',
 			'includes/services/class-product-factory.php',
@@ -184,9 +187,17 @@ final class Melomaniac_Sync_Plugin {
 			$logger = $this->logger();
 
 			$this->lookup_service = new Melomaniac_Sync_Release_Lookup_Service(
-				new Melomaniac_Sync_MusicBrainz_Client( new Melomaniac_Sync_Rate_Limiter(), $logger ),
+				new Melomaniac_Sync_MusicBrainz_Client(
+					new Melomaniac_Sync_Rate_Limiter( 'musicbrainz', 1.1 ),
+					$logger
+				),
 				new Melomaniac_Sync_MusicBrainz_Response_Parser(),
 				new Melomaniac_Sync_Cover_Art_Client( $logger ),
+				new Melomaniac_Sync_Discogs_Client(
+					new Melomaniac_Sync_Rate_Limiter( 'discogs', 1.1 ),
+					$logger
+				),
+				new Melomaniac_Sync_Discogs_Response_Parser(),
 				new Melomaniac_Sync_Cache()
 			);
 		}

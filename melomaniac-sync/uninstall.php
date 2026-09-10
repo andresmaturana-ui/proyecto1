@@ -12,9 +12,12 @@ defined( 'WP_UNINSTALL_PLUGIN' ) || exit;
 
 $melomaniac_options = array(
 	'melomaniac_sync_settings',
+	'melomaniac_sync_description_fields',
+	'melomaniac_sync_category_map',
 	'melomaniac_sync_db_version',
 	'melomaniac_sync_cache_index',
 	'melomaniac_sync_mb_last_request',
+	'melomaniac_sync_mb_last_request_discogs',
 );
 
 foreach ( $melomaniac_options as $melomaniac_option ) {

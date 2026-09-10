@@ -212,27 +212,11 @@ class Melomaniac_Sync_MusicBrainz_Client {
 	 * @return string
 	 */
 	private function user_agent() {
-		$settings = get_option( Melomaniac_Sync_Activator::OPTION_SETTINGS, array() );
-		$contact  = '';
-
-		if ( is_array( $settings ) && ! empty( $settings['api_contact'] ) ) {
-			$contact = $settings['api_contact'];
-		}
-
-		if ( '' === $contact ) {
-			$contact = home_url( '/' );
-		}
-
-		/**
-		 * Filters the contact detail sent to MusicBrainz.
-		 *
-		 * Must be a real email address or URL belonging to the store.
-		 *
-		 * @param string $contact Contact detail.
-		 */
-		$contact = (string) apply_filters( 'melomaniac_sync_api_contact', $contact );
-
-		return sprintf( 'MelomaniacSync/%s ( %s )', MELOMANIAC_SYNC_VERSION, $contact );
+		return sprintf(
+			'MelomaniacSync/%s ( %s )',
+			MELOMANIAC_SYNC_VERSION,
+			Melomaniac_Sync_Settings::api_contact()
+		);
 	}
 
 	/**

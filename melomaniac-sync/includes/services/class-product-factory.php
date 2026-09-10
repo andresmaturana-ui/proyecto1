@@ -69,7 +69,7 @@ class Melomaniac_Sync_Product_Factory {
 			$product = new WC_Product_Simple();
 
 			$product->set_name( $release->display_name() );
-			$product->set_status( $this->product_status() );
+			$product->set_status( Melomaniac_Sync_Settings::product_status() );
 			$product->set_catalog_visibility( 'visible' );
 			$product->set_description( $this->build_description( $release ) );
 			$product->set_short_description( $this->build_short_description( $release ) );
@@ -79,6 +79,9 @@ class Melomaniac_Sync_Product_Factory {
 				$product->set_sku( $release->barcode );
 			}
 
+			$product->set_regular_price( Melomaniac_Sync_Settings::default_price() );
+			$product->set_manage_stock( true );
+			$product->set_stock_quantity( Melomaniac_Sync_Settings::default_stock() );
 			$product->set_attributes( $this->build_attributes( $release ) );
 
 			$product_id = $product->save();
@@ -100,6 +103,7 @@ class Melomaniac_Sync_Product_Factory {
 
 		$this->save_meta( $product_id, $release );
 		$this->assign_format_category( $product_id, $release );
+		$this->assign_genre_tag( $product_id, $release );
 		$this->attach_cover( $product_id, $release );
 
 		/**
@@ -142,6 +146,14 @@ class Melomaniac_Sync_Product_Factory {
 			}
 		}
 
+		if ( '' !== $release->discogs_id ) {
+			$by_discogs = $this->find_by_meta( self::META_PREFIX . 'discogs_id', $release->discogs_id );
+
+			if ( $by_discogs > 0 ) {
+				return $by_discogs;
+			}
+		}
+
 		return 0;
 	}
 
@@ -176,18 +188,6 @@ class Melomaniac_Sync_Product_Factory {
 	}
 
 	/**
-	 * Post status new products get.
-	 *
-	 * @return string
-	 */
-	private function product_status() {
-		$settings = get_option( Melomaniac_Sync_Activator::OPTION_SETTINGS, array() );
-		$status   = is_array( $settings ) && ! empty( $settings['product_status'] ) ? $settings['product_status'] : 'draft';
-
-		return in_array( $status, array( 'draft', 'pending', 'publish' ), true ) ? $status : 'draft';
-	}
-
-	/**
 	 * Writes the musical data as product meta.
 	 *
 	 * @param int                         $product_id Product ID.
@@ -196,7 +196,9 @@ class Melomaniac_Sync_Product_Factory {
 	 */
 	private function save_meta( $product_id, Melomaniac_Sync_Release_DTO $release ) {
 		$fields = array(
+			'source'         => $release->source,
 			'mbid'           => $release->mbid,
+			'discogs_id'     => $release->discogs_id,
 			'barcode'        => $release->barcode,
 			'artist'         => $release->artist,
 			'album'          => $release->title,
@@ -207,7 +209,6 @@ class Melomaniac_Sync_Product_Factory {
 			'format'         => $release->format,
 			'format_detail'  => $release->format_detail,
 			'country'        => $release->country,
-			'source'         => '' !== $release->mbid ? 'musicbrainz' : 'manual',
 		);
 
 		foreach ( $fields as $key => $value ) {
@@ -283,6 +284,13 @@ class Melomaniac_Sync_Product_Factory {
 			return;
 		}
 
+		$chosen = Melomaniac_Sync_Settings::category_map();
+
+		if ( ! empty( $chosen[ $release->format ] ) ) {
+			wp_set_object_terms( $product_id, array( (int) $chosen[ $release->format ] ), 'product_cat', true );
+			return;
+		}
+
 		$name = $release->format_label();
 		$term = get_term_by( 'name', $name, 'product_cat' );
 
@@ -315,7 +323,7 @@ class Melomaniac_Sync_Product_Factory {
 			return;
 		}
 
-		if ( '' === $release->cover_url || ! $this->should_import_cover() ) {
+		if ( '' === $release->cover_url || ! Melomaniac_Sync_Settings::import_cover() ) {
 			return;
 		}
 
@@ -401,24 +409,15 @@ class Melomaniac_Sync_Product_Factory {
 	}
 
 	/**
-	 * Whether cover art should be downloaded.
-	 *
-	 * @return bool
-	 */
-	private function should_import_cover() {
-		$settings = get_option( Melomaniac_Sync_Activator::OPTION_SETTINGS, array() );
-
-		return ! is_array( $settings ) || ! isset( $settings['import_cover'] ) || (bool) $settings['import_cover'];
-	}
-
-	/**
 	 * Builds the long description, track list included.
 	 *
 	 * @param Melomaniac_Sync_Release_DTO $release Release data.
 	 * @return string
 	 */
 	private function build_description( Melomaniac_Sync_Release_DTO $release ) {
-		if ( empty( $release->tracklist ) ) {
+		$enabled = Melomaniac_Sync_Settings::enabled_description_fields();
+
+		if ( empty( $release->tracklist ) || empty( $enabled['tracklist'] ) ) {
 			return '';
 		}
 
@@ -495,26 +494,63 @@ class Melomaniac_Sync_Product_Factory {
 	 * @return string
 	 */
 	private function build_short_description( Melomaniac_Sync_Release_DTO $release ) {
+		$enabled = Melomaniac_Sync_Settings::enabled_description_fields();
+
+		$candidates = array(
+			'artist'  => $release->artist,
+			'year'    => $release->year,
+			'label'   => $release->label,
+			'country' => $release->country,
+			'genre'   => implode( ', ', $release->genres ),
+			'format'  => '' !== $release->format_detail ? $release->format_detail : $release->format_label(),
+			'catalog' => $release->catalog_number,
+		);
+
 		$parts = array();
 
-		if ( '' !== $release->format_detail ) {
-			$parts[] = $release->format_detail;
-		} elseif ( '' !== $release->format ) {
-			$parts[] = $release->format_label();
-		}
+		foreach ( $candidates as $key => $value ) {
+			if ( empty( $enabled[ $key ] ) || '' === trim( (string) $value ) ) {
+				continue;
+			}
 
-		if ( '' !== $release->label ) {
-			$parts[] = $release->label;
-		}
-
-		if ( '' !== $release->year ) {
-			$parts[] = $release->year;
-		}
-
-		if ( '' !== $release->country ) {
-			$parts[] = $release->country;
+			$parts[] = $value;
 		}
 
 		return empty( $parts ) ? '' : esc_html( implode( ' · ', $parts ) );
+	}
+
+	/**
+	 * Tags the product with its main genre, when that is switched on.
+	 *
+	 * @param int                         $product_id Product ID.
+	 * @param Melomaniac_Sync_Release_DTO $release    Release data.
+	 * @return void
+	 */
+	private function assign_genre_tag( $product_id, Melomaniac_Sync_Release_DTO $release ) {
+		if ( ! Melomaniac_Sync_Settings::genre_tag_enabled() || empty( $release->genres ) ) {
+			return;
+		}
+
+		$name = (string) reset( $release->genres );
+
+		if ( '' === $name ) {
+			return;
+		}
+
+		$term = get_term_by( 'name', $name, 'product_tag' );
+
+		if ( $term ) {
+			$term_id = (int) $term->term_id;
+		} else {
+			$created = wp_insert_term( $name, 'product_tag' );
+
+			if ( is_wp_error( $created ) ) {
+				return;
+			}
+
+			$term_id = (int) $created['term_id'];
+		}
+
+		wp_set_object_terms( $product_id, array( $term_id ), 'product_tag', true );
 	}
 }

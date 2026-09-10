@@ -10,9 +10,13 @@ defined( 'ABSPATH' ) || exit;
 /**
  * The single entry point for finding release data.
  *
- * The scan screen, the bulk importer (phase 3) and the contribution flow
- * (phase 4) all call this class. The HTTP client, the rate limiter and the
- * parser sit behind it and are not used directly anywhere else.
+ * MusicBrainz is asked first: it needs no credential, its data is open, and its
+ * cover art can be reused freely. Discogs is only consulted when MusicBrainz has
+ * nothing, because it needs the store's own token and its images carry usage
+ * restrictions that MusicBrainz's do not.
+ *
+ * The scan app, the bulk importer and the contribution flow all call this class.
+ * The HTTP clients, the rate limiters and the parsers sit behind it.
  */
 class Melomaniac_Sync_Release_Lookup_Service {
 
@@ -21,14 +25,14 @@ class Melomaniac_Sync_Release_Lookup_Service {
 	 *
 	 * @var Melomaniac_Sync_MusicBrainz_Client
 	 */
-	private $client;
+	private $musicbrainz;
 
 	/**
-	 * Payload parser.
+	 * MusicBrainz payload parser.
 	 *
 	 * @var Melomaniac_Sync_MusicBrainz_Response_Parser
 	 */
-	private $parser;
+	private $musicbrainz_parser;
 
 	/**
 	 * Cover art client.
@@ -36,6 +40,20 @@ class Melomaniac_Sync_Release_Lookup_Service {
 	 * @var Melomaniac_Sync_Cover_Art_Client
 	 */
 	private $cover_art;
+
+	/**
+	 * Discogs HTTP client.
+	 *
+	 * @var Melomaniac_Sync_Discogs_Client
+	 */
+	private $discogs;
+
+	/**
+	 * Discogs payload parser.
+	 *
+	 * @var Melomaniac_Sync_Discogs_Response_Parser
+	 */
+	private $discogs_parser;
 
 	/**
 	 * Response cache.
@@ -47,21 +65,27 @@ class Melomaniac_Sync_Release_Lookup_Service {
 	/**
 	 * Constructor.
 	 *
-	 * @param Melomaniac_Sync_MusicBrainz_Client          $client    HTTP client.
-	 * @param Melomaniac_Sync_MusicBrainz_Response_Parser $parser    Parser.
-	 * @param Melomaniac_Sync_Cover_Art_Client            $cover_art Cover art client.
-	 * @param Melomaniac_Sync_Cache                       $cache     Cache.
+	 * @param Melomaniac_Sync_MusicBrainz_Client          $musicbrainz        MusicBrainz client.
+	 * @param Melomaniac_Sync_MusicBrainz_Response_Parser $musicbrainz_parser MusicBrainz parser.
+	 * @param Melomaniac_Sync_Cover_Art_Client            $cover_art          Cover art client.
+	 * @param Melomaniac_Sync_Discogs_Client              $discogs            Discogs client.
+	 * @param Melomaniac_Sync_Discogs_Response_Parser     $discogs_parser     Discogs parser.
+	 * @param Melomaniac_Sync_Cache                       $cache              Cache.
 	 */
 	public function __construct(
-		Melomaniac_Sync_MusicBrainz_Client $client,
-		Melomaniac_Sync_MusicBrainz_Response_Parser $parser,
+		Melomaniac_Sync_MusicBrainz_Client $musicbrainz,
+		Melomaniac_Sync_MusicBrainz_Response_Parser $musicbrainz_parser,
 		Melomaniac_Sync_Cover_Art_Client $cover_art,
+		Melomaniac_Sync_Discogs_Client $discogs,
+		Melomaniac_Sync_Discogs_Response_Parser $discogs_parser,
 		Melomaniac_Sync_Cache $cache
 	) {
-		$this->client    = $client;
-		$this->parser    = $parser;
-		$this->cover_art = $cover_art;
-		$this->cache     = $cache;
+		$this->musicbrainz        = $musicbrainz;
+		$this->musicbrainz_parser = $musicbrainz_parser;
+		$this->cover_art          = $cover_art;
+		$this->discogs            = $discogs;
+		$this->discogs_parser     = $discogs_parser;
+		$this->cache              = $cache;
 	}
 
 	/**
@@ -85,17 +109,18 @@ class Melomaniac_Sync_Release_Lookup_Service {
 	}
 
 	/**
-	 * Finds every release matching a barcode.
+	 * Finds every release matching a barcode, MusicBrainz first.
 	 *
-	 * Results are lightweight candidates. When exactly one release matches, it
-	 * is upgraded to a full record including track list and cover art so the
-	 * caller can create a product straight away.
+	 * When exactly one release matches, it is upgraded to a full record
+	 * including track list and cover art so the caller can create a product
+	 * straight away.
 	 *
 	 * @param string $barcode Raw or normalised barcode.
 	 * @return array|WP_Error {
-	 *     @type string                          $barcode    Normalised barcode.
-	 *     @type Melomaniac_Sync_Release_DTO[]    $candidates Matching releases.
-	 *     @type bool                            $resolved   True when a single full record is available.
+	 *     @type string                        $barcode    Normalised barcode.
+	 *     @type Melomaniac_Sync_Release_DTO[] $candidates Matching releases.
+	 *     @type bool                          $resolved   True when a single full record is available.
+	 *     @type string                        $source     Which service answered, empty when none did.
 	 * }
 	 */
 	public function find_by_barcode( $barcode ) {
@@ -108,32 +133,32 @@ class Melomaniac_Sync_Release_Lookup_Service {
 		$cache_key = 'barcode_' . $barcode;
 		$cached    = $this->cache->get( $cache_key );
 
-		if ( is_array( $cached ) ) {
-			return $this->hydrate_barcode_result( $barcode, $cached );
+		if ( is_array( $cached ) && isset( $cached['candidates'] ) ) {
+			return $this->hydrate_barcode_result( $barcode, $cached['candidates'], (string) $cached['source'] );
 		}
 
-		$payload = $this->client->search_releases_by_barcode( $barcode );
+		$candidates = array();
+		$source     = '';
 
-		if ( is_wp_error( $payload ) ) {
-			// A 404 on a search means no match rather than a failure.
-			if ( 'melomaniac_sync_not_found' === $payload->get_error_code() ) {
-				$payload = array( 'releases' => array() );
-			} else {
-				return $payload;
+		$from_musicbrainz = $this->search_musicbrainz_by_barcode( $barcode );
+
+		if ( is_wp_error( $from_musicbrainz ) ) {
+			return $from_musicbrainz;
+		}
+
+		if ( ! empty( $from_musicbrainz ) ) {
+			$candidates = $from_musicbrainz;
+			$source     = 'musicbrainz';
+		} elseif ( $this->discogs->is_available() ) {
+			$from_discogs = $this->search_discogs_by_barcode( $barcode );
+
+			// A Discogs failure must not hide a clean "MusicBrainz had nothing":
+			// the caller can still fall back to the manual form.
+			if ( ! is_wp_error( $from_discogs ) && ! empty( $from_discogs ) ) {
+				$candidates = $from_discogs;
+				$source     = 'discogs';
 			}
 		}
-
-		$candidates = $this->parser->parse_search_results( $payload );
-
-		// The search index can lag; keep only releases that really carry this barcode.
-		$candidates = array_values(
-			array_filter(
-				$candidates,
-				static function ( $candidate ) use ( $barcode ) {
-					return '' === $candidate->barcode || $candidate->barcode === $barcode;
-				}
-			)
-		);
 
 		$serialised = array();
 
@@ -142,9 +167,64 @@ class Melomaniac_Sync_Release_Lookup_Service {
 			$serialised[]       = $candidate->to_array();
 		}
 
-		$this->cache->set( $cache_key, $serialised );
+		$this->cache->set(
+			$cache_key,
+			array(
+				'candidates' => $serialised,
+				'source'     => $source,
+			)
+		);
 
-		return $this->hydrate_barcode_result( $barcode, $serialised );
+		return $this->hydrate_barcode_result( $barcode, $serialised, $source );
+	}
+
+	/**
+	 * Searches MusicBrainz by barcode.
+	 *
+	 * @param string $barcode Normalised barcode.
+	 * @return Melomaniac_Sync_Release_DTO[]|WP_Error
+	 */
+	private function search_musicbrainz_by_barcode( $barcode ) {
+		$payload = $this->musicbrainz->search_releases_by_barcode( $barcode );
+
+		if ( is_wp_error( $payload ) ) {
+			// A 404 on a search means no match rather than a failure.
+			if ( 'melomaniac_sync_not_found' !== $payload->get_error_code() ) {
+				return $payload;
+			}
+
+			$payload = array( 'releases' => array() );
+		}
+
+		$candidates = $this->musicbrainz_parser->parse_search_results( $payload );
+
+		// The search index can lag; keep only releases that really carry this barcode.
+		return array_values(
+			array_filter(
+				$candidates,
+				static function ( $candidate ) use ( $barcode ) {
+					return '' === $candidate->barcode || $candidate->barcode === $barcode;
+				}
+			)
+		);
+	}
+
+	/**
+	 * Searches Discogs by barcode.
+	 *
+	 * @param string $barcode Normalised barcode.
+	 * @return Melomaniac_Sync_Release_DTO[]|WP_Error
+	 */
+	private function search_discogs_by_barcode( $barcode ) {
+		$results = $this->discogs->search_by_barcode( $barcode );
+
+		if ( is_wp_error( $results ) ) {
+			return $results;
+		}
+
+		// More than a handful of editions is a data problem, not a choice for
+		// the shop owner to make; keep the list reviewable.
+		return $this->discogs_parser->parse_search_results( array_slice( $results, 0, 10 ) );
 	}
 
 	/**
@@ -152,9 +232,10 @@ class Melomaniac_Sync_Release_Lookup_Service {
 	 *
 	 * @param string $barcode    Normalised barcode.
 	 * @param array  $serialised Cached candidate arrays.
+	 * @param string $source     Which service answered.
 	 * @return array|WP_Error
 	 */
-	private function hydrate_barcode_result( $barcode, array $serialised ) {
+	private function hydrate_barcode_result( $barcode, array $serialised, $source ) {
 		$candidates = array();
 
 		foreach ( $serialised as $data ) {
@@ -165,8 +246,8 @@ class Melomaniac_Sync_Release_Lookup_Service {
 
 		$resolved = false;
 
-		if ( 1 === count( $candidates ) && '' !== $candidates[0]->mbid ) {
-			$full = $this->get_release( $candidates[0]->mbid );
+		if ( 1 === count( $candidates ) && '' !== $candidates[0]->source_id() ) {
+			$full = $this->get_release( $candidates[0]->source, $candidates[0]->source_id() );
 
 			if ( is_wp_error( $full ) ) {
 				return $full;
@@ -181,44 +262,41 @@ class Melomaniac_Sync_Release_Lookup_Service {
 			'barcode'    => $barcode,
 			'candidates' => $candidates,
 			'resolved'   => $resolved,
+			'source'     => $source,
 		);
 	}
 
 	/**
 	 * Fetches the complete record for one release, cover art included.
 	 *
-	 * @param string $mbid MusicBrainz release identifier.
+	 * @param string $source One of musicbrainz or discogs.
+	 * @param string $id     Identifier within that source.
 	 * @return Melomaniac_Sync_Release_DTO|WP_Error
 	 */
-	public function get_release( $mbid ) {
-		$mbid = sanitize_text_field( (string) $mbid );
+	public function get_release( $source, $id ) {
+		$source = sanitize_key( (string) $source );
+		$id     = sanitize_text_field( (string) $id );
 
-		if ( ! $this->is_valid_mbid( $mbid ) ) {
-			return new WP_Error(
-				'melomaniac_sync_invalid_mbid',
-				__( 'El identificador de MusicBrainz no es válido.', 'melomaniac-sync' )
-			);
-		}
-
-		$cache_key = 'release_' . $mbid;
+		$cache_key = 'release_' . $source . '_' . $id;
 		$cached    = $this->cache->get( $cache_key );
 
 		if ( is_array( $cached ) ) {
 			return Melomaniac_Sync_Release_DTO::from_array( $cached );
 		}
 
-		$payload = $this->client->get_release( $mbid );
-
-		if ( is_wp_error( $payload ) ) {
-			return $payload;
+		if ( 'musicbrainz' === $source ) {
+			$release = $this->fetch_musicbrainz_release( $id );
+		} elseif ( 'discogs' === $source ) {
+			$release = $this->fetch_discogs_release( $id );
+		} else {
+			return new WP_Error(
+				'melomaniac_sync_unknown_source',
+				__( 'Fuente de datos desconocida.', 'melomaniac-sync' )
+			);
 		}
 
-		$release = $this->parser->parse_release( $payload );
-
-		if ( $this->parser->has_front_cover( $payload ) ) {
-			$urls                     = $this->cover_art->build_front_urls( $mbid );
-			$release->cover_url       = $urls['full'];
-			$release->cover_thumb_url = $urls['thumb'];
+		if ( is_wp_error( $release ) ) {
+			return $release;
 		}
 
 		$this->cache->set( $cache_key, $release->to_array() );
@@ -227,10 +305,66 @@ class Melomaniac_Sync_Release_Lookup_Service {
 	}
 
 	/**
-	 * Searches releases by artist and title.
+	 * Fetches and parses one MusicBrainz release.
 	 *
-	 * Reserved for the phase 4 contribution flow, which needs to check whether
-	 * a release already exists before proposing a new one.
+	 * @param string $mbid Release MBID.
+	 * @return Melomaniac_Sync_Release_DTO|WP_Error
+	 */
+	private function fetch_musicbrainz_release( $mbid ) {
+		if ( ! $this->is_valid_mbid( $mbid ) ) {
+			return new WP_Error(
+				'melomaniac_sync_invalid_mbid',
+				__( 'El identificador de MusicBrainz no es válido.', 'melomaniac-sync' )
+			);
+		}
+
+		$payload = $this->musicbrainz->get_release( $mbid );
+
+		if ( is_wp_error( $payload ) ) {
+			return $payload;
+		}
+
+		$release         = $this->musicbrainz_parser->parse_release( $payload );
+		$release->source = 'musicbrainz';
+
+		if ( $this->musicbrainz_parser->has_front_cover( $payload ) ) {
+			$urls                     = $this->cover_art->build_front_urls( $mbid );
+			$release->cover_url       = $urls['full'];
+			$release->cover_thumb_url = $urls['thumb'];
+		}
+
+		return $release;
+	}
+
+	/**
+	 * Fetches and parses one Discogs release.
+	 *
+	 * @param string $release_id Discogs release identifier.
+	 * @return Melomaniac_Sync_Release_DTO|WP_Error
+	 */
+	private function fetch_discogs_release( $release_id ) {
+		if ( ! $this->discogs->is_available() ) {
+			return new WP_Error(
+				'melomaniac_sync_discogs_unavailable',
+				__( 'La búsqueda en Discogs está desactivada o sin token.', 'melomaniac-sync' )
+			);
+		}
+
+		$payload = $this->discogs->get_release( $release_id );
+
+		if ( is_wp_error( $payload ) ) {
+			return $payload;
+		}
+
+		return $this->discogs_parser->parse_release( $payload );
+	}
+
+	/**
+	 * Searches releases by artist and title on MusicBrainz.
+	 *
+	 * Used by the contribution flow, which needs to check whether a release
+	 * already exists before proposing a new one. Deliberately MusicBrainz only:
+	 * contributions go to MusicBrainz.
 	 *
 	 * @param string $artist Artist name.
 	 * @param string $title  Release title.
@@ -238,13 +372,13 @@ class Melomaniac_Sync_Release_Lookup_Service {
 	 * @return Melomaniac_Sync_Release_DTO[]|WP_Error
 	 */
 	public function search_by_text( $artist, $title, $limit = 10 ) {
-		$payload = $this->client->search_releases_by_text( $artist, $title, $limit );
+		$payload = $this->musicbrainz->search_releases_by_text( $artist, $title, $limit );
 
 		if ( is_wp_error( $payload ) ) {
 			return $payload;
 		}
 
-		return $this->parser->parse_search_results( $payload );
+		return $this->musicbrainz_parser->parse_search_results( $payload );
 	}
 
 	/**

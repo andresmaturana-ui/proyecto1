@@ -60,7 +60,8 @@ if ( empty( $melomaniac_candidates ) ) {
 				<button
 					type="button"
 					class="button melomaniac-select-candidate"
-					data-mbid="<?php echo esc_attr( $melomaniac_candidate->mbid ); ?>"
+					data-source="<?php echo esc_attr( $melomaniac_candidate->source ); ?>"
+					data-release-id="<?php echo esc_attr( $melomaniac_candidate->source_id() ); ?>"
 					data-barcode="<?php echo esc_attr( $melomaniac_barcode ); ?>"
 				>
 					<?php esc_html_e( 'Usar esta edición', 'melomaniac-sync' ); ?>

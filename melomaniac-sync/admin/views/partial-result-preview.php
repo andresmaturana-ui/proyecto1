@@ -98,7 +98,8 @@ $melomaniac_meta = array(
 			<button
 				type="button"
 				class="button button-primary button-hero melomaniac-create-product"
-				data-mbid="<?php echo esc_attr( $melomaniac_release->mbid ); ?>"
+				data-source="<?php echo esc_attr( $melomaniac_release->source ); ?>"
+				data-release-id="<?php echo esc_attr( $melomaniac_release->source_id() ); ?>"
 				data-barcode="<?php echo esc_attr( $melomaniac_barcode ); ?>"
 			>
 				<?php esc_html_e( 'Crear producto', 'melomaniac-sync' ); ?>
@@ -108,10 +109,17 @@ $melomaniac_meta = array(
 			</button>
 		</p>
 
-		<?php if ( '' !== $melomaniac_release->mbid ) : ?>
+		<?php if ( 'musicbrainz' === $melomaniac_release->source && '' !== $melomaniac_release->mbid ) : ?>
 			<p class="description">
 				<a href="<?php echo esc_url( 'https://musicbrainz.org/release/' . $melomaniac_release->mbid ); ?>" target="_blank" rel="noopener noreferrer">
 					<?php esc_html_e( 'Ver esta edición en MusicBrainz', 'melomaniac-sync' ); ?>
+				</a>
+			</p>
+		<?php elseif ( 'discogs' === $melomaniac_release->source && '' !== $melomaniac_release->discogs_id ) : ?>
+			<p class="description">
+				<?php esc_html_e( 'Datos tomados de Discogs, porque MusicBrainz no tenía este disco.', 'melomaniac-sync' ); ?>
+				<a href="<?php echo esc_url( 'https://www.discogs.com/release/' . $melomaniac_release->discogs_id ); ?>" target="_blank" rel="noopener noreferrer">
+					<?php esc_html_e( 'Ver esta edición en Discogs', 'melomaniac-sync' ); ?>
 				</a>
 			</p>
 		<?php endif; ?>

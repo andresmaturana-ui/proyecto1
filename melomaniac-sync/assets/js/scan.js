@@ -138,10 +138,11 @@
 	/**
 	 * Loads the full detail of a candidate release.
 	 *
-	 * @param {string} mbid    Release MBID.
-	 * @param {string} barcode Barcode.
+	 * @param {string} source    Which service the release came from.
+	 * @param {string} releaseId Identifier within that service.
+	 * @param {string} barcode   Barcode.
 	 */
-	function loadRelease( mbid, barcode ) {
+	function loadRelease( source, releaseId, barcode ) {
 		if ( busy ) {
 			return;
 		}
@@ -149,7 +150,7 @@
 		busy = true;
 		setStatus( i18n.loadingRelease, 'loading' );
 
-		request( config.actions.release, { mbid: mbid, barcode: barcode } )
+		request( config.actions.release, { source: source, release_id: releaseId, barcode: barcode } )
 			.then( function ( data ) {
 				setStatus( '' );
 				setResult( data.html );
@@ -165,11 +166,12 @@
 	/**
 	 * Creates the draft product for a release.
 	 *
-	 * @param {HTMLElement} button  Clicked button.
-	 * @param {string}      mbid    Release MBID.
-	 * @param {string}      barcode Barcode.
+	 * @param {HTMLElement} button    Clicked button.
+	 * @param {string}      source    Which service the release came from.
+	 * @param {string}      releaseId Identifier within that service.
+	 * @param {string}      barcode   Barcode.
 	 */
-	function createProduct( button, mbid, barcode ) {
+	function createProduct( button, source, releaseId, barcode ) {
 		if ( busy ) {
 			return;
 		}
@@ -178,7 +180,7 @@
 		button.disabled = true;
 		setStatus( i18n.creating, 'loading' );
 
-		request( config.actions.create, { mbid: mbid, barcode: barcode } )
+		request( config.actions.create, { source: source, release_id: releaseId, barcode: barcode } )
 			.then( function ( data ) {
 				setStatus( data.message, 'success' );
 				appendEditLink( data.editUrl );
@@ -247,14 +249,23 @@
 		var create = event.target.closest( '.melomaniac-create-product' );
 
 		if ( create ) {
-			createProduct( create, create.getAttribute( 'data-mbid' ), create.getAttribute( 'data-barcode' ) );
+			createProduct(
+				create,
+				create.getAttribute( 'data-source' ),
+				create.getAttribute( 'data-release-id' ),
+				create.getAttribute( 'data-barcode' )
+			);
 			return;
 		}
 
 		var select = event.target.closest( '.melomaniac-select-candidate' );
 
 		if ( select ) {
-			loadRelease( select.getAttribute( 'data-mbid' ), select.getAttribute( 'data-barcode' ) );
+			loadRelease(
+				select.getAttribute( 'data-source' ),
+				select.getAttribute( 'data-release-id' ),
+				select.getAttribute( 'data-barcode' )
+			);
 			return;
 		}
 

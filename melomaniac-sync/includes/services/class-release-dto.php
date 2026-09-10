@@ -18,11 +18,32 @@ defined( 'ABSPATH' ) || exit;
 class Melomaniac_Sync_Release_DTO {
 
 	/**
-	 * MusicBrainz release identifier, empty for manual entries.
+	 * Where this data came from: musicbrainz, discogs or manual.
+	 *
+	 * @var string
+	 */
+	public $source = 'manual';
+
+	/**
+	 * MusicBrainz release identifier, empty when the source is not MusicBrainz.
 	 *
 	 * @var string
 	 */
 	public $mbid = '';
+
+	/**
+	 * Discogs release identifier, empty when the source is not Discogs.
+	 *
+	 * @var string
+	 */
+	public $discogs_id = '';
+
+	/**
+	 * Free-form release notes, only Discogs provides these.
+	 *
+	 * @var string
+	 */
+	public $notes = '';
 
 	/**
 	 * Barcode as printed on the sleeve.
@@ -214,6 +235,23 @@ class Melomaniac_Sync_Release_DTO {
 	}
 
 	/**
+	 * Identifier of this release within its own source.
+	 *
+	 * @return string Empty for manual entries.
+	 */
+	public function source_id() {
+		if ( 'musicbrainz' === $this->source ) {
+			return $this->mbid;
+		}
+
+		if ( 'discogs' === $this->source ) {
+			return $this->discogs_id;
+		}
+
+		return '';
+	}
+
+	/**
 	 * Whether there is enough data to create a product.
 	 *
 	 * @return bool
@@ -229,7 +267,10 @@ class Melomaniac_Sync_Release_DTO {
 	 */
 	public function to_array() {
 		return array(
+			'source'              => $this->source,
 			'mbid'                => $this->mbid,
+			'discogs_id'          => $this->discogs_id,
+			'notes'               => $this->notes,
 			'barcode'             => $this->barcode,
 			'artist'              => $this->artist,
 			'title'               => $this->title,
@@ -258,7 +299,10 @@ class Melomaniac_Sync_Release_DTO {
 		$dto = new self();
 
 		$strings = array(
+			'source',
 			'mbid',
+			'discogs_id',
+			'notes',
 			'barcode',
 			'artist',
 			'title',

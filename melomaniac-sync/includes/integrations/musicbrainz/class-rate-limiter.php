@@ -36,19 +36,49 @@ class Melomaniac_Sync_Rate_Limiter {
 	private $max_wait = 2.0;
 
 	/**
+	 * Service this limiter budgets for.
+	 *
+	 * @var string
+	 */
+	private $service;
+
+	/**
 	 * Constructor.
 	 *
-	 * @param float $interval Minimum seconds between requests.
+	 * @param string $service  Service key, e.g. musicbrainz or discogs. Each
+	 *                         service keeps its own budget so one cannot starve
+	 *                         the other.
+	 * @param float  $interval Minimum seconds between requests.
 	 */
-	public function __construct( $interval = 1.1 ) {
+	public function __construct( $service = 'musicbrainz', $interval = 1.1 ) {
+		$this->service = sanitize_key( $service );
+
 		/**
-		 * Filters the minimum delay between MusicBrainz requests.
+		 * Filters the minimum delay between requests to an external service.
 		 *
-		 * Lowering this below 1.0 will get the store's IP blocked. Do not.
+		 * MusicBrainz asks for roughly one request per second and blocks IPs
+		 * that ignore it; Discogs allows 60 per minute with a token. Lowering
+		 * either below one second is a good way to get the store banned.
 		 *
-		 * @param float $interval Seconds.
+		 * @param float  $interval Seconds.
+		 * @param string $service  Service key.
 		 */
-		$this->interval = (float) apply_filters( 'melomaniac_sync_rate_limit_interval', $interval );
+		$this->interval = (float) apply_filters( 'melomaniac_sync_rate_limit_interval', $interval, $this->service );
+	}
+
+	/**
+	 * Option name holding this service's last request timestamp.
+	 *
+	 * @return string
+	 */
+	private function option_name() {
+		// The original single-service option name is kept for MusicBrainz so an
+		// upgrade does not reset an in-flight budget.
+		if ( 'musicbrainz' === $this->service ) {
+			return self::OPTION_LAST_REQUEST;
+		}
+
+		return self::OPTION_LAST_REQUEST . '_' . $this->service;
 	}
 
 	/**
@@ -74,7 +104,7 @@ class Melomaniac_Sync_Rate_Limiter {
 	 * @return float Seconds, zero when a slot is free.
 	 */
 	public function seconds_until_slot() {
-		$last = (float) get_option( self::OPTION_LAST_REQUEST, 0 );
+		$last = (float) get_option( $this->option_name(), 0 );
 
 		if ( $last <= 0 ) {
 			return 0.0;
@@ -100,6 +130,6 @@ class Melomaniac_Sync_Rate_Limiter {
 	 * @return void
 	 */
 	public function reserve_slot() {
-		update_option( self::OPTION_LAST_REQUEST, (string) microtime( true ), false );
+		update_option( $this->option_name(), (string) microtime( true ), false );
 	}
 }

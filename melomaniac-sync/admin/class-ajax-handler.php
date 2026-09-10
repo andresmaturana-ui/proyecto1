@@ -179,15 +179,14 @@ class Melomaniac_Sync_Ajax_Handler {
 	public function handle_get_release() {
 		$this->guard();
 
-		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verified in guard().
-		$mbid    = isset( $_POST['mbid'] ) ? sanitize_text_field( wp_unslash( $_POST['mbid'] ) ) : '';
-		$barcode = $this->read_barcode();
+		$release_ref = $this->read_release_ref();
+		$barcode     = $this->read_barcode();
 
 		if ( is_wp_error( $barcode ) ) {
 			wp_send_json_error( array( 'message' => $barcode->get_error_message() ) );
 		}
 
-		$release = $this->lookup_service->get_release( $mbid );
+		$release = $this->lookup_service->get_release( $release_ref['source'], $release_ref['id'] );
 
 		if ( is_wp_error( $release ) ) {
 			wp_send_json_error( array( 'message' => $release->get_error_message() ) );
@@ -217,16 +216,15 @@ class Melomaniac_Sync_Ajax_Handler {
 	public function handle_create_product() {
 		$this->guard();
 
-		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verified in guard().
-		$mbid    = isset( $_POST['mbid'] ) ? sanitize_text_field( wp_unslash( $_POST['mbid'] ) ) : '';
-		$barcode = $this->read_barcode();
+		$release_ref = $this->read_release_ref();
+		$barcode     = $this->read_barcode();
 
 		if ( is_wp_error( $barcode ) ) {
 			wp_send_json_error( array( 'message' => $barcode->get_error_message() ) );
 		}
 
 		// Re-read from the service rather than trusting posted fields.
-		$release = $this->lookup_service->get_release( $mbid );
+		$release = $this->lookup_service->get_release( $release_ref['source'], $release_ref['id'] );
 
 		if ( is_wp_error( $release ) ) {
 			wp_send_json_error( array( 'message' => $release->get_error_message() ) );
@@ -282,6 +280,23 @@ class Melomaniac_Sync_Ajax_Handler {
 				403
 			);
 		}
+	}
+
+	/**
+	 * Reads the posted reference to a release: which service, and which id there.
+	 *
+	 * @return array{source:string,id:string}
+	 */
+	private function read_release_ref() {
+		// phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verified in guard().
+		$source = isset( $_POST['source'] ) ? sanitize_key( wp_unslash( $_POST['source'] ) ) : '';
+		$id     = isset( $_POST['release_id'] ) ? sanitize_text_field( wp_unslash( $_POST['release_id'] ) ) : '';
+		// phpcs:enable WordPress.Security.NonceVerification.Missing
+
+		return array(
+			'source' => $source,
+			'id'     => $id,
+		);
 	}
 
 	/**

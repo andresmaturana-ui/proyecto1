@@ -18,11 +18,6 @@ class Melomaniac_Sync_Activator {
 	const OPTION_DB_VERSION = 'melomaniac_sync_db_version';
 
 	/**
-	 * Option holding plugin settings.
-	 */
-	const OPTION_SETTINGS = 'melomaniac_sync_settings';
-
-	/**
 	 * Runs on activation.
 	 *
 	 * @return void
@@ -37,31 +32,27 @@ class Melomaniac_Sync_Activator {
 			);
 		}
 
+		require_once MELOMANIAC_SYNC_PATH . 'includes/services/class-release-dto.php';
+		require_once MELOMANIAC_SYNC_PATH . 'includes/support/class-settings.php';
+
 		self::seed_settings();
 
 		update_option( self::OPTION_DB_VERSION, MELOMANIAC_SYNC_VERSION, false );
 	}
 
 	/**
-	 * Writes default settings without overwriting an existing configuration.
+	 * Writes the store's contact on first activation.
+	 *
+	 * Every other default is applied on read by Melomaniac_Sync_Settings, so
+	 * there is nothing else to seed. Only the contact is stored, because it is
+	 * the one default derived from this particular site.
 	 *
 	 * @return void
 	 */
 	private static function seed_settings() {
-		$defaults = array(
-			'api_contact'      => get_option( 'admin_email' ),
-			'product_status'   => 'draft',
-			'import_cover'     => true,
-			'logging_enabled'  => false,
-		);
-
-		$stored = get_option( self::OPTION_SETTINGS );
-
-		if ( ! is_array( $stored ) ) {
-			$stored = array();
+		if ( '' === trim( (string) Melomaniac_Sync_Settings::get( 'api_contact', '' ) ) ) {
+			Melomaniac_Sync_Settings::update( array( 'api_contact' => get_option( 'admin_email' ) ) );
 		}
-
-		update_option( self::OPTION_SETTINGS, array_merge( $defaults, $stored ), false );
 	}
 
 	/**

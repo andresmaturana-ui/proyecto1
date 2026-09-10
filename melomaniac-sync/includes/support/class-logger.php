@@ -52,9 +52,7 @@ class Melomaniac_Sync_Logger {
 	 * @return bool
 	 */
 	private function is_enabled() {
-		$settings = get_option( Melomaniac_Sync_Activator::OPTION_SETTINGS, array() );
-
-		if ( is_array( $settings ) && ! empty( $settings['logging_enabled'] ) ) {
+		if ( Melomaniac_Sync_Settings::logging_enabled() ) {
 			return true;
 		}
 
