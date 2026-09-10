@@ -1,0 +1,278 @@
+/**
+ * Melomaniac Sync admin styles.
+ */
+
+.melomaniac-sync .melomaniac-intro {
+	max-width: 64em;
+	font-size: 14px;
+}
+
+.melomaniac-card {
+	margin: 1.5em 0;
+	padding: 1.25em 1.5em;
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	box-shadow: 0 1px 1px rgba( 0, 0, 0, 0.04 );
+}
+
+/* Scan box */
+
+.melomaniac-scan-form {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5em;
+	align-items: stretch;
+}
+
+.melomaniac-barcode-input {
+	flex: 1 1 18em;
+	min-width: 12em;
+	padding: 0.5em 0.75em;
+	font-size: 20px;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+	letter-spacing: 0.05em;
+}
+
+.melomaniac-camera {
+	margin-top: 1em;
+	max-width: 28em;
+}
+
+.melomaniac-camera-video {
+	width: 100%;
+	max-width: 28em;
+	aspect-ratio: 4 / 3;
+	background: #1d2327;
+	border-radius: 4px;
+	object-fit: cover;
+}
+
+.melomaniac-camera-message {
+	margin: 0.75em 0 0;
+	color: #b32d2e;
+}
+
+/* Status line */
+
+.melomaniac-status {
+	min-height: 1.5em;
+	margin: 0.5em 0;
+	font-size: 14px;
+}
+
+.melomaniac-status.is-loading {
+	color: #50575e;
+}
+
+.melomaniac-status.is-error {
+	color: #b32d2e;
+	font-weight: 600;
+}
+
+.melomaniac-status.is-success {
+	color: #007017;
+	font-weight: 600;
+}
+
+/* Release preview */
+
+.melomaniac-preview {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.5em;
+}
+
+.melomaniac-preview-cover {
+	flex: 0 0 220px;
+}
+
+.melomaniac-preview-cover img {
+	width: 220px;
+	height: auto;
+	border-radius: 4px;
+	box-shadow: 0 2px 6px rgba( 0, 0, 0, 0.18 );
+}
+
+.melomaniac-preview-cover-empty {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 220px;
+	height: 220px;
+	padding: 1em;
+	text-align: center;
+	color: #787c82;
+	background: #f0f0f1;
+	border: 1px dashed #c3c4c7;
+	border-radius: 4px;
+}
+
+.melomaniac-preview-body {
+	flex: 1 1 22em;
+	min-width: 0;
+}
+
+.melomaniac-preview-title {
+	margin: 0 0 0.15em;
+	font-size: 22px;
+	line-height: 1.3;
+}
+
+.melomaniac-preview-artist {
+	margin: 0 0 1em;
+	font-size: 16px;
+	color: #50575e;
+}
+
+.melomaniac-preview-meta {
+	margin-bottom: 1em;
+	border-collapse: collapse;
+}
+
+.melomaniac-preview-meta th {
+	padding: 0.25em 1.5em 0.25em 0;
+	text-align: left;
+	font-weight: 600;
+	color: #50575e;
+	white-space: nowrap;
+	vertical-align: top;
+}
+
+.melomaniac-preview-meta td {
+	padding: 0.25em 0;
+}
+
+.melomaniac-tracklist {
+	margin-bottom: 1em;
+}
+
+.melomaniac-tracklist summary {
+	cursor: pointer;
+	font-weight: 600;
+}
+
+.melomaniac-tracklist ol {
+	margin: 0.75em 0 0 1.5em;
+	max-height: 18em;
+	overflow-y: auto;
+}
+
+.melomaniac-track-length {
+	color: #787c82;
+}
+
+.melomaniac-preview-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1em;
+	align-items: center;
+	margin: 1.25em 0 0.5em;
+}
+
+/* Candidate list */
+
+.melomaniac-candidate-list {
+	margin: 1em 0 0;
+	padding: 0;
+	list-style: none;
+	border-top: 1px solid #f0f0f1;
+}
+
+.melomaniac-candidate {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1em;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.9em 0;
+	border-bottom: 1px solid #f0f0f1;
+}
+
+.melomaniac-candidate-main {
+	display: flex;
+	flex-direction: column;
+	gap: 0.15em;
+	min-width: 0;
+}
+
+.melomaniac-candidate-artist {
+	color: #50575e;
+}
+
+.melomaniac-candidate-meta {
+	font-size: 12px;
+	color: #787c82;
+}
+
+/* Reference links */
+
+.melomaniac-reference {
+	margin: 0 0 1.5em;
+	padding: 1em 1.25em;
+	background: #f6f7f7;
+	border-left: 3px solid #72aee6;
+	border-radius: 0 4px 4px 0;
+}
+
+.melomaniac-reference-title {
+	margin: 0 0 0.6em;
+	font-weight: 600;
+}
+
+.melomaniac-reference-links {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.melomaniac-reference-links li {
+	margin-bottom: 0.35em;
+}
+
+.melomaniac-reference-description {
+	display: inline;
+	margin-left: 0.5em;
+	font-size: 12px;
+	color: #646970;
+}
+
+.melomaniac-reference-note {
+	margin: 0.75em 0 0;
+}
+
+/* Manual form */
+
+.melomaniac-manual-intro code {
+	font-size: 13px;
+}
+
+.melomaniac-required {
+	color: #b32d2e;
+}
+
+.melomaniac-cover-field {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75em;
+	align-items: flex-start;
+}
+
+.melomaniac-cover-preview img {
+	max-width: 160px;
+	height: auto;
+	border-radius: 4px;
+}
+
+.melomaniac-manual-trigger {
+	margin-top: 2em;
+}
+
+@media screen and ( max-width: 782px ) {
+	.melomaniac-preview-cover,
+	.melomaniac-preview-cover img,
+	.melomaniac-preview-cover-empty {
+		width: 100%;
+		max-width: 220px;
+	}
+}
