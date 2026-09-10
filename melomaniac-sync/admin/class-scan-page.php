@@ -44,6 +44,7 @@ class Melomaniac_Sync_Scan_Page {
 				'notice'  => $this->read_notice(),
 				'barcode' => $this->read_prefilled_barcode(),
 				'formats' => Melomaniac_Sync_Release_DTO::formats(),
+				'quota'   => Melomaniac_Sync_Usage::summary(),
 			)
 		);
 	}

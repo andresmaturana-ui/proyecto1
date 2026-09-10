@@ -15,6 +15,7 @@ defined( 'ABSPATH' ) || exit;
 
 $melomaniac_notice  = isset( $data['notice'] ) ? $data['notice'] : null;
 $melomaniac_barcode = isset( $data['barcode'] ) ? (string) $data['barcode'] : '';
+$melomaniac_quota   = isset( $data['quota'] ) ? $data['quota'] : array();
 ?>
 <div class="wrap melomaniac-sync">
 	<h1><?php esc_html_e( 'Escanear disco', 'melomaniac-sync' ); ?></h1>
@@ -27,6 +28,8 @@ $melomaniac_barcode = isset( $data['barcode'] ) ? (string) $data['barcode'] : ''
 	if ( is_array( $melomaniac_notice ) ) {
 		Melomaniac_Sync_Admin::render_view( 'partial-notice', $melomaniac_notice );
 	}
+
+	Melomaniac_Sync_Admin::render_view( 'partial-plan-summary', $melomaniac_quota );
 	?>
 
 	<div class="melomaniac-card melomaniac-scan-box">

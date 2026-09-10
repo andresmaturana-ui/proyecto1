@@ -18,6 +18,11 @@ class Melomaniac_Sync_Admin_Menu {
 	const PAGE_SCAN = 'melomaniac-sync';
 
 	/**
+	 * Slug of the settings screen.
+	 */
+	const PAGE_SETTINGS = 'melomaniac-sync-settings';
+
+	/**
 	 * Hook suffixes of the screens this plugin owns.
 	 *
 	 * @var string[]
@@ -32,12 +37,24 @@ class Melomaniac_Sync_Admin_Menu {
 	private $scan_page;
 
 	/**
+	 * Settings screen controller.
+	 *
+	 * @var Melomaniac_Sync_Settings_Page
+	 */
+	private $settings_page;
+
+	/**
 	 * Constructor.
 	 *
-	 * @param Melomaniac_Sync_Scan_Page $scan_page Scan screen controller.
+	 * @param Melomaniac_Sync_Scan_Page     $scan_page     Scan screen controller.
+	 * @param Melomaniac_Sync_Settings_Page $settings_page Settings screen controller.
 	 */
-	public function __construct( Melomaniac_Sync_Scan_Page $scan_page ) {
-		$this->scan_page = $scan_page;
+	public function __construct(
+		Melomaniac_Sync_Scan_Page $scan_page,
+		Melomaniac_Sync_Settings_Page $settings_page
+	) {
+		$this->scan_page     = $scan_page;
+		$this->settings_page = $settings_page;
 	}
 
 	/**
@@ -81,6 +98,28 @@ class Melomaniac_Sync_Admin_Menu {
 		if ( $scan_hook ) {
 			self::$screen_hooks[] = $scan_hook;
 		}
+
+		$settings_hook = add_submenu_page(
+			self::PAGE_SCAN,
+			__( 'Ajustes', 'melomaniac-sync' ),
+			__( 'Ajustes', 'melomaniac-sync' ),
+			Melomaniac_Sync_Plugin::CAPABILITY,
+			self::PAGE_SETTINGS,
+			array( $this->settings_page, 'render' )
+		);
+
+		if ( $settings_hook ) {
+			self::$screen_hooks[] = $settings_hook;
+		}
+	}
+
+	/**
+	 * URL of the settings screen.
+	 *
+	 * @return string
+	 */
+	public static function settings_url() {
+		return add_query_arg( array( 'page' => self::PAGE_SETTINGS ), admin_url( 'admin.php' ) );
 	}
 
 	/**

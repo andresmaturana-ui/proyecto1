@@ -276,3 +276,70 @@
 		max-width: 220px;
 	}
 }
+
+/* Plan and quota summary */
+
+.melomaniac-plan {
+	max-width: 42em;
+	margin: 1.25em 0;
+	padding: 0.9em 1.2em;
+	background: #fff;
+	border: 1px solid #c3c4c7;
+	border-left: 3px solid #1d2327;
+	border-radius: 0 4px 4px 0;
+}
+
+.melomaniac-plan.is-warning {
+	border-left-color: #dba617;
+	background: #fcf9e8;
+}
+
+.melomaniac-plan.is-blocked {
+	border-left-color: #b32d2e;
+	background: #fcf0f1;
+}
+
+.melomaniac-plan-title {
+	margin: 0 0 0.25em;
+}
+
+.melomaniac-plan-usage {
+	margin: 0;
+	color: #646970;
+}
+
+.melomaniac-plan-message {
+	margin: 0.6em 0 0;
+	font-weight: 600;
+}
+
+.melomaniac-plan-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75em;
+	align-items: center;
+	margin: 0.9em 0 0;
+}
+
+/* Settings screen */
+
+.melomaniac-settings-intro {
+	max-width: 56em;
+	margin-top: -0.5em;
+}
+
+.melomaniac-field-toggles {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5em 1.75em;
+	max-width: 56em;
+	margin: 0 0 1.5em;
+	padding: 1em 1.25em;
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+}
+
+.melomaniac-field-toggles label {
+	white-space: nowrap;
+}

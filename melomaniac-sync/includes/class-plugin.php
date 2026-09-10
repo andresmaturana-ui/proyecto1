@@ -119,6 +119,8 @@ final class Melomaniac_Sync_Plugin {
 					'admin/class-scan-page.php',
 					'admin/class-ajax-handler.php',
 					'admin/class-manual-entry-handler.php',
+					'admin/class-settings-page.php',
+					'admin/class-quick-publish.php',
 				)
 			);
 		}
@@ -142,8 +144,17 @@ final class Melomaniac_Sync_Plugin {
 			return;
 		}
 
-		$menu = new Melomaniac_Sync_Admin_Menu( new Melomaniac_Sync_Scan_Page( $this->lookup_service() ) );
+		$settings_page = new Melomaniac_Sync_Settings_Page();
+		$settings_page->register();
+
+		$menu = new Melomaniac_Sync_Admin_Menu(
+			new Melomaniac_Sync_Scan_Page( $this->lookup_service() ),
+			$settings_page
+		);
 		$menu->register();
+
+		$quick_publish = new Melomaniac_Sync_Quick_Publish();
+		$quick_publish->register();
 
 		$admin = new Melomaniac_Sync_Admin();
 		$admin->register();
