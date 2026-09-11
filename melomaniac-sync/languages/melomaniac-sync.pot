@@ -63,7 +63,7 @@ msgstr ""
 msgid "&larr; Volver"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:209
+#: includes/frontend/views/view-app-shell.php:216
 msgid "&larr; Volver al escaneo"
 msgstr ""
 
@@ -80,7 +80,7 @@ msgstr ""
 msgid "Abre la búsqueda en discogs.com. Copia a mano los datos que quieras usar."
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:216
+#: includes/frontend/views/view-app-shell.php:223
 msgid "Abrir en el editor"
 msgstr ""
 
@@ -413,6 +413,11 @@ msgstr ""
 msgid "Crear una contraseña de aplicación"
 msgstr ""
 
+#: admin/views/partial-manual-form.php:345
+#: includes/frontend/views/view-app-shell.php:210
+msgid "Créala aquí"
+msgstr ""
+
 #: admin/views/page-settings.php:311
 msgid "Cuánto espera a MusicBrainz, Cover Art Archive y Discogs antes de darse por vencido. Si ves errores de \"timed out\", subilo y revisa %s."
 msgstr ""
@@ -653,7 +658,7 @@ msgstr ""
 msgid "Escanear disco"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:217
+#: includes/frontend/views/view-app-shell.php:224
 msgid "Escanear otro"
 msgstr ""
 
@@ -1612,13 +1617,18 @@ msgstr ""
 msgid "wp-config.php ya lo tiene apagado (MELOMANIAC_SYNC_SKIP_FREEMIUS), así que este interruptor no hace nada hasta que lo quites de ahí."
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:214
+#: includes/frontend/views/view-app-shell.php:221
 msgid "¡Listo!"
 msgstr ""
 
 #: admin/views/partial-reference-links.php:29
 #: includes/frontend/views/view-app-shell.php:159
 msgid "¿Necesitas datos para completar este disco?"
+msgstr ""
+
+#: admin/views/partial-manual-form.php:344
+#: includes/frontend/views/view-app-shell.php:209
+msgid "¿No tienes cuenta en MusicBrainz? %s (una vez que inicies sesión en tu navegador, queda abierta para las próximas veces)."
 msgstr ""
 
 #: admin/views/page-settings.php:278
