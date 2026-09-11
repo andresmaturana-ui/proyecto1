@@ -4,7 +4,7 @@ Tags: woocommerce, vinyl, music, barcode, musicbrainz
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.7.0
+Stable tag: 1.7.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,9 @@ No. Se crean siempre como borrador para que los revises, les pongas precio y sto
 El plugin lo detecta por SKU y por identificador de MusicBrainz, y te muestra un enlace al producto que ya existe en lugar de duplicarlo.
 
 == Changelog ==
+
+= 1.7.1 =
+* En la ficha del producto, la tabla con los datos del disco (artista, sello, año, formato, país de prensaje, número de catálogo) ahora se muestra bajo el precio, y el resumen que antes iba ahí pasa a mostrarse donde antes estaba esa tabla.
 
 = 1.7.0 =
 * Agrega una API REST (melomaniac-sync/v1) y autenticación con contraseñas de aplicación de WordPress, para que una app o herramienta externa pueda buscar discos y crear productos sin pasar por wp-admin.

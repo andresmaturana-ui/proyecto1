@@ -123,6 +123,7 @@ final class Melomaniac_Sync_Plugin {
 			// the app's own traffic would never reach these otherwise.
 			'includes/rest/class-rest-auth.php',
 			'includes/rest/class-rest-api.php',
+			'includes/frontend/class-product-display.php',
 		);
 
 		if ( is_admin() ) {
@@ -167,6 +168,9 @@ final class Melomaniac_Sync_Plugin {
 		$rest_api->register();
 
 		if ( ! is_admin() ) {
+			$product_display = new Melomaniac_Sync_Product_Display();
+			$product_display->register();
+
 			return;
 		}
 
