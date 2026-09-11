@@ -55,11 +55,11 @@ msgid "%d segundos"
 msgstr ""
 
 #: includes/helpers/functions-reference-links.php:88
-msgid "Abre la búsqueda en discogs.com. Copiá a mano los datos que quieras usar."
+msgid "Abre la búsqueda en discogs.com. Copia a mano los datos que quieras usar."
 msgstr ""
 
 #: admin/views/page-scan.php:66
-msgid "Acercá el código de barra al centro del recuadro."
+msgid "Acerca el código de barra al centro del recuadro."
 msgstr ""
 
 #: includes/support/class-connectivity-check.php:290
@@ -85,7 +85,7 @@ msgid "Ajustes guardados."
 msgstr ""
 
 #: includes/licensing/class-usage.php:160
-msgid "Alcanzaste el límite de %1$d discos este mes en el plan %2$s. Pasá a %3$s para seguir cargando."
+msgid "Alcanzaste el límite de %1$d discos este mes en el plan %2$s. Pasa a %3$s para seguir cargando."
 msgstr ""
 
 #: includes/licensing/class-usage.php:155
@@ -93,7 +93,7 @@ msgid "Alcanzaste el límite mensual de discos."
 msgstr ""
 
 #: admin/class-admin.php:109
-msgid "Algo falló. Intentá de nuevo."
+msgid "Algo falló. Intenta de nuevo."
 msgstr ""
 
 #: admin/views/page-settings.php:285
@@ -178,7 +178,7 @@ msgid "Comprueba si este servidor puede alcanzar los servicios que Melomaniac Sy
 msgstr ""
 
 #: admin/views/page-scan.php:61
-msgid "Con un lector USB, dejá el cursor en el campo y disparalo: el lector escribe el código y confirma solo."
+msgid "Con un lector USB, deja el cursor en el campo y dispáralo: el lector escribe el código y confirma solo."
 msgstr ""
 
 #: admin/views/page-diagnostics.php:38
@@ -210,7 +210,7 @@ msgid "Crear producto como borrador"
 msgstr ""
 
 #: admin/views/page-settings.php:267
-msgid "Cuánto espera a MusicBrainz, Cover Art Archive y Discogs antes de darse por vencido. Si ves errores de \"timed out\", subilo y revisá %s."
+msgid "Cuánto espera a MusicBrainz, Cover Art Archive y Discogs antes de darse por vencido. Si ves errores de \"timed out\", subilo y revisa %s."
 msgstr ""
 
 #: admin/views/page-diagnostics.php:58
@@ -270,7 +270,7 @@ msgid "Discogs no tiene ese lanzamiento."
 msgstr ""
 
 #: includes/integrations/discogs/class-discogs-client.php:163
-msgid "Discogs rechazó el token de la tienda. Revisalo en Melomaniac Sync → Ajustes."
+msgid "Discogs rechazó el token de la tienda. Revísalo en Melomaniac Sync → Ajustes."
 msgstr ""
 
 #: includes/integrations/discogs/class-discogs-client.php:179
@@ -323,7 +323,7 @@ msgid "El servidor llega, pero está limitando las peticiones en este momento."
 msgstr ""
 
 #: includes/support/class-connectivity-check.php:176
-msgid "El servidor llega, pero rechazó la credencial. Revisá el token."
+msgid "El servidor llega, pero rechazó la credencial. Revisa el token."
 msgstr ""
 
 #: includes/support/class-connectivity-check.php:217
@@ -336,11 +336,15 @@ msgid "Elegir la portada"
 msgstr ""
 
 #: admin/views/partial-candidate-list.php:33
-msgid "Elegí la que tenés en la mano para ver su ficha completa antes de crear el producto."
+msgid "Elige la que tienes en la mano para ver su ficha completa antes de crear el producto."
 msgstr ""
 
 #: admin/views/page-diagnostics.php:238
 msgid "Entorno"
+msgstr ""
+
+#: admin/views/page-scan.php:24
+msgid "Escanea el código de barra del disco y Melomaniac Sync busca sus datos en MusicBrainz para crear el producto como borrador."
 msgstr ""
 
 #: admin/class-admin.php:115
@@ -355,10 +359,6 @@ msgstr ""
 msgid "Escanear disco"
 msgstr ""
 
-#: admin/views/page-scan.php:24
-msgid "Escaneá el código de barra del disco y Melomaniac Sync busca sus datos en MusicBrainz para crear el producto como borrador."
-msgstr ""
-
 #: admin/class-quick-publish.php:100
 msgid "Ese contenido no es un producto."
 msgstr ""
@@ -368,7 +368,7 @@ msgid "Estado al crearse"
 msgstr ""
 
 #: admin/class-admin.php:112
-msgid "Este navegador no puede escanear con la cámara. Usá Chrome o Edge, o un lector USB."
+msgid "Este navegador no puede escanear con la cámara. Usa Chrome o Edge, o un lector USB."
 msgstr ""
 
 #: admin/views/page-settings.php:179
@@ -393,7 +393,7 @@ msgid "Falta el producto a publicar."
 msgstr ""
 
 #: includes/integrations/discogs/class-discogs-client.php:118
-msgid "Falta el token de Discogs de la tienda. Agregalo en Melomaniac Sync → Ajustes."
+msgid "Falta el token de Discogs de la tienda. Agrégalo en Melomaniac Sync → Ajustes."
 msgstr ""
 
 #: includes/services/class-release-lookup-service.php:213
@@ -416,7 +416,7 @@ msgid "Fuentes de datos"
 msgstr ""
 
 #: admin/views/page-settings.php:79
-msgid "Generá un token personal en %s. Es de tu tienda: no lo compartas y no lo pongas en ningún archivo del plugin."
+msgid "Genera un token personal en %s. Es de tu tienda: no lo compartas y no lo pongas en ningún archivo del plugin."
 msgstr ""
 
 #: includes/licensing/class-licensing.php:148
@@ -437,7 +437,7 @@ msgid "Hace una petición real a cada servicio y mide cuánto tarda. Puede demor
 msgstr ""
 
 #: admin/class-admin.php:110
-msgid "Ingresá o escaneá un código de barra."
+msgid "Ingresa o escanea un código de barra."
 msgstr ""
 
 #: includes/services/class-release-lookup-service.php:442
@@ -449,7 +449,7 @@ msgid "La cámara solo funciona sobre HTTPS."
 msgstr ""
 
 #: includes/services/class-release-lookup-service.php:378
-msgid "La página quedó con una versión vieja del plugin en caché. Recargá con Ctrl+F5 (Cmd+Shift+R en Mac) y volvé a intentar."
+msgid "La página quedó con una versión vieja del plugin en caché. Recarga con Ctrl+F5 (Cmd+Shift+R en Mac) y vuelve a intentar."
 msgstr ""
 
 #: includes/integrations/discogs/class-discogs-client.php:191
@@ -461,7 +461,7 @@ msgid "La respuesta de MusicBrainz no se pudo interpretar."
 msgstr ""
 
 #: admin/class-ajax-handler.php:272
-msgid "La sesión expiró. Recargá la página."
+msgid "La sesión expiró. Recarga la página."
 msgstr ""
 
 #: admin/views/page-diagnostics.php:119
@@ -488,7 +488,7 @@ msgid "Melomaniac Sync busca primero en MusicBrainz, que es abierto y no necesit
 msgstr ""
 
 #: admin/views/page-diagnostics.php:220
-msgid "Melomaniac Sync guarda un día lo que encuentra, para no repetir peticiones. Si un disco quedó guardado con datos equivocados, vaciá esto y volvé a escanearlo."
+msgid "Melomaniac Sync guarda un día lo que encuentra, para no repetir peticiones. Si un disco quedó guardado con datos equivocados, vacía esto y vuelve a escanearlo."
 msgstr ""
 
 #: includes/class-activator.php:79
@@ -525,7 +525,7 @@ msgid "MusicBrainz no tiene la lista de canciones de esta edición."
 msgstr ""
 
 #: admin/views/partial-manual-form.php:35
-msgid "MusicBrainz no tiene ningún disco con el código %s. Completá los datos y creamos el borrador igual."
+msgid "MusicBrainz no tiene ningún disco con el código %s. Completa los datos y creamos el borrador igual."
 msgstr ""
 
 #: includes/integrations/musicbrainz/class-musicbrainz-client.php:186
@@ -554,7 +554,7 @@ msgid "No es este disco, cargarlo a mano"
 msgstr ""
 
 #: admin/class-admin.php:113
-msgid "No se pudo acceder a la cámara. Revisá los permisos del navegador."
+msgid "No se pudo acceder a la cámara. Revisa los permisos del navegador."
 msgstr ""
 
 #: admin/class-scan-page.php:100
@@ -566,25 +566,25 @@ msgid "No se pudo guardar el producto."
 msgstr ""
 
 #: admin/class-settings-page.php:46
-msgid "No tenés permisos para cambiar estos ajustes."
+msgid "No tienes permisos para cambiar estos ajustes."
 msgstr ""
 
 #: admin/class-ajax-handler.php:279
 #: admin/class-manual-entry-handler.php:55
-msgid "No tenés permisos para hacer esto."
+msgid "No tienes permisos para hacer esto."
 msgstr ""
 
 #: admin/class-quick-publish.php:104
-msgid "No tenés permisos para publicar este producto."
+msgid "No tienes permisos para publicar este producto."
 msgstr ""
 
 #: admin/class-scan-page.php:38
-msgid "No tenés permisos para usar esta pantalla."
+msgid "No tienes permisos para usar esta pantalla."
 msgstr ""
 
 #: admin/class-diagnostics-page.php:68
 #: admin/class-settings-page.php:170
-msgid "No tenés permisos para ver esta pantalla."
+msgid "No tienes permisos para ver esta pantalla."
 msgstr ""
 
 #: admin/views/partial-manual-form.php:132
@@ -599,7 +599,7 @@ msgid "Otro"
 msgstr ""
 
 #: admin/views/page-settings.php:288
-msgid "Para que el archivo se escriba, wp-config.php necesita WP_DEBUG y WP_DEBUG_LOG en true. Dejalo apagado salvo que estés buscando un problema."
+msgid "Para que el archivo se escriba, wp-config.php necesita WP_DEBUG y WP_DEBUG_LOG en true. Déjalo apagado salvo que estés buscando un problema."
 msgstr ""
 
 #: admin/views/partial-manual-form.php:124
@@ -725,15 +725,15 @@ msgid "Resultado"
 msgstr ""
 
 #: admin/views/partial-reference-links.php:45
-msgid "Se abren en una pestaña nueva. Melomaniac Sync no copia nada de esos sitios: lo que quieras usar lo pegás vos en el formulario."
+msgid "Se abren en una pestaña nueva. Melomaniac Sync no copia nada de esos sitios: lo que quieras usar lo pegas tú en el formulario."
 msgstr ""
 
 #: includes/support/class-connectivity-check.php:204
-msgid "Se agotaron los %d segundos sin recibir un solo byte, y el dominio solo resolvió a IPv6. Si el servidor no tiene salida IPv6 funcionando, las conexiones quedan colgadas hasta el timeout. Pedile a tu hosting que habilite IPv6 o que fuerce IPv4."
+msgid "Se agotaron los %d segundos sin recibir un solo byte, y el dominio solo resolvió a IPv6. Si el servidor no tiene salida IPv6 funcionando, las conexiones quedan colgadas hasta el timeout. Pídele a tu hosting que habilite IPv6 o que fuerce IPv4."
 msgstr ""
 
 #: includes/support/class-connectivity-check.php:211
-msgid "Se agotaron los %d segundos sin recibir un solo byte. El hosting está descartando la conexión de salida, o la IP del sitio está bloqueada. Pedile a tu hosting que permita conexiones HTTPS salientes a este dominio, o subí el tiempo de espera más abajo."
+msgid "Se agotaron los %d segundos sin recibir un solo byte. El hosting está descartando la conexión de salida, o la IP del sitio está bloqueada. Pídele a tu hosting que permita conexiones HTTPS salientes a este dominio, o sube el tiempo de espera más abajo."
 msgstr ""
 
 #: includes/integrations/discogs/class-discogs-client.php:155
@@ -769,7 +769,7 @@ msgid "Si arriba dice que no resolvió el dominio, es DNS del hosting."
 msgstr ""
 
 #: admin/views/page-settings.php:218
-msgid "Si dejás \"Detectar sola\", Melomaniac Sync busca entre tus categorías una que coincida con el formato."
+msgid "Si dejas \"Detectar sola\", Melomaniac Sync busca entre tus categorías una que coincida con el formato."
 msgstr ""
 
 #: admin/views/page-diagnostics.php:252
@@ -777,11 +777,11 @@ msgid "Si el tiempo de espera se agota"
 msgstr ""
 
 #: admin/views/page-diagnostics.php:265
-msgid "Si no pasa nada de lo anterior, pedile a tu hosting que permita conexiones HTTPS salientes a musicbrainz.org, coverartarchive.org y api.discogs.com. Muchos hostings compartidos las bloquean por defecto."
+msgid "Si no pasa nada de lo anterior, pídele a tu hosting que permita conexiones HTTPS salientes a musicbrainz.org, coverartarchive.org y api.discogs.com. Muchos hostings compartidos las bloquean por defecto."
 msgstr ""
 
 #: admin/views/page-diagnostics.php:264
-msgid "Si resolvió solo a IPv6 y falla, el hosting no tiene salida IPv6 funcionando. Pediles que la arreglen o que fuercen IPv4."
+msgid "Si resolvió solo a IPv6 y falla, el hosting no tiene salida IPv6 funcionando. Pídeles que la arreglen o que fuercen IPv4."
 msgstr ""
 
 #: admin/views/partial-result-preview.php:44
@@ -809,12 +809,12 @@ msgstr ""
 msgid "Stock por defecto"
 msgstr ""
 
-#: admin/views/partial-manual-form.php:164
-msgid "Subir o elegir una imagen"
+#: admin/views/page-diagnostics.php:258
+msgid "Sube el tiempo de espera en %s. Si la conexión es lenta pero funciona, con 30 segundos suele alcanzar."
 msgstr ""
 
-#: admin/views/page-diagnostics.php:258
-msgid "Subí el tiempo de espera en %s. Si la conexión es lenta pero funciona, con 30 segundos suele alcanzar."
+#: admin/views/partial-manual-form.php:164
+msgid "Subir o elegir una imagen"
 msgstr ""
 
 #: includes/support/class-connectivity-check.php:291
@@ -858,7 +858,7 @@ msgid "Un email o una URL de la tienda. MusicBrainz exige poder identificar qui�
 msgstr ""
 
 #: admin/views/partial-manual-form.php:147
-msgid "Una canción por línea. Podés agregar la duración después de una barra vertical, por ejemplo: A1 Blue Monday | 7:29"
+msgid "Una canción por línea. Puedes agregar la duración después de una barra vertical, por ejemplo: A1 Blue Monday | 7:29"
 msgstr ""
 
 #: admin/views/partial-candidate-list.php:67
@@ -895,7 +895,7 @@ msgid "Ver planes"
 msgstr ""
 
 #: includes/helpers/functions-reference-links.php:98
-msgid "Verificá si el disco existe con otro código de barra."
+msgid "Verifica si el disco existe con otro código de barra."
 msgstr ""
 
 #: includes/support/class-connectivity-check.php:278

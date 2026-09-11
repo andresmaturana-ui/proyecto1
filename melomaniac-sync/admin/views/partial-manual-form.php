@@ -32,7 +32,7 @@ $melomaniac_prefill = isset( $data['release'] ) && $data['release'] instanceof M
 			<?php
 			printf(
 				/* translators: %s: barcode. */
-				esc_html__( 'MusicBrainz no tiene ningún disco con el código %s. Completá los datos y creamos el borrador igual.', 'melomaniac-sync' ),
+				esc_html__( 'MusicBrainz no tiene ningún disco con el código %s. Completa los datos y creamos el borrador igual.', 'melomaniac-sync' ),
 				'<code>' . esc_html( $melomaniac_barcode ) . '</code>'
 			);
 			?>
@@ -144,7 +144,7 @@ $melomaniac_prefill = isset( $data['release'] ) && $data['release'] instanceof M
 						echo esc_textarea( $melomaniac_prefill->tracklist_as_text() );
 					?></textarea>
 					<p class="description">
-						<?php esc_html_e( 'Una canción por línea. Podés agregar la duración después de una barra vertical, por ejemplo: A1 Blue Monday | 7:29', 'melomaniac-sync' ); ?>
+						<?php esc_html_e( 'Una canción por línea. Puedes agregar la duración después de una barra vertical, por ejemplo: A1 Blue Monday | 7:29', 'melomaniac-sync' ); ?>
 					</p>
 				</td>
 			</tr>

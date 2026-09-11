@@ -269,14 +269,14 @@ class Melomaniac_Sync_Ajax_Handler {
 	private function guard() {
 		if ( ! check_ajax_referer( Melomaniac_Sync_Admin::NONCE_ACTION, 'nonce', false ) ) {
 			wp_send_json_error(
-				array( 'message' => __( 'La sesión expiró. Recargá la página.', 'melomaniac-sync' ) ),
+				array( 'message' => __( 'La sesión expiró. Recarga la página.', 'melomaniac-sync' ) ),
 				403
 			);
 		}
 
 		if ( ! current_user_can( Melomaniac_Sync_Plugin::CAPABILITY ) ) {
 			wp_send_json_error(
-				array( 'message' => __( 'No tenés permisos para hacer esto.', 'melomaniac-sync' ) ),
+				array( 'message' => __( 'No tienes permisos para hacer esto.', 'melomaniac-sync' ) ),
 				403
 			);
 		}

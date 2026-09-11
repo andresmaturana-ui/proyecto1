@@ -157,7 +157,7 @@ class Melomaniac_Sync_Usage {
 
 		return sprintf(
 			/* translators: 1: monthly limit, 2: current plan name, 3: description of the next plan up. */
-			__( 'Alcanzaste el límite de %1$d discos este mes en el plan %2$s. Pasá a %3$s para seguir cargando.', 'melomaniac-sync' ),
+			__( 'Alcanzaste el límite de %1$d discos este mes en el plan %2$s. Pasa a %3$s para seguir cargando.', 'melomaniac-sync' ),
 			(int) $limit,
 			Melomaniac_Sync_Licensing::plan_label(),
 			$next

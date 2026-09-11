@@ -35,7 +35,7 @@ class Melomaniac_Sync_Scan_Page {
 	 */
 	public function render() {
 		if ( ! current_user_can( Melomaniac_Sync_Plugin::CAPABILITY ) ) {
-			wp_die( esc_html__( 'No tenés permisos para usar esta pantalla.', 'melomaniac-sync' ) );
+			wp_die( esc_html__( 'No tienes permisos para usar esta pantalla.', 'melomaniac-sync' ) );
 		}
 
 		Melomaniac_Sync_Admin::render_view(

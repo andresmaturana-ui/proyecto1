@@ -173,7 +173,7 @@ class Melomaniac_Sync_Connectivity_Check {
 		}
 
 		if ( 401 === $result['status_code'] || 403 === $result['status_code'] ) {
-			$result['message'] = __( 'El servidor llega, pero rechazó la credencial. Revisá el token.', 'melomaniac-sync' );
+			$result['message'] = __( 'El servidor llega, pero rechazó la credencial. Revisa el token.', 'melomaniac-sync' );
 		} elseif ( 503 === $result['status_code'] ) {
 			$result['message'] = __( 'El servidor llega, pero está limitando las peticiones en este momento.', 'melomaniac-sync' );
 		} elseif ( 'ok' === $result['state'] ) {
@@ -201,14 +201,14 @@ class Melomaniac_Sync_Connectivity_Check {
 			if ( '' === $dns['ipv4'] && '' !== $dns['ipv6'] ) {
 				return sprintf(
 					/* translators: %d: timeout in seconds. */
-					__( 'Se agotaron los %d segundos sin recibir un solo byte, y el dominio solo resolvió a IPv6. Si el servidor no tiene salida IPv6 funcionando, las conexiones quedan colgadas hasta el timeout. Pedile a tu hosting que habilite IPv6 o que fuerce IPv4.', 'melomaniac-sync' ),
+					__( 'Se agotaron los %d segundos sin recibir un solo byte, y el dominio solo resolvió a IPv6. Si el servidor no tiene salida IPv6 funcionando, las conexiones quedan colgadas hasta el timeout. Pídele a tu hosting que habilite IPv6 o que fuerce IPv4.', 'melomaniac-sync' ),
 					$timeout
 				);
 			}
 
 			return sprintf(
 				/* translators: %d: timeout in seconds. */
-				__( 'Se agotaron los %d segundos sin recibir un solo byte. El hosting está descartando la conexión de salida, o la IP del sitio está bloqueada. Pedile a tu hosting que permita conexiones HTTPS salientes a este dominio, o subí el tiempo de espera más abajo.', 'melomaniac-sync' ),
+				__( 'Se agotaron los %d segundos sin recibir un solo byte. El hosting está descartando la conexión de salida, o la IP del sitio está bloqueada. Pídele a tu hosting que permita conexiones HTTPS salientes a este dominio, o sube el tiempo de espera más abajo.', 'melomaniac-sync' ),
 				$timeout
 			);
 		}

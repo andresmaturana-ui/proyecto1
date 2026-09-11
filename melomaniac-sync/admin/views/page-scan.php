@@ -21,7 +21,7 @@ $melomaniac_quota   = isset( $data['quota'] ) ? $data['quota'] : array();
 	<h1><?php esc_html_e( 'Escanear disco', 'melomaniac-sync' ); ?></h1>
 
 	<p class="melomaniac-intro">
-		<?php esc_html_e( 'Escaneá el código de barra del disco y Melomaniac Sync busca sus datos en MusicBrainz para crear el producto como borrador.', 'melomaniac-sync' ); ?>
+		<?php esc_html_e( 'Escanea el código de barra del disco y Melomaniac Sync busca sus datos en MusicBrainz para crear el producto como borrador.', 'melomaniac-sync' ); ?>
 	</p>
 
 	<?php
@@ -58,12 +58,12 @@ $melomaniac_quota   = isset( $data['quota'] ) ? $data['quota'] : array();
 		</form>
 
 		<p class="description">
-			<?php esc_html_e( 'Con un lector USB, dejá el cursor en el campo y disparalo: el lector escribe el código y confirma solo.', 'melomaniac-sync' ); ?>
+			<?php esc_html_e( 'Con un lector USB, deja el cursor en el campo y dispáralo: el lector escribe el código y confirma solo.', 'melomaniac-sync' ); ?>
 		</p>
 
 		<div id="melomaniac-camera" class="melomaniac-camera" hidden>
 			<video id="melomaniac-camera-video" class="melomaniac-camera-video" playsinline muted></video>
-			<p class="description"><?php esc_html_e( 'Acercá el código de barra al centro del recuadro.', 'melomaniac-sync' ); ?></p>
+			<p class="description"><?php esc_html_e( 'Acerca el código de barra al centro del recuadro.', 'melomaniac-sync' ); ?></p>
 		</div>
 
 		<p id="melomaniac-camera-message" class="melomaniac-camera-message" hidden></p>

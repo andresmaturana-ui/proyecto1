@@ -217,7 +217,7 @@ $melomaniac_states = array(
 	<div class="melomaniac-card">
 		<h2><?php esc_html_e( 'Búsquedas guardadas', 'melomaniac-sync' ); ?></h2>
 		<p class="description">
-			<?php esc_html_e( 'Melomaniac Sync guarda un día lo que encuentra, para no repetir peticiones. Si un disco quedó guardado con datos equivocados, vaciá esto y volvé a escanearlo.', 'melomaniac-sync' ); ?>
+			<?php esc_html_e( 'Melomaniac Sync guarda un día lo que encuentra, para no repetir peticiones. Si un disco quedó guardado con datos equivocados, vacía esto y vuelve a escanearlo.', 'melomaniac-sync' ); ?>
 		</p>
 
 		<?php if ( $melomaniac_flushed ) : ?>
@@ -255,14 +255,14 @@ $melomaniac_states = array(
 				<?php
 				printf(
 					/* translators: %s: link to the settings screen. */
-					esc_html__( 'Subí el tiempo de espera en %s. Si la conexión es lenta pero funciona, con 30 segundos suele alcanzar.', 'melomaniac-sync' ),
+					esc_html__( 'Sube el tiempo de espera en %s. Si la conexión es lenta pero funciona, con 30 segundos suele alcanzar.', 'melomaniac-sync' ),
 					'<a href="' . esc_url( Melomaniac_Sync_Admin_Menu::settings_url() ) . '">' . esc_html__( 'Ajustes', 'melomaniac-sync' ) . '</a>'
 				);
 				?>
 			</li>
 			<li><?php esc_html_e( 'Si arriba dice que no resolvió el dominio, es DNS del hosting.', 'melomaniac-sync' ); ?></li>
-			<li><?php esc_html_e( 'Si resolvió solo a IPv6 y falla, el hosting no tiene salida IPv6 funcionando. Pediles que la arreglen o que fuercen IPv4.', 'melomaniac-sync' ); ?></li>
-			<li><?php esc_html_e( 'Si no pasa nada de lo anterior, pedile a tu hosting que permita conexiones HTTPS salientes a musicbrainz.org, coverartarchive.org y api.discogs.com. Muchos hostings compartidos las bloquean por defecto.', 'melomaniac-sync' ); ?></li>
+			<li><?php esc_html_e( 'Si resolvió solo a IPv6 y falla, el hosting no tiene salida IPv6 funcionando. Pídeles que la arreglen o que fuercen IPv4.', 'melomaniac-sync' ); ?></li>
+			<li><?php esc_html_e( 'Si no pasa nada de lo anterior, pídele a tu hosting que permita conexiones HTTPS salientes a musicbrainz.org, coverartarchive.org y api.discogs.com. Muchos hostings compartidos las bloquean por defecto.', 'melomaniac-sync' ); ?></li>
 			<li><?php esc_html_e( 'MusicBrainz bloquea las IP que hacen más de una petición por segundo. Si compartís IP con otros sitios, puede que el bloqueo no sea por tu tienda.', 'melomaniac-sync' ); ?></li>
 		</ol>
 	</div>

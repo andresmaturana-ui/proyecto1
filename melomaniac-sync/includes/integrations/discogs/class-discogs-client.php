@@ -115,7 +115,7 @@ class Melomaniac_Sync_Discogs_Client {
 		if ( '' === $token ) {
 			return new WP_Error(
 				'melomaniac_sync_discogs_no_token',
-				__( 'Falta el token de Discogs de la tienda. Agregalo en Melomaniac Sync → Ajustes.', 'melomaniac-sync' )
+				__( 'Falta el token de Discogs de la tienda. Agrégalo en Melomaniac Sync → Ajustes.', 'melomaniac-sync' )
 			);
 		}
 
@@ -160,7 +160,7 @@ class Melomaniac_Sync_Discogs_Client {
 		if ( 401 === $code || 403 === $code ) {
 			return new WP_Error(
 				'melomaniac_sync_discogs_unauthorized',
-				__( 'Discogs rechazó el token de la tienda. Revisalo en Melomaniac Sync → Ajustes.', 'melomaniac-sync' )
+				__( 'Discogs rechazó el token de la tienda. Revísalo en Melomaniac Sync → Ajustes.', 'melomaniac-sync' )
 			);
 		}
 

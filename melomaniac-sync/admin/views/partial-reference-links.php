@@ -42,6 +42,6 @@ if ( empty( $melomaniac_links ) ) {
 		<?php endforeach; ?>
 	</ul>
 	<p class="melomaniac-reference-note description">
-		<?php esc_html_e( 'Se abren en una pestaña nueva. Melomaniac Sync no copia nada de esos sitios: lo que quieras usar lo pegás vos en el formulario.', 'melomaniac-sync' ); ?>
+		<?php esc_html_e( 'Se abren en una pestaña nueva. Melomaniac Sync no copia nada de esos sitios: lo que quieras usar lo pegas tú en el formulario.', 'melomaniac-sync' ); ?>
 	</p>
 </div>

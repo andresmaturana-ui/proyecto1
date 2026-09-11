@@ -76,7 +76,7 @@ $melomaniac_flash      = isset( $data['flash'] ) ? (string) $data['flash'] : '';
 						<?php
 						printf(
 							/* translators: %s: link to the Discogs developer settings. */
-							esc_html__( 'Generá un token personal en %s. Es de tu tienda: no lo compartas y no lo pongas en ningún archivo del plugin.', 'melomaniac-sync' ),
+							esc_html__( 'Genera un token personal en %s. Es de tu tienda: no lo compartas y no lo pongas en ningún archivo del plugin.', 'melomaniac-sync' ),
 							'<a href="https://www.discogs.com/settings/developers" target="_blank" rel="noopener noreferrer">Discogs → Settings → Developers</a>'
 						);
 						?>
@@ -215,7 +215,7 @@ $melomaniac_flash      = isset( $data['flash'] ) ? (string) $data['flash'] : '';
 
 		<h2><?php esc_html_e( 'Categoría por formato', 'melomaniac-sync' ); ?></h2>
 		<p class="description melomaniac-settings-intro">
-			<?php esc_html_e( 'Si dejás "Detectar sola", Melomaniac Sync busca entre tus categorías una que coincida con el formato.', 'melomaniac-sync' ); ?>
+			<?php esc_html_e( 'Si dejas "Detectar sola", Melomaniac Sync busca entre tus categorías una que coincida con el formato.', 'melomaniac-sync' ); ?>
 		</p>
 
 		<table class="form-table" role="presentation">
@@ -264,7 +264,7 @@ $melomaniac_flash      = isset( $data['flash'] ) ? (string) $data['flash'] : '';
 						<?php
 						printf(
 							/* translators: %s: link to the diagnostics screen. */
-							esc_html__( 'Cuánto espera a MusicBrainz, Cover Art Archive y Discogs antes de darse por vencido. Si ves errores de "timed out", subilo y revisá %s.', 'melomaniac-sync' ),
+							esc_html__( 'Cuánto espera a MusicBrainz, Cover Art Archive y Discogs antes de darse por vencido. Si ves errores de "timed out", subilo y revisa %s.', 'melomaniac-sync' ),
 							'<a href="' . esc_url( Melomaniac_Sync_Admin_Menu::diagnostics_url() ) . '">' . esc_html__( 'Diagnóstico', 'melomaniac-sync' ) . '</a>'
 						);
 						?>
@@ -285,7 +285,7 @@ $melomaniac_flash      = isset( $data['flash'] ) ? (string) $data['flash'] : '';
 						<?php esc_html_e( 'Anotar fallas de MusicBrainz, Discogs y portadas en el log de WordPress', 'melomaniac-sync' ); ?>
 					</label>
 					<p class="description">
-						<?php esc_html_e( 'Para que el archivo se escriba, wp-config.php necesita WP_DEBUG y WP_DEBUG_LOG en true. Dejalo apagado salvo que estés buscando un problema.', 'melomaniac-sync' ); ?>
+						<?php esc_html_e( 'Para que el archivo se escriba, wp-config.php necesita WP_DEBUG y WP_DEBUG_LOG en true. Déjalo apagado salvo que estés buscando un problema.', 'melomaniac-sync' ); ?>
 					</p>
 				</td>
 			</tr>

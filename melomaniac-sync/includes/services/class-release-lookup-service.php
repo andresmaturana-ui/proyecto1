@@ -375,7 +375,7 @@ class Melomaniac_Sync_Release_Lookup_Service {
 			// cached script does: older versions posted different field names.
 			return new WP_Error(
 				'melomaniac_sync_stale_assets',
-				__( 'La página quedó con una versión vieja del plugin en caché. Recargá con Ctrl+F5 (Cmd+Shift+R en Mac) y volvé a intentar.', 'melomaniac-sync' )
+				__( 'La página quedó con una versión vieja del plugin en caché. Recarga con Ctrl+F5 (Cmd+Shift+R en Mac) y vuelve a intentar.', 'melomaniac-sync' )
 			);
 		} else {
 			return new WP_Error(

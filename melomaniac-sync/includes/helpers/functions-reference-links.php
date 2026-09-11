@@ -85,7 +85,7 @@ function melomaniac_sync_reference_links( $barcode, $extra = '' ) {
 		array(
 			'label'       => __( 'Buscar en Discogs', 'melomaniac-sync' ),
 			'url'         => melomaniac_sync_discogs_search_url( $barcode, $extra ),
-			'description' => __( 'Abre la búsqueda en discogs.com. Copiá a mano los datos que quieras usar.', 'melomaniac-sync' ),
+			'description' => __( 'Abre la búsqueda en discogs.com. Copia a mano los datos que quieras usar.', 'melomaniac-sync' ),
 		),
 		array(
 			'label'       => __( 'Buscar en Google', 'melomaniac-sync' ),
@@ -95,7 +95,7 @@ function melomaniac_sync_reference_links( $barcode, $extra = '' ) {
 		array(
 			'label'       => __( 'Buscar en MusicBrainz', 'melomaniac-sync' ),
 			'url'         => melomaniac_sync_musicbrainz_search_url( $barcode ),
-			'description' => __( 'Verificá si el disco existe con otro código de barra.', 'melomaniac-sync' ),
+			'description' => __( 'Verifica si el disco existe con otro código de barra.', 'melomaniac-sync' ),
 		),
 	);
 

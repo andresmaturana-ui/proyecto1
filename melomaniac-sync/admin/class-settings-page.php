@@ -43,7 +43,7 @@ class Melomaniac_Sync_Settings_Page {
 		}
 
 		if ( ! current_user_can( Melomaniac_Sync_Plugin::CAPABILITY ) ) {
-			wp_die( esc_html__( 'No tenés permisos para cambiar estos ajustes.', 'melomaniac-sync' ) );
+			wp_die( esc_html__( 'No tienes permisos para cambiar estos ajustes.', 'melomaniac-sync' ) );
 		}
 
 		check_admin_referer( self::NONCE_ACTION );
@@ -167,7 +167,7 @@ class Melomaniac_Sync_Settings_Page {
 	 */
 	public function render() {
 		if ( ! current_user_can( Melomaniac_Sync_Plugin::CAPABILITY ) ) {
-			wp_die( esc_html__( 'No tenés permisos para ver esta pantalla.', 'melomaniac-sync' ) );
+			wp_die( esc_html__( 'No tienes permisos para ver esta pantalla.', 'melomaniac-sync' ) );
 		}
 
 		Melomaniac_Sync_Admin::render_view(

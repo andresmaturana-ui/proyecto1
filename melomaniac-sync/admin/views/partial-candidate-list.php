@@ -30,7 +30,7 @@ if ( empty( $melomaniac_candidates ) ) {
 		?>
 	</h2>
 	<p class="description">
-		<?php esc_html_e( 'Elegí la que tenés en la mano para ver su ficha completa antes de crear el producto.', 'melomaniac-sync' ); ?>
+		<?php esc_html_e( 'Elige la que tienes en la mano para ver su ficha completa antes de crear el producto.', 'melomaniac-sync' ); ?>
 	</p>
 
 	<ul class="melomaniac-candidate-list">

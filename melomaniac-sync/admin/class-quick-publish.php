@@ -101,7 +101,7 @@ class Melomaniac_Sync_Quick_Publish {
 		}
 
 		if ( ! current_user_can( 'publish_post', $product_id ) ) {
-			wp_die( esc_html__( 'No tenés permisos para publicar este producto.', 'melomaniac-sync' ) );
+			wp_die( esc_html__( 'No tienes permisos para publicar este producto.', 'melomaniac-sync' ) );
 		}
 
 		wp_update_post(

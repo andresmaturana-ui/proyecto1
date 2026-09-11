@@ -52,7 +52,7 @@ class Melomaniac_Sync_Manual_Entry_Handler {
 	 */
 	public function handle_submit() {
 		if ( ! current_user_can( Melomaniac_Sync_Plugin::CAPABILITY ) ) {
-			wp_die( esc_html__( 'No tenés permisos para hacer esto.', 'melomaniac-sync' ) );
+			wp_die( esc_html__( 'No tienes permisos para hacer esto.', 'melomaniac-sync' ) );
 		}
 
 		check_admin_referer( Melomaniac_Sync_Admin::NONCE_ACTION );
