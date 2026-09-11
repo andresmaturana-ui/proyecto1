@@ -108,6 +108,47 @@ body {
 	margin: 10px 0;
 }
 
+.melomaniac-reference {
+	margin: 0 0 16px;
+	padding: 12px 14px;
+	background: var(--melomaniac-surface);
+	border-left: 3px solid var(--melomaniac-text);
+	border-radius: 0 10px 10px 0;
+}
+
+.melomaniac-reference-title {
+	margin: 0 0 8px;
+	font-weight: 600;
+	font-size: 14px;
+}
+
+.melomaniac-reference-links {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.melomaniac-reference-links li {
+	margin-bottom: 6px;
+	font-size: 14px;
+}
+
+.melomaniac-reference-links a {
+	color: var(--melomaniac-text);
+}
+
+.melomaniac-reference-description {
+	display: block;
+	font-size: 12px;
+	color: var(--melomaniac-muted);
+}
+
+.melomaniac-reference-note {
+	margin: 10px 0 0;
+	font-size: 12px;
+	color: var(--melomaniac-muted);
+}
+
 form label {
 	display: block;
 	font-size: 13px;

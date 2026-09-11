@@ -63,7 +63,7 @@ msgstr ""
 msgid "&larr; Volver"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:186
+#: includes/frontend/views/view-app-shell.php:192
 msgid "&larr; Volver al escaneo"
 msgstr ""
 
@@ -75,7 +75,7 @@ msgstr ""
 msgid "Abre la búsqueda en discogs.com. Copia a mano los datos que quieras usar."
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:193
+#: includes/frontend/views/view-app-shell.php:199
 msgid "Abrir en el editor"
 msgstr ""
 
@@ -155,7 +155,7 @@ msgid "Archivo CSV"
 msgstr ""
 
 #: admin/views/partial-manual-form.php:73
-#: includes/frontend/views/view-app-shell.php:148
+#: includes/frontend/views/view-app-shell.php:154
 #: includes/services/class-product-factory.php:271
 #: includes/support/class-settings.php:40
 msgid "Artista"
@@ -163,7 +163,7 @@ msgstr ""
 
 #: admin/views/partial-manual-form.php:112
 #: admin/views/partial-result-preview.php:24
-#: includes/frontend/views/view-app-shell.php:159
+#: includes/frontend/views/view-app-shell.php:165
 #: includes/services/class-product-factory.php:273
 #: includes/support/class-settings.php:41
 msgid "Año"
@@ -387,7 +387,7 @@ msgstr ""
 
 #: admin/views/partial-result-preview.php:116
 #: includes/frontend/views/view-app-shell.php:135
-#: includes/frontend/views/view-app-shell.php:183
+#: includes/frontend/views/view-app-shell.php:189
 msgid "Crear producto"
 msgstr ""
 
@@ -643,7 +643,7 @@ msgstr ""
 msgid "Escanear disco"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:194
+#: includes/frontend/views/view-app-shell.php:200
 msgid "Escanear otro"
 msgstr ""
 
@@ -735,13 +735,13 @@ msgstr ""
 
 #: admin/views/partial-manual-form.php:142
 #: admin/views/partial-result-preview.php:27
-#: includes/frontend/views/view-app-shell.php:163
+#: includes/frontend/views/view-app-shell.php:169
 #: includes/services/class-product-factory.php:274
 #: includes/support/class-settings.php:45
 msgid "Formato"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:177
+#: includes/frontend/views/view-app-shell.php:183
 msgid "Foto de la portada (opcional)"
 msgstr ""
 
@@ -855,7 +855,7 @@ msgstr ""
 msgid "Lista de canciones"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:174
+#: includes/frontend/views/view-app-shell.php:180
 msgid "Lista de canciones (opcional)"
 msgstr ""
 
@@ -1049,7 +1049,7 @@ msgstr ""
 
 #: admin/views/partial-manual-form.php:173
 #: admin/views/partial-result-preview.php:26
-#: includes/frontend/views/view-app-shell.php:171
+#: includes/frontend/views/view-app-shell.php:177
 #: includes/services/class-product-factory.php:276
 #: includes/support/class-settings.php:47
 msgid "Número de catálogo"
@@ -1083,7 +1083,7 @@ msgstr ""
 
 #: admin/views/partial-manual-form.php:165
 #: admin/views/partial-result-preview.php:28
-#: includes/frontend/views/view-app-shell.php:168
+#: includes/frontend/views/view-app-shell.php:174
 #: includes/services/class-product-factory.php:275
 #: includes/support/class-settings.php:43
 msgid "País de prensaje"
@@ -1276,6 +1276,7 @@ msgid "SDK de Freemius"
 msgstr ""
 
 #: admin/views/partial-reference-links.php:45
+#: includes/frontend/views/view-app-shell.php:150
 msgid "Se abren en una pestaña nueva. Melomaniac Sync no copia nada de esos sitios: lo que quieras usar lo pegas tú en el formulario."
 msgstr ""
 
@@ -1314,7 +1315,7 @@ msgstr ""
 
 #: admin/views/partial-manual-form.php:89
 #: admin/views/partial-result-preview.php:25
-#: includes/frontend/views/view-app-shell.php:154
+#: includes/frontend/views/view-app-shell.php:160
 #: includes/services/class-product-factory.php:272
 #: includes/support/class-settings.php:42
 msgid "Sello"
@@ -1456,7 +1457,7 @@ msgid "Tu usuario no tiene permiso para gestionar productos."
 msgstr ""
 
 #: admin/views/partial-manual-form.php:81
-#: includes/frontend/views/view-app-shell.php:151
+#: includes/frontend/views/view-app-shell.php:157
 msgid "Título del álbum"
 msgstr ""
 
@@ -1601,11 +1602,12 @@ msgstr ""
 msgid "wp-config.php ya lo tiene apagado (MELOMANIAC_SYNC_SKIP_FREEMIUS), así que este interruptor no hace nada hasta que lo quites de ahí."
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:191
+#: includes/frontend/views/view-app-shell.php:197
 msgid "¡Listo!"
 msgstr ""
 
 #: admin/views/partial-reference-links.php:29
+#: includes/frontend/views/view-app-shell.php:148
 msgid "¿Necesitas datos para completar este disco?"
 msgstr ""
 

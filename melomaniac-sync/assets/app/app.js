@@ -652,6 +652,70 @@
 			} );
 	}
 
+	/**
+	 * The same three manual lookup shortcuts the admin's manual form shows
+	 * (Discogs, Google, MusicBrainz), for a shop to open in a new tab and
+	 * copy data from by hand — the plugin never requests these on its own.
+	 *
+	 * @param {string} barcode Current barcode, may be empty.
+	 * @param {string} extra   Artist/title, when correcting a rejected match.
+	 * @return {Array} {label, url, description}.
+	 */
+	function referenceLinks( barcode, extra ) {
+		var query = ( barcode + ' ' + ( extra || '' ) ).trim();
+
+		return [
+			{
+				label: 'Buscar en Discogs',
+				url: 'https://www.discogs.com/search/?' + new URLSearchParams( { q: query, type: 'release' } ).toString(),
+				description: 'Abre la búsqueda en discogs.com. Copia a mano los datos que quieras usar.',
+			},
+			{
+				label: 'Buscar en Google',
+				url: 'https://www.google.com/search?' + new URLSearchParams( { q: query } ).toString(),
+				description: 'Útil cuando el disco es una edición local o muy antigua.',
+			},
+			{
+				label: 'Buscar en MusicBrainz',
+				url: 'https://musicbrainz.org/search?' + new URLSearchParams( { query: 'barcode:' + barcode, type: 'release' } ).toString(),
+				description: 'Verifica si el disco existe con otro código de barra.',
+			},
+		];
+	}
+
+	/**
+	 * Renders the reference links into the manual screen's list.
+	 *
+	 * @param {string} barcode Current barcode, may be empty.
+	 * @param {string} extra   Artist/title, when correcting a rejected match.
+	 */
+	function renderReferenceLinks( barcode, extra ) {
+		var wrap = app.querySelector( '[data-manual-references]' );
+		var list = wrap.querySelector( '.melomaniac-reference-links' );
+
+		list.innerHTML = '';
+
+		referenceLinks( barcode, extra ).forEach( function ( link ) {
+			var item = document.createElement( 'li' );
+			var anchor = document.createElement( 'a' );
+
+			anchor.href = link.url;
+			anchor.target = '_blank';
+			anchor.rel = 'noopener noreferrer';
+			anchor.textContent = link.label;
+			item.appendChild( anchor );
+
+			var description = document.createElement( 'span' );
+			description.className = 'melomaniac-reference-description';
+			description.textContent = link.description;
+			item.appendChild( description );
+
+			list.appendChild( item );
+		} );
+
+		wrap.hidden = false;
+	}
+
 	function openManual( intro ) {
 		var form = app.querySelector( '[data-form="manual"]' );
 		var release = state.rejected;
@@ -667,6 +731,8 @@
 		var introEl = app.querySelector( '[data-manual-intro]' );
 		introEl.textContent = intro || ( release ? 'Los datos que encontramos ya están cargados. Corrige lo que esté mal y crea el producto.' : '' );
 		introEl.hidden = ! introEl.textContent;
+
+		renderReferenceLinks( state.barcode, release ? ( release.artist + ' ' + release.title ).trim() : '' );
 
 		if ( release ) {
 			form.artist.value = release.artist || '';

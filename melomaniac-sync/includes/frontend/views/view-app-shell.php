@@ -144,6 +144,12 @@ $melomaniac_app = wp_parse_args(
 			<h1 data-manual-title><?php esc_html_e( 'Cargar el disco a mano', 'melomaniac-sync' ); ?></h1>
 			<p class="melomaniac-app-lead" data-manual-intro hidden></p>
 
+			<div class="melomaniac-reference" data-manual-references hidden>
+				<p class="melomaniac-reference-title"><?php esc_html_e( '¿Necesitas datos para completar este disco?', 'melomaniac-sync' ); ?></p>
+				<ul class="melomaniac-reference-links"></ul>
+				<p class="melomaniac-reference-note description"><?php esc_html_e( 'Se abren en una pestaña nueva. Melomaniac Sync no copia nada de esos sitios: lo que quieras usar lo pegas tú en el formulario.', 'melomaniac-sync' ); ?></p>
+			</div>
+
 			<form data-form="manual">
 				<label for="melomaniac-manual-artist"><?php esc_html_e( 'Artista', 'melomaniac-sync' ); ?> *</label>
 				<input type="text" id="melomaniac-manual-artist" name="artist" required />
