@@ -295,11 +295,32 @@
 	}
 
 	function onConnected() {
-		var disconnect = app.querySelector( '[data-action="disconnect"]' );
-		if ( disconnect ) {
-			disconnect.hidden = false;
+		var menuButton = app.querySelector( '[data-action="open-menu"]' );
+
+		if ( menuButton ) {
+			menuButton.hidden = false;
 		}
+
+		var usernameEl = app.querySelector( '[data-menu-username]' );
+
+		if ( usernameEl ) {
+			usernameEl.textContent = 'Conectado como ' + currentUsername();
+		}
+
 		showScreen( 'scan' );
+	}
+
+	/**
+	 * The username out of the stored "user:pass" credential, for display only.
+	 *
+	 * @return {string}
+	 */
+	function currentUsername() {
+		try {
+			return window.atob( state.auth ).split( ':' )[ 0 ];
+		} catch ( error ) {
+			return '';
+		}
 	}
 
 	// --- Scan screen --------------------------------------------------------
@@ -334,16 +355,17 @@
 		}
 
 		// Checked once on load rather than only after a tap: with the camera
-		// button always visible, a phone that can't scan (an iPhone, mostly —
-		// Safari does not implement barcode detection) or a page opened over
-		// HTTP instead of HTTPS looked exactly like a tap that "did nothing".
+		// button always visible, a page opened over HTTP instead of HTTPS (the
+		// one case camera-scanner.js's ZXing fallback can't work around
+		// either, since getUserMedia itself needs a secure context) looked
+		// exactly like a tap that "did nothing".
 		if ( ! window.isSecureContext ) {
 			toggleBtn.hidden = true;
 			hint.textContent = 'Esta página no está en HTTPS, así que el navegador no deja usar la cámara aquí. Escribe el código a mano o usa un lector USB.';
 			hint.hidden = false;
 		} else if ( ! cameraScanner || ! cameraScanner.isSupported() ) {
 			toggleBtn.hidden = true;
-			hint.textContent = 'Este navegador no puede escanear con la cámara (funciona en Chrome o Edge en Android). Escribe el código a mano o usa un lector USB.';
+			hint.textContent = 'Este navegador no puede escanear con la cámara. Escribe el código a mano o usa un lector USB.';
 			hint.hidden = false;
 		}
 
@@ -706,8 +728,15 @@
 		} );
 	}
 
-	function initFooter() {
-		app.querySelector( '[data-action="disconnect"]' ).addEventListener( 'click', function () {
+	function initMenu() {
+		var menuButton = app.querySelector( '[data-action="open-menu"]' );
+		var menu = app.querySelector( '[data-app-menu]' );
+
+		menuButton.addEventListener( 'click', function () {
+			menu.hidden = ! menu.hidden;
+		} );
+
+		menu.querySelector( '[data-action="disconnect"]' ).addEventListener( 'click', function () {
 			saveAuth( '' );
 			state.auth = '';
 			window.location.reload();
@@ -741,7 +770,7 @@
 		initReview();
 		initManual();
 		initDone();
-		initFooter();
+		initMenu();
 		registerServiceWorker();
 
 		state.auth = loadAuth();

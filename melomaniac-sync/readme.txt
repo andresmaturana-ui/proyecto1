@@ -4,7 +4,7 @@ Tags: woocommerce, vinyl, music, barcode, musicbrainz
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.8.2
+Stable tag: 1.9.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -41,11 +41,11 @@ WooCommerce tiene que estar activo.
 
 = ¿Necesito un lector de código de barra? =
 
-No. Puedes escribir el código a mano, o usar la cámara del dispositivo en navegadores basados en Chromium. Un lector USB funciona sin configuración: se comporta como un teclado.
+No. Puedes escribir el código a mano, o usar la cámara del dispositivo. Un lector USB funciona sin configuración: se comporta como un teclado.
 
 = ¿El escaneo con la cámara funciona en cualquier navegador? =
 
-Usa la API nativa del navegador (BarcodeDetector), disponible en Chrome, Edge y Android. En Safari y Firefox el botón avisa que no está disponible y puedes usar un lector USB o tipear el código.
+Sí, tanto en el celular como en el computador. Usa la API nativa del navegador (BarcodeDetector) cuando está disponible (Chrome, Edge y Samsung Internet en Android), y si no lo está —Safari en iPhone o Mac, o un navegador de escritorio— pasa a un decodificador propio incluido en el plugin. La página tiene que estar en HTTPS: sin eso, ningún navegador deja usar la cámara.
 
 = ¿Los productos se publican solos? =
 
@@ -56,6 +56,10 @@ No. Se crean siempre como borrador para que los revises, les pongas precio y sto
 El plugin lo detecta por SKU y por identificador de MusicBrainz, y te muestra un enlace al producto que ya existe en lugar de duplicarlo.
 
 == Changelog ==
+
+= 1.9.0 =
+* La cámara para escanear ahora funciona en cualquier navegador con HTTPS, incluyendo Safari en iPhone y Mac y los navegadores de escritorio: cuando el navegador no trae BarcodeDetector, se usa un decodificador propio (ZXing) incluido en el plugin.
+* La app suma un menú (el ícono ⋮ junto al nombre de la tienda) con el usuario conectado, un enlace directo a Ajustes y el botón para cerrar sesión.
 
 = 1.8.2 =
 * En la app, cuando el navegador no puede usar la cámara (porque la página no está en HTTPS, o porque el navegador no lo soporta) ahora lo avisa de inmediato y esconde el botón, en vez de dejar que lo toques y no veas que pasa nada.

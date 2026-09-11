@@ -125,6 +125,9 @@ final class Melomaniac_Sync_Plugin {
 			'includes/rest/class-rest-api.php',
 			'includes/frontend/class-product-display.php',
 			'includes/frontend/class-pwa.php',
+			// Just the menu slugs/URLs: the web app links to the settings
+			// screen, and that link has to build on the front end too.
+			'admin/class-admin-menu.php',
 		);
 
 		if ( is_admin() ) {
@@ -132,7 +135,6 @@ final class Melomaniac_Sync_Plugin {
 				$files,
 				array(
 					'admin/class-admin.php',
-					'admin/class-admin-menu.php',
 					'admin/class-scan-page.php',
 					'admin/class-ajax-handler.php',
 					'admin/class-manual-entry-handler.php',

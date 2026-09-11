@@ -211,6 +211,7 @@ class Melomaniac_Sync_Pwa {
 			'__APP_JS_URL__'    => MELOMANIAC_SYNC_URL . 'assets/app/app.js',
 			'__APP_CSS_URL__'   => MELOMANIAC_SYNC_URL . 'assets/app/app.css',
 			'__CAMERA_JS_URL__' => MELOMANIAC_SYNC_URL . 'assets/js/camera-scanner.js',
+			'__ZXING_JS_URL__'  => MELOMANIAC_SYNC_URL . 'vendor-libs/zxing/zxing.min.js',
 		);
 
 		echo str_replace( array_keys( $replacements ), array_values( $replacements ), $template ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static JS template with URL substitutions, not user input.
@@ -231,9 +232,11 @@ class Melomaniac_Sync_Pwa {
 			'app_js_url'    => esc_url_raw( MELOMANIAC_SYNC_URL . 'assets/app/app.js' ),
 			'app_css_url'   => esc_url_raw( MELOMANIAC_SYNC_URL . 'assets/app/app.css' ),
 			'camera_js_url' => esc_url_raw( MELOMANIAC_SYNC_URL . 'assets/js/camera-scanner.js' ),
+			'zxing_js_url'  => esc_url_raw( MELOMANIAC_SYNC_URL . 'vendor-libs/zxing/zxing.min.js' ),
 			'icon_url'      => esc_url_raw( MELOMANIAC_SYNC_URL . 'assets/app/icon-192.png' ),
 			'site_name'     => get_bloginfo( 'name' ),
 			'profile_url'   => esc_url_raw( admin_url( 'profile.php#application-passwords-section' ) ),
+			'settings_url'  => esc_url_raw( Melomaniac_Sync_Admin_Menu::settings_url() ),
 			'version'       => MELOMANIAC_SYNC_VERSION,
 		);
 

@@ -66,10 +66,21 @@ class Melomaniac_Sync_Admin {
 
 		wp_enqueue_media();
 
+		// Fallback barcode decoder for browsers without BarcodeDetector
+		// (Safari, and desktop browsers in general); camera-scanner.js only
+		// reaches for it when the native API is missing.
+		wp_enqueue_script(
+			'melomaniac-sync-zxing',
+			MELOMANIAC_SYNC_URL . 'vendor-libs/zxing/zxing.min.js',
+			array(),
+			self::asset_version( 'vendor-libs/zxing/zxing.min.js' ),
+			true
+		);
+
 		wp_enqueue_script(
 			'melomaniac-sync-camera',
 			MELOMANIAC_SYNC_URL . 'assets/js/camera-scanner.js',
-			array(),
+			array( 'melomaniac-sync-zxing' ),
 			self::asset_version( 'assets/js/camera-scanner.js' ),
 			true
 		);
@@ -109,7 +120,7 @@ class Melomaniac_Sync_Admin {
 					'genericError'    => __( 'Algo falló. Intenta de nuevo.', 'melomaniac-sync' ),
 					'emptyBarcode'    => __( 'Ingresa o escanea un código de barra.', 'melomaniac-sync' ),
 					'editProduct'     => __( 'Editar el producto', 'melomaniac-sync' ),
-					'cameraUnsupported' => __( 'Este navegador no puede escanear con la cámara. Usa Chrome o Edge, o un lector USB.', 'melomaniac-sync' ),
+					'cameraUnsupported' => __( 'Este navegador no puede escanear con la cámara. Escribe el código a mano o usa un lector USB.', 'melomaniac-sync' ),
 					'cameraDenied'    => __( 'No se pudo acceder a la cámara. Revisa los permisos del navegador.', 'melomaniac-sync' ),
 					'cameraInsecure'  => __( 'La cámara solo funciona sobre HTTPS.', 'melomaniac-sync' ),
 					'cameraStart'     => __( 'Escanear con la cámara', 'melomaniac-sync' ),

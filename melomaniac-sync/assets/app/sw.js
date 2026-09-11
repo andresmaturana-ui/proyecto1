@@ -16,6 +16,7 @@ var SHELL_URLS = [
 	'__APP_JS_URL__',
 	'__APP_CSS_URL__',
 	'__CAMERA_JS_URL__',
+	'__ZXING_JS_URL__',
 ];
 
 self.addEventListener( 'install', function ( event ) {

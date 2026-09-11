@@ -11,9 +11,11 @@
  *     @type string $app_js_url    App script URL.
  *     @type string $app_css_url   App stylesheet URL.
  *     @type string $camera_js_url Shared camera scanner script URL.
+ *     @type string $zxing_js_url  Vendored ZXing decoder, the camera scanner's fallback.
  *     @type string $icon_url      App icon URL.
  *     @type string $site_name     Store name.
  *     @type string $profile_url   Where to create an Application Password.
+ *     @type string $settings_url  The plugin's settings screen in wp-admin.
  *     @type string $version       Plugin version, for the app footer.
  * }
  */
@@ -29,9 +31,11 @@ $melomaniac_app = wp_parse_args(
 		'app_js_url'    => '',
 		'app_css_url'   => '',
 		'camera_js_url' => '',
+		'zxing_js_url'  => '',
 		'icon_url'      => '',
 		'site_name'     => '',
 		'profile_url'   => '',
+		'settings_url'  => '',
 		'version'       => '',
 	)
 );
@@ -59,6 +63,12 @@ $melomaniac_app = wp_parse_args(
 		<span class="melomaniac-app-title"><?php echo esc_html( $melomaniac_app['site_name'] ); ?></span>
 		<button type="button" class="melomaniac-app-icon-btn" data-action="open-menu" aria-label="<?php esc_attr_e( 'Menú', 'melomaniac-sync' ); ?>" hidden>&#8942;</button>
 	</header>
+
+	<div class="melomaniac-app-menu" data-app-menu hidden>
+		<p class="melomaniac-app-menu-user" data-menu-username></p>
+		<a class="melomaniac-btn-link" href="<?php echo esc_url( $melomaniac_app['settings_url'] ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Abrir ajustes', 'melomaniac-sync' ); ?> &#8599;</a>
+		<button type="button" class="melomaniac-btn-link" data-action="disconnect"><?php esc_html_e( 'Cerrar sesión', 'melomaniac-sync' ); ?></button>
+	</div>
 
 	<main class="melomaniac-app-main">
 
@@ -190,7 +200,6 @@ $melomaniac_app = wp_parse_args(
 	</main>
 
 	<footer class="melomaniac-app-footer">
-		<button type="button" class="melomaniac-btn-link" data-action="disconnect" hidden><?php esc_html_e( 'Desconectar', 'melomaniac-sync' ); ?></button>
 		<span class="melomaniac-app-version">v<?php echo esc_html( $melomaniac_app['version'] ); ?></span>
 	</footer>
 
@@ -202,6 +211,7 @@ window.MelomaniacSyncApp = {
 	swUrl: <?php echo wp_json_encode( $melomaniac_app['sw_url'] ); ?>
 };
 </script>
+<script src="<?php echo esc_url( $melomaniac_app['zxing_js_url'] ); ?>"></script>
 <script src="<?php echo esc_url( $melomaniac_app['camera_js_url'] ); ?>"></script>
 <script src="<?php echo esc_url( $melomaniac_app['app_js_url'] ); ?>"></script>
 </body>

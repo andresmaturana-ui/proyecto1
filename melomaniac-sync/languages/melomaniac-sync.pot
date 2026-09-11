@@ -58,12 +58,12 @@ msgstr ""
 msgid "%s - Melomaniac Sync"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:113
-#: includes/frontend/views/view-app-shell.php:132
+#: includes/frontend/views/view-app-shell.php:123
+#: includes/frontend/views/view-app-shell.php:142
 msgid "&larr; Volver"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:179
+#: includes/frontend/views/view-app-shell.php:189
 msgid "&larr; Volver al escaneo"
 msgstr ""
 
@@ -75,7 +75,11 @@ msgstr ""
 msgid "Abre la búsqueda en discogs.com. Copia a mano los datos que quieras usar."
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:186
+#: includes/frontend/views/view-app-shell.php:69
+msgid "Abrir ajustes"
+msgstr ""
+
+#: includes/frontend/views/view-app-shell.php:196
 msgid "Abrir en el editor"
 msgstr ""
 
@@ -129,7 +133,7 @@ msgstr ""
 msgid "Alemán"
 msgstr ""
 
-#: admin/class-admin.php:109
+#: admin/class-admin.php:120
 msgid "Algo falló. Intenta de nuevo."
 msgstr ""
 
@@ -150,7 +154,7 @@ msgid "Apágalo para probar el plugin sin que hable con Freemius en ningún mome
 msgstr ""
 
 #: admin/views/partial-manual-form.php:73
-#: includes/frontend/views/view-app-shell.php:141
+#: includes/frontend/views/view-app-shell.php:151
 #: includes/services/class-product-factory.php:271
 #: includes/support/class-settings.php:40
 msgid "Artista"
@@ -158,7 +162,7 @@ msgstr ""
 
 #: admin/views/partial-manual-form.php:112
 #: admin/views/partial-result-preview.php:24
-#: includes/frontend/views/view-app-shell.php:152
+#: includes/frontend/views/view-app-shell.php:162
 #: includes/services/class-product-factory.php:273
 #: includes/support/class-settings.php:41
 msgid "Año"
@@ -184,12 +188,12 @@ msgstr ""
 msgid "Borrador es lo recomendado: te deja revisar precio y stock antes de que el disco salga a la venta."
 msgstr ""
 
-#: admin/class-admin.php:106
+#: admin/class-admin.php:117
 msgid "Buscando en MusicBrainz…"
 msgstr ""
 
 #: admin/views/page-scan.php:53
-#: includes/frontend/views/view-app-shell.php:100
+#: includes/frontend/views/view-app-shell.php:110
 msgid "Buscar"
 msgstr ""
 
@@ -237,16 +241,16 @@ msgstr ""
 msgid "Cantidad de discos"
 msgstr ""
 
-#: admin/class-admin.php:108
+#: admin/class-admin.php:119
 msgid "Cargando los datos del disco…"
 msgstr ""
 
 #: admin/views/partial-manual-form.php:33
-#: includes/frontend/views/view-app-shell.php:137
+#: includes/frontend/views/view-app-shell.php:147
 msgid "Cargar el disco a mano"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:103
+#: includes/frontend/views/view-app-shell.php:113
 msgid "Cargar un disco a mano"
 msgstr ""
 
@@ -268,6 +272,10 @@ msgstr ""
 
 #: admin/views/partial-product-fields.php:60
 msgid "Categorías"
+msgstr ""
+
+#: includes/frontend/views/view-app-shell.php:70
+msgid "Cerrar sesión"
 msgstr ""
 
 #: includes/services/class-release-dto.php:305
@@ -294,11 +302,11 @@ msgstr ""
 msgid "Con un lector USB, deja el cursor en el campo y dispáralo: el lector escribe el código y confirma solo."
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:84
+#: includes/frontend/views/view-app-shell.php:94
 msgid "Conectar"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:66
+#: includes/frontend/views/view-app-shell.php:76
 msgid "Conectar la app"
 msgstr ""
 
@@ -306,7 +314,7 @@ msgstr ""
 msgid "Conexión con los servicios"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:117
+#: includes/frontend/views/view-app-shell.php:127
 msgid "Confirmar disco"
 msgstr ""
 
@@ -318,7 +326,7 @@ msgstr ""
 msgid "Contacto para MusicBrainz"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:79
+#: includes/frontend/views/view-app-shell.php:89
 msgid "Contraseña de aplicación"
 msgstr ""
 
@@ -334,13 +342,13 @@ msgstr ""
 msgid "Cover Art Archive"
 msgstr ""
 
-#: admin/class-admin.php:107
+#: admin/class-admin.php:118
 msgid "Creando el producto…"
 msgstr ""
 
 #: admin/views/partial-result-preview.php:116
-#: includes/frontend/views/view-app-shell.php:128
-#: includes/frontend/views/view-app-shell.php:176
+#: includes/frontend/views/view-app-shell.php:138
+#: includes/frontend/views/view-app-shell.php:186
 msgid "Crear producto"
 msgstr ""
 
@@ -352,7 +360,7 @@ msgstr ""
 msgid "Crear una categoría nueva"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:72
+#: includes/frontend/views/view-app-shell.php:82
 msgid "Crear una contraseña de aplicación"
 msgstr ""
 
@@ -367,7 +375,7 @@ msgstr ""
 #: admin/views/page-diagnostics.php:228
 #: admin/views/page-scan.php:38
 #: admin/views/partial-result-preview.php:29
-#: includes/frontend/views/view-app-shell.php:98
+#: includes/frontend/views/view-app-shell.php:108
 msgid "Código de barra"
 msgstr ""
 
@@ -399,10 +407,6 @@ msgstr ""
 msgid "Descargar la portada a la biblioteca de medios"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:193
-msgid "Desconectar"
-msgstr ""
-
 #: admin/views/partial-manual-form.php:158
 msgid "Detalle: LP 12\", doble, 180g, digipak…"
 msgstr ""
@@ -411,7 +415,7 @@ msgstr ""
 msgid "Detectar sola"
 msgstr ""
 
-#: admin/class-admin.php:116
+#: admin/class-admin.php:127
 msgid "Detener la cámara"
 msgstr ""
 
@@ -469,7 +473,7 @@ msgstr ""
 msgid "EP"
 msgstr ""
 
-#: admin/class-admin.php:111
+#: admin/class-admin.php:122
 #: admin/class-scan-page.php:77
 msgid "Editar el producto"
 msgstr ""
@@ -518,12 +522,12 @@ msgstr ""
 msgid "El servidor no pudo resolver el dominio. Es un problema de DNS del hosting."
 msgstr ""
 
-#: admin/class-admin.php:117
 #: admin/class-admin.php:128
+#: admin/class-admin.php:139
 msgid "Elegir la portada"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:110
+#: includes/frontend/views/view-app-shell.php:120
 msgid "Elige el disco"
 msgstr ""
 
@@ -551,19 +555,19 @@ msgstr ""
 msgid "Escanea un disco y crea el producto en la tienda."
 msgstr ""
 
-#: admin/class-admin.php:115
+#: admin/class-admin.php:126
 #: admin/views/page-scan.php:56
 msgid "Escanear con la cámara"
 msgstr ""
 
 #: admin/class-admin-menu.php:106
 #: admin/class-admin-menu.php:107
-#: admin/class-admin.php:146
+#: admin/class-admin.php:157
 #: admin/views/page-scan.php:21
 msgid "Escanear disco"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:187
+#: includes/frontend/views/view-app-shell.php:197
 msgid "Escanear otro"
 msgstr ""
 
@@ -591,8 +595,8 @@ msgstr ""
 msgid "Estado al crearse"
 msgstr ""
 
-#: admin/class-admin.php:112
-msgid "Este navegador no puede escanear con la cámara. Usa Chrome o Edge, o un lector USB."
+#: admin/class-admin.php:123
+msgid "Este navegador no puede escanear con la cámara. Escribe el código a mano o usa un lector USB."
 msgstr ""
 
 #: admin/views/page-settings.php:181
@@ -638,13 +642,13 @@ msgstr ""
 
 #: admin/views/partial-manual-form.php:142
 #: admin/views/partial-result-preview.php:27
-#: includes/frontend/views/view-app-shell.php:156
+#: includes/frontend/views/view-app-shell.php:166
 #: includes/services/class-product-factory.php:274
 #: includes/support/class-settings.php:45
 msgid "Formato"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:170
+#: includes/frontend/views/view-app-shell.php:180
 msgid "Foto de la portada (opcional)"
 msgstr ""
 
@@ -705,7 +709,7 @@ msgstr ""
 msgid "Inglés"
 msgstr ""
 
-#: admin/class-admin.php:110
+#: admin/class-admin.php:121
 msgid "Ingresa o escanea un código de barra."
 msgstr ""
 
@@ -722,7 +726,7 @@ msgstr ""
 msgid "La búsqueda en Discogs está desactivada o sin token."
 msgstr ""
 
-#: admin/class-admin.php:114
+#: admin/class-admin.php:125
 msgid "La cámara solo funciona sobre HTTPS."
 msgstr ""
 
@@ -756,7 +760,7 @@ msgstr ""
 msgid "Lista de canciones"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:167
+#: includes/frontend/views/view-app-shell.php:177
 msgid "Lista de canciones (opcional)"
 msgstr ""
 
@@ -769,13 +773,13 @@ msgid "Los datos que encontramos ya están cargados. Corrige lo que esté mal y 
 msgstr ""
 
 #: includes/frontend/class-pwa.php:166
-#: includes/frontend/views/view-app-shell.php:48
+#: includes/frontend/views/view-app-shell.php:52
 msgid "Melomaniac"
 msgstr ""
 
 #: admin/class-admin-menu.php:91
 #: admin/class-admin-menu.php:92
-#: includes/frontend/views/view-app-shell.php:49
+#: includes/frontend/views/view-app-shell.php:53
 msgid "Melomaniac Sync"
 msgstr ""
 
@@ -795,7 +799,7 @@ msgstr ""
 msgid "Melomaniac Sync requiere PHP 7.4 o superior."
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:60
+#: includes/frontend/views/view-app-shell.php:64
 msgid "Menú"
 msgstr ""
 
@@ -836,7 +840,7 @@ msgstr ""
 msgid "MusicBrainz tiene el disco, así que el escaneo normal no va a consultar Discogs."
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:68
+#: includes/frontend/views/view-app-shell.php:78
 msgid "Necesitas una contraseña de aplicación de tu usuario de WordPress. Se crea una sola vez."
 msgstr ""
 
@@ -852,7 +856,7 @@ msgstr ""
 msgid "Ninguno"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:112
+#: includes/frontend/views/view-app-shell.php:122
 msgid "Ninguno es, cargar a mano"
 msgstr ""
 
@@ -865,7 +869,7 @@ msgstr ""
 msgid "No encontramos ningún disco con el código %s. Completa los datos y creamos el borrador igual."
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:131
+#: includes/frontend/views/view-app-shell.php:141
 msgid "No es este disco, corregir a mano"
 msgstr ""
 
@@ -881,7 +885,7 @@ msgstr ""
 msgid "No se detectó la sesión de la app. Vuelve a conectarla desde Ajustes."
 msgstr ""
 
-#: admin/class-admin.php:113
+#: admin/class-admin.php:124
 msgid "No se pudo acceder a la cámara. Revisa los permisos del navegador."
 msgstr ""
 
@@ -933,7 +937,7 @@ msgstr ""
 
 #: admin/views/partial-manual-form.php:173
 #: admin/views/partial-result-preview.php:26
-#: includes/frontend/views/view-app-shell.php:164
+#: includes/frontend/views/view-app-shell.php:174
 #: includes/services/class-product-factory.php:276
 #: includes/support/class-settings.php:47
 msgid "Número de catálogo"
@@ -963,7 +967,7 @@ msgstr ""
 
 #: admin/views/partial-manual-form.php:165
 #: admin/views/partial-result-preview.php:28
-#: includes/frontend/views/view-app-shell.php:161
+#: includes/frontend/views/view-app-shell.php:171
 #: includes/services/class-product-factory.php:275
 #: includes/support/class-settings.php:43
 msgid "País de prensaje"
@@ -996,7 +1000,7 @@ msgstr ""
 
 #: admin/views/page-settings.php:166
 #: admin/views/partial-manual-form.php:203
-#: includes/frontend/views/view-app-shell.php:122
+#: includes/frontend/views/view-app-shell.php:132
 msgid "Portada"
 msgstr ""
 
@@ -1085,7 +1089,7 @@ msgstr ""
 msgid "Quitar"
 msgstr ""
 
-#: admin/class-admin.php:130
+#: admin/class-admin.php:141
 msgid "Quitar la portada"
 msgstr ""
 
@@ -1169,7 +1173,7 @@ msgstr ""
 
 #: admin/views/partial-manual-form.php:89
 #: admin/views/partial-result-preview.php:25
-#: includes/frontend/views/view-app-shell.php:147
+#: includes/frontend/views/view-app-shell.php:157
 #: includes/services/class-product-factory.php:272
 #: includes/support/class-settings.php:42
 msgid "Sello"
@@ -1307,7 +1311,7 @@ msgid "Tu usuario no tiene permiso para gestionar productos."
 msgstr ""
 
 #: admin/views/partial-manual-form.php:81
-#: includes/frontend/views/view-app-shell.php:144
+#: includes/frontend/views/view-app-shell.php:154
 msgid "Título del álbum"
 msgstr ""
 
@@ -1335,16 +1339,16 @@ msgstr ""
 msgid "Usar esta edición"
 msgstr ""
 
-#: admin/class-admin.php:118
 #: admin/class-admin.php:129
+#: admin/class-admin.php:140
 msgid "Usar esta imagen"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:94
+#: includes/frontend/views/view-app-shell.php:104
 msgid "Usar la cámara"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:76
+#: includes/frontend/views/view-app-shell.php:86
 msgid "Usuario"
 msgstr ""
 
@@ -1444,7 +1448,7 @@ msgstr ""
 msgid "wp-config.php ya lo tiene apagado (MELOMANIAC_SYNC_SKIP_FREEMIUS), así que este interruptor no hace nada hasta que lo quites de ahí."
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:184
+#: includes/frontend/views/view-app-shell.php:194
 msgid "¡Listo!"
 msgstr ""
 

@@ -1,10 +1,12 @@
 /**
  * Camera barcode scanning.
  *
- * Uses the browser's native BarcodeDetector, available in Chromium based
- * browsers and on Android. Safari and Firefox do not implement it, so
- * isSupported() returns false there and the screen tells the user to use a USB
- * reader instead. No third party scanning library is bundled.
+ * Uses the browser's native BarcodeDetector where it exists (Chrome, Edge and
+ * Samsung Internet on Android — the fast path, since it runs on-device ML
+ * rather than JS). Everywhere else — Safari on iPhone or Mac, and desktop
+ * browsers in general, none of which implement BarcodeDetector at all — this
+ * falls back to the vendored @zxing/library (vendor-libs/zxing), decoding
+ * frames in plain JS instead.
  *
  * @package Melomaniac_Sync
  */
@@ -12,7 +14,48 @@
 ( function ( window ) {
 	'use strict';
 
-	var FORMATS = [ 'ean_13', 'ean_8', 'upc_a', 'upc_e', 'itf' ];
+	var NATIVE_FORMATS = [ 'ean_13', 'ean_8', 'upc_a', 'upc_e', 'itf' ];
+
+	/**
+	 * Adapts the vendored ZXing decoder to the same detect(video) => Promise
+	 * interface the native BarcodeDetector exposes, so the rest of this file
+	 * does not need to know which one is doing the work.
+	 *
+	 * @constructor
+	 */
+	function ZXingAdapter() {
+		var hints = new Map();
+		var formats = window.ZXing.BarcodeFormat;
+
+		hints.set( window.ZXing.DecodeHintType.POSSIBLE_FORMATS, [
+			formats.EAN_13,
+			formats.EAN_8,
+			formats.UPC_A,
+			formats.UPC_E,
+			formats.ITF,
+		] );
+
+		this.reader = new window.ZXing.BrowserMultiFormatReader( hints );
+	}
+
+	/**
+	 * Decodes one frame from the video element.
+	 *
+	 * ZXing's decode() is synchronous and throws (NotFoundException, most of
+	 * the time) when the frame has no barcode in it, which is the normal case
+	 * for most frames; that is reported the same way the native detector
+	 * reports "nothing found" — an empty array, not a rejection.
+	 *
+	 * @param {HTMLVideoElement} video Current video frame source.
+	 * @return {Promise<Array>}
+	 */
+	ZXingAdapter.prototype.detect = function ( video ) {
+		try {
+			return Promise.resolve( [ { rawValue: this.reader.decode( video ).getText() } ] );
+		} catch ( error ) {
+			return Promise.resolve( [] );
+		}
+	};
 
 	/**
 	 * Wraps a video element and the detection loop.
@@ -32,15 +75,16 @@
 	}
 
 	/**
-	 * Whether this browser can scan with the camera.
+	 * Whether this browser can scan with the camera: a camera to get a stream
+	 * from, and either detection backend to read a barcode out of it.
 	 *
 	 * @return {boolean} True when supported.
 	 */
 	CameraScanner.prototype.isSupported = function () {
 		return (
-			'BarcodeDetector' in window &&
 			!! window.navigator.mediaDevices &&
-			!! window.navigator.mediaDevices.getUserMedia
+			!! window.navigator.mediaDevices.getUserMedia &&
+			( 'BarcodeDetector' in window || !! window.ZXing )
 		);
 	};
 
@@ -51,6 +95,20 @@
 	 */
 	CameraScanner.prototype.isRunning = function () {
 		return this.running;
+	};
+
+	/**
+	 * Builds whichever detection backend this browser has available, native
+	 * BarcodeDetector first.
+	 *
+	 * @return {Object} Something exposing detect(video) => Promise<Array>.
+	 */
+	CameraScanner.prototype.createDetector = function () {
+		if ( 'BarcodeDetector' in window ) {
+			return new window.BarcodeDetector( { formats: NATIVE_FORMATS } );
+		}
+
+		return new ZXingAdapter();
 	};
 
 	/**
@@ -66,7 +124,7 @@
 		this.running = true;
 
 		try {
-			this.detector = new window.BarcodeDetector( { formats: FORMATS } );
+			this.detector = this.createDetector();
 		} catch ( error ) {
 			this.running = false;
 			this.fail( 'cameraUnsupported' );
@@ -134,7 +192,8 @@
 				return;
 			}
 
-			// Detecting on every frame is wasteful; four times a second is plenty.
+			// Detecting on every frame is wasteful; four times a second is plenty,
+			// and keeps the JS decoder path from pegging the CPU on a phone.
 			if ( timestamp - self.lastAttempt < 250 ) {
 				self.scheduleFrame();
 				return;
