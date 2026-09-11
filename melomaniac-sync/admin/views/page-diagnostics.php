@@ -22,6 +22,10 @@ $melomaniac_test_plan    = isset( $data['test_plan'] ) ? (string) $data['test_pl
 $melomaniac_host_forced  = ! empty( $data['plan_forced_by_host'] );
 $melomaniac_barcode     = isset( $data['barcode'] ) ? (string) $data['barcode'] : '';
 $melomaniac_result      = isset( $data['barcode_result'] ) ? $data['barcode_result'] : null;
+$melomaniac_fs_loaded   = ! empty( $data['freemius_loaded'] );
+$melomaniac_fs_by_host  = ! empty( $data['freemius_disabled_by_host'] );
+$melomaniac_fs_option   = ! empty( $data['freemius_disabled_option'] );
+$melomaniac_fs_toggled  = ! empty( $data['freemius_toggled'] );
 
 $melomaniac_states = array(
 	'ok'      => __( 'Bien', 'melomaniac-sync' ),
@@ -79,6 +83,55 @@ $melomaniac_states = array(
 
 			if ( '' !== $melomaniac_test_plan && ! $melomaniac_host_forced ) {
 				echo ' ' . esc_html__( '(prueba activa, no es el plan real)', 'melomaniac-sync' );
+			}
+			?>
+		</p>
+	</div>
+
+	<div class="melomaniac-card">
+		<h2><?php esc_html_e( 'SDK de Freemius', 'melomaniac-sync' ); ?></h2>
+		<p class="description">
+			<?php esc_html_e( 'Apágalo para probar el plugin sin que hable con Freemius en ningún momento: sin conexión de cuenta, sin pantalla de licencia, sin llamadas a freemius.com. Con esto apagado, el plan lo decide solo el selector de arriba.', 'melomaniac-sync' ); ?>
+		</p>
+
+		<?php if ( $melomaniac_fs_toggled ) : ?>
+			<div class="notice notice-success inline">
+				<p><?php esc_html_e( 'Guardado. El cambio se aplica en la próxima carga de página.', 'melomaniac-sync' ); ?></p>
+			</div>
+		<?php endif; ?>
+
+		<?php if ( $melomaniac_fs_by_host ) : ?>
+			<div class="notice notice-warning inline">
+				<p><?php esc_html_e( 'wp-config.php ya lo tiene apagado (MELOMANIAC_SYNC_SKIP_FREEMIUS), así que este interruptor no hace nada hasta que lo quites de ahí.', 'melomaniac-sync' ); ?></p>
+			</div>
+		<?php endif; ?>
+
+		<form method="post" class="melomaniac-plan-test-form">
+			<?php wp_nonce_field( Melomaniac_Sync_Diagnostics_Page::NONCE_FREEMIUS ); ?>
+			<label for="melomaniac-freemius-disabled">
+				<input
+					type="checkbox"
+					id="melomaniac-freemius-disabled"
+					name="freemius_disabled"
+					value="1"
+					<?php checked( $melomaniac_fs_option ); ?>
+					<?php disabled( $melomaniac_fs_by_host ); ?>
+				/>
+				<?php esc_html_e( 'Desactivar Freemius por completo', 'melomaniac-sync' ); ?>
+			</label>
+			<button type="submit" name="melomaniac_sync_set_freemius_disabled" value="1" class="button" <?php disabled( $melomaniac_fs_by_host ); ?>>
+				<?php esc_html_e( 'Guardar', 'melomaniac-sync' ); ?>
+			</button>
+		</form>
+
+		<p class="melomaniac-plan-test-current">
+			<?php
+			if ( $melomaniac_fs_loaded ) {
+				esc_html_e( 'Ahora mismo: Freemius está cargado.', 'melomaniac-sync' );
+			} elseif ( $melomaniac_fs_by_host ) {
+				esc_html_e( 'Ahora mismo: Freemius no se cargó (apagado desde wp-config.php).', 'melomaniac-sync' );
+			} else {
+				esc_html_e( 'Ahora mismo: Freemius no se cargó (apagado desde este interruptor).', 'melomaniac-sync' );
 			}
 			?>
 		</p>

@@ -36,6 +36,11 @@ class Melomaniac_Sync_Diagnostics_Page {
 	const NONCE_PLAN = 'melomaniac_sync_set_test_plan';
 
 	/**
+	 * Nonce action for the Freemius toggle.
+	 */
+	const NONCE_FREEMIUS = 'melomaniac_sync_set_freemius_disabled';
+
+	/**
 	 * Connectivity checker.
 	 *
 	 * @var Melomaniac_Sync_Connectivity_Check
@@ -96,19 +101,33 @@ class Melomaniac_Sync_Diagnostics_Page {
 			Melomaniac_Sync_Licensing::set_test_plan( sanitize_key( wp_unslash( $_POST['test_plan'] ?? '' ) ) );
 		}
 
+		$freemius_toggled = false;
+
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce checked right below.
+		if ( isset( $_POST['melomaniac_sync_set_freemius_disabled'] ) ) {
+			check_admin_referer( self::NONCE_FREEMIUS );
+			// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verified above.
+			Melomaniac_Sync_Licensing::set_freemius_disabled( ! empty( $_POST['freemius_disabled'] ) );
+			$freemius_toggled = true;
+		}
+
 		Melomaniac_Sync_Admin::render_view(
 			'page-diagnostics',
 			array(
-				'probes'         => $probes,
-				'ran'            => ! empty( $probes ),
-				'flushed'        => $flushed,
-				'barcode'        => $this->read_probe_barcode(),
-				'barcode_result' => $this->maybe_probe_barcode(),
-				'environment'    => $this->check->environment(),
-				'current_plan'   => Melomaniac_Sync_Licensing::get_plan(),
-				'test_plan'      => Melomaniac_Sync_Licensing::test_plan(),
-				'plan_forced_by_host' => defined( 'MELOMANIAC_SYNC_FORCE_PLAN' )
+				'probes'                    => $probes,
+				'ran'                       => ! empty( $probes ),
+				'flushed'                   => $flushed,
+				'barcode'                   => $this->read_probe_barcode(),
+				'barcode_result'            => $this->maybe_probe_barcode(),
+				'environment'               => $this->check->environment(),
+				'current_plan'              => Melomaniac_Sync_Licensing::get_plan(),
+				'test_plan'                 => Melomaniac_Sync_Licensing::test_plan(),
+				'plan_forced_by_host'       => defined( 'MELOMANIAC_SYNC_FORCE_PLAN' )
 					&& in_array( MELOMANIAC_SYNC_FORCE_PLAN, Melomaniac_Sync_Licensing::PLANS, true ),
+				'freemius_loaded'           => Melomaniac_Sync_Licensing::is_freemius_loaded(),
+				'freemius_disabled_by_host' => Melomaniac_Sync_Licensing::is_freemius_disabled_by_constant(),
+				'freemius_disabled_option'  => Melomaniac_Sync_Licensing::is_freemius_disabled_by_option(),
+				'freemius_toggled'          => $freemius_toggled,
 			)
 		);
 	}

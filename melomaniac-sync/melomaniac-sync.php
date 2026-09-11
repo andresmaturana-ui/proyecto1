@@ -3,7 +3,7 @@
  * Plugin Name:          Melomaniac Sync
  * Plugin URI:           https://melomaniac.cl/melomaniac-sync
  * Description:          Escanea el código de barra de un vinilo, CD o cassette y completa la ficha de producto de WooCommerce con sus datos musicales desde MusicBrainz.
- * Version:              1.5.0
+ * Version:              1.6.0
  * Requires at least:    6.0
  * Requires PHP:         7.4
  * Author:               Melomaniac
@@ -20,11 +20,18 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'MELOMANIAC_SYNC_VERSION', '1.5.0' );
+define( 'MELOMANIAC_SYNC_VERSION', '1.6.0' );
 define( 'MELOMANIAC_SYNC_FILE', __FILE__ );
 define( 'MELOMANIAC_SYNC_PATH', plugin_dir_path( __FILE__ ) );
 define( 'MELOMANIAC_SYNC_URL', plugin_dir_url( __FILE__ ) );
 define( 'MELOMANIAC_SYNC_BASENAME', plugin_basename( __FILE__ ) );
+
+// A shop can turn Freemius off entirely from Diagnostics (no wp-config.php
+// access needed), so the option is checked here, before the SDK file loads.
+// A constant set in wp-config.php still wins over the option either way.
+if ( ! defined( 'MELOMANIAC_SYNC_SKIP_FREEMIUS' ) && get_option( 'melomaniac_sync_disable_freemius' ) ) {
+	define( 'MELOMANIAC_SYNC_SKIP_FREEMIUS', true );
+}
 
 // Freemius requires loading unconditionally and as early as possible, before
 // this plugin registers any hook of its own.

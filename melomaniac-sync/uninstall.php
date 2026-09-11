@@ -19,6 +19,7 @@ $melomaniac_options = array(
 	'melomaniac_sync_mb_last_request',
 	'melomaniac_sync_mb_last_request_discogs',
 	'melomaniac_sync_test_plan',
+	'melomaniac_sync_disable_freemius',
 );
 
 foreach ( $melomaniac_options as $melomaniac_option ) {

@@ -39,6 +39,12 @@ class Melomaniac_Sync_Licensing {
 	const OPTION_TEST_PLAN = 'melomaniac_sync_test_plan';
 
 	/**
+	 * Option that turns the Freemius SDK off entirely, checked at plugin
+	 * bootstrap time, before the SDK file is even required.
+	 */
+	const OPTION_DISABLE_FREEMIUS = 'melomaniac_sync_disable_freemius';
+
+	/**
 	 * Monthly disc limits per plan. Null means unlimited.
 	 */
 	const DEFAULT_LIMITS = array(
@@ -153,6 +159,51 @@ class Melomaniac_Sync_Licensing {
 		}
 
 		return '' !== self::test_plan();
+	}
+
+	/**
+	 * Whether the Freemius SDK actually loaded this request.
+	 *
+	 * Reflects reality rather than intent: a store using the test plan
+	 * selector never needs Freemius at all, and get_plan() never calls into
+	 * it once a test plan is set, but this tells the Diagnostics screen
+	 * whether the SDK itself is present.
+	 *
+	 * @return bool
+	 */
+	public static function is_freemius_loaded() {
+		return function_exists( 'melomaniac_sync_fs' );
+	}
+
+	/**
+	 * Whether wp-config.php forces Freemius off, which the option cannot undo.
+	 *
+	 * @return bool
+	 */
+	public static function is_freemius_disabled_by_constant() {
+		return defined( 'MELOMANIAC_SYNC_SKIP_FREEMIUS' ) && MELOMANIAC_SYNC_SKIP_FREEMIUS;
+	}
+
+	/**
+	 * Whether the Diagnostics toggle has Freemius turned off.
+	 *
+	 * @return bool
+	 */
+	public static function is_freemius_disabled_by_option() {
+		return (bool) get_option( self::OPTION_DISABLE_FREEMIUS, false );
+	}
+
+	/**
+	 * Turns the Freemius SDK on or off from Diagnostics.
+	 *
+	 * Takes effect on the next request: this one already decided whether to
+	 * load the SDK before this screen even ran.
+	 *
+	 * @param bool $disabled True to stop loading Freemius.
+	 * @return void
+	 */
+	public static function set_freemius_disabled( $disabled ) {
+		update_option( self::OPTION_DISABLE_FREEMIUS, (bool) $disabled, false );
 	}
 
 	/**
