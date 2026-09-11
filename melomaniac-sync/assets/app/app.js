@@ -318,7 +318,7 @@
 					lookupBarcode( barcode );
 				},
 				onError: function () {
-					hint.textContent = 'No se pudo usar la cámara. Escribe el código a mano.';
+					hint.textContent = 'No se pudo usar la cámara. Revisa que le hayas dado permiso, o escribe el código a mano.';
 					hint.hidden = false;
 					video.hidden = true;
 				},
@@ -333,13 +333,21 @@
 			toggleBtn.textContent = 'Usar la cámara';
 		}
 
-		toggleBtn.addEventListener( 'click', function () {
-			if ( ! cameraScanner || ! cameraScanner.isSupported() ) {
-				hint.textContent = 'Tu navegador no puede escanear con la cámara. Escribe el código a mano o usa un lector USB.';
-				hint.hidden = false;
-				return;
-			}
+		// Checked once on load rather than only after a tap: with the camera
+		// button always visible, a phone that can't scan (an iPhone, mostly —
+		// Safari does not implement barcode detection) or a page opened over
+		// HTTP instead of HTTPS looked exactly like a tap that "did nothing".
+		if ( ! window.isSecureContext ) {
+			toggleBtn.hidden = true;
+			hint.textContent = 'Esta página no está en HTTPS, así que el navegador no deja usar la cámara aquí. Escribe el código a mano o usa un lector USB.';
+			hint.hidden = false;
+		} else if ( ! cameraScanner || ! cameraScanner.isSupported() ) {
+			toggleBtn.hidden = true;
+			hint.textContent = 'Este navegador no puede escanear con la cámara (funciona en Chrome o Edge en Android). Escribe el código a mano o usa un lector USB.';
+			hint.hidden = false;
+		}
 
+		toggleBtn.addEventListener( 'click', function () {
 			if ( cameraScanner.isRunning() ) {
 				stopCamera();
 				return;

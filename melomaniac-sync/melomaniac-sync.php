@@ -3,7 +3,7 @@
  * Plugin Name:          Melomaniac Sync
  * Plugin URI:           https://melomaniac.cl/melomaniac-sync
  * Description:          Escanea el código de barra de un vinilo, CD o cassette y completa la ficha de producto de WooCommerce con sus datos musicales desde MusicBrainz.
- * Version:              1.8.1
+ * Version:              1.8.2
  * Requires at least:    6.0
  * Requires PHP:         7.4
  * Author:               Melomaniac
@@ -20,7 +20,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'MELOMANIAC_SYNC_VERSION', '1.8.1' );
+define( 'MELOMANIAC_SYNC_VERSION', '1.8.2' );
 define( 'MELOMANIAC_SYNC_FILE', __FILE__ );
 define( 'MELOMANIAC_SYNC_PATH', plugin_dir_path( __FILE__ ) );
 define( 'MELOMANIAC_SYNC_URL', plugin_dir_url( __FILE__ ) );

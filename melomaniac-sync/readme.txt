@@ -4,7 +4,7 @@ Tags: woocommerce, vinyl, music, barcode, musicbrainz
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.8.1
+Stable tag: 1.8.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,9 @@ No. Se crean siempre como borrador para que los revises, les pongas precio y sto
 El plugin lo detecta por SKU y por identificador de MusicBrainz, y te muestra un enlace al producto que ya existe en lugar de duplicarlo.
 
 == Changelog ==
+
+= 1.8.2 =
+* En la app, cuando el navegador no puede usar la cámara (porque la página no está en HTTPS, o porque el navegador no lo soporta) ahora lo avisa de inmediato y esconde el botón, en vez de dejar que lo toques y no veas que pasa nada.
 
 = 1.8.1 =
 * En la app, la pantalla de confirmar disco ahora muestra la portada que se va a usar (o avisa que no encontró ninguna) y deja tomar una foto o subir una imagen ahí mismo, sin tener que pasar por "corregir a mano" solo para agregar una portada.
