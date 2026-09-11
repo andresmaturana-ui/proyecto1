@@ -57,32 +57,28 @@ body {
 	font-size: 16px;
 }
 
+.melomaniac-app-header-actions {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+}
+
 .melomaniac-app-icon-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
 	background: none;
 	border: none;
+	border-radius: 8px;
 	color: var(--melomaniac-text);
-	font-size: 20px;
+	font-size: 18px;
+	text-decoration: none;
 }
 
-.melomaniac-app-menu {
-	padding: 14px 20px;
-	border-bottom: 1px solid var(--melomaniac-border);
+.melomaniac-app-icon-btn:active {
 	background: var(--melomaniac-surface);
-}
-
-.melomaniac-app-menu-user {
-	margin: 0 0 8px;
-	font-size: 13px;
-	color: var(--melomaniac-muted);
-}
-
-.melomaniac-app-menu .melomaniac-btn-link {
-	display: block;
-	width: auto;
-	text-align: left;
-	padding: 10px 0;
-	font-size: 15px;
-	color: var(--melomaniac-text);
 }
 
 .melomaniac-app-main {
@@ -273,7 +269,7 @@ form textarea {
 .melomaniac-app-footer {
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-between;
 	padding: 12px 20px;
 	padding-bottom: calc(12px + env(safe-area-inset-bottom));
 	border-top: 1px solid var(--melomaniac-border);

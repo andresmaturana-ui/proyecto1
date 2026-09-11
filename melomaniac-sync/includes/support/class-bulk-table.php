@@ -28,10 +28,10 @@ class Melomaniac_Sync_Bulk_Table {
 	const OPTION_VERSION = 'melomaniac_sync_bulk_table_version';
 
 	/**
-	 * Current schema version. Bump this and extend create_or_upgrade()'s SQL
-	 * when the table shape changes; dbDelta() handles the migration itself.
+	 * Current schema version. Bump this and extend maybe_upgrade()'s SQL when
+	 * the table shape changes; dbDelta() handles the migration itself.
 	 */
-	const VERSION = '1.0';
+	const VERSION = '1.1';
 
 	/**
 	 * Fully qualified table name.
@@ -73,6 +73,8 @@ class Melomaniac_Sync_Bulk_Table {
 			status VARCHAR(20) NOT NULL DEFAULT 'pendiente',
 			product_id BIGINT UNSIGNED NOT NULL DEFAULT 0,
 			message TEXT NULL,
+			overrides TEXT NULL,
+			candidates TEXT NULL,
 			created_at DATETIME NOT NULL,
 			updated_at DATETIME NOT NULL,
 			PRIMARY KEY  (id),

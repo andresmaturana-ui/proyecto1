@@ -155,9 +155,10 @@ class Melomaniac_Sync_Admin {
 			'melomaniac-sync-bulk',
 			'melomaniacSyncBulk',
 			array(
-				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
-				'nonce'   => wp_create_nonce( Melomaniac_Sync_Bulk_Page::NONCE_ACTION ),
-				'action'  => Melomaniac_Sync_Bulk_Page::ACTION_STATUS,
+				'ajaxUrl'       => admin_url( 'admin-ajax.php' ),
+				'nonce'         => wp_create_nonce( Melomaniac_Sync_Bulk_Page::NONCE_ACTION ),
+				'action'        => Melomaniac_Sync_Bulk_Page::ACTION_STATUS,
+				'resolveAction' => Melomaniac_Sync_Bulk_Page::ACTION_RESOLVE,
 			)
 		);
 	}

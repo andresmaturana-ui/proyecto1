@@ -552,3 +552,15 @@
 .melomaniac-bulk-cancel-form {
 	margin-bottom: 1em;
 }
+
+.melomaniac-bulk-or {
+	margin: 1.25em 0 0.25em;
+	font-weight: 600;
+}
+
+.melomaniac-bulk-candidates {
+	display: flex;
+	flex-direction: column;
+	gap: 0.35em;
+	align-items: flex-start;
+}

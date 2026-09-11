@@ -25,6 +25,7 @@ $melomaniac_message  = isset( $data['message'] ) ? (string) $data['message'] : '
 
 $melomaniac_labels = array(
 	'pendiente'     => __( 'Pendiente', 'melomaniac-sync' ),
+	'eleccion'      => __( 'Elegir edición', 'melomaniac-sync' ),
 	'creado'        => __( 'Creado', 'melomaniac-sync' ),
 	'no_encontrado' => __( 'No encontrado', 'melomaniac-sync' ),
 	'duplicado'     => __( 'Duplicado', 'melomaniac-sync' ),
@@ -48,17 +49,32 @@ $melomaniac_labels = array(
 				<?php esc_html_e( 'Pega un código de barra por línea. Melomaniac Sync los busca uno por uno en segundo plano (respetando el límite de MusicBrainz) y crea un producto como borrador por cada uno que encuentre. Los que no encuentre quedan marcados para cargarlos a mano después.', 'melomaniac-sync' ); ?>
 			</p>
 
-			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" enctype="multipart/form-data">
 				<?php wp_nonce_field( Melomaniac_Sync_Bulk_Page::NONCE_ACTION ); ?>
 				<input type="hidden" name="action" value="<?php echo esc_attr( Melomaniac_Sync_Bulk_Page::ACTION_START ); ?>" />
 
 				<p>
 					<label for="melomaniac-bulk-barcodes"><?php esc_html_e( 'Códigos de barra', 'melomaniac-sync' ); ?></label><br />
-					<textarea id="melomaniac-bulk-barcodes" name="barcodes" rows="12" class="large-text code" placeholder="016861979546&#10;0731458123452&#10;7501234567890" required></textarea>
+					<textarea id="melomaniac-bulk-barcodes" name="barcodes" rows="12" class="large-text code" placeholder="016861979546&#10;0731458123452&#10;7501234567890"></textarea>
+				</p>
+
+				<p class="melomaniac-bulk-or">
+					<?php esc_html_e( 'O sube un archivo CSV', 'melomaniac-sync' ); ?>
+					—
+					<a href="<?php echo esc_url( MELOMANIAC_SYNC_URL . 'assets/csv/plantilla-carga-masiva.csv' ); ?>">
+						<?php esc_html_e( 'descargar la plantilla', 'melomaniac-sync' ); ?>
+					</a>
+				</p>
+				<p>
+					<label for="melomaniac-bulk-csv" class="screen-reader-text"><?php esc_html_e( 'Archivo CSV', 'melomaniac-sync' ); ?></label>
+					<input type="file" id="melomaniac-bulk-csv" name="csv_file" accept=".csv,text/csv" />
+					<span class="description">
+						<?php esc_html_e( 'Columnas: código (obligatoria), precio y cantidad (opcionales, reemplazan lo elegido abajo solo para esa fila). Si subes un archivo, el texto de arriba se ignora.', 'melomaniac-sync' ); ?>
+					</span>
 				</p>
 
 				<h3><?php esc_html_e( 'Precio, stock y clasificación', 'melomaniac-sync' ); ?></h3>
-				<p class="description"><?php esc_html_e( 'Se aplican por igual a todos los discos de esta carga.', 'melomaniac-sync' ); ?></p>
+				<p class="description"><?php esc_html_e( 'Se aplican a todos los discos de esta carga, salvo que el archivo CSV traiga su propio precio o cantidad para alguno.', 'melomaniac-sync' ); ?></p>
 				<?php
 				Melomaniac_Sync_Admin::render_view(
 					'partial-product-fields',
@@ -134,7 +150,7 @@ $melomaniac_labels = array(
 				</thead>
 				<tbody data-melomaniac-bulk-items>
 					<?php foreach ( $melomaniac_items as $melomaniac_item ) : ?>
-						<tr data-barcode="<?php echo esc_attr( $melomaniac_item['barcode'] ); ?>">
+						<tr data-barcode="<?php echo esc_attr( $melomaniac_item['barcode'] ); ?>" data-item-id="<?php echo esc_attr( (string) $melomaniac_item['id'] ); ?>">
 							<td><?php echo esc_html( $melomaniac_item['barcode'] ); ?></td>
 							<td data-cell="status">
 								<?php echo esc_html( $melomaniac_labels[ $melomaniac_item['status'] ] ?? $melomaniac_item['status'] ); ?>
@@ -145,6 +161,33 @@ $melomaniac_labels = array(
 							<td data-cell="product">
 								<?php if ( ! empty( $melomaniac_item['editUrl'] ) ) : ?>
 									<a href="<?php echo esc_url( $melomaniac_item['editUrl'] ); ?>"><?php echo esc_html( $melomaniac_item['name'] ); ?></a>
+								<?php elseif ( 'eleccion' === $melomaniac_item['status'] && ! empty( $melomaniac_item['candidates'] ) ) : ?>
+									<div class="melomaniac-bulk-candidates" data-candidates>
+										<?php foreach ( $melomaniac_item['candidates'] as $melomaniac_candidate ) : ?>
+											<button
+												type="button"
+												class="button button-small"
+												data-action="resolve-candidate"
+												data-source="<?php echo esc_attr( $melomaniac_candidate['source'] ); ?>"
+												data-release-id="<?php echo esc_attr( $melomaniac_candidate['release_id'] ); ?>"
+											>
+												<?php
+												echo esc_html(
+													implode(
+														' · ',
+														array_filter(
+															array(
+																$melomaniac_candidate['display_name'],
+																$melomaniac_candidate['label'],
+																$melomaniac_candidate['year'],
+															)
+														)
+													)
+												);
+												?>
+											</button>
+										<?php endforeach; ?>
+									</div>
 								<?php endif; ?>
 							</td>
 						</tr>

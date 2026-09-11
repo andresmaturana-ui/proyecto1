@@ -295,16 +295,17 @@
 	}
 
 	function onConnected() {
-		var menuButton = app.querySelector( '[data-action="open-menu"]' );
+		var headerActions = app.querySelector( '[data-header-actions]' );
 
-		if ( menuButton ) {
-			menuButton.hidden = false;
+		if ( headerActions ) {
+			headerActions.hidden = false;
 		}
 
-		var usernameEl = app.querySelector( '[data-menu-username]' );
+		var usernameEl = app.querySelector( '[data-app-username]' );
 
 		if ( usernameEl ) {
 			usernameEl.textContent = 'Conectado como ' + currentUsername();
+			usernameEl.hidden = false;
 		}
 
 		showScreen( 'scan' );
@@ -729,14 +730,7 @@
 	}
 
 	function initMenu() {
-		var menuButton = app.querySelector( '[data-action="open-menu"]' );
-		var menu = app.querySelector( '[data-app-menu]' );
-
-		menuButton.addEventListener( 'click', function () {
-			menu.hidden = ! menu.hidden;
-		} );
-
-		menu.querySelector( '[data-action="disconnect"]' ).addEventListener( 'click', function () {
+		app.querySelector( '[data-header-actions] [data-action="disconnect"]' ).addEventListener( 'click', function () {
 			saveAuth( '' );
 			state.auth = '';
 			window.location.reload();

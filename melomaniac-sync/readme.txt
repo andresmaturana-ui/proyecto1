@@ -4,7 +4,7 @@ Tags: woocommerce, vinyl, music, barcode, musicbrainz
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 2.0.0
+Stable tag: 2.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,9 +57,14 @@ El plugin lo detecta por SKU y por identificador de MusicBrainz, y te muestra un
 
 = ¿Cómo funciona la carga masiva? =
 
-Se procesa en segundo plano con Action Scheduler (la misma librería que usa WooCommerce para sus propias tareas programadas), un código de barra a la vez y espaciados entre sí, así que no hace falta dejar la pestaña abierta. Necesita que el cron de WordPress esté funcionando con normalidad, como cualquier otra tarea programada del sitio.
+Se procesa en segundo plano con Action Scheduler (la misma librería que usa WooCommerce para sus propias tareas programadas), un código de barra a la vez y espaciados entre sí, así que no hace falta dejar la pestaña abierta. Necesita que el cron de WordPress esté funcionando con normalidad, como cualquier otra tarea programada del sitio. Se puede cargar pegando una lista o subiendo un CSV con columnas código, precio y cantidad (hay una plantilla para descargar en la misma pantalla). Cuando un código tiene más de una edición posible, la carga se detiene en ese disco y muestra las opciones para que elijas cuál es, igual que al escanear uno solo.
 
 == Changelog ==
+
+= 2.1.0 =
+* La carga masiva ahora también acepta un archivo CSV (columnas código, precio y cantidad), con una plantilla para descargar en la misma pantalla. El precio y la cantidad del archivo reemplazan a los elegidos en el formulario solo para esa fila; lo demás (categorías, etiquetas) se aplica igual a todos.
+* Cuando un código de barra tiene más de una edición posible, la carga masiva ya no elige la primera sola: deja el disco esperando y muestra las opciones en la pantalla de la carga para elegir cuál es, el mismo paso que ya existía al escanear uno solo.
+* En la app, "Ajustes" y "Cerrar sesión" pasan a ser dos botones siempre visibles junto al nombre de la tienda, en vez de estar escondidos detrás de un menú.
 
 = 2.0.0 =
 * Agrega la carga masiva: pega una lista de códigos de barra (uno por línea) en Melomaniac Sync → Carga masiva, y el plugin los busca y crea uno por uno en segundo plano, respetando el límite de MusicBrainz, sin que tengas que dejar la pestaña abierta ni esperar. La pantalla se actualiza sola mostrando qué se creó, qué no se encontró y qué ya existía; lo que no se encuentra queda disponible para cargarlo a mano después.

@@ -34,6 +34,13 @@ class Melomaniac_Sync_Bulk_Page {
 	const ACTION_STATUS = 'melomaniac_sync_bulk_status';
 
 	/**
+	 * wp_ajax action that resolves an 'eleccion' item with the release the
+	 * shop picked, the bulk equivalent of tapping a candidate in the
+	 * single-scan screen.
+	 */
+	const ACTION_RESOLVE = 'melomaniac_sync_bulk_resolve';
+
+	/**
 	 * Bulk import service.
 	 *
 	 * @var Melomaniac_Sync_Bulk_Import_Service
@@ -58,10 +65,12 @@ class Melomaniac_Sync_Bulk_Page {
 		add_action( 'admin_post_' . self::ACTION_START, array( $this, 'handle_start' ) );
 		add_action( 'admin_post_' . self::ACTION_CANCEL, array( $this, 'handle_cancel' ) );
 		add_action( 'wp_ajax_' . self::ACTION_STATUS, array( $this, 'handle_status' ) );
+		add_action( 'wp_ajax_' . self::ACTION_RESOLVE, array( $this, 'handle_resolve' ) );
 	}
 
 	/**
-	 * Queues a new batch from the pasted barcode list.
+	 * Queues a new batch, either from an uploaded CSV or from the pasted
+	 * barcode list — whichever one actually arrived.
 	 *
 	 * @return void
 	 */
@@ -72,19 +81,68 @@ class Melomaniac_Sync_Bulk_Page {
 
 		check_admin_referer( self::NONCE_ACTION );
 
-		$posted   = wp_unslash( $_POST ); // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Verified above.
-		$barcodes = isset( $posted['barcodes'] ) ? (string) $posted['barcodes'] : '';
+		$posted    = wp_unslash( $_POST ); // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Verified above.
+		$overrides = Melomaniac_Sync_Catalog::read_overrides( $posted );
+		$upload    = $this->read_csv_upload();
 
-		$result = $this->service->queue_batch( $barcodes, Melomaniac_Sync_Catalog::read_overrides( $posted ) );
+		if ( is_wp_error( $upload ) ) {
+			$this->redirect_with_error( $upload->get_error_message() );
+		}
+
+		if ( '' !== $upload ) {
+			$result = $this->service->queue_batch_from_csv( $upload, $overrides );
+		} else {
+			$barcodes = isset( $posted['barcodes'] ) ? (string) $posted['barcodes'] : '';
+			$result   = $this->service->queue_batch( $barcodes, $overrides );
+		}
 
 		if ( is_wp_error( $result ) ) {
-			wp_safe_redirect(
-				Melomaniac_Sync_Admin_Menu::bulk_url( array( 'melomaniac_message' => $result->get_error_message() ) )
-			);
-			exit;
+			$this->redirect_with_error( $result->get_error_message() );
 		}
 
 		wp_safe_redirect( Melomaniac_Sync_Admin_Menu::bulk_url( array( 'batch' => $result['batch_id'] ) ) );
+		exit;
+	}
+
+	/**
+	 * Validates the uploaded CSV, when one was actually chosen.
+	 *
+	 * @return string|WP_Error Temp file path, empty string when no file was
+	 *                          chosen at all, or an error for a bad upload.
+	 */
+	private function read_csv_upload() {
+		if ( empty( $_FILES['csv_file']['name'] ) ) {
+			return '';
+		}
+
+		$error = isset( $_FILES['csv_file']['error'] ) ? (int) $_FILES['csv_file']['error'] : UPLOAD_ERR_NO_FILE;
+
+		if ( UPLOAD_ERR_NO_FILE === $error ) {
+			return '';
+		}
+
+		if ( UPLOAD_ERR_OK !== $error ) {
+			return new WP_Error( 'melomaniac_sync_bulk_csv_upload_failed', __( 'No se pudo subir el archivo. Inténtalo de nuevo.', 'melomaniac-sync' ) );
+		}
+
+		$name = sanitize_file_name( wp_unslash( $_FILES['csv_file']['name'] ) );
+
+		if ( 'csv' !== strtolower( pathinfo( $name, PATHINFO_EXTENSION ) ) ) {
+			return new WP_Error( 'melomaniac_sync_bulk_csv_invalid', __( 'El archivo debe ser un .csv.', 'melomaniac-sync' ) );
+		}
+
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash -- A PHP-managed temp path, not user input.
+		return (string) $_FILES['csv_file']['tmp_name'];
+	}
+
+	/**
+	 * Sends the user back to the landing screen with an error notice.
+	 *
+	 * @param string $message Error to show.
+	 * @return void
+	 */
+	private function redirect_with_error( $message ) {
+		wp_safe_redirect( Melomaniac_Sync_Admin_Menu::bulk_url( array( 'melomaniac_message' => $message ) ) );
 		exit;
 	}
 
@@ -142,6 +200,41 @@ class Melomaniac_Sync_Bulk_Page {
 	}
 
 	/**
+	 * Creates the product for the release the shop picked out of an
+	 * 'eleccion' item's candidate list.
+	 *
+	 * @return void
+	 */
+	public function handle_resolve() {
+		if ( ! check_ajax_referer( self::NONCE_ACTION, 'nonce', false ) ) {
+			wp_send_json_error( array( 'message' => __( 'La sesión expiró. Recarga la página.', 'melomaniac-sync' ) ), 403 );
+		}
+
+		if ( ! current_user_can( Melomaniac_Sync_Plugin::CAPABILITY ) ) {
+			wp_send_json_error( array( 'message' => __( 'No tienes permisos para hacer esto.', 'melomaniac-sync' ) ), 403 );
+		}
+
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Verified above.
+		$item_id    = isset( $_POST['item_id'] ) ? absint( $_POST['item_id'] ) : 0;
+		$source     = isset( $_POST['source'] ) ? sanitize_key( wp_unslash( $_POST['source'] ) ) : '';
+		$release_id = isset( $_POST['release_id'] ) ? sanitize_text_field( wp_unslash( $_POST['release_id'] ) ) : '';
+
+		if ( 0 === $item_id || '' === $source || '' === $release_id ) {
+			wp_send_json_error( array( 'message' => __( 'Falta indicar cuál disco elegiste.', 'melomaniac-sync' ) ) );
+		}
+
+		$this->service->resolve_item( $item_id, $source, $release_id );
+
+		$item = $this->service->get_item( $item_id );
+
+		if ( ! $item ) {
+			wp_send_json_error( array( 'message' => __( 'Ese ítem ya no existe.', 'melomaniac-sync' ) ) );
+		}
+
+		wp_send_json_success( array( 'item' => $this->item_to_array( $item ) ) );
+	}
+
+	/**
 	 * Turns one row into the shape the status table's JS expects.
 	 *
 	 * @param object $item Row from the bulk items table.
@@ -149,13 +242,21 @@ class Melomaniac_Sync_Bulk_Page {
 	 */
 	private function item_to_array( $item ) {
 		$product_id = (int) $item->product_id;
+		$candidates = array();
+
+		if ( 'eleccion' === $item->status && ! empty( $item->candidates ) ) {
+			$decoded    = json_decode( $item->candidates, true );
+			$candidates = is_array( $decoded ) ? $decoded : array();
+		}
 
 		return array(
-			'barcode'  => $item->barcode,
-			'status'   => $item->status,
-			'message'  => $item->message,
-			'editUrl'  => $product_id > 0 ? get_edit_post_link( $product_id, 'raw' ) : '',
-			'name'     => $product_id > 0 ? get_the_title( $product_id ) : '',
+			'id'         => (int) $item->id,
+			'barcode'    => $item->barcode,
+			'status'     => $item->status,
+			'message'    => $item->message,
+			'candidates' => $candidates,
+			'editUrl'    => $product_id > 0 ? get_edit_post_link( $product_id, 'raw' ) : '',
+			'name'       => $product_id > 0 ? get_the_title( $product_id ) : '',
 		);
 	}
 

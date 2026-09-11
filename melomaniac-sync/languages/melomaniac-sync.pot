@@ -58,12 +58,12 @@ msgstr ""
 msgid "%s - Melomaniac Sync"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:123
-#: includes/frontend/views/view-app-shell.php:142
+#: includes/frontend/views/view-app-shell.php:120
+#: includes/frontend/views/view-app-shell.php:139
 msgid "&larr; Volver"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:189
+#: includes/frontend/views/view-app-shell.php:186
 msgid "&larr; Volver al escaneo"
 msgstr ""
 
@@ -75,11 +75,7 @@ msgstr ""
 msgid "Abre la búsqueda en discogs.com. Copia a mano los datos que quieras usar."
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:69
-msgid "Abrir ajustes"
-msgstr ""
-
-#: includes/frontend/views/view-app-shell.php:196
+#: includes/frontend/views/view-app-shell.php:193
 msgid "Abrir en el editor"
 msgstr ""
 
@@ -110,6 +106,7 @@ msgstr ""
 #: admin/class-admin-menu.php:147
 #: admin/class-admin-menu.php:148
 #: admin/views/page-diagnostics.php:362
+#: includes/frontend/views/view-app-shell.php:65
 msgid "Ajustes"
 msgstr ""
 
@@ -153,8 +150,12 @@ msgstr ""
 msgid "Apágalo para probar el plugin sin que hable con Freemius en ningún momento: sin conexión de cuenta, sin pantalla de licencia, sin llamadas a freemius.com. Con esto apagado, el plan lo decide solo el selector de arriba."
 msgstr ""
 
+#: admin/views/page-bulk.php:69
+msgid "Archivo CSV"
+msgstr ""
+
 #: admin/views/partial-manual-form.php:73
-#: includes/frontend/views/view-app-shell.php:151
+#: includes/frontend/views/view-app-shell.php:148
 #: includes/services/class-product-factory.php:271
 #: includes/support/class-settings.php:40
 msgid "Artista"
@@ -162,7 +163,7 @@ msgstr ""
 
 #: admin/views/partial-manual-form.php:112
 #: admin/views/partial-result-preview.php:24
-#: includes/frontend/views/view-app-shell.php:162
+#: includes/frontend/views/view-app-shell.php:159
 #: includes/services/class-product-factory.php:273
 #: includes/support/class-settings.php:41
 msgid "Año"
@@ -193,7 +194,7 @@ msgid "Buscando en MusicBrainz…"
 msgstr ""
 
 #: admin/views/page-scan.php:53
-#: includes/frontend/views/view-app-shell.php:110
+#: includes/frontend/views/view-app-shell.php:107
 msgid "Buscar"
 msgstr ""
 
@@ -233,11 +234,11 @@ msgstr ""
 msgid "Caja de DVD"
 msgstr ""
 
-#: admin/views/page-bulk.php:33
+#: admin/views/page-bulk.php:34
 msgid "Cancelado"
 msgstr ""
 
-#: admin/views/page-bulk.php:124
+#: admin/views/page-bulk.php:140
 msgid "Cancelar lo que falta"
 msgstr ""
 
@@ -251,7 +252,7 @@ msgstr ""
 
 #: admin/class-admin-menu.php:134
 #: admin/class-admin-menu.php:135
-#: admin/views/page-bulk.php:37
+#: admin/views/page-bulk.php:38
 msgid "Carga masiva"
 msgstr ""
 
@@ -260,15 +261,15 @@ msgid "Cargando los datos del disco…"
 msgstr ""
 
 #: admin/views/partial-manual-form.php:33
-#: includes/frontend/views/view-app-shell.php:147
+#: includes/frontend/views/view-app-shell.php:144
 msgid "Cargar el disco a mano"
 msgstr ""
 
-#: admin/views/page-bulk.php:156
+#: admin/views/page-bulk.php:199
 msgid "Cargar otro lote"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:113
+#: includes/frontend/views/view-app-shell.php:110
 msgid "Cargar un disco a mano"
 msgstr ""
 
@@ -276,11 +277,11 @@ msgstr ""
 msgid "Cargar un disco manualmente, sin buscarlo"
 msgstr ""
 
-#: admin/views/page-bulk.php:46
+#: admin/views/page-bulk.php:47
 msgid "Cargar varios discos de una vez"
 msgstr ""
 
-#: admin/views/page-bulk.php:79
+#: admin/views/page-bulk.php:95
 msgid "Cargas recientes"
 msgstr ""
 
@@ -300,7 +301,7 @@ msgstr ""
 msgid "Categorías"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:70
+#: includes/frontend/views/view-app-shell.php:66
 msgid "Cerrar sesión"
 msgstr ""
 
@@ -312,7 +313,11 @@ msgstr ""
 msgid "Cirílico"
 msgstr ""
 
-#: admin/views/page-bulk.php:73
+#: admin/views/page-bulk.php:72
+msgid "Columnas: código (obligatoria), precio y cantidad (opcionales, reemplazan lo elegido abajo solo para esa fila). Si subes un archivo, el texto de arriba se ignora."
+msgstr ""
+
+#: admin/views/page-bulk.php:89
 msgid "Comenzar"
 msgstr ""
 
@@ -332,11 +337,11 @@ msgstr ""
 msgid "Con un lector USB, deja el cursor en el campo y dispáralo: el lector escribe el código y confirma solo."
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:94
+#: includes/frontend/views/view-app-shell.php:91
 msgid "Conectar"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:76
+#: includes/frontend/views/view-app-shell.php:73
 msgid "Conectar la app"
 msgstr ""
 
@@ -344,7 +349,7 @@ msgstr ""
 msgid "Conexión con los servicios"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:127
+#: includes/frontend/views/view-app-shell.php:124
 msgid "Confirmar disco"
 msgstr ""
 
@@ -356,7 +361,7 @@ msgstr ""
 msgid "Contacto para MusicBrainz"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:89
+#: includes/frontend/views/view-app-shell.php:86
 msgid "Contraseña de aplicación"
 msgstr ""
 
@@ -372,7 +377,7 @@ msgstr ""
 msgid "Cover Art Archive"
 msgstr ""
 
-#: admin/views/page-bulk.php:28
+#: admin/views/page-bulk.php:29
 msgid "Creado"
 msgstr ""
 
@@ -381,8 +386,8 @@ msgid "Creando el producto…"
 msgstr ""
 
 #: admin/views/partial-result-preview.php:116
-#: includes/frontend/views/view-app-shell.php:138
-#: includes/frontend/views/view-app-shell.php:186
+#: includes/frontend/views/view-app-shell.php:135
+#: includes/frontend/views/view-app-shell.php:183
 msgid "Crear producto"
 msgstr ""
 
@@ -394,7 +399,7 @@ msgstr ""
 msgid "Crear una categoría nueva"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:82
+#: includes/frontend/views/view-app-shell.php:79
 msgid "Crear una contraseña de aplicación"
 msgstr ""
 
@@ -402,7 +407,7 @@ msgstr ""
 msgid "Cuánto espera a MusicBrainz, Cover Art Archive y Discogs antes de darse por vencido. Si ves errores de \"timed out\", subilo y revisa %s."
 msgstr ""
 
-#: admin/views/page-bulk.php:130
+#: admin/views/page-bulk.php:146
 #: admin/views/page-diagnostics.php:161
 msgid "Código"
 msgstr ""
@@ -410,11 +415,11 @@ msgstr ""
 #: admin/views/page-diagnostics.php:228
 #: admin/views/page-scan.php:38
 #: admin/views/partial-result-preview.php:29
-#: includes/frontend/views/view-app-shell.php:108
+#: includes/frontend/views/view-app-shell.php:105
 msgid "Código de barra"
 msgstr ""
 
-#: admin/views/page-bulk.php:56
+#: admin/views/page-bulk.php:57
 msgid "Códigos de barra"
 msgstr ""
 
@@ -496,7 +501,7 @@ msgstr ""
 msgid "Discogs respondió con el código %d."
 msgstr ""
 
-#: admin/views/page-bulk.php:84
+#: admin/views/page-bulk.php:100
 msgid "Discos"
 msgstr ""
 
@@ -508,7 +513,7 @@ msgstr ""
 msgid "Dominios permitidos"
 msgstr ""
 
-#: admin/views/page-bulk.php:30
+#: admin/views/page-bulk.php:31
 msgid "Duplicado"
 msgstr ""
 
@@ -531,6 +536,22 @@ msgstr ""
 
 #: admin/views/page-scan.php:46
 msgid "Ej. 0602577089664"
+msgstr ""
+
+#: admin/class-bulk-page.php:131
+msgid "El archivo debe ser un .csv."
+msgstr ""
+
+#: includes/services/class-bulk-import-service.php:215
+msgid "El archivo debe tener una columna \"código\". Descarga la plantilla si no estás seguro del formato."
+msgstr ""
+
+#: includes/services/class-bulk-import-service.php:205
+msgid "El archivo está vacío."
+msgstr ""
+
+#: includes/services/class-bulk-import-service.php:169
+msgid "El archivo no tiene ningún código de barra válido en la columna \"código\"."
 msgstr ""
 
 #: includes/services/class-release-lookup-service.php:104
@@ -569,12 +590,16 @@ msgstr ""
 msgid "El servidor no pudo resolver el dominio. Es un problema de DNS del hosting."
 msgstr ""
 
+#: admin/views/page-bulk.php:28
+msgid "Elegir edición"
+msgstr ""
+
 #: admin/class-admin.php:128
 #: admin/class-admin.php:139
 msgid "Elegir la portada"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:120
+#: includes/frontend/views/view-app-shell.php:117
 msgid "Elige el disco"
 msgstr ""
 
@@ -594,7 +619,7 @@ msgstr ""
 msgid "Entorno"
 msgstr ""
 
-#: admin/views/page-bulk.php:32
+#: admin/views/page-bulk.php:33
 msgid "Error"
 msgstr ""
 
@@ -613,12 +638,12 @@ msgstr ""
 
 #: admin/class-admin-menu.php:121
 #: admin/class-admin-menu.php:122
-#: admin/class-admin.php:175
+#: admin/class-admin.php:176
 #: admin/views/page-scan.php:21
 msgid "Escanear disco"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:197
+#: includes/frontend/views/view-app-shell.php:194
 msgid "Escanear otro"
 msgstr ""
 
@@ -634,11 +659,15 @@ msgstr ""
 msgid "Ese producto no existe."
 msgstr ""
 
+#: admin/class-bulk-page.php:231
+msgid "Ese ítem ya no existe."
+msgstr ""
+
 #: includes/services/class-release-dto.php:281
 msgid "Español"
 msgstr ""
 
-#: admin/views/page-bulk.php:131
+#: admin/views/page-bulk.php:147
 #: admin/views/partial-manual-form.php:238
 msgid "Estado"
 msgstr ""
@@ -672,7 +701,7 @@ msgstr ""
 msgid "Falta el artista o el título del álbum."
 msgstr ""
 
-#: admin/class-bulk-page.php:133
+#: admin/class-bulk-page.php:191
 msgid "Falta el identificador del lote."
 msgstr ""
 
@@ -692,7 +721,11 @@ msgstr ""
 msgid "Falta el token de Discogs, o el respaldo está desactivado en Ajustes."
 msgstr ""
 
-#: admin/views/page-bulk.php:83
+#: admin/class-bulk-page.php:223
+msgid "Falta indicar cuál disco elegiste."
+msgstr ""
+
+#: admin/views/page-bulk.php:99
 msgid "Fecha"
 msgstr ""
 
@@ -702,13 +735,13 @@ msgstr ""
 
 #: admin/views/partial-manual-form.php:142
 #: admin/views/partial-result-preview.php:27
-#: includes/frontend/views/view-app-shell.php:166
+#: includes/frontend/views/view-app-shell.php:163
 #: includes/services/class-product-factory.php:274
 #: includes/support/class-settings.php:45
 msgid "Formato"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:180
+#: includes/frontend/views/view-app-shell.php:177
 msgid "Foto de la portada (opcional)"
 msgstr ""
 
@@ -803,7 +836,8 @@ msgid "La respuesta de MusicBrainz no se pudo interpretar."
 msgstr ""
 
 #: admin/class-ajax-handler.php:306
-#: admin/class-bulk-page.php:122
+#: admin/class-bulk-page.php:180
+#: admin/class-bulk-page.php:210
 msgid "La sesión expiró. Recarga la página."
 msgstr ""
 
@@ -821,7 +855,7 @@ msgstr ""
 msgid "Lista de canciones"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:177
+#: includes/frontend/views/view-app-shell.php:174
 msgid "Lista de canciones (opcional)"
 msgstr ""
 
@@ -858,10 +892,6 @@ msgstr ""
 
 #: includes/class-activator.php:29
 msgid "Melomaniac Sync requiere PHP 7.4 o superior."
-msgstr ""
-
-#: includes/frontend/views/view-app-shell.php:64
-msgid "Menú"
 msgstr ""
 
 #: admin/views/partial-manual-form.php:122
@@ -901,7 +931,7 @@ msgstr ""
 msgid "MusicBrainz tiene el disco, así que el escaneo normal no va a consultar Discogs."
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:78
+#: includes/frontend/views/view-app-shell.php:75
 msgid "Necesitas una contraseña de aplicación de tu usuario de WordPress. Se crea una sola vez."
 msgstr ""
 
@@ -917,7 +947,7 @@ msgstr ""
 msgid "Ninguno"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:122
+#: includes/frontend/views/view-app-shell.php:119
 msgid "Ninguno es, cargar a mano"
 msgstr ""
 
@@ -926,7 +956,7 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: admin/views/page-bulk.php:29
+#: admin/views/page-bulk.php:30
 msgid "No encontrado"
 msgstr ""
 
@@ -934,7 +964,7 @@ msgstr ""
 msgid "No encontramos ningún disco con el código %s. Completa los datos y creamos el borrador igual."
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:141
+#: includes/frontend/views/view-app-shell.php:138
 msgid "No es este disco, corregir a mano"
 msgstr ""
 
@@ -950,7 +980,7 @@ msgstr ""
 msgid "No se detectó la sesión de la app. Vuelve a conectarla desde Ajustes."
 msgstr ""
 
-#: includes/services/class-bulk-import-service.php:124
+#: includes/services/class-bulk-import-service.php:129
 msgid "No se encontró ningún código de barra válido (entre 6 y 14 dígitos, uno por línea)."
 msgstr ""
 
@@ -978,6 +1008,14 @@ msgstr ""
 msgid "No se pudo guardar el producto."
 msgstr ""
 
+#: includes/services/class-bulk-import-service.php:193
+msgid "No se pudo leer el archivo."
+msgstr ""
+
+#: admin/class-bulk-page.php:125
+msgid "No se pudo subir el archivo. Inténtalo de nuevo."
+msgstr ""
+
 #: includes/rest/class-rest-api.php:231
 msgid "No tienes permiso para editar este producto."
 msgstr ""
@@ -987,9 +1025,10 @@ msgid "No tienes permisos para cambiar estos ajustes."
 msgstr ""
 
 #: admin/class-ajax-handler.php:313
-#: admin/class-bulk-page.php:70
-#: admin/class-bulk-page.php:98
-#: admin/class-bulk-page.php:126
+#: admin/class-bulk-page.php:79
+#: admin/class-bulk-page.php:156
+#: admin/class-bulk-page.php:184
+#: admin/class-bulk-page.php:214
 #: admin/class-manual-entry-handler.php:68
 msgid "No tienes permisos para hacer esto."
 msgstr ""
@@ -1002,7 +1041,7 @@ msgstr ""
 msgid "No tienes permisos para usar esta pantalla."
 msgstr ""
 
-#: admin/class-bulk-page.php:169
+#: admin/class-bulk-page.php:270
 #: admin/class-diagnostics-page.php:78
 #: admin/class-settings-page.php:171
 msgid "No tienes permisos para ver esta pantalla."
@@ -1010,10 +1049,14 @@ msgstr ""
 
 #: admin/views/partial-manual-form.php:173
 #: admin/views/partial-result-preview.php:26
-#: includes/frontend/views/view-app-shell.php:174
+#: includes/frontend/views/view-app-shell.php:171
 #: includes/services/class-product-factory.php:276
 #: includes/support/class-settings.php:47
 msgid "Número de catálogo"
+msgstr ""
+
+#: admin/views/page-bulk.php:62
+msgid "O sube un archivo CSV"
 msgstr ""
 
 #: includes/services/class-release-dto.php:214
@@ -1040,13 +1083,13 @@ msgstr ""
 
 #: admin/views/partial-manual-form.php:165
 #: admin/views/partial-result-preview.php:28
-#: includes/frontend/views/view-app-shell.php:171
+#: includes/frontend/views/view-app-shell.php:168
 #: includes/services/class-product-factory.php:275
 #: includes/support/class-settings.php:43
 msgid "País de prensaje"
 msgstr ""
 
-#: admin/views/page-bulk.php:48
+#: admin/views/page-bulk.php:49
 msgid "Pega un código de barra por línea. Melomaniac Sync los busca uno por uno en segundo plano (respetando el límite de MusicBrainz) y crea un producto como borrador por cada uno que encuentre. Los que no encuentre quedan marcados para cargarlos a mano después."
 msgstr ""
 
@@ -1058,7 +1101,7 @@ msgstr ""
 msgid "Pendiente de revisión"
 msgstr ""
 
-#: admin/views/page-bulk.php:85
+#: admin/views/page-bulk.php:101
 msgid "Pendientes"
 msgstr ""
 
@@ -1085,7 +1128,7 @@ msgstr ""
 
 #: admin/views/page-settings.php:166
 #: admin/views/partial-manual-form.php:203
-#: includes/frontend/views/view-app-shell.php:132
+#: includes/frontend/views/view-app-shell.php:129
 msgid "Portada"
 msgstr ""
 
@@ -1105,7 +1148,7 @@ msgstr ""
 msgid "Precio por defecto"
 msgstr ""
 
-#: admin/views/page-bulk.php:60
+#: admin/views/page-bulk.php:76
 #: admin/views/partial-manual-form.php:321
 msgid "Precio, stock y clasificación"
 msgstr ""
@@ -1138,7 +1181,7 @@ msgstr ""
 msgid "Probar un código de barra"
 msgstr ""
 
-#: admin/views/page-bulk.php:132
+#: admin/views/page-bulk.php:148
 msgid "Producto"
 msgstr ""
 
@@ -1150,7 +1193,7 @@ msgstr ""
 msgid "Productos nuevos"
 msgstr ""
 
-#: admin/views/page-bulk.php:110
+#: admin/views/page-bulk.php:126
 msgid "Progreso de la carga"
 msgstr ""
 
@@ -1248,8 +1291,8 @@ msgstr ""
 msgid "Se alcanzó el límite de peticiones de Discogs."
 msgstr ""
 
-#: admin/views/page-bulk.php:61
-msgid "Se aplican por igual a todos los discos de esta carga."
+#: admin/views/page-bulk.php:77
+msgid "Se aplican a todos los discos de esta carga, salvo que el archivo CSV traiga su propio precio o cantidad para alguno."
 msgstr ""
 
 #: admin/class-ajax-handler.php:291
@@ -1271,7 +1314,7 @@ msgstr ""
 
 #: admin/views/partial-manual-form.php:89
 #: admin/views/partial-result-preview.php:25
-#: includes/frontend/views/view-app-shell.php:157
+#: includes/frontend/views/view-app-shell.php:154
 #: includes/services/class-product-factory.php:272
 #: includes/support/class-settings.php:42
 msgid "Sello"
@@ -1305,7 +1348,7 @@ msgstr ""
 msgid "Si resolvió solo a IPv6 y falla, el hosting no tiene salida IPv6 funcionando. Pídeles que la arreglen o que fuercen IPv4."
 msgstr ""
 
-#: admin/views/page-bulk.php:31
+#: admin/views/page-bulk.php:32
 msgid "Sin cupo"
 msgstr ""
 
@@ -1413,7 +1456,7 @@ msgid "Tu usuario no tiene permiso para gestionar productos."
 msgstr ""
 
 #: admin/views/partial-manual-form.php:81
-#: includes/frontend/views/view-app-shell.php:154
+#: includes/frontend/views/view-app-shell.php:151
 msgid "Título del álbum"
 msgstr ""
 
@@ -1446,11 +1489,11 @@ msgstr ""
 msgid "Usar esta imagen"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:104
+#: includes/frontend/views/view-app-shell.php:101
 msgid "Usar la cámara"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:86
+#: includes/frontend/views/view-app-shell.php:83
 msgid "Usuario"
 msgstr ""
 
@@ -1466,7 +1509,7 @@ msgstr ""
 msgid "Vas %1$d de %2$d discos este mes."
 msgstr ""
 
-#: admin/views/page-bulk.php:97
+#: admin/views/page-bulk.php:113
 msgid "Ver"
 msgstr ""
 
@@ -1526,6 +1569,10 @@ msgstr ""
 msgid "Ya existía un producto para este disco: \"%s\"."
 msgstr ""
 
+#: admin/views/page-bulk.php:65
+msgid "descargar la plantilla"
+msgstr ""
+
 #: includes/support/class-connectivity-check.php:277
 msgid "desconocida"
 msgstr ""
@@ -1554,7 +1601,7 @@ msgstr ""
 msgid "wp-config.php ya lo tiene apagado (MELOMANIAC_SYNC_SKIP_FREEMIUS), así que este interruptor no hace nada hasta que lo quites de ahí."
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:194
+#: includes/frontend/views/view-app-shell.php:191
 msgid "¡Listo!"
 msgstr ""
 

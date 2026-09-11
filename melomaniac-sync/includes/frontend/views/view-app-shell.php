@@ -61,14 +61,11 @@ $melomaniac_app = wp_parse_args(
 
 	<header class="melomaniac-app-header">
 		<span class="melomaniac-app-title"><?php echo esc_html( $melomaniac_app['site_name'] ); ?></span>
-		<button type="button" class="melomaniac-app-icon-btn" data-action="open-menu" aria-label="<?php esc_attr_e( 'Menú', 'melomaniac-sync' ); ?>" hidden>&#8942;</button>
+		<div class="melomaniac-app-header-actions" data-header-actions hidden>
+			<a class="melomaniac-app-icon-btn" href="<?php echo esc_url( $melomaniac_app['settings_url'] ); ?>" target="_blank" rel="noopener" aria-label="<?php esc_attr_e( 'Ajustes', 'melomaniac-sync' ); ?>" title="<?php esc_attr_e( 'Ajustes', 'melomaniac-sync' ); ?>">&#9881;</a>
+			<button type="button" class="melomaniac-app-icon-btn" data-action="disconnect" aria-label="<?php esc_attr_e( 'Cerrar sesión', 'melomaniac-sync' ); ?>" title="<?php esc_attr_e( 'Cerrar sesión', 'melomaniac-sync' ); ?>">&#9211;</button>
+		</div>
 	</header>
-
-	<div class="melomaniac-app-menu" data-app-menu hidden>
-		<p class="melomaniac-app-menu-user" data-menu-username></p>
-		<a class="melomaniac-btn-link" href="<?php echo esc_url( $melomaniac_app['settings_url'] ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Abrir ajustes', 'melomaniac-sync' ); ?> &#8599;</a>
-		<button type="button" class="melomaniac-btn-link" data-action="disconnect"><?php esc_html_e( 'Cerrar sesión', 'melomaniac-sync' ); ?></button>
-	</div>
 
 	<main class="melomaniac-app-main">
 
@@ -200,6 +197,7 @@ $melomaniac_app = wp_parse_args(
 	</main>
 
 	<footer class="melomaniac-app-footer">
+		<span class="melomaniac-app-username" data-app-username hidden></span>
 		<span class="melomaniac-app-version">v<?php echo esc_html( $melomaniac_app['version'] ); ?></span>
 	</footer>
 
