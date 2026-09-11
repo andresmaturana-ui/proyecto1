@@ -169,6 +169,24 @@ class Melomaniac_Sync_Admin {
 				'resolveAction' => Melomaniac_Sync_Bulk_Page::ACTION_RESOLVE,
 			)
 		);
+
+		wp_enqueue_script(
+			'melomaniac-sync-mb-queue',
+			MELOMANIAC_SYNC_URL . 'assets/js/mb-queue.js',
+			array( 'melomaniac-sync-musicbrainz-seed' ),
+			self::asset_version( 'assets/js/mb-queue.js' ),
+			true
+		);
+
+		wp_localize_script(
+			'melomaniac-sync-mb-queue',
+			'melomaniacSyncMbQueue',
+			array(
+				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+				'nonce'   => wp_create_nonce( Melomaniac_Sync_Mb_Queue_Page::NONCE_ACTION ),
+				'action'  => Melomaniac_Sync_Mb_Queue_Page::ACTION_MARK,
+			)
+		);
 	}
 
 	/**

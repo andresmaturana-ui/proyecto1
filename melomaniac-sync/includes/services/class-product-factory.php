@@ -176,6 +176,93 @@ class Melomaniac_Sync_Product_Factory {
 	}
 
 	/**
+	 * Products loaded by hand (MusicBrainz had no match) that are not yet
+	 * marked as contributed back to MusicBrainz.
+	 *
+	 * @param int $limit Maximum number of products to return.
+	 * @return int[] Product IDs, most recently created first.
+	 */
+	public function find_uncontributed_manual( $limit = 50 ) {
+		return get_posts(
+			array(
+				'post_type'        => 'product',
+				'post_status'      => 'any',
+				'posts_per_page'   => $limit,
+				'orderby'          => 'date',
+				'order'            => 'DESC',
+				'fields'           => 'ids',
+				'no_found_rows'    => true,
+				'suppress_filters' => false,
+				// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Small, indexed lookup run once per screen load.
+				'meta_query'       => array(
+					array(
+						'key'     => self::META_PREFIX . 'source',
+						'value'   => 'manual',
+						'compare' => '=',
+					),
+					array(
+						'key'     => self::META_PREFIX . 'mb_contributed',
+						'compare' => 'NOT EXISTS',
+					),
+				),
+			)
+		);
+	}
+
+	/**
+	 * Rebuilds a release object from a product's saved meta, so a disc can be
+	 * re-seeded into MusicBrainz's Add Release form after the product already
+	 * exists.
+	 *
+	 * @param int $product_id Product ID.
+	 * @return Melomaniac_Sync_Release_DTO
+	 */
+	public function release_from_meta( $product_id ) {
+		$keys = array(
+			'source',
+			'mbid',
+			'discogs_id',
+			'barcode',
+			'artist',
+			'label',
+			'catalog_number',
+			'year',
+			'release_date',
+			'format',
+			'format_detail',
+			'country',
+			'status',
+			'release_type',
+			'secondary_type',
+			'packaging',
+			'language',
+			'script',
+		);
+
+		$data = array( 'title' => get_post_meta( $product_id, self::META_PREFIX . 'album', true ) );
+
+		foreach ( $keys as $key ) {
+			$data[ $key ] = get_post_meta( $product_id, self::META_PREFIX . $key, true );
+		}
+
+		$decoded           = json_decode( get_post_meta( $product_id, self::META_PREFIX . 'tracklist', true ), true );
+		$data['tracklist'] = is_array( $decoded ) ? $decoded : array();
+
+		return Melomaniac_Sync_Release_DTO::from_array( $data );
+	}
+
+	/**
+	 * Marks a product as already contributed to MusicBrainz, so it drops out
+	 * of the contribution queue.
+	 *
+	 * @param int $product_id Product ID.
+	 * @return void
+	 */
+	public function mark_contributed( $product_id ) {
+		update_post_meta( $product_id, self::META_PREFIX . 'mb_contributed', current_time( 'mysql' ) );
+	}
+
+	/**
 	 * Finds a product by one of our meta fields.
 	 *
 	 * @param string $meta_key   Meta key.

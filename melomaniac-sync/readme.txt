@@ -4,7 +4,7 @@ Tags: woocommerce, vinyl, music, barcode, musicbrainz
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 2.3.1
+Stable tag: 2.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -59,11 +59,18 @@ El plugin lo detecta por SKU y por identificador de MusicBrainz, y te muestra un
 
 No, y esto es a propósito de MusicBrainz: no ofrecen ninguna API para crear un disco de forma automática, porque cada aporte lo revisa la propia comunidad antes de quedar en la base de datos. Lo que sí hace el botón "Aportar este disco a MusicBrainz" del formulario manual es abrir el formulario real de MusicBrainz en una pestaña nueva, con los datos que ya escribiste puestos ahí (artista, título, sello, catálogo, fecha, país, formato, lista de canciones), para que solo tengas que revisar y enviar. Necesitas tu propia cuenta de MusicBrainz para eso; el plugin no crea ni envía nada por su cuenta.
 
+= ¿Se puede aportar varios discos a MusicBrainz de una sola vez? =
+
+No: MusicBrainz no ofrece ninguna carga masiva propia, ni por archivo ni por su API (que solo acepta valoraciones, etiquetas, códigos de barra e ISRC, nunca un disco nuevo completo). La pantalla Melomaniac Sync → Aportar a MusicBrainz junta los discos que cargaste a mano y no marcaste como aportados, para que abras el formulario de cada uno con un clic en lugar de tener que ir a buscar el producto, pero cada aporte se sigue revisando y enviando por separado, con tu cuenta.
+
 = ¿Cómo funciona la carga masiva? =
 
 Se procesa en segundo plano con Action Scheduler (la misma librería que usa WooCommerce para sus propias tareas programadas), un código de barra a la vez y espaciados entre sí, así que no hace falta dejar la pestaña abierta. Necesita que el cron de WordPress esté funcionando con normalidad, como cualquier otra tarea programada del sitio. Se puede cargar pegando una lista o subiendo un CSV con columnas código, precio y cantidad (hay una plantilla para descargar en la misma pantalla). Cuando un código tiene más de una edición posible, la carga se detiene en ese disco y muestra las opciones para que elijas cuál es, igual que al escanear uno solo.
 
 == Changelog ==
+
+= 2.4.0 =
+* Nueva pantalla, Melomaniac Sync → Aportar a MusicBrainz, que junta todos los discos que cargaste a mano y todavía no marcaste como aportados. Cada uno tiene su propio botón para abrir el formulario de MusicBrainz ya lleno; al usarlo, el disco se quita solo de la lista. MusicBrainz no ofrece ninguna carga masiva propia (ni por archivo ni por API): esta pantalla solo ahorra tener que ir a buscar cada producto uno por uno, cada aporte se sigue revisando y enviando por separado.
 
 = 2.3.1 =
 * El botón "Aportar este disco a MusicBrainz" (en wp-admin y en la app) ahora incluye un enlace para crear una cuenta de MusicBrainz si todavía no tienes una. Una vez que inicias sesión en el navegador del dispositivo, queda guardada ahí para las próximas veces, igual que en cualquier sitio web: el plugin no la maneja ni la guarda.

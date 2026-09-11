@@ -151,6 +151,7 @@ final class Melomaniac_Sync_Plugin {
 					'admin/class-quick-publish.php',
 					'admin/class-diagnostics-page.php',
 					'admin/class-bulk-page.php',
+					'admin/class-mb-queue-page.php',
 				)
 			);
 		}
@@ -204,6 +205,9 @@ final class Melomaniac_Sync_Plugin {
 		$bulk_page = new Melomaniac_Sync_Bulk_Page( $bulk_import );
 		$bulk_page->register();
 
+		$mb_queue_page = new Melomaniac_Sync_Mb_Queue_Page( $this->product_factory() );
+		$mb_queue_page->register();
+
 		$menu = new Melomaniac_Sync_Admin_Menu(
 			new Melomaniac_Sync_Scan_Page( $this->lookup_service() ),
 			$settings_page,
@@ -211,7 +215,8 @@ final class Melomaniac_Sync_Plugin {
 				new Melomaniac_Sync_Connectivity_Check( $this->logger() ),
 				$this->lookup_service()
 			),
-			$bulk_page
+			$bulk_page,
+			$mb_queue_page
 		);
 		$menu->register();
 

@@ -108,8 +108,8 @@ msgstr ""
 msgid "Ahora mismo: Freemius no se cargó (apagado desde wp-config.php)."
 msgstr ""
 
-#: admin/class-admin-menu.php:147
-#: admin/class-admin-menu.php:148
+#: admin/class-admin-menu.php:162
+#: admin/class-admin-menu.php:163
 #: admin/views/page-diagnostics.php:362
 #: includes/frontend/views/view-app-shell.php:73
 msgid "Ajustes"
@@ -147,6 +147,13 @@ msgstr ""
 msgid "Aplicar"
 msgstr ""
 
+#: admin/class-admin-menu.php:188
+#: admin/class-admin-menu.php:189
+#: admin/views/page-mb-queue.php:22
+#: admin/views/page-mb-queue.php:75
+msgid "Aportar a MusicBrainz"
+msgstr ""
+
 #: admin/views/partial-manual-form.php:337
 #: includes/frontend/views/view-app-shell.php:203
 msgid "Aportar este disco a MusicBrainz"
@@ -166,7 +173,7 @@ msgstr ""
 
 #: admin/views/partial-manual-form.php:73
 #: includes/frontend/views/view-app-shell.php:166
-#: includes/services/class-product-factory.php:271
+#: includes/services/class-product-factory.php:358
 #: includes/support/class-settings.php:40
 msgid "Artista"
 msgstr ""
@@ -174,7 +181,7 @@ msgstr ""
 #: admin/views/partial-manual-form.php:112
 #: admin/views/partial-result-preview.php:24
 #: includes/frontend/views/view-app-shell.php:177
-#: includes/services/class-product-factory.php:273
+#: includes/services/class-product-factory.php:360
 #: includes/support/class-settings.php:41
 msgid "Año"
 msgstr ""
@@ -260,8 +267,8 @@ msgstr ""
 msgid "Cantidad de discos"
 msgstr ""
 
-#: admin/class-admin-menu.php:134
-#: admin/class-admin-menu.php:135
+#: admin/class-admin-menu.php:149
+#: admin/class-admin-menu.php:150
 #: admin/views/page-bulk.php:38
 msgid "Carga masiva"
 msgstr ""
@@ -413,6 +420,7 @@ msgstr ""
 msgid "Crear una contraseña de aplicación"
 msgstr ""
 
+#: admin/views/page-mb-queue.php:30
 #: admin/views/partial-manual-form.php:345
 #: includes/frontend/views/view-app-shell.php:210
 msgid "Créala aquí"
@@ -478,8 +486,8 @@ msgstr ""
 msgid "Detener la cámara"
 msgstr ""
 
-#: admin/class-admin-menu.php:160
-#: admin/class-admin-menu.php:161
+#: admin/class-admin-menu.php:175
+#: admin/class-admin-menu.php:176
 #: admin/views/page-diagnostics.php:38
 #: admin/views/page-settings.php:288
 #: admin/views/page-settings.php:312
@@ -494,7 +502,11 @@ msgstr ""
 msgid "Dirección de la app"
 msgstr ""
 
-#: includes/services/class-product-factory.php:476
+#: admin/views/page-mb-queue.php:41
+msgid "Disco"
+msgstr ""
+
+#: includes/services/class-product-factory.php:563
 msgid "Disco %d"
 msgstr ""
 
@@ -522,6 +534,10 @@ msgstr ""
 
 #: admin/views/partial-plan-summary.php:43
 msgid "Discos ilimitados este mes."
+msgstr ""
+
+#: admin/views/page-mb-queue.php:25
+msgid "Discos que cargaste a mano porque MusicBrainz no los tenía, y todavía no marcaste como aportados. MusicBrainz no ofrece una carga masiva propia: cada uno se abre y se envía por separado, con tu cuenta. Esta pantalla solo te ahorra ir a buscar cada producto: al tocar \"Aportar\" se abre el formulario de MusicBrainz ya lleno, en una pestaña nueva, y el disco se quita de esta lista."
 msgstr ""
 
 #: includes/support/class-connectivity-check.php:296
@@ -651,9 +667,9 @@ msgstr ""
 msgid "Escanear con la cámara"
 msgstr ""
 
-#: admin/class-admin-menu.php:121
-#: admin/class-admin-menu.php:122
-#: admin/class-admin.php:184
+#: admin/class-admin-menu.php:136
+#: admin/class-admin-menu.php:137
+#: admin/class-admin.php:202
 #: admin/views/page-scan.php:21
 msgid "Escanear disco"
 msgstr ""
@@ -672,6 +688,10 @@ msgstr ""
 
 #: includes/rest/class-rest-api.php:223
 msgid "Ese producto no existe."
+msgstr ""
+
+#: admin/class-mb-queue-page.php:78
+msgid "Ese producto ya no existe."
 msgstr ""
 
 #: admin/class-bulk-page.php:231
@@ -751,7 +771,7 @@ msgstr ""
 #: admin/views/partial-manual-form.php:142
 #: admin/views/partial-result-preview.php:27
 #: includes/frontend/views/view-app-shell.php:181
-#: includes/services/class-product-factory.php:274
+#: includes/services/class-product-factory.php:361
 #: includes/support/class-settings.php:45
 msgid "Formato"
 msgstr ""
@@ -853,6 +873,7 @@ msgstr ""
 #: admin/class-ajax-handler.php:306
 #: admin/class-bulk-page.php:180
 #: admin/class-bulk-page.php:210
+#: admin/class-mb-queue-page.php:67
 msgid "La sesión expiró. Recarga la página."
 msgstr ""
 
@@ -865,7 +886,7 @@ msgid "Le pregunta a cada fuente por separado, sin usar lo guardado. Sirve para 
 msgstr ""
 
 #: admin/views/partial-manual-form.php:181
-#: includes/services/class-product-factory.php:459
+#: includes/services/class-product-factory.php:546
 #: includes/support/class-settings.php:46
 msgid "Lista de canciones"
 msgstr ""
@@ -887,8 +908,8 @@ msgstr ""
 msgid "Melomaniac"
 msgstr ""
 
-#: admin/class-admin-menu.php:106
-#: admin/class-admin-menu.php:107
+#: admin/class-admin-menu.php:121
+#: admin/class-admin-menu.php:122
 #: includes/frontend/views/view-app-shell.php:57
 msgid "Melomaniac Sync"
 msgstr ""
@@ -991,6 +1012,10 @@ msgstr ""
 msgid "No hace falta abrir esto para crear el producto. Se guarda con valores razonables: disco oficial, un álbum, un solo disco. Ábrelo solo si el disco es distinto y quieres que el aporte a MusicBrainz salga exacto."
 msgstr ""
 
+#: admin/views/page-mb-queue.php:36
+msgid "No hay discos pendientes de aportar."
+msgstr ""
+
 #: includes/rest/class-rest-api.php:189
 msgid "No se detectó la sesión de la app. Vuelve a conectarla desde Ajustes."
 msgstr ""
@@ -1045,6 +1070,7 @@ msgstr ""
 #: admin/class-bulk-page.php:184
 #: admin/class-bulk-page.php:214
 #: admin/class-manual-entry-handler.php:68
+#: admin/class-mb-queue-page.php:71
 msgid "No tienes permisos para hacer esto."
 msgstr ""
 
@@ -1058,6 +1084,7 @@ msgstr ""
 
 #: admin/class-bulk-page.php:270
 #: admin/class-diagnostics-page.php:78
+#: admin/class-mb-queue-page.php:93
 #: admin/class-settings-page.php:171
 msgid "No tienes permisos para ver esta pantalla."
 msgstr ""
@@ -1065,7 +1092,7 @@ msgstr ""
 #: admin/views/partial-manual-form.php:173
 #: admin/views/partial-result-preview.php:26
 #: includes/frontend/views/view-app-shell.php:189
-#: includes/services/class-product-factory.php:276
+#: includes/services/class-product-factory.php:363
 #: includes/support/class-settings.php:47
 msgid "Número de catálogo"
 msgstr ""
@@ -1099,7 +1126,7 @@ msgstr ""
 #: admin/views/partial-manual-form.php:165
 #: admin/views/partial-result-preview.php:28
 #: includes/frontend/views/view-app-shell.php:186
-#: includes/services/class-product-factory.php:275
+#: includes/services/class-product-factory.php:362
 #: includes/support/class-settings.php:43
 msgid "País de prensaje"
 msgstr ""
@@ -1331,7 +1358,7 @@ msgstr ""
 #: admin/views/partial-manual-form.php:89
 #: admin/views/partial-result-preview.php:25
 #: includes/frontend/views/view-app-shell.php:172
-#: includes/services/class-product-factory.php:272
+#: includes/services/class-product-factory.php:359
 #: includes/support/class-settings.php:42
 msgid "Sello"
 msgstr ""
@@ -1629,6 +1656,10 @@ msgstr ""
 #: admin/views/partial-manual-form.php:344
 #: includes/frontend/views/view-app-shell.php:209
 msgid "¿No tienes cuenta en MusicBrainz? %s (una vez que inicies sesión en tu navegador, queda abierta para las próximas veces)."
+msgstr ""
+
+#: admin/views/page-mb-queue.php:29
+msgid "¿No tienes cuenta en MusicBrainz? %s."
 msgstr ""
 
 #: admin/views/page-settings.php:278

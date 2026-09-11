@@ -33,6 +33,11 @@ class Melomaniac_Sync_Admin_Menu {
 	const PAGE_BULK = 'melomaniac-sync-bulk';
 
 	/**
+	 * Slug of the MusicBrainz contribution queue screen.
+	 */
+	const PAGE_MB_QUEUE = 'melomaniac-sync-mb-queue';
+
+	/**
 	 * Hook suffixes of the screens this plugin owns.
 	 *
 	 * @var string[]
@@ -68,23 +73,33 @@ class Melomaniac_Sync_Admin_Menu {
 	private $bulk_page;
 
 	/**
+	 * MusicBrainz contribution queue screen controller.
+	 *
+	 * @var Melomaniac_Sync_Mb_Queue_Page
+	 */
+	private $mb_queue_page;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param Melomaniac_Sync_Scan_Page        $scan_page        Scan screen controller.
 	 * @param Melomaniac_Sync_Settings_Page    $settings_page    Settings screen controller.
 	 * @param Melomaniac_Sync_Diagnostics_Page $diagnostics_page Diagnostics screen controller.
 	 * @param Melomaniac_Sync_Bulk_Page        $bulk_page        Bulk import screen controller.
+	 * @param Melomaniac_Sync_Mb_Queue_Page     $mb_queue_page    MusicBrainz contribution queue controller.
 	 */
 	public function __construct(
 		Melomaniac_Sync_Scan_Page $scan_page,
 		Melomaniac_Sync_Settings_Page $settings_page,
 		Melomaniac_Sync_Diagnostics_Page $diagnostics_page,
-		Melomaniac_Sync_Bulk_Page $bulk_page
+		Melomaniac_Sync_Bulk_Page $bulk_page,
+		Melomaniac_Sync_Mb_Queue_Page $mb_queue_page
 	) {
 		$this->scan_page        = $scan_page;
 		$this->settings_page    = $settings_page;
 		$this->diagnostics_page = $diagnostics_page;
 		$this->bulk_page        = $bulk_page;
+		$this->mb_queue_page    = $mb_queue_page;
 	}
 
 	/**
@@ -167,6 +182,19 @@ class Melomaniac_Sync_Admin_Menu {
 		if ( $diagnostics_hook ) {
 			self::$screen_hooks[] = $diagnostics_hook;
 		}
+
+		$mb_queue_hook = add_submenu_page(
+			self::PAGE_SCAN,
+			__( 'Aportar a MusicBrainz', 'melomaniac-sync' ),
+			__( 'Aportar a MusicBrainz', 'melomaniac-sync' ),
+			Melomaniac_Sync_Plugin::CAPABILITY,
+			self::PAGE_MB_QUEUE,
+			array( $this->mb_queue_page, 'render' )
+		);
+
+		if ( $mb_queue_hook ) {
+			self::$screen_hooks[] = $mb_queue_hook;
+		}
 	}
 
 	/**
@@ -197,6 +225,15 @@ class Melomaniac_Sync_Admin_Menu {
 		$args = array_merge( array( 'page' => self::PAGE_BULK ), $args );
 
 		return add_query_arg( $args, admin_url( 'admin.php' ) );
+	}
+
+	/**
+	 * URL of the MusicBrainz contribution queue screen.
+	 *
+	 * @return string
+	 */
+	public static function mb_queue_url() {
+		return add_query_arg( array( 'page' => self::PAGE_MB_QUEUE ), admin_url( 'admin.php' ) );
 	}
 
 	/**
