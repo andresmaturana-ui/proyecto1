@@ -265,7 +265,7 @@ class Melomaniac_Sync_Ajax_Handler {
 
 		$product_id = $this->product_factory->create_draft(
 			$release,
-			Melomaniac_Sync_Admin::read_product_overrides()
+			Melomaniac_Sync_Catalog::read_overrides( wp_unslash( $_POST ) )
 		);
 
 		if ( is_wp_error( $product_id ) ) {

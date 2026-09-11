@@ -371,7 +371,7 @@ msgstr ""
 msgid "Digipak"
 msgstr ""
 
-#: includes/services/class-product-factory.php:508
+#: includes/services/class-product-factory.php:476
 msgid "Disco %d"
 msgstr ""
 
@@ -503,6 +503,10 @@ msgstr ""
 msgid "Ese contenido no es un producto."
 msgstr ""
 
+#: includes/rest/class-rest-api.php:223
+msgid "Ese producto no existe."
+msgstr ""
+
 #: includes/services/class-release-dto.php:281
 msgid "Español"
 msgstr ""
@@ -538,6 +542,10 @@ msgstr ""
 
 #: includes/services/class-product-factory.php:54
 msgid "Falta el artista o el título del álbum."
+msgstr ""
+
+#: includes/rest/class-rest-api.php:369
+msgid "Falta el nombre."
 msgstr ""
 
 #: admin/class-quick-publish.php:94
@@ -662,7 +670,7 @@ msgid "Le pregunta a cada fuente por separado, sin usar lo guardado. Sirve para 
 msgstr ""
 
 #: admin/views/partial-manual-form.php:181
-#: includes/services/class-product-factory.php:491
+#: includes/services/class-product-factory.php:459
 #: includes/support/class-settings.php:46
 msgid "Lista de canciones"
 msgstr ""
@@ -762,16 +770,36 @@ msgstr ""
 msgid "No hace falta abrir esto para crear el producto. Se guarda con valores razonables: disco oficial, un álbum, un solo disco. Ábrelo solo si el disco es distinto y quieres que el aporte a MusicBrainz salga exacto."
 msgstr ""
 
+#: includes/rest/class-rest-api.php:189
+msgid "No se detectó la sesión de la app. Vuelve a conectarla desde Ajustes."
+msgstr ""
+
 #: admin/class-admin.php:113
 msgid "No se pudo acceder a la cámara. Revisa los permisos del navegador."
+msgstr ""
+
+#: includes/rest/class-rest-api.php:427
+msgid "No se pudo crear el adjunto."
 msgstr ""
 
 #: admin/class-scan-page.php:100
 msgid "No se pudo crear el producto."
 msgstr ""
 
+#: includes/rest/class-rest-api.php:379
+msgid "No se pudo crear la categoría o etiqueta."
+msgstr ""
+
+#: includes/rest/class-rest-api.php:589
+msgid "No se pudo eliminar el producto."
+msgstr ""
+
 #: includes/services/class-product-factory.php:116
 msgid "No se pudo guardar el producto."
+msgstr ""
+
+#: includes/rest/class-rest-api.php:231
+msgid "No tienes permiso para editar este producto."
 msgstr ""
 
 #: admin/class-settings-page.php:46
@@ -779,7 +807,7 @@ msgid "No tienes permisos para cambiar estos ajustes."
 msgstr ""
 
 #: admin/class-ajax-handler.php:313
-#: admin/class-manual-entry-handler.php:55
+#: admin/class-manual-entry-handler.php:68
 msgid "No tienes permisos para hacer esto."
 msgstr ""
 
@@ -908,6 +936,10 @@ msgstr ""
 
 #: admin/views/page-diagnostics.php:220
 msgid "Probar un código de barra"
+msgstr ""
+
+#: includes/rest/class-rest-api.php:548
+msgid "Producto no encontrado."
 msgstr ""
 
 #: admin/views/page-settings.php:107
@@ -1155,6 +1187,10 @@ msgstr ""
 msgid "Transmisión"
 msgstr ""
 
+#: includes/rest/class-rest-api.php:200
+msgid "Tu usuario no tiene permiso para gestionar productos."
+msgstr ""
+
 #: admin/views/partial-manual-form.php:81
 msgid "Título del álbum"
 msgstr ""
@@ -1234,6 +1270,10 @@ msgstr ""
 
 #: includes/services/class-release-dto.php:316
 msgid "Vinilo"
+msgstr ""
+
+#: includes/rest/class-rest-api.php:452
+msgid "WooCommerce no está activo."
 msgstr ""
 
 #: includes/support/class-connectivity-check.php:221

@@ -4,7 +4,7 @@ Tags: woocommerce, vinyl, music, barcode, musicbrainz
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.6.0
+Stable tag: 1.7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,7 +45,7 @@ No. Puedes escribir el código a mano, o usar la cámara del dispositivo en nave
 
 = ¿El escaneo con la cámara funciona en cualquier navegador? =
 
-Usa la API nativa del navegador (BarcodeDetector), disponible en Chrome, Edge y Android. En Safari y Firefox el botón avisa que no está disponible y podés usar un lector USB o tipear el código.
+Usa la API nativa del navegador (BarcodeDetector), disponible en Chrome, Edge y Android. En Safari y Firefox el botón avisa que no está disponible y puedes usar un lector USB o tipear el código.
 
 = ¿Los productos se publican solos? =
 
@@ -56,6 +56,9 @@ No. Se crean siempre como borrador para que los revises, les pongas precio y sto
 El plugin lo detecta por SKU y por identificador de MusicBrainz, y te muestra un enlace al producto que ya existe en lugar de duplicarlo.
 
 == Changelog ==
+
+= 1.7.0 =
+* Agrega una API REST (melomaniac-sync/v1) y autenticación con contraseñas de aplicación de WordPress, para que una app o herramienta externa pueda buscar discos y crear productos sin pasar por wp-admin.
 
 = 1.0.0 =
 * Primera versión: escaneo individual por código de barra, búsqueda en MusicBrainz, portada desde Cover Art Archive, creación del producto como borrador y formulario de carga manual.

@@ -325,7 +325,7 @@ $melomaniac_prefill = isset( $data['release'] ) && $data['release'] instanceof M
 			array(
 				'prefix'     => 'melomaniac-manual',
 				'tags'       => array(),
-				'categories' => Melomaniac_Sync_Admin::product_categories(),
+				'categories' => Melomaniac_Sync_Catalog::categories(),
 			)
 		);
 		?>

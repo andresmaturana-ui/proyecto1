@@ -100,7 +100,7 @@ $melomaniac_meta = array(
 			array(
 				'prefix'     => 'melomaniac-preview',
 				'tags'       => Melomaniac_Sync_Settings::genre_tag_enabled() ? $melomaniac_release->genres : array(),
-				'categories' => Melomaniac_Sync_Admin::product_categories(),
+				'categories' => Melomaniac_Sync_Catalog::categories(),
 			)
 		);
 		?>

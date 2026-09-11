@@ -310,7 +310,7 @@ class Melomaniac_Sync_Product_Factory {
 		$chosen_ids = isset( $overrides['category_ids'] ) ? array_map( 'absint', (array) $overrides['category_ids'] ) : array();
 
 		if ( ! empty( $overrides['new_category'] ) ) {
-			$created = $this->resolve_term( $overrides['new_category'], 'product_cat' );
+			$created = Melomaniac_Sync_Terms::resolve( $overrides['new_category'], 'product_cat' );
 
 			if ( $created > 0 ) {
 				$chosen_ids[] = $created;
@@ -337,43 +337,11 @@ class Melomaniac_Sync_Product_Factory {
 			return;
 		}
 
-		$term_id = $this->resolve_term( $release->format_label(), 'product_cat' );
+		$term_id = Melomaniac_Sync_Terms::resolve( $release->format_label(), 'product_cat' );
 
 		if ( $term_id > 0 ) {
 			wp_set_object_terms( $product_id, array( $term_id ), 'product_cat', true );
 		}
-	}
-
-	/**
-	 * Finds a term by name, creating it when it does not exist yet.
-	 *
-	 * @param string $name     Term name.
-	 * @param string $taxonomy Taxonomy.
-	 * @return int Term ID, zero when it could not be resolved.
-	 */
-	private function resolve_term( $name, $taxonomy ) {
-		$name = trim( (string) $name );
-
-		if ( '' === $name ) {
-			return 0;
-		}
-
-		$term = get_term_by( 'name', $name, $taxonomy );
-
-		if ( $term ) {
-			return (int) $term->term_id;
-		}
-
-		$created = wp_insert_term( $name, $taxonomy );
-
-		if ( is_wp_error( $created ) ) {
-			// A term created by a concurrent request is not a failure.
-			$existing = $created->get_error_data( 'term_exists' );
-
-			return $existing ? (int) $existing : 0;
-		}
-
-		return (int) $created['term_id'];
 	}
 
 	/**
@@ -605,7 +573,7 @@ class Melomaniac_Sync_Product_Factory {
 		$term_ids = array();
 
 		foreach ( $names as $name ) {
-			$term_id = $this->resolve_term( $name, 'product_tag' );
+			$term_id = Melomaniac_Sync_Terms::resolve( $name, 'product_tag' );
 
 			if ( $term_id > 0 ) {
 				$term_ids[] = $term_id;

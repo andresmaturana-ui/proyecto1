@@ -39,6 +39,13 @@ final class Melomaniac_Sync_Plugin {
 	private $product_factory = null;
 
 	/**
+	 * Manual release builder.
+	 *
+	 * @var Melomaniac_Sync_Manual_Release_Builder|null
+	 */
+	private $manual_release_builder = null;
+
+	/**
 	 * Logger.
 	 *
 	 * @var Melomaniac_Sync_Logger|null
@@ -97,6 +104,8 @@ final class Melomaniac_Sync_Plugin {
 			'includes/support/class-cache.php',
 			'includes/support/class-settings.php',
 			'includes/support/class-connectivity-check.php',
+			'includes/support/class-terms.php',
+			'includes/support/class-catalog.php',
 			'includes/licensing/class-licensing.php',
 			'includes/licensing/class-usage.php',
 			'includes/helpers/functions-reference-links.php',
@@ -109,6 +118,11 @@ final class Melomaniac_Sync_Plugin {
 			'includes/services/class-release-dto.php',
 			'includes/services/class-release-lookup-service.php',
 			'includes/services/class-product-factory.php',
+			'includes/services/class-manual-release-builder.php',
+			// REST is not gated by is_admin(): a REST request never is one, so
+			// the app's own traffic would never reach these otherwise.
+			'includes/rest/class-rest-auth.php',
+			'includes/rest/class-rest-api.php',
 		);
 
 		if ( is_admin() ) {
@@ -142,6 +156,16 @@ final class Melomaniac_Sync_Plugin {
 
 		Melomaniac_Sync_Licensing::register();
 
+		$rest_auth = new Melomaniac_Sync_Rest_Auth();
+		$rest_auth->register();
+
+		$rest_api = new Melomaniac_Sync_Rest_Api(
+			$this->lookup_service(),
+			$this->product_factory(),
+			$this->manual_release_builder()
+		);
+		$rest_api->register();
+
 		if ( ! is_admin() ) {
 			return;
 		}
@@ -168,7 +192,7 @@ final class Melomaniac_Sync_Plugin {
 		$ajax = new Melomaniac_Sync_Ajax_Handler( $this->lookup_service(), $this->product_factory() );
 		$ajax->register();
 
-		$manual = new Melomaniac_Sync_Manual_Entry_Handler( $this->product_factory() );
+		$manual = new Melomaniac_Sync_Manual_Entry_Handler( $this->product_factory(), $this->manual_release_builder() );
 		$manual->register();
 	}
 
@@ -237,5 +261,21 @@ final class Melomaniac_Sync_Plugin {
 		}
 
 		return $this->product_factory;
+	}
+
+	/**
+	 * Manual release builder.
+	 *
+	 * Stateless, so a single shared instance is enough for both the admin
+	 * form and the REST API.
+	 *
+	 * @return Melomaniac_Sync_Manual_Release_Builder
+	 */
+	public function manual_release_builder() {
+		if ( null === $this->manual_release_builder ) {
+			$this->manual_release_builder = new Melomaniac_Sync_Manual_Release_Builder();
+		}
+
+		return $this->manual_release_builder;
 	}
 }

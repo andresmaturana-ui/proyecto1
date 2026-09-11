@@ -355,7 +355,7 @@ class Melomaniac_Sync_Release_DTO {
 	/**
 	 * Renders the track list in the plain text shape the manual form accepts.
 	 *
-	 * Inverse of Melomaniac_Sync_Manual_Entry_Handler::parse_tracklist(), so a
+	 * Inverse of Melomaniac_Sync_Manual_Release_Builder::parse_tracklist(), so a
 	 * release can be loaded into the form, edited and submitted back.
 	 *
 	 * @return string

@@ -178,7 +178,7 @@ class Melomaniac_Sync_Settings_Page {
 				'enabled'    => Melomaniac_Sync_Settings::enabled_description_fields(),
 				'formats'    => Melomaniac_Sync_Release_DTO::formats(),
 				'map'        => Melomaniac_Sync_Settings::category_map(),
-				'categories' => Melomaniac_Sync_Admin::product_categories(),
+				'categories' => Melomaniac_Sync_Catalog::categories(),
 				'flash'      => $this->take_flash(),
 			)
 		);
