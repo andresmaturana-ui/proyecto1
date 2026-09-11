@@ -203,6 +203,13 @@ $melomaniac_app = wp_parse_args(
 				<button type="button" class="melomaniac-btn" data-action="contribute-musicbrainz"><?php esc_html_e( 'Aportar este disco a MusicBrainz', 'melomaniac-sync' ); ?></button>
 				<p class="melomaniac-app-lead">
 					<?php esc_html_e( 'Abre el formulario de MusicBrainz con estos datos ya escritos, en una pestaña nueva, para que lo revises y lo envíes con tu propia cuenta. Melomaniac Sync no puede crear el disco por ti: MusicBrainz revisa cada aporte a mano.', 'melomaniac-sync' ); ?>
+					<?php
+					printf(
+						/* translators: %s: enlace para crear una cuenta en MusicBrainz. */
+						esc_html__( '¿No tienes cuenta en MusicBrainz? %s (una vez que inicies sesión en tu navegador, queda abierta para las próximas veces).', 'melomaniac-sync' ),
+						'<a href="https://musicbrainz.org/register" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Créala aquí', 'melomaniac-sync' ) . '</a>'
+					);
+					?>
 				</p>
 			</form>
 

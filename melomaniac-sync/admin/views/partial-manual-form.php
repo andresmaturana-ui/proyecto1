@@ -338,6 +338,13 @@ $melomaniac_prefill = isset( $data['release'] ) && $data['release'] instanceof M
 			</button>
 			<span class="description">
 				<?php esc_html_e( 'Abre el formulario de MusicBrainz con estos datos ya escritos, en una pestaña nueva, para que lo revises y lo envíes con tu propia cuenta. Melomaniac Sync no puede crear el disco por ti: MusicBrainz revisa cada aporte a mano.', 'melomaniac-sync' ); ?>
+				<?php
+				printf(
+					/* translators: %s: URL para crear una cuenta en MusicBrainz. */
+					esc_html__( '¿No tienes cuenta en MusicBrainz? %s (una vez que inicies sesión en tu navegador, queda abierta para las próximas veces).', 'melomaniac-sync' ),
+					'<a href="https://musicbrainz.org/register" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Créala aquí', 'melomaniac-sync' ) . '</a>'
+				);
+				?>
 			</span>
 		</p>
 	</form>

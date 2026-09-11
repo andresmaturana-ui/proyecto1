@@ -4,7 +4,7 @@ Tags: woocommerce, vinyl, music, barcode, musicbrainz
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 2.3.0
+Stable tag: 2.3.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -64,6 +64,9 @@ No, y esto es a propósito de MusicBrainz: no ofrecen ninguna API para crear un 
 Se procesa en segundo plano con Action Scheduler (la misma librería que usa WooCommerce para sus propias tareas programadas), un código de barra a la vez y espaciados entre sí, así que no hace falta dejar la pestaña abierta. Necesita que el cron de WordPress esté funcionando con normalidad, como cualquier otra tarea programada del sitio. Se puede cargar pegando una lista o subiendo un CSV con columnas código, precio y cantidad (hay una plantilla para descargar en la misma pantalla). Cuando un código tiene más de una edición posible, la carga se detiene en ese disco y muestra las opciones para que elijas cuál es, igual que al escanear uno solo.
 
 == Changelog ==
+
+= 2.3.1 =
+* El botón "Aportar este disco a MusicBrainz" (en wp-admin y en la app) ahora incluye un enlace para crear una cuenta de MusicBrainz si todavía no tienes una. Una vez que inicias sesión en el navegador del dispositivo, queda guardada ahí para las próximas veces, igual que en cualquier sitio web: el plugin no la maneja ni la guarda.
 
 = 2.3.0 =
 * El formulario de carga manual (en wp-admin y en la app) suma el botón "Aportar este disco a MusicBrainz": abre el formulario de MusicBrainz para agregar un disco nuevo, en una pestaña aparte, con los datos que ya escribiste puestos ahí. Revisas y envías el aporte tú, con tu propia cuenta de MusicBrainz — ver la pregunta nueva en la sección de ayuda para el motivo.
