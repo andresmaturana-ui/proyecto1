@@ -1,0 +1,1676 @@
+# Copyright (C) 2026 Melomaniac
+# This file is distributed under the GPL-2.0-or-later license.
+msgid ""
+msgstr ""
+"Project-Id-Version: Melomaniac Sync 1.0.0\n"
+"Report-Msgid-Bugs-To: https://melomaniac.cl/melomaniac-sync\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-09-10T00:00:00+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: melomaniac-sync\n"
+
+#: admin/views/partial-result-preview.php:77
+msgid "%d canción"
+msgid_plural "%d canciones"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/views/page-diagnostics.php:282
+msgid "%d edición"
+msgid_plural "%d ediciones"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/class-quick-publish.php:198
+msgid "%d producto publicado."
+msgid_plural "%d productos publicados."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/views/partial-candidate-list.php:27
+msgid "Hay %d edición con este código"
+msgid_plural "Hay %d ediciones con este código"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/views/partial-plan-summary.php:49
+msgid "%1$d de %2$d discos usados este mes."
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:229
+msgid "%1$s (a los %2$d ms)"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:198
+msgid "%d ms"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:283
+msgid "%d segundos"
+msgstr ""
+
+#: includes/frontend/class-pwa.php:197
+msgid "%s - Melomaniac Sync"
+msgstr ""
+
+#: includes/frontend/views/view-app-shell.php:131
+#: includes/frontend/views/view-app-shell.php:150
+msgid "&larr; Volver"
+msgstr ""
+
+#: includes/frontend/views/view-app-shell.php:216
+msgid "&larr; Volver al escaneo"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:85
+msgid "(prueba activa, no es el plan real)"
+msgstr ""
+
+#: admin/views/partial-manual-form.php:340
+#: includes/frontend/views/view-app-shell.php:205
+msgid "Abre el formulario de MusicBrainz con estos datos ya escritos, en una pestaña nueva, para que lo revises y lo envíes con tu propia cuenta. Melomaniac Sync no puede crear el disco por ti: MusicBrainz revisa cada aporte a mano."
+msgstr ""
+
+#: includes/helpers/functions-reference-links.php:88
+msgid "Abre la búsqueda en discogs.com. Copia a mano los datos que quieras usar."
+msgstr ""
+
+#: includes/frontend/views/view-app-shell.php:223
+msgid "Abrir en el editor"
+msgstr ""
+
+#: admin/views/page-scan.php:66
+msgid "Acerca el código de barra al centro del recuadro."
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:290
+msgid "Action Scheduler disponible"
+msgstr ""
+
+#: admin/views/page-settings.php:191
+msgid "Agregar el género principal como etiqueta del producto"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:130
+msgid "Ahora mismo: Freemius está cargado."
+msgstr ""
+
+#: admin/views/page-diagnostics.php:134
+msgid "Ahora mismo: Freemius no se cargó (apagado desde este interruptor)."
+msgstr ""
+
+#: admin/views/page-diagnostics.php:132
+msgid "Ahora mismo: Freemius no se cargó (apagado desde wp-config.php)."
+msgstr ""
+
+#: admin/class-admin-menu.php:162
+#: admin/class-admin-menu.php:163
+#: admin/views/page-diagnostics.php:362
+#: includes/frontend/views/view-app-shell.php:73
+msgid "Ajustes"
+msgstr ""
+
+#: admin/views/page-settings.php:31
+msgid "Ajustes de Melomaniac Sync"
+msgstr ""
+
+#: admin/class-settings-page.php:55
+msgid "Ajustes guardados."
+msgstr ""
+
+#: includes/licensing/class-usage.php:160
+msgid "Alcanzaste el límite de %1$d discos este mes en el plan %2$s. Pasa a %3$s para seguir cargando."
+msgstr ""
+
+#: includes/licensing/class-usage.php:155
+msgid "Alcanzaste el límite mensual de discos."
+msgstr ""
+
+#: includes/services/class-release-dto.php:286
+msgid "Alemán"
+msgstr ""
+
+#: admin/class-admin.php:128
+msgid "Algo falló. Intenta de nuevo."
+msgstr ""
+
+#: admin/views/page-settings.php:329
+msgid "Anotar fallas de MusicBrainz, Discogs y portadas en el log de WordPress"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:72
+msgid "Aplicar"
+msgstr ""
+
+#: admin/class-admin-menu.php:188
+#: admin/class-admin-menu.php:189
+#: admin/views/page-mb-queue.php:22
+#: admin/views/page-mb-queue.php:75
+msgid "Aportar a MusicBrainz"
+msgstr ""
+
+#: admin/views/partial-manual-form.php:337
+#: includes/frontend/views/view-app-shell.php:203
+msgid "Aportar este disco a MusicBrainz"
+msgstr ""
+
+#: admin/views/page-settings.php:246
+msgid "App web"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:94
+msgid "Apágalo para probar el plugin sin que hable con Freemius en ningún momento: sin conexión de cuenta, sin pantalla de licencia, sin llamadas a freemius.com. Con esto apagado, el plan lo decide solo el selector de arriba."
+msgstr ""
+
+#: admin/views/page-bulk.php:69
+msgid "Archivo CSV"
+msgstr ""
+
+#: admin/views/partial-manual-form.php:73
+#: includes/frontend/views/view-app-shell.php:166
+#: includes/services/class-product-factory.php:358
+#: includes/support/class-settings.php:40
+msgid "Artista"
+msgstr ""
+
+#: admin/views/partial-manual-form.php:112
+#: admin/views/partial-result-preview.php:24
+#: includes/frontend/views/view-app-shell.php:177
+#: includes/services/class-product-factory.php:360
+#: includes/support/class-settings.php:41
+msgid "Año"
+msgstr ""
+
+#: includes/services/class-release-dto.php:246
+msgid "Banda sonora"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:31
+msgid "Bien"
+msgstr ""
+
+#: includes/services/class-release-dto.php:216
+msgid "Bootleg"
+msgstr ""
+
+#: admin/views/page-settings.php:120
+msgid "Borrador"
+msgstr ""
+
+#: admin/views/page-settings.php:133
+msgid "Borrador es lo recomendado: te deja revisar precio y stock antes de que el disco salga a la venta."
+msgstr ""
+
+#: admin/class-admin.php:125
+msgid "Buscando en MusicBrainz…"
+msgstr ""
+
+#: admin/views/page-scan.php:53
+#: includes/frontend/views/view-app-shell.php:118
+msgid "Buscar"
+msgstr ""
+
+#: includes/helpers/functions-reference-links.php:86
+msgid "Buscar en Discogs"
+msgstr ""
+
+#: includes/helpers/functions-reference-links.php:91
+msgid "Buscar en Google"
+msgstr ""
+
+#: includes/helpers/functions-reference-links.php:96
+msgid "Buscar en MusicBrainz"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:321
+msgid "Búsquedas guardadas"
+msgstr ""
+
+#: includes/services/class-release-dto.php:317
+msgid "CD"
+msgstr ""
+
+#: includes/services/class-release-dto.php:266
+msgid "Caja (box set)"
+msgstr ""
+
+#: includes/services/class-release-dto.php:261
+msgid "Caja de CD (jewel case)"
+msgstr ""
+
+#: includes/services/class-release-dto.php:262
+msgid "Caja de CD delgada"
+msgstr ""
+
+#: includes/services/class-release-dto.php:267
+msgid "Caja de DVD"
+msgstr ""
+
+#: admin/views/page-bulk.php:34
+msgid "Cancelado"
+msgstr ""
+
+#: admin/views/page-bulk.php:140
+msgid "Cancelar lo que falta"
+msgstr ""
+
+#: admin/views/partial-product-fields.php:43
+msgid "Cantidad"
+msgstr ""
+
+#: admin/views/partial-manual-form.php:302
+msgid "Cantidad de discos"
+msgstr ""
+
+#: admin/class-admin-menu.php:149
+#: admin/class-admin-menu.php:150
+#: admin/views/page-bulk.php:38
+msgid "Carga masiva"
+msgstr ""
+
+#: admin/class-admin.php:127
+msgid "Cargando los datos del disco…"
+msgstr ""
+
+#: admin/views/partial-manual-form.php:33
+#: includes/frontend/views/view-app-shell.php:155
+msgid "Cargar el disco a mano"
+msgstr ""
+
+#: admin/views/page-bulk.php:199
+msgid "Cargar otro lote"
+msgstr ""
+
+#: includes/frontend/views/view-app-shell.php:121
+msgid "Cargar un disco a mano"
+msgstr ""
+
+#: admin/views/page-scan.php:78
+msgid "Cargar un disco manualmente, sin buscarlo"
+msgstr ""
+
+#: admin/views/page-bulk.php:47
+msgid "Cargar varios discos de una vez"
+msgstr ""
+
+#: admin/views/page-bulk.php:95
+msgid "Cargas recientes"
+msgstr ""
+
+#: includes/services/class-release-dto.php:265
+msgid "Carátula doble (gatefold)"
+msgstr ""
+
+#: includes/services/class-release-dto.php:318
+msgid "Cassette"
+msgstr ""
+
+#: admin/views/page-settings.php:218
+msgid "Categoría por formato"
+msgstr ""
+
+#: admin/views/partial-product-fields.php:60
+msgid "Categorías"
+msgstr ""
+
+#: includes/frontend/views/view-app-shell.php:74
+msgid "Cerrar sesión"
+msgstr ""
+
+#: includes/services/class-release-dto.php:305
+msgid "Chino simplificado"
+msgstr ""
+
+#: includes/services/class-release-dto.php:302
+msgid "Cirílico"
+msgstr ""
+
+#: admin/views/page-bulk.php:72
+msgid "Columnas: código (obligatoria), precio y cantidad (opcionales, reemplazan lo elegido abajo solo para esa fila). Si subes un archivo, el texto de arriba se ignora."
+msgstr ""
+
+#: admin/views/page-bulk.php:89
+msgid "Comenzar"
+msgstr ""
+
+#: includes/services/class-release-dto.php:244
+msgid "Compilado"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:41
+msgid "Comprueba si este servidor puede alcanzar los servicios que Melomaniac Sync necesita. Si un escaneo falla con \"Operation timed out\", la respuesta está acá."
+msgstr ""
+
+#: admin/views/partial-manual-form.php:136
+msgid "Con el año basta. El mes y el día son opcionales."
+msgstr ""
+
+#: admin/views/page-scan.php:61
+msgid "Con un lector USB, deja el cursor en el campo y dispáralo: el lector escribe el código y confirma solo."
+msgstr ""
+
+#: includes/frontend/views/view-app-shell.php:102
+msgid "Conectar"
+msgstr ""
+
+#: includes/frontend/views/view-app-shell.php:84
+msgid "Conectar la app"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:141
+msgid "Conexión con los servicios"
+msgstr ""
+
+#: includes/frontend/views/view-app-shell.php:135
+msgid "Confirmar disco"
+msgstr ""
+
+#: admin/views/page-settings.php:102
+msgid "Consultar Discogs cuando MusicBrainz no encuentre el disco"
+msgstr ""
+
+#: admin/views/page-settings.php:49
+msgid "Contacto para MusicBrainz"
+msgstr ""
+
+#: includes/frontend/views/view-app-shell.php:97
+msgid "Contraseña de aplicación"
+msgstr ""
+
+#: includes/services/class-release-dto.php:304
+msgid "Coreano"
+msgstr ""
+
+#: admin/views/partial-manual-form.php:32
+msgid "Corregir los datos del disco"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:77
+msgid "Cover Art Archive"
+msgstr ""
+
+#: admin/views/page-bulk.php:29
+msgid "Creado"
+msgstr ""
+
+#: admin/class-admin.php:126
+msgid "Creando el producto…"
+msgstr ""
+
+#: admin/views/partial-result-preview.php:116
+#: includes/frontend/views/view-app-shell.php:146
+#: includes/frontend/views/view-app-shell.php:201
+msgid "Crear producto"
+msgstr ""
+
+#: admin/views/partial-manual-form.php:333
+msgid "Crear producto como borrador"
+msgstr ""
+
+#: admin/views/partial-product-fields.php:94
+msgid "Crear una categoría nueva"
+msgstr ""
+
+#: includes/frontend/views/view-app-shell.php:90
+msgid "Crear una contraseña de aplicación"
+msgstr ""
+
+#: admin/views/page-mb-queue.php:30
+#: admin/views/partial-manual-form.php:345
+#: includes/frontend/views/view-app-shell.php:210
+msgid "Créala aquí"
+msgstr ""
+
+#: admin/views/page-settings.php:311
+msgid "Cuánto espera a MusicBrainz, Cover Art Archive y Discogs antes de darse por vencido. Si ves errores de \"timed out\", subilo y revisa %s."
+msgstr ""
+
+#: admin/views/page-bulk.php:146
+#: admin/views/page-diagnostics.php:161
+msgid "Código"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:228
+#: admin/views/page-scan.php:38
+#: admin/views/partial-result-preview.php:29
+#: includes/frontend/views/view-app-shell.php:116
+msgid "Código de barra"
+msgstr ""
+
+#: admin/views/page-bulk.php:57
+msgid "Códigos de barra"
+msgstr ""
+
+#: includes/services/class-release-dto.php:248
+msgid "DJ mix"
+msgstr ""
+
+#: admin/views/partial-manual-form.php:227
+msgid "Datos adicionales para aportar a MusicBrainz (opcional)"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:66
+msgid "Datos de los discos. Sin esto el plugin no puede buscar nada."
+msgstr ""
+
+#: admin/views/partial-result-preview.php:137
+msgid "Datos tomados de Discogs, porque MusicBrainz no tenía este disco."
+msgstr ""
+
+#: includes/services/class-release-dto.php:249
+msgid "Demo"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:120
+msgid "Desactivar Freemius por completo"
+msgstr ""
+
+#: admin/views/page-settings.php:176
+msgid "Descargar la portada a la biblioteca de medios"
+msgstr ""
+
+#: admin/views/partial-manual-form.php:158
+msgid "Detalle: LP 12\", doble, 180g, digipak…"
+msgstr ""
+
+#: admin/views/page-settings.php:233
+msgid "Detectar sola"
+msgstr ""
+
+#: admin/class-admin.php:135
+msgid "Detener la cámara"
+msgstr ""
+
+#: admin/class-admin-menu.php:175
+#: admin/class-admin-menu.php:176
+#: admin/views/page-diagnostics.php:38
+#: admin/views/page-settings.php:288
+#: admin/views/page-settings.php:312
+msgid "Diagnóstico"
+msgstr ""
+
+#: includes/services/class-release-dto.php:263
+msgid "Digipak"
+msgstr ""
+
+#: admin/views/page-settings.php:270
+msgid "Dirección de la app"
+msgstr ""
+
+#: admin/views/page-mb-queue.php:41
+msgid "Disco"
+msgstr ""
+
+#: includes/services/class-product-factory.php:563
+msgid "Disco %d"
+msgstr ""
+
+#: includes/services/class-release-lookup-service.php:211
+#: includes/support/class-connectivity-check.php:95
+#: includes/support/class-connectivity-check.php:108
+msgid "Discogs"
+msgstr ""
+
+#: includes/integrations/discogs/class-discogs-client.php:170
+msgid "Discogs no tiene ese lanzamiento."
+msgstr ""
+
+#: includes/integrations/discogs/class-discogs-client.php:163
+msgid "Discogs rechazó el token de la tienda. Revísalo en Melomaniac Sync → Ajustes."
+msgstr ""
+
+#: includes/integrations/discogs/class-discogs-client.php:179
+msgid "Discogs respondió con el código %d."
+msgstr ""
+
+#: admin/views/page-bulk.php:100
+msgid "Discos"
+msgstr ""
+
+#: admin/views/partial-plan-summary.php:43
+msgid "Discos ilimitados este mes."
+msgstr ""
+
+#: admin/views/page-mb-queue.php:25
+msgid "Discos que cargaste a mano porque MusicBrainz no los tenía, y todavía no marcaste como aportados. MusicBrainz no ofrece una carga masiva propia: cada uno se abre y se envía por separado, con tu cuenta. Esta pantalla solo te ahorra ir a buscar cada producto: al tocar \"Aportar\" se abre el formulario de MusicBrainz ya lleno, en una pestaña nueva, y el disco se quita de esta lista."
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:296
+msgid "Dominios permitidos"
+msgstr ""
+
+#: admin/views/page-bulk.php:31
+msgid "Duplicado"
+msgstr ""
+
+#: admin/views/partial-manual-form.php:132
+msgid "Día"
+msgstr ""
+
+#: includes/services/class-release-dto.php:230
+msgid "EP"
+msgstr ""
+
+#: admin/class-admin.php:130
+#: admin/class-scan-page.php:77
+msgid "Editar el producto"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:238
+msgid "Ej. 016861979546"
+msgstr ""
+
+#: admin/views/page-scan.php:46
+msgid "Ej. 0602577089664"
+msgstr ""
+
+#: admin/class-bulk-page.php:131
+msgid "El archivo debe ser un .csv."
+msgstr ""
+
+#: includes/services/class-bulk-import-service.php:215
+msgid "El archivo debe tener una columna \"código\". Descarga la plantilla si no estás seguro del formato."
+msgstr ""
+
+#: includes/services/class-bulk-import-service.php:205
+msgid "El archivo está vacío."
+msgstr ""
+
+#: includes/services/class-bulk-import-service.php:169
+msgid "El archivo no tiene ningún código de barra válido en la columna \"código\"."
+msgstr ""
+
+#: includes/services/class-release-lookup-service.php:104
+msgid "El código de barra debe tener entre 6 y 14 dígitos."
+msgstr ""
+
+#: admin/views/partial-manual-form.php:160
+msgid "El detalle es libre y se guarda tal cual en la ficha del producto."
+msgstr ""
+
+#: includes/integrations/discogs/class-discogs-client.php:98
+msgid "El identificador de Discogs no es válido."
+msgstr ""
+
+#: includes/services/class-release-lookup-service.php:410
+msgid "El identificador de MusicBrainz no es válido."
+msgstr ""
+
+#: admin/views/partial-plan-summary.php:72
+msgid "El plan Premium suma discos ilimitados y carga masiva por código de barra."
+msgstr ""
+
+#: admin/views/page-diagnostics.php:52
+msgid "El plan está fijado desde wp-config.php (MELOMANIAC_SYNC_FORCE_PLAN), así que este selector no tiene efecto hasta que lo quites de ahí."
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:178
+msgid "El servidor llega, pero está limitando las peticiones en este momento."
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:176
+msgid "El servidor llega, pero rechazó la credencial. Revisa el token."
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:217
+msgid "El servidor no pudo resolver el dominio. Es un problema de DNS del hosting."
+msgstr ""
+
+#: admin/views/page-bulk.php:28
+msgid "Elegir edición"
+msgstr ""
+
+#: admin/class-admin.php:136
+#: admin/class-admin.php:147
+msgid "Elegir la portada"
+msgstr ""
+
+#: includes/frontend/views/view-app-shell.php:128
+msgid "Elige el disco"
+msgstr ""
+
+#: admin/views/partial-candidate-list.php:33
+msgid "Elige la que tienes en la mano para ver su ficha completa antes de crear el producto."
+msgstr ""
+
+#: admin/views/partial-manual-form.php:256
+msgid "Empaque"
+msgstr ""
+
+#: includes/services/class-release-dto.php:245
+msgid "En vivo"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:341
+msgid "Entorno"
+msgstr ""
+
+#: admin/views/page-bulk.php:33
+msgid "Error"
+msgstr ""
+
+#: admin/views/page-scan.php:24
+msgid "Escanea el código de barra del disco y Melomaniac Sync busca sus datos en MusicBrainz para crear el producto como borrador."
+msgstr ""
+
+#: includes/frontend/class-pwa.php:201
+msgid "Escanea un disco y crea el producto en la tienda."
+msgstr ""
+
+#: admin/class-admin.php:134
+#: admin/views/page-scan.php:56
+msgid "Escanear con la cámara"
+msgstr ""
+
+#: admin/class-admin-menu.php:136
+#: admin/class-admin-menu.php:137
+#: admin/class-admin.php:202
+#: admin/views/page-scan.php:21
+msgid "Escanear disco"
+msgstr ""
+
+#: includes/frontend/views/view-app-shell.php:224
+msgid "Escanear otro"
+msgstr ""
+
+#: admin/views/partial-manual-form.php:268
+msgid "Escritura"
+msgstr ""
+
+#: admin/class-quick-publish.php:100
+msgid "Ese contenido no es un producto."
+msgstr ""
+
+#: includes/rest/class-rest-api.php:223
+msgid "Ese producto no existe."
+msgstr ""
+
+#: admin/class-mb-queue-page.php:78
+msgid "Ese producto ya no existe."
+msgstr ""
+
+#: admin/class-bulk-page.php:231
+msgid "Ese ítem ya no existe."
+msgstr ""
+
+#: includes/services/class-release-dto.php:281
+msgid "Español"
+msgstr ""
+
+#: admin/views/page-bulk.php:147
+#: admin/views/partial-manual-form.php:238
+msgid "Estado"
+msgstr ""
+
+#: admin/views/page-settings.php:115
+msgid "Estado al crearse"
+msgstr ""
+
+#: admin/class-admin.php:131
+msgid "Este navegador no puede escanear con la cámara. Escribe el código a mano o usa un lector USB."
+msgstr ""
+
+#: admin/views/page-settings.php:181
+msgid "Etiqueta de género"
+msgstr ""
+
+#: admin/views/partial-product-fields.php:100
+msgid "Etiquetas"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:33
+#: admin/views/page-diagnostics.php:272
+msgid "Falla"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:225
+msgid "Falló la verificación del certificado. El hosting tiene los certificados raíz desactualizados."
+msgstr ""
+
+#: includes/services/class-product-factory.php:54
+msgid "Falta el artista o el título del álbum."
+msgstr ""
+
+#: admin/class-bulk-page.php:191
+msgid "Falta el identificador del lote."
+msgstr ""
+
+#: includes/rest/class-rest-api.php:380
+msgid "Falta el nombre."
+msgstr ""
+
+#: admin/class-quick-publish.php:94
+msgid "Falta el producto a publicar."
+msgstr ""
+
+#: includes/integrations/discogs/class-discogs-client.php:118
+msgid "Falta el token de Discogs de la tienda. Agrégalo en Melomaniac Sync → Ajustes."
+msgstr ""
+
+#: includes/services/class-release-lookup-service.php:213
+msgid "Falta el token de Discogs, o el respaldo está desactivado en Ajustes."
+msgstr ""
+
+#: admin/class-bulk-page.php:223
+msgid "Falta indicar cuál disco elegiste."
+msgstr ""
+
+#: admin/views/page-bulk.php:99
+msgid "Fecha"
+msgstr ""
+
+#: admin/views/partial-manual-form.php:97
+msgid "Fecha de lanzamiento"
+msgstr ""
+
+#: admin/views/partial-manual-form.php:142
+#: admin/views/partial-result-preview.php:27
+#: includes/frontend/views/view-app-shell.php:181
+#: includes/services/class-product-factory.php:361
+#: includes/support/class-settings.php:45
+msgid "Formato"
+msgstr ""
+
+#: includes/frontend/views/view-app-shell.php:195
+msgid "Foto de la portada (opcional)"
+msgstr ""
+
+#: includes/services/class-release-dto.php:284
+msgid "Francés"
+msgstr ""
+
+#: includes/services/class-release-lookup-service.php:385
+msgid "Fuente de datos desconocida: %s"
+msgstr ""
+
+#: admin/views/page-settings.php:40
+msgid "Fuentes de datos"
+msgstr ""
+
+#: includes/services/class-release-dto.php:264
+msgid "Funda de cartón o papel"
+msgstr ""
+
+#: admin/views/page-settings.php:81
+msgid "Genera un token personal en %s. Es de tu tienda: no lo compartas y no lo pongas en ningún archivo del plugin."
+msgstr ""
+
+#: includes/licensing/class-licensing.php:256
+msgid "Gratis"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:99
+msgid "Guardado. El cambio se aplica en la próxima carga de página."
+msgstr ""
+
+#: admin/views/page-diagnostics.php:123
+msgid "Guardar"
+msgstr ""
+
+#: admin/views/page-settings.php:339
+msgid "Guardar ajustes"
+msgstr ""
+
+#: admin/views/partial-result-preview.php:64
+#: includes/support/class-settings.php:44
+msgid "Género"
+msgstr ""
+
+#: admin/views/page-settings.php:254
+msgid "Habilitar la app"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:143
+msgid "Hace una petición real a cada servicio y mide cuánto tarda. Puede demorar si el hosting está bloqueando la salida."
+msgstr ""
+
+#: admin/views/partial-manual-form.php:262
+msgid "Idioma"
+msgstr ""
+
+#: includes/services/class-release-dto.php:282
+msgid "Inglés"
+msgstr ""
+
+#: admin/class-admin.php:129
+msgid "Ingresa o escanea un código de barra."
+msgstr ""
+
+#: includes/services/class-release-dto.php:285
+msgid "Italiano"
+msgstr ""
+
+#: includes/services/class-release-dto.php:287
+#: includes/services/class-release-dto.php:303
+msgid "Japonés"
+msgstr ""
+
+#: includes/services/class-release-lookup-service.php:442
+msgid "La búsqueda en Discogs está desactivada o sin token."
+msgstr ""
+
+#: admin/class-admin.php:133
+msgid "La cámara solo funciona sobre HTTPS."
+msgstr ""
+
+#: includes/services/class-release-lookup-service.php:378
+msgid "La página quedó con una versión vieja del plugin en caché. Recarga con Ctrl+F5 (Cmd+Shift+R en Mac) y vuelve a intentar."
+msgstr ""
+
+#: includes/integrations/discogs/class-discogs-client.php:191
+msgid "La respuesta de Discogs no se pudo interpretar."
+msgstr ""
+
+#: includes/integrations/musicbrainz/class-musicbrainz-client.php:197
+msgid "La respuesta de MusicBrainz no se pudo interpretar."
+msgstr ""
+
+#: admin/class-ajax-handler.php:306
+#: admin/class-bulk-page.php:180
+#: admin/class-bulk-page.php:210
+#: admin/class-mb-queue-page.php:67
+msgid "La sesión expiró. Recarga la página."
+msgstr ""
+
+#: includes/services/class-release-dto.php:301
+msgid "Latino"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:222
+msgid "Le pregunta a cada fuente por separado, sin usar lo guardado. Sirve para ver qué contesta Discogs aunque MusicBrainz también tenga el disco, que es lo que el escaneo normal nunca te deja ver."
+msgstr ""
+
+#: admin/views/partial-manual-form.php:181
+#: includes/services/class-product-factory.php:546
+#: includes/support/class-settings.php:46
+msgid "Lista de canciones"
+msgstr ""
+
+#: includes/frontend/views/view-app-shell.php:192
+msgid "Lista de canciones (opcional)"
+msgstr ""
+
+#: admin/views/page-settings.php:200
+msgid "Los campos que desmarques no aparecen en la ficha, aunque Melomaniac Sync los haya encontrado."
+msgstr ""
+
+#: admin/views/partial-manual-form.php:40
+msgid "Los datos que encontramos ya están cargados. Corrige lo que esté mal y crea el producto."
+msgstr ""
+
+#: includes/frontend/class-pwa.php:200
+#: includes/frontend/views/view-app-shell.php:56
+msgid "Melomaniac"
+msgstr ""
+
+#: admin/class-admin-menu.php:121
+#: admin/class-admin-menu.php:122
+#: includes/frontend/views/view-app-shell.php:57
+msgid "Melomaniac Sync"
+msgstr ""
+
+#: admin/views/page-settings.php:42
+msgid "Melomaniac Sync busca primero en MusicBrainz, que es abierto y no necesita credenciales. Si el disco no está ahí, consulta Discogs con el token de tu tienda."
+msgstr ""
+
+#: admin/views/page-diagnostics.php:323
+msgid "Melomaniac Sync guarda un día lo que encuentra, para no repetir peticiones. Si un disco quedó guardado con datos equivocados, vacía esto y vuelve a escanearlo."
+msgstr ""
+
+#: includes/class-activator.php:89
+msgid "Melomaniac Sync necesita WooCommerce activo para funcionar."
+msgstr ""
+
+#: includes/class-activator.php:29
+msgid "Melomaniac Sync requiere PHP 7.4 o superior."
+msgstr ""
+
+#: admin/views/partial-manual-form.php:122
+msgid "Mes"
+msgstr ""
+
+#: includes/services/class-release-lookup-service.php:205
+#: includes/support/class-connectivity-check.php:59
+msgid "MusicBrainz"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:369
+msgid "MusicBrainz bloquea las IP que hacen más de una petición por segundo. Si compartís IP con otros sitios, puede que el bloqueo no sea por tu tienda."
+msgstr ""
+
+#: admin/views/page-diagnostics.php:255
+msgid "MusicBrainz no lo tiene y Discogs sí: este código es justo el caso donde entra el respaldo."
+msgstr ""
+
+#: admin/views/page-diagnostics.php:257
+msgid "MusicBrainz no lo tiene y a Discogs no se le pudo preguntar. El escaneo va a ofrecer el formulario manual."
+msgstr ""
+
+#: includes/integrations/musicbrainz/class-musicbrainz-client.php:175
+msgid "MusicBrainz no tiene ese lanzamiento."
+msgstr ""
+
+#: admin/views/partial-result-preview.php:94
+msgid "MusicBrainz no tiene la lista de canciones de esta edición."
+msgstr ""
+
+#: includes/integrations/musicbrainz/class-musicbrainz-client.php:186
+msgid "MusicBrainz respondió con el código %d."
+msgstr ""
+
+#: admin/views/page-diagnostics.php:253
+msgid "MusicBrainz tiene el disco, así que el escaneo normal no va a consultar Discogs."
+msgstr ""
+
+#: includes/frontend/views/view-app-shell.php:86
+msgid "Necesitas una contraseña de aplicación de tu usuario de WordPress. Se crea una sola vez."
+msgstr ""
+
+#: admin/views/page-diagnostics.php:259
+msgid "Ninguna de las dos lo tiene. El escaneo va a ofrecer el formulario manual."
+msgstr ""
+
+#: admin/views/partial-candidate-list.php:75
+msgid "Ninguna es, cargarlo a mano"
+msgstr ""
+
+#: includes/services/class-release-dto.php:243
+msgid "Ninguno"
+msgstr ""
+
+#: includes/frontend/views/view-app-shell.php:130
+msgid "Ninguno es, cargar a mano"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:289
+#: includes/support/class-connectivity-check.php:292
+msgid "No"
+msgstr ""
+
+#: admin/views/page-bulk.php:30
+msgid "No encontrado"
+msgstr ""
+
+#: admin/views/partial-manual-form.php:47
+msgid "No encontramos ningún disco con el código %s. Completa los datos y creamos el borrador igual."
+msgstr ""
+
+#: includes/frontend/views/view-app-shell.php:149
+msgid "No es este disco, corregir a mano"
+msgstr ""
+
+#: admin/views/partial-result-preview.php:125
+msgid "No es este disco, corregirlo a mano"
+msgstr ""
+
+#: admin/views/partial-manual-form.php:230
+msgid "No hace falta abrir esto para crear el producto. Se guarda con valores razonables: disco oficial, un álbum, un solo disco. Ábrelo solo si el disco es distinto y quieres que el aporte a MusicBrainz salga exacto."
+msgstr ""
+
+#: admin/views/page-mb-queue.php:36
+msgid "No hay discos pendientes de aportar."
+msgstr ""
+
+#: includes/rest/class-rest-api.php:189
+msgid "No se detectó la sesión de la app. Vuelve a conectarla desde Ajustes."
+msgstr ""
+
+#: includes/services/class-bulk-import-service.php:129
+msgid "No se encontró ningún código de barra válido (entre 6 y 14 dígitos, uno por línea)."
+msgstr ""
+
+#: admin/class-admin.php:132
+msgid "No se pudo acceder a la cámara. Revisa los permisos del navegador."
+msgstr ""
+
+#: includes/rest/class-rest-api.php:438
+msgid "No se pudo crear el adjunto."
+msgstr ""
+
+#: admin/class-scan-page.php:100
+msgid "No se pudo crear el producto."
+msgstr ""
+
+#: includes/rest/class-rest-api.php:390
+msgid "No se pudo crear la categoría o etiqueta."
+msgstr ""
+
+#: includes/rest/class-rest-api.php:612
+msgid "No se pudo eliminar el producto."
+msgstr ""
+
+#: includes/services/class-product-factory.php:116
+msgid "No se pudo guardar el producto."
+msgstr ""
+
+#: includes/services/class-bulk-import-service.php:193
+msgid "No se pudo leer el archivo."
+msgstr ""
+
+#: admin/class-bulk-page.php:125
+msgid "No se pudo subir el archivo. Inténtalo de nuevo."
+msgstr ""
+
+#: includes/rest/class-rest-api.php:231
+msgid "No tienes permiso para editar este producto."
+msgstr ""
+
+#: admin/class-settings-page.php:46
+msgid "No tienes permisos para cambiar estos ajustes."
+msgstr ""
+
+#: admin/class-ajax-handler.php:313
+#: admin/class-bulk-page.php:79
+#: admin/class-bulk-page.php:156
+#: admin/class-bulk-page.php:184
+#: admin/class-bulk-page.php:214
+#: admin/class-manual-entry-handler.php:68
+#: admin/class-mb-queue-page.php:71
+msgid "No tienes permisos para hacer esto."
+msgstr ""
+
+#: admin/class-quick-publish.php:104
+msgid "No tienes permisos para publicar este producto."
+msgstr ""
+
+#: admin/class-scan-page.php:38
+msgid "No tienes permisos para usar esta pantalla."
+msgstr ""
+
+#: admin/class-bulk-page.php:270
+#: admin/class-diagnostics-page.php:78
+#: admin/class-mb-queue-page.php:93
+#: admin/class-settings-page.php:171
+msgid "No tienes permisos para ver esta pantalla."
+msgstr ""
+
+#: admin/views/partial-manual-form.php:173
+#: admin/views/partial-result-preview.php:26
+#: includes/frontend/views/view-app-shell.php:189
+#: includes/services/class-product-factory.php:363
+#: includes/support/class-settings.php:47
+msgid "Número de catálogo"
+msgstr ""
+
+#: admin/views/page-bulk.php:62
+msgid "O sube un archivo CSV"
+msgstr ""
+
+#: includes/services/class-release-dto.php:214
+msgid "Oficial"
+msgstr ""
+
+#: admin/views/partial-manual-form.php:241
+msgid "Oficial es lo normal. Promocional es una copia que no se vendió en tiendas."
+msgstr ""
+
+#: admin/views/partial-manual-form.php:198
+msgid "Opcional. Una canción por línea, con la duración después de una barra vertical si la tienes: A1 Blue Monday | 7:29"
+msgstr ""
+
+#: includes/services/class-release-dto.php:232
+#: includes/services/class-release-dto.php:269
+#: includes/services/class-release-dto.php:319
+msgid "Otro"
+msgstr ""
+
+#: admin/views/page-settings.php:332
+msgid "Para que el archivo se escriba, wp-config.php necesita WP_DEBUG y WP_DEBUG_LOG en true. Déjalo apagado salvo que estés buscando un problema."
+msgstr ""
+
+#: admin/views/partial-manual-form.php:165
+#: admin/views/partial-result-preview.php:28
+#: includes/frontend/views/view-app-shell.php:186
+#: includes/services/class-product-factory.php:362
+#: includes/support/class-settings.php:43
+msgid "País de prensaje"
+msgstr ""
+
+#: admin/views/page-bulk.php:49
+msgid "Pega un código de barra por línea. Melomaniac Sync los busca uno por uno en segundo plano (respetando el límite de MusicBrainz) y crea un producto como borrador por cada uno que encuentre. Los que no encuentre quedan marcados para cargarlos a mano después."
+msgstr ""
+
+#: admin/views/page-bulk.php:27
+msgid "Pendiente"
+msgstr ""
+
+#: admin/views/page-settings.php:121
+msgid "Pendiente de revisión"
+msgstr ""
+
+#: admin/views/page-bulk.php:101
+msgid "Pendientes"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:287
+msgid "Peticiones externas bloqueadas en wp-config"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:286
+msgid "Plan"
+msgstr ""
+
+#: admin/views/partial-plan-summary.php:36
+msgid "Plan actual: %s"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:80
+msgid "Plan en efecto ahora mismo: %s"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:45
+#: admin/views/page-diagnostics.php:59
+msgid "Plan para pruebas"
+msgstr ""
+
+#: admin/views/page-settings.php:166
+#: admin/views/partial-manual-form.php:203
+#: includes/frontend/views/view-app-shell.php:140
+msgid "Portada"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:81
+msgid "Portadas. Si falla, los productos se crean sin imagen."
+msgstr ""
+
+#: includes/services/class-release-dto.php:283
+msgid "Portugués"
+msgstr ""
+
+#: admin/views/partial-product-fields.php:29
+msgid "Precio"
+msgstr ""
+
+#: admin/views/page-settings.php:138
+msgid "Precio por defecto"
+msgstr ""
+
+#: admin/views/page-bulk.php:76
+#: admin/views/partial-manual-form.php:321
+msgid "Precio, stock y clasificación"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:241
+msgid "Preguntar a las dos fuentes"
+msgstr ""
+
+#: includes/licensing/class-licensing.php:258
+msgid "Premium"
+msgstr ""
+
+#: includes/licensing/class-licensing.php:279
+msgid "Premium (discos ilimitados + carga masiva)"
+msgstr ""
+
+#: includes/licensing/class-licensing.php:257
+msgid "Pro"
+msgstr ""
+
+#: includes/licensing/class-licensing.php:275
+msgid "Pro (30 discos al mes) o Premium (discos ilimitados + carga masiva)"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:150
+msgid "Probar la conexión ahora"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:220
+msgid "Probar un código de barra"
+msgstr ""
+
+#: admin/views/page-bulk.php:148
+msgid "Producto"
+msgstr ""
+
+#: includes/rest/class-rest-api.php:571
+msgid "Producto no encontrado."
+msgstr ""
+
+#: admin/views/page-settings.php:109
+msgid "Productos nuevos"
+msgstr ""
+
+#: admin/views/page-bulk.php:126
+msgid "Progreso de la carga"
+msgstr ""
+
+#: includes/services/class-release-dto.php:215
+msgid "Promocional"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:47
+msgid "Prueba las pantallas de cada plan sin depender de Freemius ni tener una suscripción real. No cambia el plan de verdad de la tienda, solo lo que el plugin cree mientras esto quede activado."
+msgstr ""
+
+#: includes/services/class-release-dto.php:217
+msgid "Pseudo-lanzamiento (traducción o transliteración)"
+msgstr ""
+
+#: admin/views/page-settings.php:122
+msgid "Publicado"
+msgstr ""
+
+#: admin/class-quick-publish.php:79
+#: admin/class-quick-publish.php:131
+msgid "Publicar"
+msgstr ""
+
+#: admin/views/partial-product-fields.php:85
+msgid "Puedes elegir varias con Ctrl (Cmd en Mac). Si no eliges ninguna, se asigna sola según el formato."
+msgstr ""
+
+#: admin/views/partial-manual-form.php:218
+msgid "Quitar"
+msgstr ""
+
+#: admin/class-admin.php:149
+msgid "Quitar la portada"
+msgstr ""
+
+#: admin/views/page-settings.php:198
+msgid "Qué entra en la descripción"
+msgstr ""
+
+#: admin/views/page-settings.php:319
+msgid "Registro"
+msgstr ""
+
+#: includes/services/class-release-dto.php:247
+msgid "Remixes"
+msgstr ""
+
+#: includes/class-activator.php:30
+msgid "Requisitos no cumplidos"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:163
+msgid "Resolvió a"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:97
+#: includes/support/class-connectivity-check.php:115
+msgid "Respaldo cuando MusicBrainz no tiene el disco."
+msgstr ""
+
+#: admin/views/page-settings.php:92
+msgid "Respaldo en Discogs"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:180
+msgid "Responde bien."
+msgstr ""
+
+#: admin/views/page-diagnostics.php:32
+msgid "Responde, con reparos"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:160
+msgid "Resultado"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:92
+msgid "SDK de Freemius"
+msgstr ""
+
+#: admin/views/partial-reference-links.php:45
+#: includes/frontend/views/view-app-shell.php:161
+msgid "Se abren en una pestaña nueva. Melomaniac Sync no copia nada de esos sitios: lo que quieras usar lo pegas tú en el formulario."
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:204
+msgid "Se agotaron los %d segundos sin recibir un solo byte, y el dominio solo resolvió a IPv6. Si el servidor no tiene salida IPv6 funcionando, las conexiones quedan colgadas hasta el timeout. Pídele a tu hosting que habilite IPv6 o que fuerce IPv4."
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:211
+msgid "Se agotaron los %d segundos sin recibir un solo byte. El hosting está descartando la conexión de salida, o la IP del sitio está bloqueada. Pídele a tu hosting que permita conexiones HTTPS salientes a este dominio, o sube el tiempo de espera más abajo."
+msgstr ""
+
+#: includes/integrations/discogs/class-discogs-client.php:155
+msgid "Se alcanzó el límite de peticiones de Discogs."
+msgstr ""
+
+#: admin/views/page-bulk.php:77
+msgid "Se aplican a todos los discos de esta carga, salvo que el archivo CSV traiga su propio precio o cantidad para alguno."
+msgstr ""
+
+#: admin/class-ajax-handler.php:291
+#: admin/class-scan-page.php:73
+msgid "Se creó el borrador \"%s\"."
+msgstr ""
+
+#: includes/integrations/musicbrainz/class-musicbrainz-client.php:90
+msgid "Se necesita al menos artista o título para buscar."
+msgstr ""
+
+#: admin/views/partial-manual-form.php:253
+msgid "Se suma al tipo: un compilado en vivo es Álbum + En vivo."
+msgstr ""
+
+#: admin/views/page-diagnostics.php:327
+msgid "Se vaciaron las búsquedas guardadas."
+msgstr ""
+
+#: admin/views/partial-manual-form.php:89
+#: admin/views/partial-result-preview.php:25
+#: includes/frontend/views/view-app-shell.php:172
+#: includes/services/class-product-factory.php:359
+#: includes/support/class-settings.php:42
+msgid "Sello"
+msgstr ""
+
+#: admin/views/partial-product-fields.php:111
+msgid "Separadas por coma. Las que no existan se crean."
+msgstr ""
+
+#: admin/views/page-diagnostics.php:159
+msgid "Servicio"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:366
+msgid "Si arriba dice que no resolvió el dominio, es DNS del hosting."
+msgstr ""
+
+#: admin/views/page-settings.php:220
+msgid "Si dejas \"Detectar sola\", Melomaniac Sync busca entre tus categorías una que coincida con el formato."
+msgstr ""
+
+#: admin/views/page-diagnostics.php:355
+msgid "Si el tiempo de espera se agota"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:368
+msgid "Si no pasa nada de lo anterior, pídele a tu hosting que permita conexiones HTTPS salientes a musicbrainz.org, coverartarchive.org y api.discogs.com. Muchos hostings compartidos las bloquean por defecto."
+msgstr ""
+
+#: admin/views/page-diagnostics.php:367
+msgid "Si resolvió solo a IPv6 y falla, el hosting no tiene salida IPv6 funcionando. Pídeles que la arreglen o que fuercen IPv4."
+msgstr ""
+
+#: admin/views/page-bulk.php:32
+msgid "Sin cupo"
+msgstr ""
+
+#: includes/services/class-release-dto.php:268
+msgid "Sin empaque"
+msgstr ""
+
+#: includes/services/class-release-dto.php:260
+#: includes/services/class-release-dto.php:280
+#: includes/services/class-release-dto.php:300
+msgid "Sin especificar"
+msgstr ""
+
+#: includes/services/class-release-dto.php:288
+msgid "Sin letra (instrumental)"
+msgstr ""
+
+#: admin/views/partial-result-preview.php:44
+msgid "Sin portada en Cover Art Archive"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:34
+#: admin/views/page-diagnostics.php:272
+msgid "Sin probar"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:276
+msgid "Sin resultados"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:99
+msgid "Sin token configurado, no se prueba."
+msgstr ""
+
+#: admin/views/page-settings.php:87
+msgid "Sin token, Discogs no se consulta y los discos que MusicBrainz no tenga se cargan a mano."
+msgstr ""
+
+#: includes/services/class-release-dto.php:229
+msgid "Single"
+msgstr ""
+
+#: admin/views/page-settings.php:264
+msgid "Sirve la app en la dirección de abajo"
+msgstr ""
+
+#: admin/views/page-settings.php:152
+msgid "Stock por defecto"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:361
+msgid "Sube el tiempo de espera en %s. Si la conexión es lenta pero funciona, con 30 segundos suele alcanzar."
+msgstr ""
+
+#: admin/views/partial-manual-form.php:215
+msgid "Subir o elegir una imagen"
+msgstr ""
+
+#: admin/views/partial-manual-form.php:250
+msgid "Subtipo"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:291
+msgid "Sí"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:288
+msgid "Sí, y eso rompe el plugin"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:162
+msgid "Tardó"
+msgstr ""
+
+#: admin/views/partial-plan-summary.php:60
+msgid "Te estás acercando al tope del mes."
+msgstr ""
+
+#: admin/views/page-settings.php:294
+msgid "Tiempo de espera"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:281
+msgid "Tiempo de espera configurado"
+msgstr ""
+
+#: admin/views/partial-manual-form.php:244
+msgid "Tipo"
+msgstr ""
+
+#: admin/views/partial-product-fields.php:65
+msgid "Todavía no hay categorías en la tienda. Escribe una abajo y se crea."
+msgstr ""
+
+#: admin/views/page-settings.php:66
+msgid "Token de Discogs"
+msgstr ""
+
+#: includes/services/class-release-dto.php:231
+msgid "Transmisión"
+msgstr ""
+
+#: includes/rest/class-rest-api.php:200
+msgid "Tu usuario no tiene permiso para gestionar productos."
+msgstr ""
+
+#: admin/views/partial-manual-form.php:81
+#: includes/frontend/views/view-app-shell.php:169
+msgid "Título del álbum"
+msgstr ""
+
+#: admin/views/partial-manual-form.php:314
+msgid "Un LP doble son 2. Un box set de 5 CDs son 5."
+msgstr ""
+
+#: admin/views/page-diagnostics.php:214
+msgid "Un código 400 o 404 también cuenta como conexión buena: significa que el servicio contestó. Lo único preocupante es que no conteste nada."
+msgstr ""
+
+#: admin/views/page-settings.php:60
+msgid "Un email o una URL de la tienda. MusicBrainz exige poder identificar quién consulta; si no es real, pueden bloquear tu IP."
+msgstr ""
+
+#: admin/views/page-settings.php:248
+msgid "Una app que se abre desde el navegador del teléfono, para escanear y crear productos sin entrar a wp-admin. Se instala agregándola a la pantalla de inicio."
+msgstr ""
+
+#: admin/views/page-diagnostics.php:63
+msgid "Usar el plan real de la tienda"
+msgstr ""
+
+#: admin/views/partial-candidate-list.php:67
+msgid "Usar esta edición"
+msgstr ""
+
+#: admin/class-admin.php:137
+#: admin/class-admin.php:148
+msgid "Usar esta imagen"
+msgstr ""
+
+#: includes/frontend/views/view-app-shell.php:112
+msgid "Usar la cámara"
+msgstr ""
+
+#: includes/frontend/views/view-app-shell.php:94
+msgid "Usuario"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:334
+msgid "Vaciar las búsquedas guardadas"
+msgstr ""
+
+#: includes/services/class-release-dto.php:289
+msgid "Varios idiomas"
+msgstr ""
+
+#: includes/licensing/class-usage.php:179
+msgid "Vas %1$d de %2$d discos este mes."
+msgstr ""
+
+#: admin/views/page-bulk.php:113
+msgid "Ver"
+msgstr ""
+
+#: admin/class-scan-page.php:90
+msgid "Ver el producto"
+msgstr ""
+
+#: admin/views/partial-result-preview.php:139
+msgid "Ver esta edición en Discogs"
+msgstr ""
+
+#: admin/views/partial-result-preview.php:132
+msgid "Ver esta edición en MusicBrainz"
+msgstr ""
+
+#: admin/views/partial-plan-summary.php:68
+msgid "Ver planes"
+msgstr ""
+
+#: includes/helpers/functions-reference-links.php:98
+msgid "Verifica si el disco existe con otro código de barra."
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:278
+msgid "Versión de PHP"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:279
+msgid "Versión de WooCommerce"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:277
+msgid "Versión de WordPress"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:280
+msgid "Versión del plugin"
+msgstr ""
+
+#: includes/services/class-release-dto.php:316
+msgid "Vinilo"
+msgstr ""
+
+#: includes/rest/class-rest-api.php:463
+msgid "WooCommerce no está activo."
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:221
+msgid "WordPress tiene las peticiones externas bloqueadas por configuración (WP_HTTP_BLOCK_EXTERNAL en wp-config.php)."
+msgstr ""
+
+#: includes/services/class-product-factory.php:73
+msgid "Ya existe un producto para este disco: %s"
+msgstr ""
+
+#: admin/class-scan-page.php:86
+msgid "Ya existía un producto para este disco: \"%s\"."
+msgstr ""
+
+#: admin/views/page-bulk.php:65
+msgid "descargar la plantilla"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:277
+msgid "desconocida"
+msgstr ""
+
+#: includes/support/class-connectivity-check.php:279
+msgid "no detectada"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:206
+msgid "no resolvió"
+msgstr ""
+
+#: admin/views/page-settings.php:306
+msgid "segundos"
+msgstr ""
+
+#: admin/views/page-settings.php:279
+msgid "su perfil de WordPress"
+msgstr ""
+
+#: admin/views/partial-product-fields.php:108
+msgid "thrash metal, chileno"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:105
+msgid "wp-config.php ya lo tiene apagado (MELOMANIAC_SYNC_SKIP_FREEMIUS), así que este interruptor no hace nada hasta que lo quites de ahí."
+msgstr ""
+
+#: includes/frontend/views/view-app-shell.php:221
+msgid "¡Listo!"
+msgstr ""
+
+#: admin/views/partial-reference-links.php:29
+#: includes/frontend/views/view-app-shell.php:159
+msgid "¿Necesitas datos para completar este disco?"
+msgstr ""
+
+#: admin/views/partial-manual-form.php:344
+#: includes/frontend/views/view-app-shell.php:209
+msgid "¿No tienes cuenta en MusicBrainz? %s (una vez que inicies sesión en tu navegador, queda abierta para las próximas veces)."
+msgstr ""
+
+#: admin/views/page-mb-queue.php:29
+msgid "¿No tienes cuenta en MusicBrainz? %s."
+msgstr ""
+
+#: admin/views/page-settings.php:278
+msgid "Ábrela desde el teléfono. Cada persona que la use necesita su propia contraseña de aplicación, que se crea una vez desde %s."
+msgstr ""
+
+#: includes/services/class-release-dto.php:228
+msgid "Álbum"
+msgstr ""
+
+#: includes/helpers/functions-reference-links.php:93
+msgid "Útil cuando el disco es una edición local o muy antigua."
+msgstr ""
+
