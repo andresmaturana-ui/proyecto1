@@ -36,7 +36,6 @@
 		candidates: [],
 		review: null,
 		rejected: null,
-		coverAttachmentId: 0,
 	};
 
 	/**
@@ -460,6 +459,11 @@
 			openManual();
 		} );
 
+		wireCoverPreview(
+			app.querySelector( '[data-review-cover-input]' ),
+			app.querySelector( '[data-review-cover-preview]' )
+		);
+
 		app.querySelector( '[data-form="review"]' ).addEventListener( 'submit', function ( event ) {
 			event.preventDefault();
 
@@ -471,7 +475,7 @@
 			payload.barcode = state.barcode;
 
 			setError( '[data-review-error]', '' );
-			createProduct( payload, '[data-review-error]' );
+			submitWithOptionalCover( app.querySelector( '[data-review-cover-input]' ), payload, '[data-review-error]' );
 		} );
 	}
 
@@ -488,6 +492,22 @@
 		var tracklistText = tracklistToText( release.tracklist );
 		tracklistEl.textContent = tracklistText;
 		tracklistEl.hidden = ! tracklistText;
+
+		var coverInput = app.querySelector( '[data-review-cover-input]' );
+		var coverPreview = app.querySelector( '[data-review-cover-preview]' );
+		var coverHint = app.querySelector( '[data-review-cover-hint]' );
+		var existingCover = release.cover_thumb_url || release.cover_url || '';
+
+		coverInput.value = '';
+
+		if ( existingCover ) {
+			coverPreview.style.backgroundImage = 'url(' + existingCover + ')';
+			coverPreview.hidden = false;
+			coverHint.textContent = 'Esta es la portada que se va a usar. Si quieres, reemplázala con una foto.';
+		} else {
+			coverPreview.hidden = true;
+			coverHint.textContent = 'No encontramos una portada. Puedes tomar una foto o subir una imagen.';
+		}
 
 		var mount = app.querySelector( '[data-screen-name="review"] [data-fields-mount]' );
 		renderProductFields( mount );
@@ -511,20 +531,7 @@
 			}
 		}
 
-		app.querySelector( '[data-cover-input]' ).addEventListener( 'change', function ( event ) {
-			var file = event.target.files && event.target.files[ 0 ];
-			var preview = app.querySelector( '[data-cover-preview]' );
-
-			state.coverAttachmentId = 0;
-
-			if ( ! file ) {
-				preview.hidden = true;
-				return;
-			}
-
-			preview.style.backgroundImage = 'url(' + URL.createObjectURL( file ) + ')';
-			preview.hidden = false;
-		} );
+		wireCoverPreview( app.querySelector( '[data-cover-input]' ), app.querySelector( '[data-cover-preview]' ) );
 
 		app.querySelectorAll( '[data-screen-name="manual"] [data-action="back-to-scan"]' ).forEach( function ( btn ) {
 			btn.addEventListener( 'click', function () {
@@ -554,23 +561,7 @@
 			);
 
 			setError( '[data-manual-error]', '' );
-
-			var fileInput = app.querySelector( '[data-cover-input]' );
-			var file = fileInput.files && fileInput.files[ 0 ];
-
-			if ( file ) {
-				uploadCover( file )
-					.then( function ( media ) {
-						payload.cover_attachment_id = media.id;
-						createProduct( payload, '[data-manual-error]' );
-					} )
-					.catch( function ( error ) {
-						setError( '[data-manual-error]', errorMessage( error ) );
-					} );
-				return;
-			}
-
-			createProduct( payload, '[data-manual-error]' );
+			submitWithOptionalCover( app.querySelector( '[data-cover-input]' ), payload, '[data-manual-error]' );
 		} );
 	}
 
@@ -583,13 +574,59 @@
 		} );
 	}
 
+	/**
+	 * Wires a cover [type=file] input to its preview, shared by the review
+	 * and manual screens.
+	 *
+	 * @param {HTMLInputElement} input   The file input.
+	 * @param {HTMLElement}      preview Element whose background-image shows the photo.
+	 */
+	function wireCoverPreview( input, preview ) {
+		input.addEventListener( 'change', function ( event ) {
+			var file = event.target.files && event.target.files[ 0 ];
+
+			if ( ! file ) {
+				preview.hidden = true;
+				return;
+			}
+
+			preview.style.backgroundImage = 'url(' + URL.createObjectURL( file ) + ')';
+			preview.hidden = false;
+		} );
+	}
+
+	/**
+	 * Uploads a cover photo first when one was picked, then creates the
+	 * product either way. Shared by the review and manual forms.
+	 *
+	 * @param {HTMLInputElement} fileInput     The screen's cover file input.
+	 * @param {Object}           payload       Product payload built so far.
+	 * @param {string}           errorSelector Where to show a failure.
+	 */
+	function submitWithOptionalCover( fileInput, payload, errorSelector ) {
+		var file = fileInput.files && fileInput.files[ 0 ];
+
+		if ( ! file ) {
+			createProduct( payload, errorSelector );
+			return;
+		}
+
+		uploadCover( file )
+			.then( function ( media ) {
+				payload.cover_attachment_id = media.id;
+				createProduct( payload, errorSelector );
+			} )
+			.catch( function ( error ) {
+				setError( errorSelector, errorMessage( error ) );
+			} );
+	}
+
 	function openManual( intro ) {
 		var form = app.querySelector( '[data-form="manual"]' );
 		var release = state.rejected;
 
 		form.reset();
 		app.querySelector( '[data-cover-preview]' ).hidden = true;
-		state.coverAttachmentId = 0;
 
 		var title = app.querySelector( '[data-manual-title]' );
 		title.textContent = release ? 'Corregir los datos del disco' : 'Cargar el disco a mano';

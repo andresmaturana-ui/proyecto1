@@ -515,6 +515,18 @@ class Melomaniac_Sync_Rest_Api {
 			$release->barcode = preg_replace( '/\D/', '', (string) $params['barcode'] );
 		}
 
+		// The manual path already reads this via the builder; a resolved
+		// release is fetched fresh from the lookup service above, so a photo
+		// taken in the app for it (e.g. no cover came back from MusicBrainz)
+		// would otherwise never reach the product.
+		if ( ! empty( $params['cover_attachment_id'] ) ) {
+			$attachment_id = absint( $params['cover_attachment_id'] );
+
+			if ( $attachment_id > 0 && 'attachment' === get_post_type( $attachment_id ) ) {
+				$release->cover_attachment_id = $attachment_id;
+			}
+		}
+
 		$product_id = $this->product_factory->create_draft(
 			$release,
 			Melomaniac_Sync_Catalog::read_overrides( $params )

@@ -119,6 +119,11 @@ $melomaniac_app = wp_parse_args(
 			<div data-review-tracklist class="melomaniac-review-tracklist"></div>
 
 			<form data-form="review">
+				<label for="melomaniac-review-photo"><?php esc_html_e( 'Portada', 'melomaniac-sync' ); ?></label>
+				<p class="melomaniac-app-lead" data-review-cover-hint></p>
+				<div class="melomaniac-cover-preview" data-review-cover-preview hidden></div>
+				<input type="file" id="melomaniac-review-photo" accept="image/*" capture="environment" data-review-cover-input />
+
 				<div data-fields-mount></div>
 				<button type="submit" class="melomaniac-btn melomaniac-btn-primary"><?php esc_html_e( 'Crear producto', 'melomaniac-sync' ); ?></button>
 			</form>

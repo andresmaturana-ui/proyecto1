@@ -59,11 +59,11 @@ msgid "%s - Melomaniac Sync"
 msgstr ""
 
 #: includes/frontend/views/view-app-shell.php:113
-#: includes/frontend/views/view-app-shell.php:127
+#: includes/frontend/views/view-app-shell.php:132
 msgid "&larr; Volver"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:174
+#: includes/frontend/views/view-app-shell.php:179
 msgid "&larr; Volver al escaneo"
 msgstr ""
 
@@ -75,7 +75,7 @@ msgstr ""
 msgid "Abre la búsqueda en discogs.com. Copia a mano los datos que quieras usar."
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:181
+#: includes/frontend/views/view-app-shell.php:186
 msgid "Abrir en el editor"
 msgstr ""
 
@@ -150,7 +150,7 @@ msgid "Apágalo para probar el plugin sin que hable con Freemius en ningún mome
 msgstr ""
 
 #: admin/views/partial-manual-form.php:73
-#: includes/frontend/views/view-app-shell.php:136
+#: includes/frontend/views/view-app-shell.php:141
 #: includes/services/class-product-factory.php:271
 #: includes/support/class-settings.php:40
 msgid "Artista"
@@ -158,7 +158,7 @@ msgstr ""
 
 #: admin/views/partial-manual-form.php:112
 #: admin/views/partial-result-preview.php:24
-#: includes/frontend/views/view-app-shell.php:147
+#: includes/frontend/views/view-app-shell.php:152
 #: includes/services/class-product-factory.php:273
 #: includes/support/class-settings.php:41
 msgid "Año"
@@ -242,7 +242,7 @@ msgid "Cargando los datos del disco…"
 msgstr ""
 
 #: admin/views/partial-manual-form.php:33
-#: includes/frontend/views/view-app-shell.php:132
+#: includes/frontend/views/view-app-shell.php:137
 msgid "Cargar el disco a mano"
 msgstr ""
 
@@ -339,8 +339,8 @@ msgid "Creando el producto…"
 msgstr ""
 
 #: admin/views/partial-result-preview.php:116
-#: includes/frontend/views/view-app-shell.php:123
-#: includes/frontend/views/view-app-shell.php:171
+#: includes/frontend/views/view-app-shell.php:128
+#: includes/frontend/views/view-app-shell.php:176
 msgid "Crear producto"
 msgstr ""
 
@@ -399,7 +399,7 @@ msgstr ""
 msgid "Descargar la portada a la biblioteca de medios"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:188
+#: includes/frontend/views/view-app-shell.php:193
 msgid "Desconectar"
 msgstr ""
 
@@ -563,7 +563,7 @@ msgstr ""
 msgid "Escanear disco"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:182
+#: includes/frontend/views/view-app-shell.php:187
 msgid "Escanear otro"
 msgstr ""
 
@@ -638,13 +638,13 @@ msgstr ""
 
 #: admin/views/partial-manual-form.php:142
 #: admin/views/partial-result-preview.php:27
-#: includes/frontend/views/view-app-shell.php:151
+#: includes/frontend/views/view-app-shell.php:156
 #: includes/services/class-product-factory.php:274
 #: includes/support/class-settings.php:45
 msgid "Formato"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:165
+#: includes/frontend/views/view-app-shell.php:170
 msgid "Foto de la portada (opcional)"
 msgstr ""
 
@@ -756,7 +756,7 @@ msgstr ""
 msgid "Lista de canciones"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:162
+#: includes/frontend/views/view-app-shell.php:167
 msgid "Lista de canciones (opcional)"
 msgstr ""
 
@@ -865,7 +865,7 @@ msgstr ""
 msgid "No encontramos ningún disco con el código %s. Completa los datos y creamos el borrador igual."
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:126
+#: includes/frontend/views/view-app-shell.php:131
 msgid "No es este disco, corregir a mano"
 msgstr ""
 
@@ -897,7 +897,7 @@ msgstr ""
 msgid "No se pudo crear la categoría o etiqueta."
 msgstr ""
 
-#: includes/rest/class-rest-api.php:589
+#: includes/rest/class-rest-api.php:601
 msgid "No se pudo eliminar el producto."
 msgstr ""
 
@@ -933,7 +933,7 @@ msgstr ""
 
 #: admin/views/partial-manual-form.php:173
 #: admin/views/partial-result-preview.php:26
-#: includes/frontend/views/view-app-shell.php:159
+#: includes/frontend/views/view-app-shell.php:164
 #: includes/services/class-product-factory.php:276
 #: includes/support/class-settings.php:47
 msgid "Número de catálogo"
@@ -963,7 +963,7 @@ msgstr ""
 
 #: admin/views/partial-manual-form.php:165
 #: admin/views/partial-result-preview.php:28
-#: includes/frontend/views/view-app-shell.php:156
+#: includes/frontend/views/view-app-shell.php:161
 #: includes/services/class-product-factory.php:275
 #: includes/support/class-settings.php:43
 msgid "País de prensaje"
@@ -996,6 +996,7 @@ msgstr ""
 
 #: admin/views/page-settings.php:166
 #: admin/views/partial-manual-form.php:203
+#: includes/frontend/views/view-app-shell.php:122
 msgid "Portada"
 msgstr ""
 
@@ -1047,7 +1048,7 @@ msgstr ""
 msgid "Probar un código de barra"
 msgstr ""
 
-#: includes/rest/class-rest-api.php:548
+#: includes/rest/class-rest-api.php:560
 msgid "Producto no encontrado."
 msgstr ""
 
@@ -1168,7 +1169,7 @@ msgstr ""
 
 #: admin/views/partial-manual-form.php:89
 #: admin/views/partial-result-preview.php:25
-#: includes/frontend/views/view-app-shell.php:142
+#: includes/frontend/views/view-app-shell.php:147
 #: includes/services/class-product-factory.php:272
 #: includes/support/class-settings.php:42
 msgid "Sello"
@@ -1306,7 +1307,7 @@ msgid "Tu usuario no tiene permiso para gestionar productos."
 msgstr ""
 
 #: admin/views/partial-manual-form.php:81
-#: includes/frontend/views/view-app-shell.php:139
+#: includes/frontend/views/view-app-shell.php:144
 msgid "Título del álbum"
 msgstr ""
 
@@ -1443,7 +1444,7 @@ msgstr ""
 msgid "wp-config.php ya lo tiene apagado (MELOMANIAC_SYNC_SKIP_FREEMIUS), así que este interruptor no hace nada hasta que lo quites de ahí."
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:179
+#: includes/frontend/views/view-app-shell.php:184
 msgid "¡Listo!"
 msgstr ""
 
