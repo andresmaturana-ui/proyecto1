@@ -94,6 +94,17 @@ $melomaniac_meta = array(
 			<p class="description"><?php esc_html_e( 'MusicBrainz no tiene la lista de canciones de esta edición.', 'melomaniac-sync' ); ?></p>
 		<?php endif; ?>
 
+		<?php
+		Melomaniac_Sync_Admin::render_view(
+			'partial-product-fields',
+			array(
+				'prefix'     => 'melomaniac-preview',
+				'tags'       => Melomaniac_Sync_Settings::genre_tag_enabled() ? $melomaniac_release->genres : array(),
+				'categories' => Melomaniac_Sync_Admin::product_categories(),
+			)
+		);
+		?>
+
 		<p class="melomaniac-preview-actions">
 			<button
 				type="button"

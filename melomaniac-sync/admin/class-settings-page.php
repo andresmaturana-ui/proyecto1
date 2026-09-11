@@ -178,36 +178,10 @@ class Melomaniac_Sync_Settings_Page {
 				'enabled'    => Melomaniac_Sync_Settings::enabled_description_fields(),
 				'formats'    => Melomaniac_Sync_Release_DTO::formats(),
 				'map'        => Melomaniac_Sync_Settings::category_map(),
-				'categories' => $this->product_categories(),
+				'categories' => Melomaniac_Sync_Admin::product_categories(),
 				'flash'      => $this->take_flash(),
 			)
 		);
-	}
-
-	/**
-	 * Product categories for the mapping selects.
-	 *
-	 * @return array<int,string>
-	 */
-	private function product_categories() {
-		$terms = get_terms(
-			array(
-				'taxonomy'   => 'product_cat',
-				'hide_empty' => false,
-			)
-		);
-
-		if ( is_wp_error( $terms ) ) {
-			return array();
-		}
-
-		$categories = array();
-
-		foreach ( $terms as $term ) {
-			$categories[ (int) $term->term_id ] = $term->name;
-		}
-
-		return $categories;
 	}
 
 	/**

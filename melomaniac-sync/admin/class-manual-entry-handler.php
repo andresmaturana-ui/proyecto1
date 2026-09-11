@@ -58,7 +58,10 @@ class Melomaniac_Sync_Manual_Entry_Handler {
 		check_admin_referer( Melomaniac_Sync_Admin::NONCE_ACTION );
 
 		$release    = $this->build_release_from_post();
-		$product_id = $this->product_factory->create_draft( $release );
+		$product_id = $this->product_factory->create_draft(
+			$release,
+			Melomaniac_Sync_Admin::read_product_overrides()
+		);
 
 		if ( is_wp_error( $product_id ) ) {
 			$this->redirect_with_error( $product_id );
@@ -94,12 +97,8 @@ class Melomaniac_Sync_Manual_Entry_Handler {
 		$release->country        = $this->read_text( 'country' );
 		$release->format_detail  = $this->read_text( 'format_detail' );
 
-		$year = isset( $_POST['year'] ) ? absint( wp_unslash( $_POST['year'] ) ) : 0;
-
-		// Reject nonsense years instead of storing them.
-		if ( $year >= 1880 && $year <= (int) gmdate( 'Y' ) + 1 ) {
-			$release->year = (string) $year;
-		}
+		$this->read_release_date( $release );
+		$this->read_musicbrainz_fields( $release );
 
 		$format  = isset( $_POST['format'] ) ? sanitize_key( wp_unslash( $_POST['format'] ) ) : '';
 		$formats = Melomaniac_Sync_Release_DTO::formats();
@@ -122,6 +121,77 @@ class Melomaniac_Sync_Manual_Entry_Handler {
 		// phpcs:enable WordPress.Security.NonceVerification.Missing
 
 		return $release;
+	}
+
+	/**
+	 * Builds the release date out of the year, month and day fields.
+	 *
+	 * MusicBrainz accepts a partial date, so a year on its own is valid and a
+	 * month without a day is too; the parts are only joined while they are
+	 * present and in order.
+	 *
+	 * @param Melomaniac_Sync_Release_DTO $release Release being built.
+	 * @return void
+	 */
+	private function read_release_date( Melomaniac_Sync_Release_DTO $release ) {
+		// phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verified by the caller.
+		$year  = isset( $_POST['year'] ) ? absint( wp_unslash( $_POST['year'] ) ) : 0;
+		$month = isset( $_POST['month'] ) ? absint( wp_unslash( $_POST['month'] ) ) : 0;
+		$day   = isset( $_POST['day'] ) ? absint( wp_unslash( $_POST['day'] ) ) : 0;
+		// phpcs:enable WordPress.Security.NonceVerification.Missing
+
+		// Reject nonsense years instead of storing them.
+		if ( $year < 1880 || $year > (int) gmdate( 'Y' ) + 1 ) {
+			return;
+		}
+
+		$release->year         = (string) $year;
+		$release->release_date = (string) $year;
+
+		if ( $month < 1 || $month > 12 ) {
+			return;
+		}
+
+		$release->release_date .= sprintf( '-%02d', $month );
+
+		if ( $day < 1 || $day > 31 ) {
+			return;
+		}
+
+		$release->release_date .= sprintf( '-%02d', $day );
+	}
+
+	/**
+	 * Reads the fields a MusicBrainz contribution needs.
+	 *
+	 * Each one is checked against its own vocabulary, so only values MusicBrainz
+	 * actually accepts ever get stored.
+	 *
+	 * @param Melomaniac_Sync_Release_DTO $release Release being built.
+	 * @return void
+	 */
+	private function read_musicbrainz_fields( Melomaniac_Sync_Release_DTO $release ) {
+		$vocabularies = array(
+			'status'         => Melomaniac_Sync_Release_DTO::statuses(),
+			'release_type'   => Melomaniac_Sync_Release_DTO::release_types(),
+			'secondary_type' => Melomaniac_Sync_Release_DTO::secondary_types(),
+			'packaging'      => Melomaniac_Sync_Release_DTO::packagings(),
+			'language'       => Melomaniac_Sync_Release_DTO::languages(),
+			'script'         => Melomaniac_Sync_Release_DTO::scripts(),
+		);
+
+		foreach ( $vocabularies as $field => $allowed ) {
+			$value = $this->read_text( $field );
+
+			if ( array_key_exists( $value, $allowed ) ) {
+				$release->{$field} = $value;
+			}
+		}
+
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verified by the caller.
+		$count = isset( $_POST['medium_count'] ) ? absint( wp_unslash( $_POST['medium_count'] ) ) : 1;
+
+		$release->medium_count = max( 1, min( 50, $count ) );
 	}
 
 	/**

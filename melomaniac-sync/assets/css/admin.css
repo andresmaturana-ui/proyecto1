@@ -435,3 +435,62 @@
 	align-items: baseline;
 	padding: 0.2em 0;
 }
+
+/* Price, stock, categories and tags before creating */
+
+.melomaniac-fields {
+	margin: 1.25em 0 0;
+	padding: 1em 1.25em;
+	background: #f6f7f7;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+}
+
+.melomaniac-fields-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.5em;
+	align-items: flex-start;
+}
+
+.melomaniac-fields-row + .melomaniac-fields-row {
+	margin-top: 1em;
+}
+
+.melomaniac-field {
+	display: flex;
+	flex-direction: column;
+	gap: 0.3em;
+	margin: 0;
+}
+
+.melomaniac-field-wide {
+	flex: 1 1 16em;
+	min-width: 0;
+}
+
+.melomaniac-field label {
+	font-weight: 600;
+}
+
+.melomaniac-field .description {
+	margin: 0.2em 0 0;
+}
+
+.melomaniac-field-price,
+.melomaniac-field-stock {
+	width: 8em;
+	font-size: 15px;
+}
+
+.melomaniac-field-categories {
+	width: 100%;
+	max-width: 22em;
+}
+
+.melomaniac-field-new-category,
+.melomaniac-field-tags {
+	width: 100%;
+	max-width: 22em;
+	margin-top: 0.4em;
+}

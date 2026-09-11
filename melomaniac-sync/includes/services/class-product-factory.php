@@ -40,10 +40,14 @@ class Melomaniac_Sync_Product_Factory {
 	/**
 	 * Creates a draft product.
 	 *
-	 * @param Melomaniac_Sync_Release_DTO $release Release data.
+	 * @param Melomaniac_Sync_Release_DTO $release   Release data.
+	 * @param array                       $overrides What the shop owner chose before
+	 *                                               creating: price, stock, category_ids,
+	 *                                               new_category, tags. Anything absent
+	 *                                               falls back to the settings screen.
 	 * @return int|WP_Error Product ID or error.
 	 */
-	public function create_draft( Melomaniac_Sync_Release_DTO $release ) {
+	public function create_draft( Melomaniac_Sync_Release_DTO $release, array $overrides = array() ) {
 		if ( ! $release->is_usable() ) {
 			return new WP_Error(
 				'melomaniac_sync_incomplete_release',
@@ -87,9 +91,13 @@ class Melomaniac_Sync_Product_Factory {
 				$product->set_sku( $release->barcode );
 			}
 
-			$product->set_regular_price( Melomaniac_Sync_Settings::default_price() );
+			$product->set_regular_price(
+				isset( $overrides['price'] ) ? (string) $overrides['price'] : Melomaniac_Sync_Settings::default_price()
+			);
 			$product->set_manage_stock( true );
-			$product->set_stock_quantity( Melomaniac_Sync_Settings::default_stock() );
+			$product->set_stock_quantity(
+				isset( $overrides['stock'] ) ? (int) $overrides['stock'] : Melomaniac_Sync_Settings::default_stock()
+			);
 			$product->set_attributes( $this->build_attributes( $release ) );
 
 			$product_id = $product->save();
@@ -112,8 +120,8 @@ class Melomaniac_Sync_Product_Factory {
 		Melomaniac_Sync_Usage::record_disc();
 
 		$this->save_meta( $product_id, $release );
-		$this->assign_format_category( $product_id, $release );
-		$this->assign_genre_tag( $product_id, $release );
+		$this->assign_categories( $product_id, $release, $overrides );
+		$this->assign_tags( $product_id, $release, $overrides );
 		$this->attach_cover( $product_id, $release );
 
 		/**
@@ -219,6 +227,15 @@ class Melomaniac_Sync_Product_Factory {
 			'format'         => $release->format,
 			'format_detail'  => $release->format_detail,
 			'country'        => $release->country,
+			// Kept for the MusicBrainz contribution flow: these describe the
+			// physical object and cannot be recovered once the disc is sold.
+			'status'         => $release->status,
+			'release_type'   => $release->release_type,
+			'secondary_type' => $release->secondary_type,
+			'packaging'      => $release->packaging,
+			'language'       => $release->language,
+			'script'         => $release->script,
+			'medium_count'   => (string) $release->medium_count,
 		);
 
 		foreach ( $fields as $key => $value ) {
@@ -289,34 +306,74 @@ class Melomaniac_Sync_Product_Factory {
 	 * @param Melomaniac_Sync_Release_DTO $release    Release data.
 	 * @return void
 	 */
-	private function assign_format_category( $product_id, Melomaniac_Sync_Release_DTO $release ) {
+	private function assign_categories( $product_id, Melomaniac_Sync_Release_DTO $release, array $overrides ) {
+		$chosen_ids = isset( $overrides['category_ids'] ) ? array_map( 'absint', (array) $overrides['category_ids'] ) : array();
+
+		if ( ! empty( $overrides['new_category'] ) ) {
+			$created = $this->resolve_term( $overrides['new_category'], 'product_cat' );
+
+			if ( $created > 0 ) {
+				$chosen_ids[] = $created;
+			}
+		}
+
+		$chosen_ids = array_values( array_unique( array_filter( $chosen_ids ) ) );
+
+		// An explicit choice replaces the format guess: if the shop owner picked
+		// categories, adding a guessed one on top would be second-guessing them.
+		if ( ! empty( $chosen_ids ) ) {
+			wp_set_object_terms( $product_id, $chosen_ids, 'product_cat', false );
+			return;
+		}
+
 		if ( '' === $release->format || 'other' === $release->format ) {
 			return;
 		}
 
-		$chosen = Melomaniac_Sync_Settings::category_map();
+		$mapped = Melomaniac_Sync_Settings::category_map();
 
-		if ( ! empty( $chosen[ $release->format ] ) ) {
-			wp_set_object_terms( $product_id, array( (int) $chosen[ $release->format ] ), 'product_cat', true );
+		if ( ! empty( $mapped[ $release->format ] ) ) {
+			wp_set_object_terms( $product_id, array( (int) $mapped[ $release->format ] ), 'product_cat', true );
 			return;
 		}
 
-		$name = $release->format_label();
-		$term = get_term_by( 'name', $name, 'product_cat' );
+		$term_id = $this->resolve_term( $release->format_label(), 'product_cat' );
 
-		if ( ! $term ) {
-			$created = wp_insert_term( $name, 'product_cat' );
+		if ( $term_id > 0 ) {
+			wp_set_object_terms( $product_id, array( $term_id ), 'product_cat', true );
+		}
+	}
 
-			if ( is_wp_error( $created ) ) {
-				return;
-			}
+	/**
+	 * Finds a term by name, creating it when it does not exist yet.
+	 *
+	 * @param string $name     Term name.
+	 * @param string $taxonomy Taxonomy.
+	 * @return int Term ID, zero when it could not be resolved.
+	 */
+	private function resolve_term( $name, $taxonomy ) {
+		$name = trim( (string) $name );
 
-			$term_id = (int) $created['term_id'];
-		} else {
-			$term_id = (int) $term->term_id;
+		if ( '' === $name ) {
+			return 0;
 		}
 
-		wp_set_object_terms( $product_id, array( $term_id ), 'product_cat', true );
+		$term = get_term_by( 'name', $name, $taxonomy );
+
+		if ( $term ) {
+			return (int) $term->term_id;
+		}
+
+		$created = wp_insert_term( $name, $taxonomy );
+
+		if ( is_wp_error( $created ) ) {
+			// A term created by a concurrent request is not a failure.
+			$existing = $created->get_error_data( 'term_exists' );
+
+			return $existing ? (int) $existing : 0;
+		}
+
+		return (int) $created['term_id'];
 	}
 
 	/**
@@ -536,31 +593,27 @@ class Melomaniac_Sync_Product_Factory {
 	 * @param Melomaniac_Sync_Release_DTO $release    Release data.
 	 * @return void
 	 */
-	private function assign_genre_tag( $product_id, Melomaniac_Sync_Release_DTO $release ) {
-		if ( ! Melomaniac_Sync_Settings::genre_tag_enabled() || empty( $release->genres ) ) {
-			return;
+	private function assign_tags( $product_id, Melomaniac_Sync_Release_DTO $release, array $overrides ) {
+		$names = isset( $overrides['tags'] ) ? (array) $overrides['tags'] : array();
+
+		// Only fall back to the genre setting when nothing was typed: the field is
+		// prefilled with the genre, so an empty field means "no tags, on purpose".
+		if ( ! isset( $overrides['tags'] ) && Melomaniac_Sync_Settings::genre_tag_enabled() && ! empty( $release->genres ) ) {
+			$names = array( (string) reset( $release->genres ) );
 		}
 
-		$name = (string) reset( $release->genres );
+		$term_ids = array();
 
-		if ( '' === $name ) {
-			return;
-		}
+		foreach ( $names as $name ) {
+			$term_id = $this->resolve_term( $name, 'product_tag' );
 
-		$term = get_term_by( 'name', $name, 'product_tag' );
-
-		if ( $term ) {
-			$term_id = (int) $term->term_id;
-		} else {
-			$created = wp_insert_term( $name, 'product_tag' );
-
-			if ( is_wp_error( $created ) ) {
-				return;
+			if ( $term_id > 0 ) {
+				$term_ids[] = $term_id;
 			}
-
-			$term_id = (int) $created['term_id'];
 		}
 
-		wp_set_object_terms( $product_id, array( $term_id ), 'product_tag', true );
+		if ( ! empty( $term_ids ) ) {
+			wp_set_object_terms( $product_id, array_values( array_unique( $term_ids ) ), 'product_tag', true );
+		}
 	}
 }

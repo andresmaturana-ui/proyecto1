@@ -92,6 +92,10 @@ msgstr ""
 msgid "Alcanzaste el límite mensual de discos."
 msgstr ""
 
+#: includes/services/class-release-dto.php:286
+msgid "Alemán"
+msgstr ""
+
 #: admin/class-admin.php:109
 msgid "Algo falló. Intenta de nuevo."
 msgstr ""
@@ -101,20 +105,28 @@ msgid "Anotar fallas de MusicBrainz, Discogs y portadas en el log de WordPress"
 msgstr ""
 
 #: admin/views/partial-manual-form.php:61
-#: includes/services/class-product-factory.php:254
+#: includes/services/class-product-factory.php:271
 #: includes/support/class-settings.php:40
 msgid "Artista"
 msgstr ""
 
-#: admin/views/partial-manual-form.php:85
+#: admin/views/partial-manual-form.php:100
 #: admin/views/partial-result-preview.php:24
-#: includes/services/class-product-factory.php:256
+#: includes/services/class-product-factory.php:273
 #: includes/support/class-settings.php:41
 msgid "Año"
 msgstr ""
 
+#: includes/services/class-release-dto.php:246
+msgid "Banda sonora"
+msgstr ""
+
 #: admin/views/page-diagnostics.php:24
 msgid "Bien"
+msgstr ""
+
+#: includes/services/class-release-dto.php:216
+msgid "Bootleg"
 msgstr ""
 
 #: admin/views/page-settings.php:118
@@ -149,8 +161,32 @@ msgstr ""
 msgid "Búsquedas guardadas"
 msgstr ""
 
-#: includes/services/class-release-dto.php:163
+#: includes/services/class-release-dto.php:317
 msgid "CD"
+msgstr ""
+
+#: includes/services/class-release-dto.php:266
+msgid "Caja (box set)"
+msgstr ""
+
+#: includes/services/class-release-dto.php:261
+msgid "Caja de CD (jewel case)"
+msgstr ""
+
+#: includes/services/class-release-dto.php:262
+msgid "Caja de CD delgada"
+msgstr ""
+
+#: includes/services/class-release-dto.php:267
+msgid "Caja de DVD"
+msgstr ""
+
+#: admin/views/partial-product-fields.php:43
+msgid "Cantidad"
+msgstr ""
+
+#: admin/views/partial-manual-form.php:278
+msgid "Cantidad de discos"
 msgstr ""
 
 #: admin/class-admin.php:108
@@ -165,12 +201,32 @@ msgstr ""
 msgid "Cargar un disco manualmente, sin buscarlo"
 msgstr ""
 
-#: includes/services/class-release-dto.php:164
+#: includes/services/class-release-dto.php:265
+msgid "Carátula doble (gatefold)"
+msgstr ""
+
+#: includes/services/class-release-dto.php:318
 msgid "Cassette"
 msgstr ""
 
 #: admin/views/page-settings.php:216
 msgid "Categoría por formato"
+msgstr ""
+
+#: admin/views/partial-product-fields.php:60
+msgid "Categorías"
+msgstr ""
+
+#: includes/services/class-release-dto.php:305
+msgid "Chino simplificado"
+msgstr ""
+
+#: includes/services/class-release-dto.php:302
+msgid "Cirílico"
+msgstr ""
+
+#: includes/services/class-release-dto.php:244
+msgid "Compilado"
 msgstr ""
 
 #: admin/views/page-diagnostics.php:34
@@ -193,6 +249,10 @@ msgstr ""
 msgid "Contacto para MusicBrainz"
 msgstr ""
 
+#: includes/services/class-release-dto.php:304
+msgid "Coreano"
+msgstr ""
+
 #: includes/support/class-connectivity-check.php:77
 msgid "Cover Art Archive"
 msgstr ""
@@ -201,12 +261,16 @@ msgstr ""
 msgid "Creando el producto…"
 msgstr ""
 
-#: admin/views/partial-result-preview.php:105
+#: admin/views/partial-result-preview.php:116
 msgid "Crear producto"
 msgstr ""
 
-#: admin/views/partial-manual-form.php:175
+#: admin/views/partial-manual-form.php:308
 msgid "Crear producto como borrador"
+msgstr ""
+
+#: admin/views/partial-product-fields.php:94
+msgid "Crear una categoría nueva"
 msgstr ""
 
 #: admin/views/page-settings.php:267
@@ -223,19 +287,31 @@ msgstr ""
 msgid "Código de barra"
 msgstr ""
 
+#: includes/services/class-release-dto.php:248
+msgid "DJ mix"
+msgstr ""
+
 #: includes/support/class-connectivity-check.php:66
 msgid "Datos de los discos. Sin esto el plugin no puede buscar nada."
 msgstr ""
 
-#: admin/views/partial-result-preview.php:120
+#: admin/views/partial-manual-form.php:204
+msgid "Datos del lanzamiento"
+msgstr ""
+
+#: admin/views/partial-result-preview.php:131
 msgid "Datos tomados de Discogs, porque MusicBrainz no tenía este disco."
+msgstr ""
+
+#: includes/services/class-release-dto.php:249
+msgid "Demo"
 msgstr ""
 
 #: admin/views/page-settings.php:174
 msgid "Descargar la portada a la biblioteca de medios"
 msgstr ""
 
-#: admin/views/partial-manual-form.php:117
+#: admin/views/partial-manual-form.php:146
 msgid "Detalle: LP 12\", doble, 180g, digipak…"
 msgstr ""
 
@@ -255,7 +331,11 @@ msgstr ""
 msgid "Diagnóstico"
 msgstr ""
 
-#: includes/services/class-product-factory.php:451
+#: includes/services/class-release-dto.php:263
+msgid "Digipak"
+msgstr ""
+
+#: includes/services/class-product-factory.php:508
 msgid "Disco %d"
 msgstr ""
 
@@ -285,6 +365,14 @@ msgstr ""
 msgid "Dominios permitidos"
 msgstr ""
 
+#: admin/views/partial-manual-form.php:120
+msgid "Día"
+msgstr ""
+
+#: includes/services/class-release-dto.php:230
+msgid "EP"
+msgstr ""
+
 #: admin/class-admin.php:111
 #: admin/class-scan-page.php:77
 msgid "Editar el producto"
@@ -298,11 +386,15 @@ msgstr ""
 msgid "Ej. 0602577089664"
 msgstr ""
 
+#: admin/views/partial-manual-form.php:124
+msgid "El año alcanza. Si la contratapa trae el mes o el día, agrégalos: MusicBrainz los pide y después no hay cómo recuperarlos."
+msgstr ""
+
 #: includes/services/class-release-lookup-service.php:104
 msgid "El código de barra debe tener entre 6 y 14 dígitos."
 msgstr ""
 
-#: admin/views/partial-manual-form.php:119
+#: admin/views/partial-manual-form.php:148
 msgid "El detalle es libre y se guarda tal cual en la ficha del producto."
 msgstr ""
 
@@ -339,6 +431,14 @@ msgstr ""
 msgid "Elige la que tienes en la mano para ver su ficha completa antes de crear el producto."
 msgstr ""
 
+#: admin/views/partial-manual-form.php:232
+msgid "Empaque"
+msgstr ""
+
+#: includes/services/class-release-dto.php:245
+msgid "En vivo"
+msgstr ""
+
 #: admin/views/page-diagnostics.php:238
 msgid "Entorno"
 msgstr ""
@@ -359,8 +459,20 @@ msgstr ""
 msgid "Escanear disco"
 msgstr ""
 
+#: admin/views/partial-manual-form.php:244
+msgid "Escritura"
+msgstr ""
+
 #: admin/class-quick-publish.php:100
 msgid "Ese contenido no es un producto."
+msgstr ""
+
+#: includes/services/class-release-dto.php:281
+msgid "Español"
+msgstr ""
+
+#: admin/views/partial-manual-form.php:214
+msgid "Estado"
 msgstr ""
 
 #: admin/views/page-settings.php:113
@@ -371,8 +483,16 @@ msgstr ""
 msgid "Este navegador no puede escanear con la cámara. Usa Chrome o Edge, o un lector USB."
 msgstr ""
 
+#: admin/views/partial-manual-form.php:206
+msgid "Esto es lo que pide la ficha de MusicBrainz. Se guarda en el producto y queda listo para aportar el disco a su base de datos. Todo es opcional: lo que no sepas, déjalo sin especificar."
+msgstr ""
+
 #: admin/views/page-settings.php:179
 msgid "Etiqueta de género"
+msgstr ""
+
+#: admin/views/partial-product-fields.php:100
+msgid "Etiquetas"
 msgstr ""
 
 #: admin/views/page-diagnostics.php:26
@@ -384,7 +504,7 @@ msgstr ""
 msgid "Falló la verificación del certificado. El hosting tiene los certificados raíz desactualizados."
 msgstr ""
 
-#: includes/services/class-product-factory.php:50
+#: includes/services/class-product-factory.php:54
 msgid "Falta el artista o el título del álbum."
 msgstr ""
 
@@ -400,11 +520,19 @@ msgstr ""
 msgid "Falta el token de Discogs, o el respaldo está desactivado en Ajustes."
 msgstr ""
 
-#: admin/views/partial-manual-form.php:101
+#: admin/views/partial-manual-form.php:85
+msgid "Fecha de lanzamiento"
+msgstr ""
+
+#: admin/views/partial-manual-form.php:130
 #: admin/views/partial-result-preview.php:27
-#: includes/services/class-product-factory.php:257
+#: includes/services/class-product-factory.php:274
 #: includes/support/class-settings.php:45
 msgid "Formato"
+msgstr ""
+
+#: includes/services/class-release-dto.php:284
+msgid "Francés"
 msgstr ""
 
 #: includes/services/class-release-lookup-service.php:385
@@ -413,6 +541,10 @@ msgstr ""
 
 #: admin/views/page-settings.php:38
 msgid "Fuentes de datos"
+msgstr ""
+
+#: includes/services/class-release-dto.php:264
+msgid "Funda de cartón o papel"
 msgstr ""
 
 #: admin/views/page-settings.php:79
@@ -436,8 +568,25 @@ msgstr ""
 msgid "Hace una petición real a cada servicio y mide cuánto tarda. Puede demorar si el hosting está bloqueando la salida."
 msgstr ""
 
+#: admin/views/partial-manual-form.php:238
+msgid "Idioma"
+msgstr ""
+
+#: includes/services/class-release-dto.php:282
+msgid "Inglés"
+msgstr ""
+
 #: admin/class-admin.php:110
 msgid "Ingresa o escanea un código de barra."
+msgstr ""
+
+#: includes/services/class-release-dto.php:285
+msgid "Italiano"
+msgstr ""
+
+#: includes/services/class-release-dto.php:287
+#: includes/services/class-release-dto.php:303
+msgid "Japonés"
 msgstr ""
 
 #: includes/services/class-release-lookup-service.php:442
@@ -460,16 +609,20 @@ msgstr ""
 msgid "La respuesta de MusicBrainz no se pudo interpretar."
 msgstr ""
 
-#: admin/class-ajax-handler.php:272
+#: admin/class-ajax-handler.php:275
 msgid "La sesión expiró. Recarga la página."
+msgstr ""
+
+#: includes/services/class-release-dto.php:301
+msgid "Latino"
 msgstr ""
 
 #: admin/views/page-diagnostics.php:119
 msgid "Le pregunta a cada fuente por separado, sin usar lo guardado. Sirve para ver qué contesta Discogs aunque MusicBrainz también tenga el disco, que es lo que el escaneo normal nunca te deja ver."
 msgstr ""
 
-#: admin/views/partial-manual-form.php:140
-#: includes/services/class-product-factory.php:434
+#: admin/views/partial-manual-form.php:169
+#: includes/services/class-product-factory.php:491
 #: includes/support/class-settings.php:46
 msgid "Lista de canciones"
 msgstr ""
@@ -497,6 +650,10 @@ msgstr ""
 
 #: includes/class-activator.php:29
 msgid "Melomaniac Sync requiere PHP 7.4 o superior."
+msgstr ""
+
+#: admin/views/partial-manual-form.php:110
+msgid "Mes"
 msgstr ""
 
 #: includes/services/class-release-lookup-service.php:205
@@ -544,12 +701,16 @@ msgstr ""
 msgid "Ninguna es, cargarlo a mano"
 msgstr ""
 
+#: includes/services/class-release-dto.php:243
+msgid "Ninguno"
+msgstr ""
+
 #: includes/support/class-connectivity-check.php:289
 #: includes/support/class-connectivity-check.php:292
 msgid "No"
 msgstr ""
 
-#: admin/views/partial-result-preview.php:108
+#: admin/views/partial-result-preview.php:119
 msgid "No es este disco, cargarlo a mano"
 msgstr ""
 
@@ -561,7 +722,7 @@ msgstr ""
 msgid "No se pudo crear el producto."
 msgstr ""
 
-#: includes/services/class-product-factory.php:108
+#: includes/services/class-product-factory.php:116
 msgid "No se pudo guardar el producto."
 msgstr ""
 
@@ -569,7 +730,7 @@ msgstr ""
 msgid "No tienes permisos para cambiar estos ajustes."
 msgstr ""
 
-#: admin/class-ajax-handler.php:279
+#: admin/class-ajax-handler.php:282
 #: admin/class-manual-entry-handler.php:55
 msgid "No tienes permisos para hacer esto."
 msgstr ""
@@ -587,14 +748,24 @@ msgstr ""
 msgid "No tienes permisos para ver esta pantalla."
 msgstr ""
 
-#: admin/views/partial-manual-form.php:132
+#: admin/views/partial-manual-form.php:161
 #: admin/views/partial-result-preview.php:26
-#: includes/services/class-product-factory.php:259
+#: includes/services/class-product-factory.php:276
 #: includes/support/class-settings.php:47
 msgid "Número de catálogo"
 msgstr ""
 
-#: includes/services/class-release-dto.php:165
+#: includes/services/class-release-dto.php:214
+msgid "Oficial"
+msgstr ""
+
+#: admin/views/partial-manual-form.php:217
+msgid "Oficial es lo normal. Promocional es una copia que no se vendió en tiendas."
+msgstr ""
+
+#: includes/services/class-release-dto.php:232
+#: includes/services/class-release-dto.php:269
+#: includes/services/class-release-dto.php:319
 msgid "Otro"
 msgstr ""
 
@@ -602,9 +773,9 @@ msgstr ""
 msgid "Para que el archivo se escriba, wp-config.php necesita WP_DEBUG y WP_DEBUG_LOG en true. Déjalo apagado salvo que estés buscando un problema."
 msgstr ""
 
-#: admin/views/partial-manual-form.php:124
+#: admin/views/partial-manual-form.php:153
 #: admin/views/partial-result-preview.php:28
-#: includes/services/class-product-factory.php:258
+#: includes/services/class-product-factory.php:275
 #: includes/support/class-settings.php:43
 msgid "País de prensaje"
 msgstr ""
@@ -626,7 +797,7 @@ msgid "Plan actual: %s"
 msgstr ""
 
 #: admin/views/page-settings.php:164
-#: admin/views/partial-manual-form.php:152
+#: admin/views/partial-manual-form.php:181
 msgid "Portada"
 msgstr ""
 
@@ -634,8 +805,20 @@ msgstr ""
 msgid "Portadas. Si falla, los productos se crean sin imagen."
 msgstr ""
 
+#: includes/services/class-release-dto.php:283
+msgid "Portugués"
+msgstr ""
+
+#: admin/views/partial-product-fields.php:29
+msgid "Precio"
+msgstr ""
+
 #: admin/views/page-settings.php:136
 msgid "Precio por defecto"
+msgstr ""
+
+#: admin/views/partial-manual-form.php:296
+msgid "Precio, stock y clasificación"
 msgstr ""
 
 #: admin/views/page-diagnostics.php:138
@@ -670,6 +853,14 @@ msgstr ""
 msgid "Productos nuevos"
 msgstr ""
 
+#: includes/services/class-release-dto.php:215
+msgid "Promocional"
+msgstr ""
+
+#: includes/services/class-release-dto.php:217
+msgid "Pseudo-lanzamiento (traducción o transliteración)"
+msgstr ""
+
 #: admin/views/page-settings.php:120
 msgid "Publicado"
 msgstr ""
@@ -679,7 +870,11 @@ msgstr ""
 msgid "Publicar"
 msgstr ""
 
-#: admin/views/partial-manual-form.php:167
+#: admin/views/partial-product-fields.php:85
+msgid "Puedes elegir varias con Ctrl (Cmd en Mac). Si no eliges ninguna, se asigna sola según el formato."
+msgstr ""
+
+#: admin/views/partial-manual-form.php:196
 msgid "Quitar"
 msgstr ""
 
@@ -693,6 +888,10 @@ msgstr ""
 
 #: admin/views/page-settings.php:275
 msgid "Registro"
+msgstr ""
+
+#: includes/services/class-release-dto.php:247
+msgid "Remixes"
 msgstr ""
 
 #: includes/class-activator.php:30
@@ -740,7 +939,7 @@ msgstr ""
 msgid "Se alcanzó el límite de peticiones de Discogs."
 msgstr ""
 
-#: admin/class-ajax-handler.php:257
+#: admin/class-ajax-handler.php:260
 #: admin/class-scan-page.php:73
 msgid "Se creó el borrador \"%s\"."
 msgstr ""
@@ -749,15 +948,23 @@ msgstr ""
 msgid "Se necesita al menos artista o título para buscar."
 msgstr ""
 
+#: admin/views/partial-manual-form.php:229
+msgid "Se suma al tipo: un compilado en vivo es Álbum + En vivo."
+msgstr ""
+
 #: admin/views/page-diagnostics.php:224
 msgid "Se vaciaron las búsquedas guardadas."
 msgstr ""
 
 #: admin/views/partial-manual-form.php:77
 #: admin/views/partial-result-preview.php:25
-#: includes/services/class-product-factory.php:255
+#: includes/services/class-product-factory.php:272
 #: includes/support/class-settings.php:42
 msgid "Sello"
+msgstr ""
+
+#: admin/views/partial-product-fields.php:111
+msgid "Separadas por coma. Las que no existan se crean."
 msgstr ""
 
 #: admin/views/page-diagnostics.php:56
@@ -784,6 +991,20 @@ msgstr ""
 msgid "Si resolvió solo a IPv6 y falla, el hosting no tiene salida IPv6 funcionando. Pídeles que la arreglen o que fuercen IPv4."
 msgstr ""
 
+#: includes/services/class-release-dto.php:268
+msgid "Sin empaque"
+msgstr ""
+
+#: includes/services/class-release-dto.php:260
+#: includes/services/class-release-dto.php:280
+#: includes/services/class-release-dto.php:300
+msgid "Sin especificar"
+msgstr ""
+
+#: includes/services/class-release-dto.php:288
+msgid "Sin letra (instrumental)"
+msgstr ""
+
 #: admin/views/partial-result-preview.php:44
 msgid "Sin portada en Cover Art Archive"
 msgstr ""
@@ -805,6 +1026,10 @@ msgstr ""
 msgid "Sin token, Discogs no se consulta y los discos que MusicBrainz no tenga se cargan a mano."
 msgstr ""
 
+#: includes/services/class-release-dto.php:229
+msgid "Single"
+msgstr ""
+
 #: admin/views/page-settings.php:150
 msgid "Stock por defecto"
 msgstr ""
@@ -813,8 +1038,12 @@ msgstr ""
 msgid "Sube el tiempo de espera en %s. Si la conexión es lenta pero funciona, con 30 segundos suele alcanzar."
 msgstr ""
 
-#: admin/views/partial-manual-form.php:164
+#: admin/views/partial-manual-form.php:193
 msgid "Subir o elegir una imagen"
+msgstr ""
+
+#: admin/views/partial-manual-form.php:226
+msgid "Subtipo"
 msgstr ""
 
 #: includes/support/class-connectivity-check.php:291
@@ -841,12 +1070,28 @@ msgstr ""
 msgid "Tiempo de espera configurado"
 msgstr ""
 
+#: admin/views/partial-manual-form.php:220
+msgid "Tipo"
+msgstr ""
+
+#: admin/views/partial-product-fields.php:65
+msgid "Todavía no hay categorías en la tienda. Escribe una abajo y se crea."
+msgstr ""
+
 #: admin/views/page-settings.php:64
 msgid "Token de Discogs"
 msgstr ""
 
+#: includes/services/class-release-dto.php:231
+msgid "Transmisión"
+msgstr ""
+
 #: admin/views/partial-manual-form.php:69
 msgid "Título del álbum"
+msgstr ""
+
+#: admin/views/partial-manual-form.php:290
+msgid "Un LP doble son 2. Un box set de 5 CDs son 5."
 msgstr ""
 
 #: admin/views/page-diagnostics.php:111
@@ -857,7 +1102,7 @@ msgstr ""
 msgid "Un email o una URL de la tienda. MusicBrainz exige poder identificar quién consulta; si no es real, pueden bloquear tu IP."
 msgstr ""
 
-#: admin/views/partial-manual-form.php:147
+#: admin/views/partial-manual-form.php:176
 msgid "Una canción por línea. Puedes agregar la duración después de una barra vertical, por ejemplo: A1 Blue Monday | 7:29"
 msgstr ""
 
@@ -874,6 +1119,10 @@ msgstr ""
 msgid "Vaciar las búsquedas guardadas"
 msgstr ""
 
+#: includes/services/class-release-dto.php:289
+msgid "Varios idiomas"
+msgstr ""
+
 #: includes/licensing/class-usage.php:179
 msgid "Vas %1$d de %2$d discos este mes."
 msgstr ""
@@ -882,11 +1131,11 @@ msgstr ""
 msgid "Ver el producto"
 msgstr ""
 
-#: admin/views/partial-result-preview.php:122
+#: admin/views/partial-result-preview.php:133
 msgid "Ver esta edición en Discogs"
 msgstr ""
 
-#: admin/views/partial-result-preview.php:115
+#: admin/views/partial-result-preview.php:126
 msgid "Ver esta edición en MusicBrainz"
 msgstr ""
 
@@ -914,7 +1163,7 @@ msgstr ""
 msgid "Versión del plugin"
 msgstr ""
 
-#: includes/services/class-release-dto.php:162
+#: includes/services/class-release-dto.php:316
 msgid "Vinilo"
 msgstr ""
 
@@ -922,7 +1171,7 @@ msgstr ""
 msgid "WordPress tiene las peticiones externas bloqueadas por configuración (WP_HTTP_BLOCK_EXTERNAL en wp-config.php)."
 msgstr ""
 
-#: includes/services/class-product-factory.php:69
+#: includes/services/class-product-factory.php:73
 msgid "Ya existe un producto para este disco: %s"
 msgstr ""
 
@@ -946,8 +1195,16 @@ msgstr ""
 msgid "segundos"
 msgstr ""
 
+#: admin/views/partial-product-fields.php:108
+msgid "thrash metal, chileno"
+msgstr ""
+
 #: admin/views/partial-reference-links.php:29
 msgid "¿Necesitas datos para completar este disco?"
+msgstr ""
+
+#: includes/services/class-release-dto.php:228
+msgid "Álbum"
 msgstr ""
 
 #: includes/helpers/functions-reference-links.php:93

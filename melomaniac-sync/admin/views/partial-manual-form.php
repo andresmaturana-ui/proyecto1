@@ -82,9 +82,14 @@ $melomaniac_prefill = isset( $data['release'] ) && $data['release'] instanceof M
 			</tr>
 			<tr>
 				<th scope="row">
-					<label for="melomaniac-manual-year"><?php esc_html_e( 'Año', 'melomaniac-sync' ); ?></label>
+					<label for="melomaniac-manual-year"><?php esc_html_e( 'Fecha de lanzamiento', 'melomaniac-sync' ); ?></label>
 				</th>
 				<td>
+					<?php
+					$melomaniac_date  = explode( '-', $melomaniac_prefill->release_date );
+					$melomaniac_month = isset( $melomaniac_date[1] ) ? $melomaniac_date[1] : '';
+					$melomaniac_day   = isset( $melomaniac_date[2] ) ? $melomaniac_date[2] : '';
+					?>
 					<input
 						type="number"
 						id="melomaniac-manual-year"
@@ -92,8 +97,32 @@ $melomaniac_prefill = isset( $data['release'] ) && $data['release'] instanceof M
 						class="small-text"
 						min="1880"
 						max="<?php echo esc_attr( (string) ( (int) gmdate( 'Y' ) + 1 ) ); ?>"
+						placeholder="<?php esc_attr_e( 'Año', 'melomaniac-sync' ); ?>"
 						value="<?php echo esc_attr( $melomaniac_prefill->year ); ?>"
 					/>
+					<input
+						type="number"
+						id="melomaniac-manual-month"
+						name="month"
+						class="small-text"
+						min="1"
+						max="12"
+						placeholder="<?php esc_attr_e( 'Mes', 'melomaniac-sync' ); ?>"
+						value="<?php echo esc_attr( $melomaniac_month ); ?>"
+					/>
+					<input
+						type="number"
+						id="melomaniac-manual-day"
+						name="day"
+						class="small-text"
+						min="1"
+						max="31"
+						placeholder="<?php esc_attr_e( 'Día', 'melomaniac-sync' ); ?>"
+						value="<?php echo esc_attr( $melomaniac_day ); ?>"
+					/>
+					<p class="description">
+						<?php esc_html_e( 'El año alcanza. Si la contratapa trae el mes o el día, agrégalos: MusicBrainz los pide y después no hay cómo recuperarlos.', 'melomaniac-sync' ); ?>
+					</p>
 				</td>
 			</tr>
 			<tr>
@@ -171,6 +200,110 @@ $melomaniac_prefill = isset( $data['release'] ) && $data['release'] instanceof M
 			</tr>
 			</tbody>
 		</table>
+
+		<h3><?php esc_html_e( 'Datos del lanzamiento', 'melomaniac-sync' ); ?></h3>
+		<p class="description melomaniac-settings-intro">
+			<?php esc_html_e( 'Esto es lo que pide la ficha de MusicBrainz. Se guarda en el producto y queda listo para aportar el disco a su base de datos. Todo es opcional: lo que no sepas, déjalo sin especificar.', 'melomaniac-sync' ); ?>
+		</p>
+
+		<table class="form-table" role="presentation">
+			<tbody>
+			<?php
+			$melomaniac_selects = array(
+				'status'         => array(
+					'label'   => __( 'Estado', 'melomaniac-sync' ),
+					'options' => Melomaniac_Sync_Release_DTO::statuses(),
+					'value'   => '' !== $melomaniac_prefill->status ? $melomaniac_prefill->status : 'Official',
+					'help'    => __( 'Oficial es lo normal. Promocional es una copia que no se vendió en tiendas.', 'melomaniac-sync' ),
+				),
+				'release_type'   => array(
+					'label'   => __( 'Tipo', 'melomaniac-sync' ),
+					'options' => Melomaniac_Sync_Release_DTO::release_types(),
+					'value'   => '' !== $melomaniac_prefill->release_type ? $melomaniac_prefill->release_type : 'Album',
+					'help'    => '',
+				),
+				'secondary_type' => array(
+					'label'   => __( 'Subtipo', 'melomaniac-sync' ),
+					'options' => Melomaniac_Sync_Release_DTO::secondary_types(),
+					'value'   => $melomaniac_prefill->secondary_type,
+					'help'    => __( 'Se suma al tipo: un compilado en vivo es Álbum + En vivo.', 'melomaniac-sync' ),
+				),
+				'packaging'      => array(
+					'label'   => __( 'Empaque', 'melomaniac-sync' ),
+					'options' => Melomaniac_Sync_Release_DTO::packagings(),
+					'value'   => $melomaniac_prefill->packaging,
+					'help'    => '',
+				),
+				'language'       => array(
+					'label'   => __( 'Idioma', 'melomaniac-sync' ),
+					'options' => Melomaniac_Sync_Release_DTO::languages(),
+					'value'   => $melomaniac_prefill->language,
+					'help'    => '',
+				),
+				'script'         => array(
+					'label'   => __( 'Escritura', 'melomaniac-sync' ),
+					'options' => Melomaniac_Sync_Release_DTO::scripts(),
+					'value'   => '' !== $melomaniac_prefill->script ? $melomaniac_prefill->script : 'Latn',
+					'help'    => '',
+				),
+			);
+
+			foreach ( $melomaniac_selects as $melomaniac_name => $melomaniac_field ) :
+				?>
+				<tr>
+					<th scope="row">
+						<label for="melomaniac-manual-<?php echo esc_attr( $melomaniac_name ); ?>">
+							<?php echo esc_html( $melomaniac_field['label'] ); ?>
+						</label>
+					</th>
+					<td>
+						<select
+							id="melomaniac-manual-<?php echo esc_attr( $melomaniac_name ); ?>"
+							name="<?php echo esc_attr( $melomaniac_name ); ?>"
+						>
+							<?php foreach ( $melomaniac_field['options'] as $melomaniac_value => $melomaniac_label ) : ?>
+								<option value="<?php echo esc_attr( $melomaniac_value ); ?>" <?php selected( $melomaniac_field['value'], $melomaniac_value ); ?>>
+									<?php echo esc_html( $melomaniac_label ); ?>
+								</option>
+							<?php endforeach; ?>
+						</select>
+						<?php if ( '' !== $melomaniac_field['help'] ) : ?>
+							<p class="description"><?php echo esc_html( $melomaniac_field['help'] ); ?></p>
+						<?php endif; ?>
+					</td>
+				</tr>
+			<?php endforeach; ?>
+			<tr>
+				<th scope="row">
+					<label for="melomaniac-manual-medium-count"><?php esc_html_e( 'Cantidad de discos', 'melomaniac-sync' ); ?></label>
+				</th>
+				<td>
+					<input
+						type="number"
+						id="melomaniac-manual-medium-count"
+						name="medium_count"
+						class="small-text"
+						min="1"
+						max="50"
+						value="<?php echo esc_attr( (string) $melomaniac_prefill->medium_count ); ?>"
+					/>
+					<p class="description"><?php esc_html_e( 'Un LP doble son 2. Un box set de 5 CDs son 5.', 'melomaniac-sync' ); ?></p>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+
+		<h3><?php esc_html_e( 'Precio, stock y clasificación', 'melomaniac-sync' ); ?></h3>
+		<?php
+		Melomaniac_Sync_Admin::render_view(
+			'partial-product-fields',
+			array(
+				'prefix'     => 'melomaniac-manual',
+				'tags'       => array(),
+				'categories' => Melomaniac_Sync_Admin::product_categories(),
+			)
+		);
+		?>
 
 		<?php submit_button( __( 'Crear producto como borrador', 'melomaniac-sync' ) ); ?>
 	</form>

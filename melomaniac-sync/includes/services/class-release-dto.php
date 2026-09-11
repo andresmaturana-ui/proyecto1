@@ -46,6 +46,58 @@ class Melomaniac_Sync_Release_DTO {
 	public $notes = '';
 
 	/**
+	 * Release status, in MusicBrainz's own vocabulary.
+	 *
+	 * Stored with MusicBrainz's exact values so a contribution can be seeded
+	 * without translating anything.
+	 *
+	 * @var string
+	 */
+	public $status = '';
+
+	/**
+	 * Primary release group type: Album, Single, EP, Broadcast, Other.
+	 *
+	 * @var string
+	 */
+	public $release_type = '';
+
+	/**
+	 * Secondary release group type: Compilation, Live, Soundtrack, Remix.
+	 *
+	 * @var string
+	 */
+	public $secondary_type = '';
+
+	/**
+	 * Physical packaging: Digipak, Gatefold Cover, Jewel Case and so on.
+	 *
+	 * @var string
+	 */
+	public $packaging = '';
+
+	/**
+	 * Release language, ISO 639-3.
+	 *
+	 * @var string
+	 */
+	public $language = '';
+
+	/**
+	 * Writing script, ISO 15924.
+	 *
+	 * @var string
+	 */
+	public $script = '';
+
+	/**
+	 * How many discs, tapes or records the release has.
+	 *
+	 * @var int
+	 */
+	public $medium_count = 1;
+
+	/**
 	 * Barcode as printed on the sleeve.
 	 *
 	 * @var string
@@ -151,6 +203,108 @@ class Melomaniac_Sync_Release_DTO {
 	 * @var int
 	 */
 	public $cover_attachment_id = 0;
+
+	/**
+	 * Release statuses MusicBrainz accepts, keyed by its own value.
+	 *
+	 * @return array<string,string>
+	 */
+	public static function statuses() {
+		return array(
+			'Official'       => __( 'Oficial', 'melomaniac-sync' ),
+			'Promotion'      => __( 'Promocional', 'melomaniac-sync' ),
+			'Bootleg'        => __( 'Bootleg', 'melomaniac-sync' ),
+			'Pseudo-Release' => __( 'Pseudo-lanzamiento (traducción o transliteración)', 'melomaniac-sync' ),
+		);
+	}
+
+	/**
+	 * Primary release group types.
+	 *
+	 * @return array<string,string>
+	 */
+	public static function release_types() {
+		return array(
+			'Album'     => __( 'Álbum', 'melomaniac-sync' ),
+			'Single'    => __( 'Single', 'melomaniac-sync' ),
+			'EP'        => __( 'EP', 'melomaniac-sync' ),
+			'Broadcast' => __( 'Transmisión', 'melomaniac-sync' ),
+			'Other'     => __( 'Otro', 'melomaniac-sync' ),
+		);
+	}
+
+	/**
+	 * Secondary release group types, which stack on top of the primary one.
+	 *
+	 * @return array<string,string>
+	 */
+	public static function secondary_types() {
+		return array(
+			''             => __( 'Ninguno', 'melomaniac-sync' ),
+			'Compilation'  => __( 'Compilado', 'melomaniac-sync' ),
+			'Live'         => __( 'En vivo', 'melomaniac-sync' ),
+			'Soundtrack'   => __( 'Banda sonora', 'melomaniac-sync' ),
+			'Remix'        => __( 'Remixes', 'melomaniac-sync' ),
+			'DJ-mix'       => __( 'DJ mix', 'melomaniac-sync' ),
+			'Demo'         => __( 'Demo', 'melomaniac-sync' ),
+		);
+	}
+
+	/**
+	 * Packaging options MusicBrainz accepts.
+	 *
+	 * @return array<string,string>
+	 */
+	public static function packagings() {
+		return array(
+			''                      => __( 'Sin especificar', 'melomaniac-sync' ),
+			'Jewel Case'            => __( 'Caja de CD (jewel case)', 'melomaniac-sync' ),
+			'Slim Jewel Case'       => __( 'Caja de CD delgada', 'melomaniac-sync' ),
+			'Digipak'               => __( 'Digipak', 'melomaniac-sync' ),
+			'Cardboard/Paper Sleeve' => __( 'Funda de cartón o papel', 'melomaniac-sync' ),
+			'Gatefold Cover'        => __( 'Carátula doble (gatefold)', 'melomaniac-sync' ),
+			'Box'                   => __( 'Caja (box set)', 'melomaniac-sync' ),
+			'Keep Case'             => __( 'Caja de DVD', 'melomaniac-sync' ),
+			'None'                  => __( 'Sin empaque', 'melomaniac-sync' ),
+			'Other'                 => __( 'Otro', 'melomaniac-sync' ),
+		);
+	}
+
+	/**
+	 * Languages, ISO 639-3, limited to what a record shop actually stocks.
+	 *
+	 * @return array<string,string>
+	 */
+	public static function languages() {
+		return array(
+			''    => __( 'Sin especificar', 'melomaniac-sync' ),
+			'spa' => __( 'Español', 'melomaniac-sync' ),
+			'eng' => __( 'Inglés', 'melomaniac-sync' ),
+			'por' => __( 'Portugués', 'melomaniac-sync' ),
+			'fra' => __( 'Francés', 'melomaniac-sync' ),
+			'ita' => __( 'Italiano', 'melomaniac-sync' ),
+			'deu' => __( 'Alemán', 'melomaniac-sync' ),
+			'jpn' => __( 'Japonés', 'melomaniac-sync' ),
+			'zxx' => __( 'Sin letra (instrumental)', 'melomaniac-sync' ),
+			'mul' => __( 'Varios idiomas', 'melomaniac-sync' ),
+		);
+	}
+
+	/**
+	 * Writing scripts, ISO 15924.
+	 *
+	 * @return array<string,string>
+	 */
+	public static function scripts() {
+		return array(
+			''     => __( 'Sin especificar', 'melomaniac-sync' ),
+			'Latn' => __( 'Latino', 'melomaniac-sync' ),
+			'Cyrl' => __( 'Cirílico', 'melomaniac-sync' ),
+			'Jpan' => __( 'Japonés', 'melomaniac-sync' ),
+			'Hang' => __( 'Coreano', 'melomaniac-sync' ),
+			'Hans' => __( 'Chino simplificado', 'melomaniac-sync' ),
+		);
+	}
 
 	/**
 	 * Known format keys mapped to their translated labels.
@@ -268,6 +422,13 @@ class Melomaniac_Sync_Release_DTO {
 	public function to_array() {
 		return array(
 			'source'              => $this->source,
+			'status'              => $this->status,
+			'release_type'        => $this->release_type,
+			'secondary_type'      => $this->secondary_type,
+			'packaging'           => $this->packaging,
+			'language'            => $this->language,
+			'script'              => $this->script,
+			'medium_count'        => $this->medium_count,
 			'mbid'                => $this->mbid,
 			'discogs_id'          => $this->discogs_id,
 			'notes'               => $this->notes,
@@ -300,6 +461,12 @@ class Melomaniac_Sync_Release_DTO {
 
 		$strings = array(
 			'source',
+			'status',
+			'release_type',
+			'secondary_type',
+			'packaging',
+			'language',
+			'script',
 			'mbid',
 			'discogs_id',
 			'notes',
@@ -333,6 +500,10 @@ class Melomaniac_Sync_Release_DTO {
 
 		if ( isset( $data['cover_attachment_id'] ) ) {
 			$dto->cover_attachment_id = (int) $data['cover_attachment_id'];
+		}
+
+		if ( isset( $data['medium_count'] ) ) {
+			$dto->medium_count = max( 1, (int) $data['medium_count'] );
 		}
 
 		return $dto;

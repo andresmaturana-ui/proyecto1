@@ -72,7 +72,16 @@
 		body.append( 'nonce', config.nonce );
 
 		Object.keys( data || {} ).forEach( function ( key ) {
-			body.append( key, data[ key ] );
+			var value = data[ key ];
+
+			if ( Array.isArray( value ) ) {
+				value.forEach( function ( item ) {
+					body.append( key + '[]', item );
+				} );
+				return;
+			}
+
+			body.append( key, value );
 		} );
 
 		return window
@@ -164,6 +173,78 @@
 	}
 
 	/**
+	 * Reads the price, stock, category and tag choices out of the result area.
+	 *
+	 * Returns an empty object when the block is absent, so the server falls back
+	 * to the defaults from the settings screen.
+	 *
+	 * @return {Object} Fields to send along with the create request.
+	 */
+	function collectFields() {
+		var box = resultBox.querySelector( '[data-melomaniac-fields]' );
+
+		if ( ! box ) {
+			return {};
+		}
+
+		var fields = {};
+		var price = box.querySelector( '.melomaniac-field-price' );
+		var stock = box.querySelector( '.melomaniac-field-stock' );
+		var categories = box.querySelector( '.melomaniac-field-categories' );
+		var newCategory = box.querySelector( '.melomaniac-field-new-category' );
+		var tags = box.querySelector( '.melomaniac-field-tags' );
+
+		if ( price ) {
+			fields.price = price.value.trim();
+		}
+
+		if ( stock ) {
+			fields.stock = stock.value.trim();
+		}
+
+		// Always sent, even empty: an empty tag field means "no tags on purpose",
+		// which the server must be able to tell apart from "field not present".
+		if ( tags ) {
+			fields.tags = tags.value;
+		}
+
+		if ( newCategory ) {
+			fields.new_category = newCategory.value.trim();
+		}
+
+		if ( categories ) {
+			fields.category_ids = Array.prototype.slice
+				.call( categories.selectedOptions )
+				.map( function ( option ) {
+					return option.value;
+				} );
+		}
+
+		return fields;
+	}
+
+	/**
+	 * Merges two plain objects into a new one.
+	 *
+	 * @param {Object} base  Base values.
+	 * @param {Object} extra Values to add.
+	 * @return {Object} Merged object.
+	 */
+	function withFields( base, extra ) {
+		var merged = {};
+
+		Object.keys( base ).forEach( function ( key ) {
+			merged[ key ] = base[ key ];
+		} );
+
+		Object.keys( extra ).forEach( function ( key ) {
+			merged[ key ] = extra[ key ];
+		} );
+
+		return merged;
+	}
+
+	/**
 	 * Creates the draft product for a release.
 	 *
 	 * @param {HTMLElement} button    Clicked button.
@@ -180,7 +261,13 @@
 		button.disabled = true;
 		setStatus( i18n.creating, 'loading' );
 
-		request( config.actions.create, { source: source, release_id: releaseId, barcode: barcode } )
+		request(
+			config.actions.create,
+			withFields(
+				{ source: source, release_id: releaseId, barcode: barcode },
+				collectFields()
+			)
+		)
 			.then( function ( data ) {
 				setStatus( data.message, 'success' );
 				appendEditLink( data.editUrl );

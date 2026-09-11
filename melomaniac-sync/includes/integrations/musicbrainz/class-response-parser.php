@@ -74,6 +74,31 @@ class Melomaniac_Sync_MusicBrainz_Response_Parser {
 		$dto->genres    = $this->parse_genres( $release );
 		$dto->tracklist = $this->parse_tracklist( $release );
 
+		// The fields a contribution needs, in MusicBrainz's own vocabulary, so a
+		// scanned release and a hand typed one carry the same shape.
+		$dto->status    = isset( $release['status'] ) ? sanitize_text_field( $release['status'] ) : '';
+		$dto->packaging = isset( $release['packaging'] ) ? sanitize_text_field( $release['packaging'] ) : '';
+
+		if ( ! empty( $release['text-representation']['language'] ) ) {
+			$dto->language = sanitize_text_field( $release['text-representation']['language'] );
+		}
+
+		if ( ! empty( $release['text-representation']['script'] ) ) {
+			$dto->script = sanitize_text_field( $release['text-representation']['script'] );
+		}
+
+		if ( ! empty( $release['release-group']['primary-type'] ) ) {
+			$dto->release_type = sanitize_text_field( $release['release-group']['primary-type'] );
+		}
+
+		if ( ! empty( $release['release-group']['secondary-types'][0] ) ) {
+			$dto->secondary_type = sanitize_text_field( $release['release-group']['secondary-types'][0] );
+		}
+
+		if ( ! empty( $release['media'] ) && is_array( $release['media'] ) ) {
+			$dto->medium_count = max( 1, count( $release['media'] ) );
+		}
+
 		return $dto;
 	}
 

@@ -232,7 +232,10 @@ class Melomaniac_Sync_Ajax_Handler {
 
 		$release->barcode = $barcode;
 
-		$product_id = $this->product_factory->create_draft( $release );
+		$product_id = $this->product_factory->create_draft(
+			$release,
+			Melomaniac_Sync_Admin::read_product_overrides()
+		);
 
 		if ( is_wp_error( $product_id ) ) {
 			$data     = $product_id->get_error_data();

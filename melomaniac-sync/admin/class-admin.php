@@ -152,6 +152,99 @@ class Melomaniac_Sync_Admin {
 	}
 
 	/**
+	 * Reads the price, stock, category and tag choices out of the request.
+	 *
+	 * Shared by the scan screen and the manual form so both produce the same
+	 * override array for the product factory. The caller verifies the nonce.
+	 *
+	 * @return array
+	 */
+	public static function read_product_overrides() {
+		// phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verified by the caller.
+		$overrides = array();
+
+		if ( isset( $_POST['price'] ) ) {
+			$price = wc_format_decimal( wp_unslash( $_POST['price'] ) );
+
+			// A typo that formats to nothing falls back to the default rather than
+			// creating a product with no price at all.
+			if ( '' !== $price ) {
+				$overrides['price'] = $price;
+			}
+		}
+
+		if ( isset( $_POST['stock'] ) && '' !== trim( (string) wp_unslash( $_POST['stock'] ) ) ) {
+			$overrides['stock'] = absint( wp_unslash( $_POST['stock'] ) );
+		}
+
+		if ( isset( $_POST['category_ids'] ) ) {
+			$raw = wp_unslash( $_POST['category_ids'] );
+
+			// The browser sends an array; a single value can arrive as a string.
+			$overrides['category_ids'] = array_values(
+				array_filter( array_map( 'absint', (array) $raw ) )
+			);
+		}
+
+		if ( isset( $_POST['new_category'] ) ) {
+			$overrides['new_category'] = sanitize_text_field( wp_unslash( $_POST['new_category'] ) );
+		}
+
+		if ( isset( $_POST['tags'] ) ) {
+			$overrides['tags'] = self::parse_tag_list( wp_unslash( $_POST['tags'] ) );
+		}
+		// phpcs:enable WordPress.Security.NonceVerification.Missing
+
+		return $overrides;
+	}
+
+	/**
+	 * Splits a comma separated tag field into clean names.
+	 *
+	 * @param string $raw Raw field value.
+	 * @return string[]
+	 */
+	private static function parse_tag_list( $raw ) {
+		$names = array();
+
+		foreach ( explode( ',', (string) $raw ) as $name ) {
+			$name = sanitize_text_field( trim( $name ) );
+
+			if ( '' !== $name ) {
+				$names[] = $name;
+			}
+		}
+
+		return array_values( array_unique( $names ) );
+	}
+
+	/**
+	 * Product categories, for the selects that let the user pick before creating.
+	 *
+	 * @return array<int,string> Category name keyed by term ID.
+	 */
+	public static function product_categories() {
+		$terms = get_terms(
+			array(
+				'taxonomy'   => 'product_cat',
+				'hide_empty' => false,
+			)
+		);
+
+		if ( is_wp_error( $terms ) ) {
+			return array();
+		}
+
+		$categories = array();
+
+		foreach ( $terms as $term ) {
+			$categories[ (int) $term->term_id ] = $term->name;
+		}
+
+		return $categories;
+	}
+
+	/**
 	 * Includes a view file with the given data in scope.
 	 *
 	 * Views only present data; they never talk to services.
