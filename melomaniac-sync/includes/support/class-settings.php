@@ -65,6 +65,7 @@ class Melomaniac_Sync_Settings {
 			'default_stock'   => 1,
 			'genre_tag'       => true,
 			'http_timeout'    => 15,
+			'app_enabled'     => true,
 		);
 	}
 
@@ -203,6 +204,15 @@ class Melomaniac_Sync_Settings {
 	 */
 	public static function genre_tag_enabled() {
 		return (bool) self::get( 'genre_tag', true );
+	}
+
+	/**
+	 * Whether the installable web app is served at /melomaniac-app/.
+	 *
+	 * @return bool
+	 */
+	public static function app_enabled() {
+		return (bool) self::get( 'app_enabled', true );
 	}
 
 	/**

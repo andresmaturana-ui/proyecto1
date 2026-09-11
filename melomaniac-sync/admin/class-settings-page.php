@@ -111,6 +111,7 @@ class Melomaniac_Sync_Settings_Page {
 		$values['import_cover']    = ! empty( $_POST['import_cover'] );
 		$values['genre_tag']       = ! empty( $_POST['genre_tag'] );
 		$values['logging_enabled'] = ! empty( $_POST['logging_enabled'] );
+		$values['app_enabled']     = ! empty( $_POST['app_enabled'] );
 		// phpcs:enable WordPress.Security.NonceVerification.Missing
 
 		Melomaniac_Sync_Settings::update( $values );
@@ -179,6 +180,7 @@ class Melomaniac_Sync_Settings_Page {
 				'formats'    => Melomaniac_Sync_Release_DTO::formats(),
 				'map'        => Melomaniac_Sync_Settings::category_map(),
 				'categories' => Melomaniac_Sync_Catalog::categories(),
+				'app_url'    => Melomaniac_Sync_Pwa::url(),
 				'flash'      => $this->take_flash(),
 			)
 		);

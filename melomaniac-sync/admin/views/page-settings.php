@@ -11,6 +11,7 @@
  *     @type array              $formats    Format labels.
  *     @type array              $map        Format to category mapping.
  *     @type array<int,string>  $categories Product categories.
+ *     @type string             $app_url    Installable web app URL.
  *     @type string             $flash      One-off confirmation message.
  * }
  */
@@ -23,6 +24,7 @@ $melomaniac_enabled    = isset( $data['enabled'] ) ? $data['enabled'] : array();
 $melomaniac_formats    = isset( $data['formats'] ) ? $data['formats'] : array();
 $melomaniac_map        = isset( $data['map'] ) ? $data['map'] : array();
 $melomaniac_categories = isset( $data['categories'] ) ? $data['categories'] : array();
+$melomaniac_app_url    = isset( $data['app_url'] ) ? (string) $data['app_url'] : '';
 $melomaniac_flash      = isset( $data['flash'] ) ? (string) $data['flash'] : '';
 ?>
 <div class="wrap melomaniac-sync">
@@ -238,6 +240,48 @@ $melomaniac_flash      = isset( $data['flash'] ) ? (string) $data['flash'] : '';
 					</td>
 				</tr>
 			<?php endforeach; ?>
+			</tbody>
+		</table>
+
+		<h2><?php esc_html_e( 'App web', 'melomaniac-sync' ); ?></h2>
+		<p class="description melomaniac-settings-intro">
+			<?php esc_html_e( 'Una app que se abre desde el navegador del teléfono, para escanear y crear productos sin entrar a wp-admin. Se instala agregándola a la pantalla de inicio.', 'melomaniac-sync' ); ?>
+		</p>
+
+		<table class="form-table" role="presentation">
+			<tbody>
+			<tr>
+				<th scope="row"><?php esc_html_e( 'Habilitar la app', 'melomaniac-sync' ); ?></th>
+				<td>
+					<label for="melomaniac-app-enabled">
+						<input
+							type="checkbox"
+							id="melomaniac-app-enabled"
+							name="app_enabled"
+							value="1"
+							<?php checked( ! empty( $melomaniac_settings['app_enabled'] ) ); ?>
+						/>
+						<?php esc_html_e( 'Sirve la app en la dirección de abajo', 'melomaniac-sync' ); ?>
+					</label>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">
+					<label for="melomaniac-app-url"><?php esc_html_e( 'Dirección de la app', 'melomaniac-sync' ); ?></label>
+				</th>
+				<td>
+					<input type="text" id="melomaniac-app-url" class="regular-text" readonly value="<?php echo esc_attr( $melomaniac_app_url ); ?>" onclick="this.select();" />
+					<p class="description">
+						<?php
+						printf(
+							/* translators: %s: link to create an application password. */
+							esc_html__( 'Ábrela desde el teléfono. Cada persona que la use necesita su propia contraseña de aplicación, que se crea una vez desde %s.', 'melomaniac-sync' ),
+							'<a href="' . esc_url( admin_url( 'profile.php#application-passwords-section' ) ) . '" target="_blank" rel="noopener">' . esc_html__( 'su perfil de WordPress', 'melomaniac-sync' ) . '</a>'
+						);
+						?>
+					</p>
+				</td>
+			</tr>
 			</tbody>
 		</table>
 

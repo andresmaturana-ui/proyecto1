@@ -34,10 +34,17 @@ class Melomaniac_Sync_Activator {
 
 		require_once MELOMANIAC_SYNC_PATH . 'includes/services/class-release-dto.php';
 		require_once MELOMANIAC_SYNC_PATH . 'includes/support/class-settings.php';
+		require_once MELOMANIAC_SYNC_PATH . 'includes/frontend/class-pwa.php';
 
 		self::seed_settings();
 
 		update_option( self::OPTION_DB_VERSION, MELOMANIAC_SYNC_VERSION, false );
+
+		// The rule needs to exist before flushing, since flushing only writes
+		// out whatever is currently registered; 'init' would register it too,
+		// but not necessarily before WordPress processes this activation request.
+		Melomaniac_Sync_Pwa::add_rewrite_rules();
+		flush_rewrite_rules();
 	}
 
 	/**

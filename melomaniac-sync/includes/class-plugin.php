@@ -124,6 +124,7 @@ final class Melomaniac_Sync_Plugin {
 			'includes/rest/class-rest-auth.php',
 			'includes/rest/class-rest-api.php',
 			'includes/frontend/class-product-display.php',
+			'includes/frontend/class-pwa.php',
 		);
 
 		if ( is_admin() ) {
@@ -166,6 +167,9 @@ final class Melomaniac_Sync_Plugin {
 			$this->manual_release_builder()
 		);
 		$rest_api->register();
+
+		$pwa = new Melomaniac_Sync_Pwa();
+		$pwa->register();
 
 		if ( ! is_admin() ) {
 			$product_display = new Melomaniac_Sync_Product_Display();

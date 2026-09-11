@@ -24,5 +24,9 @@ class Melomaniac_Sync_Deactivator {
 
 		Melomaniac_Sync_Cache::flush();
 		delete_option( Melomaniac_Sync_Rate_Limiter::OPTION_LAST_REQUEST );
+
+		// Removes the /melomaniac-app/ rule along with everything else, since
+		// it is not re-registered while the plugin is off.
+		flush_rewrite_rules();
 	}
 }
