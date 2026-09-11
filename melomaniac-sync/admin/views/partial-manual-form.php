@@ -121,7 +121,7 @@ $melomaniac_prefill = isset( $data['release'] ) && $data['release'] instanceof M
 						value="<?php echo esc_attr( $melomaniac_day ); ?>"
 					/>
 					<p class="description">
-						<?php esc_html_e( 'El año alcanza. Si la contratapa trae el mes o el día, agrégalos: MusicBrainz los pide y después no hay cómo recuperarlos.', 'melomaniac-sync' ); ?>
+						<?php esc_html_e( 'Con el año basta. El mes y el día son opcionales.', 'melomaniac-sync' ); ?>
 					</p>
 				</td>
 			</tr>
@@ -169,11 +169,11 @@ $melomaniac_prefill = isset( $data['release'] ) && $data['release'] instanceof M
 					<label for="melomaniac-manual-tracklist"><?php esc_html_e( 'Lista de canciones', 'melomaniac-sync' ); ?></label>
 				</th>
 				<td>
-					<textarea id="melomaniac-manual-tracklist" name="tracklist" rows="10" class="large-text code"><?php
+					<textarea id="melomaniac-manual-tracklist" name="tracklist" rows="5" class="large-text code"><?php
 						echo esc_textarea( $melomaniac_prefill->tracklist_as_text() );
 					?></textarea>
 					<p class="description">
-						<?php esc_html_e( 'Una canción por línea. Puedes agregar la duración después de una barra vertical, por ejemplo: A1 Blue Monday | 7:29', 'melomaniac-sync' ); ?>
+						<?php esc_html_e( 'Opcional. Una canción por línea, con la duración después de una barra vertical si la tienes: A1 Blue Monday | 7:29', 'melomaniac-sync' ); ?>
 					</p>
 				</td>
 			</tr>
@@ -201,10 +201,12 @@ $melomaniac_prefill = isset( $data['release'] ) && $data['release'] instanceof M
 			</tbody>
 		</table>
 
-		<h3><?php esc_html_e( 'Datos del lanzamiento', 'melomaniac-sync' ); ?></h3>
-		<p class="description melomaniac-settings-intro">
-			<?php esc_html_e( 'Esto es lo que pide la ficha de MusicBrainz. Se guarda en el producto y queda listo para aportar el disco a su base de datos. Todo es opcional: lo que no sepas, déjalo sin especificar.', 'melomaniac-sync' ); ?>
-		</p>
+		<details class="melomaniac-optional">
+			<summary><?php esc_html_e( 'Datos adicionales para aportar a MusicBrainz (opcional)', 'melomaniac-sync' ); ?></summary>
+
+			<p class="description">
+				<?php esc_html_e( 'No hace falta abrir esto para crear el producto. Se guarda con valores razonables: disco oficial, un álbum, un solo disco. Ábrelo solo si el disco es distinto y quieres que el aporte a MusicBrainz salga exacto.', 'melomaniac-sync' ); ?>
+			</p>
 
 		<table class="form-table" role="presentation">
 			<tbody>
@@ -292,6 +294,7 @@ $melomaniac_prefill = isset( $data['release'] ) && $data['release'] instanceof M
 			</tr>
 			</tbody>
 		</table>
+		</details>
 
 		<h3><?php esc_html_e( 'Precio, stock y clasificación', 'melomaniac-sync' ); ?></h3>
 		<?php

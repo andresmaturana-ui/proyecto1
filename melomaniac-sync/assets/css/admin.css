@@ -494,3 +494,28 @@
 	max-width: 22em;
 	margin-top: 0.4em;
 }
+
+/* Optional sections */
+
+.melomaniac-optional {
+	max-width: 56em;
+	margin: 1.5em 0;
+	padding: 0.9em 1.2em;
+	background: #f6f7f7;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+}
+
+.melomaniac-optional summary {
+	cursor: pointer;
+	font-weight: 600;
+}
+
+.melomaniac-optional[open] summary {
+	margin-bottom: 0.5em;
+}
+
+.melomaniac-optional .form-table th {
+	width: 14em;
+	padding-left: 0;
+}
