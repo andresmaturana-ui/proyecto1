@@ -35,6 +35,7 @@ class Melomaniac_Sync_Activator {
 		require_once MELOMANIAC_SYNC_PATH . 'includes/services/class-release-dto.php';
 		require_once MELOMANIAC_SYNC_PATH . 'includes/support/class-settings.php';
 		require_once MELOMANIAC_SYNC_PATH . 'includes/frontend/class-pwa.php';
+		require_once MELOMANIAC_SYNC_PATH . 'includes/support/class-bulk-table.php';
 
 		self::seed_settings();
 
@@ -45,6 +46,8 @@ class Melomaniac_Sync_Activator {
 		// but not necessarily before WordPress processes this activation request.
 		Melomaniac_Sync_Pwa::add_rewrite_rules();
 		flush_rewrite_rules();
+
+		Melomaniac_Sync_Bulk_Table::maybe_upgrade();
 	}
 
 	/**

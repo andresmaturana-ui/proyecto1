@@ -142,6 +142,24 @@ class Melomaniac_Sync_Admin {
 				),
 			)
 		);
+
+		wp_enqueue_script(
+			'melomaniac-sync-bulk',
+			MELOMANIAC_SYNC_URL . 'assets/js/bulk.js',
+			array(),
+			self::asset_version( 'assets/js/bulk.js' ),
+			true
+		);
+
+		wp_localize_script(
+			'melomaniac-sync-bulk',
+			'melomaniacSyncBulk',
+			array(
+				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+				'nonce'   => wp_create_nonce( Melomaniac_Sync_Bulk_Page::NONCE_ACTION ),
+				'action'  => Melomaniac_Sync_Bulk_Page::ACTION_STATUS,
+			)
+		);
 	}
 
 	/**

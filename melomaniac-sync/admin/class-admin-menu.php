@@ -28,6 +28,11 @@ class Melomaniac_Sync_Admin_Menu {
 	const PAGE_DIAGNOSTICS = 'melomaniac-sync-diagnostics';
 
 	/**
+	 * Slug of the bulk import screen.
+	 */
+	const PAGE_BULK = 'melomaniac-sync-bulk';
+
+	/**
 	 * Hook suffixes of the screens this plugin owns.
 	 *
 	 * @var string[]
@@ -56,20 +61,30 @@ class Melomaniac_Sync_Admin_Menu {
 	private $diagnostics_page;
 
 	/**
+	 * Bulk import screen controller.
+	 *
+	 * @var Melomaniac_Sync_Bulk_Page
+	 */
+	private $bulk_page;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param Melomaniac_Sync_Scan_Page        $scan_page        Scan screen controller.
 	 * @param Melomaniac_Sync_Settings_Page    $settings_page    Settings screen controller.
 	 * @param Melomaniac_Sync_Diagnostics_Page $diagnostics_page Diagnostics screen controller.
+	 * @param Melomaniac_Sync_Bulk_Page        $bulk_page        Bulk import screen controller.
 	 */
 	public function __construct(
 		Melomaniac_Sync_Scan_Page $scan_page,
 		Melomaniac_Sync_Settings_Page $settings_page,
-		Melomaniac_Sync_Diagnostics_Page $diagnostics_page
+		Melomaniac_Sync_Diagnostics_Page $diagnostics_page,
+		Melomaniac_Sync_Bulk_Page $bulk_page
 	) {
 		$this->scan_page        = $scan_page;
 		$this->settings_page    = $settings_page;
 		$this->diagnostics_page = $diagnostics_page;
+		$this->bulk_page        = $bulk_page;
 	}
 
 	/**
@@ -112,6 +127,19 @@ class Melomaniac_Sync_Admin_Menu {
 
 		if ( $scan_hook ) {
 			self::$screen_hooks[] = $scan_hook;
+		}
+
+		$bulk_hook = add_submenu_page(
+			self::PAGE_SCAN,
+			__( 'Carga masiva', 'melomaniac-sync' ),
+			__( 'Carga masiva', 'melomaniac-sync' ),
+			Melomaniac_Sync_Plugin::CAPABILITY,
+			self::PAGE_BULK,
+			array( $this->bulk_page, 'render' )
+		);
+
+		if ( $bulk_hook ) {
+			self::$screen_hooks[] = $bulk_hook;
 		}
 
 		$settings_hook = add_submenu_page(
@@ -157,6 +185,18 @@ class Melomaniac_Sync_Admin_Menu {
 	 */
 	public static function settings_url() {
 		return add_query_arg( array( 'page' => self::PAGE_SETTINGS ), admin_url( 'admin.php' ) );
+	}
+
+	/**
+	 * URL of the bulk import screen.
+	 *
+	 * @param array $args Extra query arguments, e.g. a batch id.
+	 * @return string
+	 */
+	public static function bulk_url( array $args = array() ) {
+		$args = array_merge( array( 'page' => self::PAGE_BULK ), $args );
+
+		return add_query_arg( $args, admin_url( 'admin.php' ) );
 	}
 
 	/**

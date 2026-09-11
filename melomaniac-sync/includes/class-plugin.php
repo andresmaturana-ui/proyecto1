@@ -46,6 +46,13 @@ final class Melomaniac_Sync_Plugin {
 	private $manual_release_builder = null;
 
 	/**
+	 * Bulk import service.
+	 *
+	 * @var Melomaniac_Sync_Bulk_Import_Service|null
+	 */
+	private $bulk_import_service = null;
+
+	/**
 	 * Logger.
 	 *
 	 * @var Melomaniac_Sync_Logger|null
@@ -119,6 +126,8 @@ final class Melomaniac_Sync_Plugin {
 			'includes/services/class-release-lookup-service.php',
 			'includes/services/class-product-factory.php',
 			'includes/services/class-manual-release-builder.php',
+			'includes/support/class-bulk-table.php',
+			'includes/services/class-bulk-import-service.php',
 			// REST is not gated by is_admin(): a REST request never is one, so
 			// the app's own traffic would never reach these otherwise.
 			'includes/rest/class-rest-auth.php',
@@ -141,6 +150,7 @@ final class Melomaniac_Sync_Plugin {
 					'admin/class-settings-page.php',
 					'admin/class-quick-publish.php',
 					'admin/class-diagnostics-page.php',
+					'admin/class-bulk-page.php',
 				)
 			);
 		}
@@ -173,6 +183,12 @@ final class Melomaniac_Sync_Plugin {
 		$pwa = new Melomaniac_Sync_Pwa();
 		$pwa->register();
 
+		// Registered unconditionally, like the REST classes above: Action
+		// Scheduler runs this hook from its own async/cron requests, which
+		// are no more is_admin() than a REST request is.
+		$bulk_import = $this->bulk_import_service();
+		$bulk_import->register();
+
 		if ( ! is_admin() ) {
 			$product_display = new Melomaniac_Sync_Product_Display();
 			$product_display->register();
@@ -180,8 +196,13 @@ final class Melomaniac_Sync_Plugin {
 			return;
 		}
 
+		add_action( 'admin_init', array( 'Melomaniac_Sync_Bulk_Table', 'maybe_upgrade' ) );
+
 		$settings_page = new Melomaniac_Sync_Settings_Page();
 		$settings_page->register();
+
+		$bulk_page = new Melomaniac_Sync_Bulk_Page( $bulk_import );
+		$bulk_page->register();
 
 		$menu = new Melomaniac_Sync_Admin_Menu(
 			new Melomaniac_Sync_Scan_Page( $this->lookup_service() ),
@@ -189,7 +210,8 @@ final class Melomaniac_Sync_Plugin {
 			new Melomaniac_Sync_Diagnostics_Page(
 				new Melomaniac_Sync_Connectivity_Check( $this->logger() ),
 				$this->lookup_service()
-			)
+			),
+			$bulk_page
 		);
 		$menu->register();
 
@@ -287,5 +309,21 @@ final class Melomaniac_Sync_Plugin {
 		}
 
 		return $this->manual_release_builder;
+	}
+
+	/**
+	 * Bulk import service, built once per request.
+	 *
+	 * @return Melomaniac_Sync_Bulk_Import_Service
+	 */
+	public function bulk_import_service() {
+		if ( null === $this->bulk_import_service ) {
+			$this->bulk_import_service = new Melomaniac_Sync_Bulk_Import_Service(
+				$this->lookup_service(),
+				$this->product_factory()
+			);
+		}
+
+		return $this->bulk_import_service;
 	}
 }

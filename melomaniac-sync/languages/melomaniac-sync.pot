@@ -107,8 +107,8 @@ msgstr ""
 msgid "Ahora mismo: Freemius no se cargó (apagado desde wp-config.php)."
 msgstr ""
 
-#: admin/class-admin-menu.php:119
-#: admin/class-admin-menu.php:120
+#: admin/class-admin-menu.php:147
+#: admin/class-admin-menu.php:148
 #: admin/views/page-diagnostics.php:362
 msgid "Ajustes"
 msgstr ""
@@ -233,12 +233,26 @@ msgstr ""
 msgid "Caja de DVD"
 msgstr ""
 
+#: admin/views/page-bulk.php:33
+msgid "Cancelado"
+msgstr ""
+
+#: admin/views/page-bulk.php:124
+msgid "Cancelar lo que falta"
+msgstr ""
+
 #: admin/views/partial-product-fields.php:43
 msgid "Cantidad"
 msgstr ""
 
 #: admin/views/partial-manual-form.php:302
 msgid "Cantidad de discos"
+msgstr ""
+
+#: admin/class-admin-menu.php:134
+#: admin/class-admin-menu.php:135
+#: admin/views/page-bulk.php:37
+msgid "Carga masiva"
 msgstr ""
 
 #: admin/class-admin.php:119
@@ -250,12 +264,24 @@ msgstr ""
 msgid "Cargar el disco a mano"
 msgstr ""
 
+#: admin/views/page-bulk.php:156
+msgid "Cargar otro lote"
+msgstr ""
+
 #: includes/frontend/views/view-app-shell.php:113
 msgid "Cargar un disco a mano"
 msgstr ""
 
 #: admin/views/page-scan.php:78
 msgid "Cargar un disco manualmente, sin buscarlo"
+msgstr ""
+
+#: admin/views/page-bulk.php:46
+msgid "Cargar varios discos de una vez"
+msgstr ""
+
+#: admin/views/page-bulk.php:79
+msgid "Cargas recientes"
 msgstr ""
 
 #: includes/services/class-release-dto.php:265
@@ -284,6 +310,10 @@ msgstr ""
 
 #: includes/services/class-release-dto.php:302
 msgid "Cirílico"
+msgstr ""
+
+#: admin/views/page-bulk.php:73
+msgid "Comenzar"
 msgstr ""
 
 #: includes/services/class-release-dto.php:244
@@ -342,6 +372,10 @@ msgstr ""
 msgid "Cover Art Archive"
 msgstr ""
 
+#: admin/views/page-bulk.php:28
+msgid "Creado"
+msgstr ""
+
 #: admin/class-admin.php:118
 msgid "Creando el producto…"
 msgstr ""
@@ -368,6 +402,7 @@ msgstr ""
 msgid "Cuánto espera a MusicBrainz, Cover Art Archive y Discogs antes de darse por vencido. Si ves errores de \"timed out\", subilo y revisa %s."
 msgstr ""
 
+#: admin/views/page-bulk.php:130
 #: admin/views/page-diagnostics.php:161
 msgid "Código"
 msgstr ""
@@ -377,6 +412,10 @@ msgstr ""
 #: admin/views/partial-result-preview.php:29
 #: includes/frontend/views/view-app-shell.php:108
 msgid "Código de barra"
+msgstr ""
+
+#: admin/views/page-bulk.php:56
+msgid "Códigos de barra"
 msgstr ""
 
 #: includes/services/class-release-dto.php:248
@@ -419,8 +458,8 @@ msgstr ""
 msgid "Detener la cámara"
 msgstr ""
 
-#: admin/class-admin-menu.php:132
-#: admin/class-admin-menu.php:133
+#: admin/class-admin-menu.php:160
+#: admin/class-admin-menu.php:161
 #: admin/views/page-diagnostics.php:38
 #: admin/views/page-settings.php:288
 #: admin/views/page-settings.php:312
@@ -457,12 +496,20 @@ msgstr ""
 msgid "Discogs respondió con el código %d."
 msgstr ""
 
+#: admin/views/page-bulk.php:84
+msgid "Discos"
+msgstr ""
+
 #: admin/views/partial-plan-summary.php:43
 msgid "Discos ilimitados este mes."
 msgstr ""
 
 #: includes/support/class-connectivity-check.php:296
 msgid "Dominios permitidos"
+msgstr ""
+
+#: admin/views/page-bulk.php:30
+msgid "Duplicado"
 msgstr ""
 
 #: admin/views/partial-manual-form.php:132
@@ -547,6 +594,10 @@ msgstr ""
 msgid "Entorno"
 msgstr ""
 
+#: admin/views/page-bulk.php:32
+msgid "Error"
+msgstr ""
+
 #: admin/views/page-scan.php:24
 msgid "Escanea el código de barra del disco y Melomaniac Sync busca sus datos en MusicBrainz para crear el producto como borrador."
 msgstr ""
@@ -560,9 +611,9 @@ msgstr ""
 msgid "Escanear con la cámara"
 msgstr ""
 
-#: admin/class-admin-menu.php:106
-#: admin/class-admin-menu.php:107
-#: admin/class-admin.php:157
+#: admin/class-admin-menu.php:121
+#: admin/class-admin-menu.php:122
+#: admin/class-admin.php:175
 #: admin/views/page-scan.php:21
 msgid "Escanear disco"
 msgstr ""
@@ -587,6 +638,7 @@ msgstr ""
 msgid "Español"
 msgstr ""
 
+#: admin/views/page-bulk.php:131
 #: admin/views/partial-manual-form.php:238
 msgid "Estado"
 msgstr ""
@@ -620,6 +672,10 @@ msgstr ""
 msgid "Falta el artista o el título del álbum."
 msgstr ""
 
+#: admin/class-bulk-page.php:133
+msgid "Falta el identificador del lote."
+msgstr ""
+
 #: includes/rest/class-rest-api.php:369
 msgid "Falta el nombre."
 msgstr ""
@@ -634,6 +690,10 @@ msgstr ""
 
 #: includes/services/class-release-lookup-service.php:213
 msgid "Falta el token de Discogs, o el respaldo está desactivado en Ajustes."
+msgstr ""
+
+#: admin/views/page-bulk.php:83
+msgid "Fecha"
 msgstr ""
 
 #: admin/views/partial-manual-form.php:97
@@ -743,6 +803,7 @@ msgid "La respuesta de MusicBrainz no se pudo interpretar."
 msgstr ""
 
 #: admin/class-ajax-handler.php:306
+#: admin/class-bulk-page.php:122
 msgid "La sesión expiró. Recarga la página."
 msgstr ""
 
@@ -777,8 +838,8 @@ msgstr ""
 msgid "Melomaniac"
 msgstr ""
 
-#: admin/class-admin-menu.php:91
-#: admin/class-admin-menu.php:92
+#: admin/class-admin-menu.php:106
+#: admin/class-admin-menu.php:107
 #: includes/frontend/views/view-app-shell.php:53
 msgid "Melomaniac Sync"
 msgstr ""
@@ -791,7 +852,7 @@ msgstr ""
 msgid "Melomaniac Sync guarda un día lo que encuentra, para no repetir peticiones. Si un disco quedó guardado con datos equivocados, vacía esto y vuelve a escanearlo."
 msgstr ""
 
-#: includes/class-activator.php:86
+#: includes/class-activator.php:89
 msgid "Melomaniac Sync necesita WooCommerce activo para funcionar."
 msgstr ""
 
@@ -865,6 +926,10 @@ msgstr ""
 msgid "No"
 msgstr ""
 
+#: admin/views/page-bulk.php:29
+msgid "No encontrado"
+msgstr ""
+
 #: admin/views/partial-manual-form.php:47
 msgid "No encontramos ningún disco con el código %s. Completa los datos y creamos el borrador igual."
 msgstr ""
@@ -883,6 +948,10 @@ msgstr ""
 
 #: includes/rest/class-rest-api.php:189
 msgid "No se detectó la sesión de la app. Vuelve a conectarla desde Ajustes."
+msgstr ""
+
+#: includes/services/class-bulk-import-service.php:124
+msgid "No se encontró ningún código de barra válido (entre 6 y 14 dígitos, uno por línea)."
 msgstr ""
 
 #: admin/class-admin.php:124
@@ -918,6 +987,9 @@ msgid "No tienes permisos para cambiar estos ajustes."
 msgstr ""
 
 #: admin/class-ajax-handler.php:313
+#: admin/class-bulk-page.php:70
+#: admin/class-bulk-page.php:98
+#: admin/class-bulk-page.php:126
 #: admin/class-manual-entry-handler.php:68
 msgid "No tienes permisos para hacer esto."
 msgstr ""
@@ -930,6 +1002,7 @@ msgstr ""
 msgid "No tienes permisos para usar esta pantalla."
 msgstr ""
 
+#: admin/class-bulk-page.php:169
 #: admin/class-diagnostics-page.php:78
 #: admin/class-settings-page.php:171
 msgid "No tienes permisos para ver esta pantalla."
@@ -973,8 +1046,20 @@ msgstr ""
 msgid "País de prensaje"
 msgstr ""
 
+#: admin/views/page-bulk.php:48
+msgid "Pega un código de barra por línea. Melomaniac Sync los busca uno por uno en segundo plano (respetando el límite de MusicBrainz) y crea un producto como borrador por cada uno que encuentre. Los que no encuentre quedan marcados para cargarlos a mano después."
+msgstr ""
+
+#: admin/views/page-bulk.php:27
+msgid "Pendiente"
+msgstr ""
+
 #: admin/views/page-settings.php:121
 msgid "Pendiente de revisión"
+msgstr ""
+
+#: admin/views/page-bulk.php:85
+msgid "Pendientes"
 msgstr ""
 
 #: includes/support/class-connectivity-check.php:287
@@ -1020,6 +1105,7 @@ msgstr ""
 msgid "Precio por defecto"
 msgstr ""
 
+#: admin/views/page-bulk.php:60
 #: admin/views/partial-manual-form.php:321
 msgid "Precio, stock y clasificación"
 msgstr ""
@@ -1052,12 +1138,20 @@ msgstr ""
 msgid "Probar un código de barra"
 msgstr ""
 
+#: admin/views/page-bulk.php:132
+msgid "Producto"
+msgstr ""
+
 #: includes/rest/class-rest-api.php:560
 msgid "Producto no encontrado."
 msgstr ""
 
 #: admin/views/page-settings.php:109
 msgid "Productos nuevos"
+msgstr ""
+
+#: admin/views/page-bulk.php:110
+msgid "Progreso de la carga"
 msgstr ""
 
 #: includes/services/class-release-dto.php:215
@@ -1154,6 +1248,10 @@ msgstr ""
 msgid "Se alcanzó el límite de peticiones de Discogs."
 msgstr ""
 
+#: admin/views/page-bulk.php:61
+msgid "Se aplican por igual a todos los discos de esta carga."
+msgstr ""
+
 #: admin/class-ajax-handler.php:291
 #: admin/class-scan-page.php:73
 msgid "Se creó el borrador \"%s\"."
@@ -1205,6 +1303,10 @@ msgstr ""
 
 #: admin/views/page-diagnostics.php:367
 msgid "Si resolvió solo a IPv6 y falla, el hosting no tiene salida IPv6 funcionando. Pídeles que la arreglen o que fuercen IPv4."
+msgstr ""
+
+#: admin/views/page-bulk.php:31
+msgid "Sin cupo"
 msgstr ""
 
 #: includes/services/class-release-dto.php:268
@@ -1362,6 +1464,10 @@ msgstr ""
 
 #: includes/licensing/class-usage.php:179
 msgid "Vas %1$d de %2$d discos este mes."
+msgstr ""
+
+#: admin/views/page-bulk.php:97
+msgid "Ver"
 msgstr ""
 
 #: admin/class-scan-page.php:90
