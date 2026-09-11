@@ -306,8 +306,11 @@
 
 	/**
 	 * Opens the manual entry form for the current barcode.
+	 *
+	 * @param {HTMLElement|null} trigger Button that asked for it, when it knows
+	 *                                   which release was on screen.
 	 */
-	function openManualForm() {
+	function openManualForm( trigger ) {
 		if ( busy ) {
 			return;
 		}
@@ -315,7 +318,20 @@
 		busy = true;
 		setStatus( '' );
 
-		request( config.actions.manual, { barcode: input.value.trim() } )
+		var fields = { barcode: input.value.trim() };
+
+		// Carrying the release over means the form arrives filled in, so
+		// correcting one wrong field does not mean retyping the track list.
+		if ( trigger && trigger.getAttribute( 'data-release-id' ) ) {
+			fields.source = trigger.getAttribute( 'data-source' );
+			fields.release_id = trigger.getAttribute( 'data-release-id' );
+
+			if ( trigger.getAttribute( 'data-barcode' ) ) {
+				fields.barcode = trigger.getAttribute( 'data-barcode' );
+			}
+		}
+
+		request( config.actions.manual, fields )
 			.then( function ( data ) {
 				setResult( data.html );
 			} )
@@ -328,7 +344,9 @@
 	}
 
 	if ( manualToggle ) {
-		manualToggle.addEventListener( 'click', openManualForm );
+		manualToggle.addEventListener( 'click', function () {
+			openManualForm( null );
+		} );
 	}
 
 	// Delegated, because the result area content is replaced on every lookup.
@@ -356,8 +374,10 @@
 			return;
 		}
 
-		if ( event.target.closest( '.melomaniac-reject-match' ) ) {
-			openManualForm();
+		var reject = event.target.closest( '.melomaniac-reject-match' );
+
+		if ( reject ) {
+			openManualForm( reject );
 		}
 	} );
 

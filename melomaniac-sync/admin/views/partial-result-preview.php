@@ -115,8 +115,14 @@ $melomaniac_meta = array(
 			>
 				<?php esc_html_e( 'Crear producto', 'melomaniac-sync' ); ?>
 			</button>
-			<button type="button" class="button-link melomaniac-reject-match">
-				<?php esc_html_e( 'No es este disco, cargarlo a mano', 'melomaniac-sync' ); ?>
+			<button
+				type="button"
+				class="button-link melomaniac-reject-match"
+				data-source="<?php echo esc_attr( $melomaniac_release->source ); ?>"
+				data-release-id="<?php echo esc_attr( $melomaniac_release->source_id() ); ?>"
+				data-barcode="<?php echo esc_attr( $melomaniac_barcode ); ?>"
+			>
+				<?php esc_html_e( 'No es este disco, corregirlo a mano', 'melomaniac-sync' ); ?>
 			</button>
 		</p>
 

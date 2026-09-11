@@ -25,14 +25,26 @@ $melomaniac_prefill = isset( $data['release'] ) && $data['release'] instanceof M
 	: new Melomaniac_Sync_Release_DTO();
 ?>
 <div class="melomaniac-card melomaniac-manual">
-	<h2><?php esc_html_e( 'Cargar el disco a mano', 'melomaniac-sync' ); ?></h2>
+	<h2>
+		<?php
+		echo esc_html(
+			$melomaniac_prefill->is_usable()
+				? __( 'Corregir los datos del disco', 'melomaniac-sync' )
+				: __( 'Cargar el disco a mano', 'melomaniac-sync' )
+		);
+		?>
+	</h2>
 
-	<?php if ( '' !== $melomaniac_barcode ) : ?>
+	<?php if ( $melomaniac_prefill->is_usable() ) : ?>
+		<p class="melomaniac-manual-intro">
+			<?php esc_html_e( 'Los datos que encontramos ya están cargados. Corrige lo que esté mal y crea el producto.', 'melomaniac-sync' ); ?>
+		</p>
+	<?php elseif ( '' !== $melomaniac_barcode ) : ?>
 		<p class="melomaniac-manual-intro">
 			<?php
 			printf(
 				/* translators: %s: barcode. */
-				esc_html__( 'MusicBrainz no tiene ningún disco con el código %s. Completa los datos y creamos el borrador igual.', 'melomaniac-sync' ),
+				esc_html__( 'No encontramos ningún disco con el código %s. Completa los datos y creamos el borrador igual.', 'melomaniac-sync' ),
 				'<code>' . esc_html( $melomaniac_barcode ) . '</code>'
 			);
 			?>
@@ -169,7 +181,17 @@ $melomaniac_prefill = isset( $data['release'] ) && $data['release'] instanceof M
 					<label for="melomaniac-manual-tracklist"><?php esc_html_e( 'Lista de canciones', 'melomaniac-sync' ); ?></label>
 				</th>
 				<td>
-					<textarea id="melomaniac-manual-tracklist" name="tracklist" rows="5" class="large-text code"><?php
+					<?php
+					// At least five lines, more when the release brought more, capped
+					// so a box set does not take over the screen.
+					$melomaniac_rows = max( 5, min( 15, count( $melomaniac_prefill->tracklist ) + 1 ) );
+					?>
+					<textarea
+						id="melomaniac-manual-tracklist"
+						name="tracklist"
+						rows="<?php echo esc_attr( (string) $melomaniac_rows ); ?>"
+						class="large-text code"
+					><?php
 						echo esc_textarea( $melomaniac_prefill->tracklist_as_text() );
 					?></textarea>
 					<p class="description">

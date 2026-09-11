@@ -98,12 +98,43 @@ class Melomaniac_Sync_Ajax_Handler {
 					'partial-manual-form',
 					array(
 						'barcode' => $barcode,
-						'release' => null,
+						'release' => $this->read_prefill_release( $barcode ),
 						'formats' => Melomaniac_Sync_Release_DTO::formats(),
 					)
 				),
 			)
 		);
+	}
+
+	/**
+	 * The release to prefill the manual form with, when there is one.
+	 *
+	 * Rejecting a match usually means one field is wrong, not all of them. Coming
+	 * back with the form blank would make the shop owner retype a track list they
+	 * were only trying to correct.
+	 *
+	 * @param string $barcode Normalised barcode.
+	 * @return Melomaniac_Sync_Release_DTO|null
+	 */
+	private function read_prefill_release( $barcode ) {
+		$ref = $this->read_release_ref();
+
+		if ( '' === $ref['source'] || '' === $ref['id'] ) {
+			return null;
+		}
+
+		$release = $this->lookup_service->get_release( $ref['source'], $ref['id'] );
+
+		// A failure here is not worth an error: an empty form still works.
+		if ( is_wp_error( $release ) ) {
+			return null;
+		}
+
+		if ( '' !== $barcode ) {
+			$release->barcode = $barcode;
+		}
+
+		return $release;
 	}
 
 	/**
