@@ -54,16 +54,16 @@ msgstr ""
 msgid "%d segundos"
 msgstr ""
 
-#: includes/frontend/class-pwa.php:163
+#: includes/frontend/class-pwa.php:196
 msgid "%s - Melomaniac Sync"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:120
-#: includes/frontend/views/view-app-shell.php:139
+#: includes/frontend/views/view-app-shell.php:129
+#: includes/frontend/views/view-app-shell.php:148
 msgid "&larr; Volver"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:192
+#: includes/frontend/views/view-app-shell.php:201
 msgid "&larr; Volver al escaneo"
 msgstr ""
 
@@ -75,7 +75,7 @@ msgstr ""
 msgid "Abre la búsqueda en discogs.com. Copia a mano los datos que quieras usar."
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:199
+#: includes/frontend/views/view-app-shell.php:208
 msgid "Abrir en el editor"
 msgstr ""
 
@@ -106,7 +106,7 @@ msgstr ""
 #: admin/class-admin-menu.php:147
 #: admin/class-admin-menu.php:148
 #: admin/views/page-diagnostics.php:362
-#: includes/frontend/views/view-app-shell.php:65
+#: includes/frontend/views/view-app-shell.php:71
 msgid "Ajustes"
 msgstr ""
 
@@ -155,7 +155,7 @@ msgid "Archivo CSV"
 msgstr ""
 
 #: admin/views/partial-manual-form.php:73
-#: includes/frontend/views/view-app-shell.php:154
+#: includes/frontend/views/view-app-shell.php:163
 #: includes/services/class-product-factory.php:271
 #: includes/support/class-settings.php:40
 msgid "Artista"
@@ -163,7 +163,7 @@ msgstr ""
 
 #: admin/views/partial-manual-form.php:112
 #: admin/views/partial-result-preview.php:24
-#: includes/frontend/views/view-app-shell.php:165
+#: includes/frontend/views/view-app-shell.php:174
 #: includes/services/class-product-factory.php:273
 #: includes/support/class-settings.php:41
 msgid "Año"
@@ -194,7 +194,7 @@ msgid "Buscando en MusicBrainz…"
 msgstr ""
 
 #: admin/views/page-scan.php:53
-#: includes/frontend/views/view-app-shell.php:107
+#: includes/frontend/views/view-app-shell.php:116
 msgid "Buscar"
 msgstr ""
 
@@ -261,7 +261,7 @@ msgid "Cargando los datos del disco…"
 msgstr ""
 
 #: admin/views/partial-manual-form.php:33
-#: includes/frontend/views/view-app-shell.php:144
+#: includes/frontend/views/view-app-shell.php:153
 msgid "Cargar el disco a mano"
 msgstr ""
 
@@ -269,7 +269,7 @@ msgstr ""
 msgid "Cargar otro lote"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:110
+#: includes/frontend/views/view-app-shell.php:119
 msgid "Cargar un disco a mano"
 msgstr ""
 
@@ -301,7 +301,7 @@ msgstr ""
 msgid "Categorías"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:66
+#: includes/frontend/views/view-app-shell.php:72
 msgid "Cerrar sesión"
 msgstr ""
 
@@ -337,11 +337,11 @@ msgstr ""
 msgid "Con un lector USB, deja el cursor en el campo y dispáralo: el lector escribe el código y confirma solo."
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:91
+#: includes/frontend/views/view-app-shell.php:100
 msgid "Conectar"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:73
+#: includes/frontend/views/view-app-shell.php:82
 msgid "Conectar la app"
 msgstr ""
 
@@ -349,7 +349,7 @@ msgstr ""
 msgid "Conexión con los servicios"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:124
+#: includes/frontend/views/view-app-shell.php:133
 msgid "Confirmar disco"
 msgstr ""
 
@@ -361,7 +361,7 @@ msgstr ""
 msgid "Contacto para MusicBrainz"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:86
+#: includes/frontend/views/view-app-shell.php:95
 msgid "Contraseña de aplicación"
 msgstr ""
 
@@ -386,8 +386,8 @@ msgid "Creando el producto…"
 msgstr ""
 
 #: admin/views/partial-result-preview.php:116
-#: includes/frontend/views/view-app-shell.php:135
-#: includes/frontend/views/view-app-shell.php:189
+#: includes/frontend/views/view-app-shell.php:144
+#: includes/frontend/views/view-app-shell.php:198
 msgid "Crear producto"
 msgstr ""
 
@@ -399,7 +399,7 @@ msgstr ""
 msgid "Crear una categoría nueva"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:79
+#: includes/frontend/views/view-app-shell.php:88
 msgid "Crear una contraseña de aplicación"
 msgstr ""
 
@@ -415,7 +415,7 @@ msgstr ""
 #: admin/views/page-diagnostics.php:228
 #: admin/views/page-scan.php:38
 #: admin/views/partial-result-preview.php:29
-#: includes/frontend/views/view-app-shell.php:105
+#: includes/frontend/views/view-app-shell.php:114
 msgid "Código de barra"
 msgstr ""
 
@@ -599,7 +599,7 @@ msgstr ""
 msgid "Elegir la portada"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:117
+#: includes/frontend/views/view-app-shell.php:126
 msgid "Elige el disco"
 msgstr ""
 
@@ -627,7 +627,7 @@ msgstr ""
 msgid "Escanea el código de barra del disco y Melomaniac Sync busca sus datos en MusicBrainz para crear el producto como borrador."
 msgstr ""
 
-#: includes/frontend/class-pwa.php:167
+#: includes/frontend/class-pwa.php:200
 msgid "Escanea un disco y crea el producto en la tienda."
 msgstr ""
 
@@ -643,7 +643,7 @@ msgstr ""
 msgid "Escanear disco"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:200
+#: includes/frontend/views/view-app-shell.php:209
 msgid "Escanear otro"
 msgstr ""
 
@@ -705,7 +705,7 @@ msgstr ""
 msgid "Falta el identificador del lote."
 msgstr ""
 
-#: includes/rest/class-rest-api.php:369
+#: includes/rest/class-rest-api.php:380
 msgid "Falta el nombre."
 msgstr ""
 
@@ -735,13 +735,13 @@ msgstr ""
 
 #: admin/views/partial-manual-form.php:142
 #: admin/views/partial-result-preview.php:27
-#: includes/frontend/views/view-app-shell.php:169
+#: includes/frontend/views/view-app-shell.php:178
 #: includes/services/class-product-factory.php:274
 #: includes/support/class-settings.php:45
 msgid "Formato"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:183
+#: includes/frontend/views/view-app-shell.php:192
 msgid "Foto de la portada (opcional)"
 msgstr ""
 
@@ -855,7 +855,7 @@ msgstr ""
 msgid "Lista de canciones"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:180
+#: includes/frontend/views/view-app-shell.php:189
 msgid "Lista de canciones (opcional)"
 msgstr ""
 
@@ -867,14 +867,14 @@ msgstr ""
 msgid "Los datos que encontramos ya están cargados. Corrige lo que esté mal y crea el producto."
 msgstr ""
 
-#: includes/frontend/class-pwa.php:166
-#: includes/frontend/views/view-app-shell.php:52
+#: includes/frontend/class-pwa.php:199
+#: includes/frontend/views/view-app-shell.php:54
 msgid "Melomaniac"
 msgstr ""
 
 #: admin/class-admin-menu.php:106
 #: admin/class-admin-menu.php:107
-#: includes/frontend/views/view-app-shell.php:53
+#: includes/frontend/views/view-app-shell.php:55
 msgid "Melomaniac Sync"
 msgstr ""
 
@@ -931,7 +931,7 @@ msgstr ""
 msgid "MusicBrainz tiene el disco, así que el escaneo normal no va a consultar Discogs."
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:75
+#: includes/frontend/views/view-app-shell.php:84
 msgid "Necesitas una contraseña de aplicación de tu usuario de WordPress. Se crea una sola vez."
 msgstr ""
 
@@ -947,7 +947,7 @@ msgstr ""
 msgid "Ninguno"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:119
+#: includes/frontend/views/view-app-shell.php:128
 msgid "Ninguno es, cargar a mano"
 msgstr ""
 
@@ -964,7 +964,7 @@ msgstr ""
 msgid "No encontramos ningún disco con el código %s. Completa los datos y creamos el borrador igual."
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:138
+#: includes/frontend/views/view-app-shell.php:147
 msgid "No es este disco, corregir a mano"
 msgstr ""
 
@@ -988,7 +988,7 @@ msgstr ""
 msgid "No se pudo acceder a la cámara. Revisa los permisos del navegador."
 msgstr ""
 
-#: includes/rest/class-rest-api.php:427
+#: includes/rest/class-rest-api.php:438
 msgid "No se pudo crear el adjunto."
 msgstr ""
 
@@ -996,11 +996,11 @@ msgstr ""
 msgid "No se pudo crear el producto."
 msgstr ""
 
-#: includes/rest/class-rest-api.php:379
+#: includes/rest/class-rest-api.php:390
 msgid "No se pudo crear la categoría o etiqueta."
 msgstr ""
 
-#: includes/rest/class-rest-api.php:601
+#: includes/rest/class-rest-api.php:612
 msgid "No se pudo eliminar el producto."
 msgstr ""
 
@@ -1049,7 +1049,7 @@ msgstr ""
 
 #: admin/views/partial-manual-form.php:173
 #: admin/views/partial-result-preview.php:26
-#: includes/frontend/views/view-app-shell.php:177
+#: includes/frontend/views/view-app-shell.php:186
 #: includes/services/class-product-factory.php:276
 #: includes/support/class-settings.php:47
 msgid "Número de catálogo"
@@ -1083,7 +1083,7 @@ msgstr ""
 
 #: admin/views/partial-manual-form.php:165
 #: admin/views/partial-result-preview.php:28
-#: includes/frontend/views/view-app-shell.php:174
+#: includes/frontend/views/view-app-shell.php:183
 #: includes/services/class-product-factory.php:275
 #: includes/support/class-settings.php:43
 msgid "País de prensaje"
@@ -1128,7 +1128,7 @@ msgstr ""
 
 #: admin/views/page-settings.php:166
 #: admin/views/partial-manual-form.php:203
-#: includes/frontend/views/view-app-shell.php:129
+#: includes/frontend/views/view-app-shell.php:138
 msgid "Portada"
 msgstr ""
 
@@ -1185,7 +1185,7 @@ msgstr ""
 msgid "Producto"
 msgstr ""
 
-#: includes/rest/class-rest-api.php:560
+#: includes/rest/class-rest-api.php:571
 msgid "Producto no encontrado."
 msgstr ""
 
@@ -1276,7 +1276,7 @@ msgid "SDK de Freemius"
 msgstr ""
 
 #: admin/views/partial-reference-links.php:45
-#: includes/frontend/views/view-app-shell.php:150
+#: includes/frontend/views/view-app-shell.php:159
 msgid "Se abren en una pestaña nueva. Melomaniac Sync no copia nada de esos sitios: lo que quieras usar lo pegas tú en el formulario."
 msgstr ""
 
@@ -1315,7 +1315,7 @@ msgstr ""
 
 #: admin/views/partial-manual-form.php:89
 #: admin/views/partial-result-preview.php:25
-#: includes/frontend/views/view-app-shell.php:160
+#: includes/frontend/views/view-app-shell.php:169
 #: includes/services/class-product-factory.php:272
 #: includes/support/class-settings.php:42
 msgid "Sello"
@@ -1457,7 +1457,7 @@ msgid "Tu usuario no tiene permiso para gestionar productos."
 msgstr ""
 
 #: admin/views/partial-manual-form.php:81
-#: includes/frontend/views/view-app-shell.php:157
+#: includes/frontend/views/view-app-shell.php:166
 msgid "Título del álbum"
 msgstr ""
 
@@ -1490,11 +1490,11 @@ msgstr ""
 msgid "Usar esta imagen"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:101
+#: includes/frontend/views/view-app-shell.php:110
 msgid "Usar la cámara"
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:83
+#: includes/frontend/views/view-app-shell.php:92
 msgid "Usuario"
 msgstr ""
 
@@ -1554,7 +1554,7 @@ msgstr ""
 msgid "Vinilo"
 msgstr ""
 
-#: includes/rest/class-rest-api.php:452
+#: includes/rest/class-rest-api.php:463
 msgid "WooCommerce no está activo."
 msgstr ""
 
@@ -1602,12 +1602,12 @@ msgstr ""
 msgid "wp-config.php ya lo tiene apagado (MELOMANIAC_SYNC_SKIP_FREEMIUS), así que este interruptor no hace nada hasta que lo quites de ahí."
 msgstr ""
 
-#: includes/frontend/views/view-app-shell.php:197
+#: includes/frontend/views/view-app-shell.php:206
 msgid "¡Listo!"
 msgstr ""
 
 #: admin/views/partial-reference-links.php:29
-#: includes/frontend/views/view-app-shell.php:148
+#: includes/frontend/views/view-app-shell.php:157
 msgid "¿Necesitas datos para completar este disco?"
 msgstr ""
 

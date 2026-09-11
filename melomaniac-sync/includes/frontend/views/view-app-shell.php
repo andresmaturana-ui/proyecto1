@@ -13,6 +13,7 @@
  *     @type string $camera_js_url Shared camera scanner script URL.
  *     @type string $zxing_js_url  Vendored ZXing decoder, the camera scanner's fallback.
  *     @type string $icon_url      App icon URL.
+ *     @type string $logo_url      Store's own logo (or site icon), empty when it has neither.
  *     @type string $site_name     Store name.
  *     @type string $profile_url   Where to create an Application Password.
  *     @type string $settings_url  The plugin's settings screen in wp-admin.
@@ -33,6 +34,7 @@ $melomaniac_app = wp_parse_args(
 		'camera_js_url' => '',
 		'zxing_js_url'  => '',
 		'icon_url'      => '',
+		'logo_url'      => '',
 		'site_name'     => '',
 		'profile_url'   => '',
 		'settings_url'  => '',
@@ -45,10 +47,10 @@ $melomaniac_app = wp_parse_args(
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<meta name="theme-color" content="#111318" />
+<meta name="theme-color" content="#ffffff" />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
 <meta name="apple-mobile-web-app-title" content="<?php echo esc_attr__( 'Melomaniac', 'melomaniac-sync' ); ?>" />
 <title><?php echo esc_html( $melomaniac_app['site_name'] . ' · ' . __( 'Melomaniac Sync', 'melomaniac-sync' ) ); ?></title>
 <link rel="manifest" href="<?php echo esc_url( $melomaniac_app['manifest_url'] ); ?>" />
@@ -60,7 +62,11 @@ $melomaniac_app = wp_parse_args(
 <div id="app" class="melomaniac-app" data-screen="connect">
 
 	<header class="melomaniac-app-header">
-		<span class="melomaniac-app-title"><?php echo esc_html( $melomaniac_app['site_name'] ); ?></span>
+		<?php if ( '' !== $melomaniac_app['logo_url'] ) : ?>
+			<img class="melomaniac-app-logo" src="<?php echo esc_url( $melomaniac_app['logo_url'] ); ?>" alt="<?php echo esc_attr( $melomaniac_app['site_name'] ); ?>" />
+		<?php else : ?>
+			<span class="melomaniac-app-title"><?php echo esc_html( $melomaniac_app['site_name'] ); ?></span>
+		<?php endif; ?>
 		<div class="melomaniac-app-header-actions" data-header-actions hidden>
 			<a class="melomaniac-app-icon-btn" href="<?php echo esc_url( $melomaniac_app['settings_url'] ); ?>" target="_blank" rel="noopener" aria-label="<?php esc_attr_e( 'Ajustes', 'melomaniac-sync' ); ?>" title="<?php esc_attr_e( 'Ajustes', 'melomaniac-sync' ); ?>">&#9881;</a>
 			<button type="button" class="melomaniac-app-icon-btn" data-action="disconnect" aria-label="<?php esc_attr_e( 'Cerrar sesión', 'melomaniac-sync' ); ?>" title="<?php esc_attr_e( 'Cerrar sesión', 'melomaniac-sync' ); ?>">&#9211;</button>
@@ -70,6 +76,9 @@ $melomaniac_app = wp_parse_args(
 	<main class="melomaniac-app-main">
 
 		<section class="melomaniac-screen" data-screen-name="connect">
+			<?php if ( '' !== $melomaniac_app['logo_url'] ) : ?>
+				<img class="melomaniac-app-connect-logo" src="<?php echo esc_url( $melomaniac_app['logo_url'] ); ?>" alt="<?php echo esc_attr( $melomaniac_app['site_name'] ); ?>" />
+			<?php endif; ?>
 			<h1><?php esc_html_e( 'Conectar la app', 'melomaniac-sync' ); ?></h1>
 			<p class="melomaniac-app-lead">
 				<?php esc_html_e( 'Necesitas una contraseña de aplicación de tu usuario de WordPress. Se crea una sola vez.', 'melomaniac-sync' ); ?>

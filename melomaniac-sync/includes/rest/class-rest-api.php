@@ -246,25 +246,36 @@ class Melomaniac_Sync_Rest_Api {
 	 * @return array
 	 */
 	public function get_site_info() {
-		$logo    = '';
+		return array(
+			'name' => get_bloginfo( 'name' ),
+			'logo' => self::site_logo_url(),
+		);
+	}
+
+	/**
+	 * The store's logo, if it set one, else its site icon, else nothing.
+	 *
+	 * Shared with the app shell (Melomaniac_Sync_Pwa), so both the connection
+	 * screen this endpoint serves and the app's own header show the same logo.
+	 *
+	 * @return string Empty when the store has neither.
+	 */
+	public static function site_logo_url() {
 		$logo_id = get_theme_mod( 'custom_logo' );
 
 		if ( $logo_id ) {
 			$src = wp_get_attachment_image_src( $logo_id, 'medium' );
 
 			if ( $src ) {
-				$logo = $src[0];
+				return $src[0];
 			}
 		}
 
-		if ( '' === $logo && function_exists( 'has_site_icon' ) && has_site_icon() ) {
-			$logo = get_site_icon_url( 270 );
+		if ( function_exists( 'has_site_icon' ) && has_site_icon() ) {
+			return get_site_icon_url( 270 );
 		}
 
-		return array(
-			'name' => get_bloginfo( 'name' ),
-			'logo' => $logo,
-		);
+		return '';
 	}
 
 	/**

@@ -77,6 +77,39 @@ class Melomaniac_Sync_Pwa {
 	}
 
 	/**
+	 * A plugin asset URL, cache-busted by the file's own modification time —
+	 * the same reasoning admin/class-admin.php's asset_version() has: during
+	 * development the plugin version rarely changes, and a browser (or this
+	 * app's own service worker) holding a stale script while the server runs
+	 * new code fails in ways that look like a bug in the feature itself.
+	 *
+	 * @param string $relative_path Path relative to the plugin root.
+	 * @return string
+	 */
+	private static function asset_url( $relative_path ) {
+		$path  = MELOMANIAC_SYNC_PATH . $relative_path;
+		$mtime = file_exists( $path ) ? filemtime( $path ) : 0;
+		$url   = MELOMANIAC_SYNC_URL . $relative_path;
+
+		return $mtime ? add_query_arg( 'v', $mtime, $url ) : $url;
+	}
+
+	/**
+	 * The scripts and stylesheet the shell loads, and the service worker
+	 * caches — built once so both use the exact same (cache-busted) URLs.
+	 *
+	 * @return array<string,string>
+	 */
+	private static function asset_urls() {
+		return array(
+			'app_js_url'    => self::asset_url( 'assets/app/app.js' ),
+			'app_css_url'   => self::asset_url( 'assets/app/app.css' ),
+			'camera_js_url' => self::asset_url( 'assets/js/camera-scanner.js' ),
+			'zxing_js_url'  => self::asset_url( 'vendor-libs/zxing/zxing.min.js' ),
+		);
+	}
+
+	/**
 	 * Intercepts the request and serves the app, when the URL matches.
 	 *
 	 * Works whether or not pretty permalinks are on: WordPress recognises a
@@ -169,8 +202,8 @@ class Melomaniac_Sync_Pwa {
 			'scope'            => self::url(),
 			'display'          => 'standalone',
 			'orientation'      => 'portrait',
-			'background_color' => '#111318',
-			'theme_color'      => '#111318',
+			'background_color' => '#ffffff',
+			'theme_color'      => '#ffffff',
 			'lang'             => 'es-CL',
 			'icons'            => array(
 				array(
@@ -204,14 +237,15 @@ class Melomaniac_Sync_Pwa {
 		header( 'Service-Worker-Allowed: ' . wp_parse_url( self::url(), PHP_URL_PATH ) );
 
 		$template = (string) file_get_contents( MELOMANIAC_SYNC_PATH . 'assets/app/sw.js' );
+		$assets   = self::asset_urls();
 
 		$replacements = array(
 			'__CACHE_VERSION__' => MELOMANIAC_SYNC_VERSION,
 			'__SHELL_URL__'     => self::url(),
-			'__APP_JS_URL__'    => MELOMANIAC_SYNC_URL . 'assets/app/app.js',
-			'__APP_CSS_URL__'   => MELOMANIAC_SYNC_URL . 'assets/app/app.css',
-			'__CAMERA_JS_URL__' => MELOMANIAC_SYNC_URL . 'assets/js/camera-scanner.js',
-			'__ZXING_JS_URL__'  => MELOMANIAC_SYNC_URL . 'vendor-libs/zxing/zxing.min.js',
+			'__APP_JS_URL__'    => $assets['app_js_url'],
+			'__APP_CSS_URL__'   => $assets['app_css_url'],
+			'__CAMERA_JS_URL__' => $assets['camera_js_url'],
+			'__ZXING_JS_URL__'  => $assets['zxing_js_url'],
 		);
 
 		echo str_replace( array_keys( $replacements ), array_values( $replacements ), $template ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static JS template with URL substitutions, not user input.
@@ -225,15 +259,18 @@ class Melomaniac_Sync_Pwa {
 	private function serve_shell() {
 		header( 'Content-Type: text/html; charset=utf-8' );
 
+		$assets = self::asset_urls();
+
 		$data = array(
 			'rest_url'      => esc_url_raw( rest_url( Melomaniac_Sync_Rest_Api::NAMESPACE_ ) ),
 			'manifest_url'  => esc_url_raw( self::url() . 'manifest.webmanifest' ),
 			'sw_url'        => esc_url_raw( self::url() . 'sw.js' ),
-			'app_js_url'    => esc_url_raw( MELOMANIAC_SYNC_URL . 'assets/app/app.js' ),
-			'app_css_url'   => esc_url_raw( MELOMANIAC_SYNC_URL . 'assets/app/app.css' ),
-			'camera_js_url' => esc_url_raw( MELOMANIAC_SYNC_URL . 'assets/js/camera-scanner.js' ),
-			'zxing_js_url'  => esc_url_raw( MELOMANIAC_SYNC_URL . 'vendor-libs/zxing/zxing.min.js' ),
+			'app_js_url'    => esc_url_raw( $assets['app_js_url'] ),
+			'app_css_url'   => esc_url_raw( $assets['app_css_url'] ),
+			'camera_js_url' => esc_url_raw( $assets['camera_js_url'] ),
+			'zxing_js_url'  => esc_url_raw( $assets['zxing_js_url'] ),
 			'icon_url'      => esc_url_raw( MELOMANIAC_SYNC_URL . 'assets/app/icon-192.png' ),
+			'logo_url'      => esc_url_raw( Melomaniac_Sync_Rest_Api::site_logo_url() ),
 			'site_name'     => get_bloginfo( 'name' ),
 			'profile_url'   => esc_url_raw( admin_url( 'profile.php#application-passwords-section' ) ),
 			'settings_url'  => esc_url_raw( Melomaniac_Sync_Admin_Menu::settings_url() ),

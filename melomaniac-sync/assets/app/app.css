@@ -5,15 +5,15 @@
  */
 
 :root {
-	color-scheme: dark;
-	--melomaniac-bg: #111318;
-	--melomaniac-surface: #1b1e26;
-	--melomaniac-border: #2c303b;
-	--melomaniac-text: #f2f3f5;
-	--melomaniac-muted: #9aa0ad;
-	--melomaniac-accent: #f2f3f5;
-	--melomaniac-accent-text: #111318;
-	--melomaniac-error: #ff6b6b;
+	color-scheme: light;
+	--melomaniac-bg: #ffffff;
+	--melomaniac-surface: #f5f5f5;
+	--melomaniac-border: #e2e2e2;
+	--melomaniac-text: #111111;
+	--melomaniac-muted: #6b7280;
+	--melomaniac-accent: #111111;
+	--melomaniac-accent-text: #ffffff;
+	--melomaniac-error: #c0392b;
 }
 
 * {
@@ -55,6 +55,20 @@ body {
 .melomaniac-app-title {
 	font-weight: 600;
 	font-size: 16px;
+}
+
+.melomaniac-app-logo {
+	max-height: 32px;
+	max-width: 60%;
+	object-fit: contain;
+}
+
+.melomaniac-app-connect-logo {
+	display: block;
+	max-height: 64px;
+	max-width: 200px;
+	object-fit: contain;
+	margin: 0 0 16px;
 }
 
 .melomaniac-app-header-actions {

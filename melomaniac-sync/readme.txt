@@ -4,7 +4,7 @@ Tags: woocommerce, vinyl, music, barcode, musicbrainz
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 2.1.1
+Stable tag: 2.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -60,6 +60,10 @@ El plugin lo detecta por SKU y por identificador de MusicBrainz, y te muestra un
 Se procesa en segundo plano con Action Scheduler (la misma librería que usa WooCommerce para sus propias tareas programadas), un código de barra a la vez y espaciados entre sí, así que no hace falta dejar la pestaña abierta. Necesita que el cron de WordPress esté funcionando con normalidad, como cualquier otra tarea programada del sitio. Se puede cargar pegando una lista o subiendo un CSV con columnas código, precio y cantidad (hay una plantilla para descargar en la misma pantalla). Cuando un código tiene más de una edición posible, la carga se detiene en ese disco y muestra las opciones para que elijas cuál es, igual que al escanear uno solo.
 
 == Changelog ==
+
+= 2.2.0 =
+* La app cambia a fondo blanco con acentos en negro (antes era oscura), y muestra el logo de la tienda (o su ícono del sitio) en el header y en la pantalla de conectar, cuando la tienda tiene uno configurado.
+* Los archivos propios de la app (el script, la hoja de estilos, el lector de cámara y su respaldo) ahora se cargan con una versión en la URL basada en la fecha del archivo, para que un cambio como este llegue de inmediato en vez de quedar atrapado en la caché del navegador o del service worker.
 
 = 2.1.1 =
 * La pantalla de cargar un disco a mano en la app ahora también muestra los enlaces para buscarlo en Discogs, Google o MusicBrainz, igual que ya pasaba en el formulario manual de wp-admin. Son enlaces para abrir y copiar los datos a mano: el plugin no consulta esos sitios por su cuenta.
