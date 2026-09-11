@@ -32,6 +32,13 @@ class Melomaniac_Sync_Licensing {
 	const PLANS = array( 'free', 'pro', 'premium' );
 
 	/**
+	 * Option holding a plan forced from the Diagnostics screen, for testing
+	 * without touching wp-config.php or depending on Freemius. Empty means no
+	 * override is active.
+	 */
+	const OPTION_TEST_PLAN = 'melomaniac_sync_test_plan';
+
+	/**
 	 * Monthly disc limits per plan. Null means unlimited.
 	 */
 	const DEFAULT_LIMITS = array(
@@ -88,6 +95,12 @@ class Melomaniac_Sync_Licensing {
 			return MELOMANIAC_SYNC_FORCE_PLAN;
 		}
 
+		$test_plan = self::test_plan();
+
+		if ( '' !== $test_plan ) {
+			return $test_plan;
+		}
+
 		/**
 		 * Filters the store's plan.
 		 *
@@ -96,6 +109,50 @@ class Melomaniac_Sync_Licensing {
 		$plan = apply_filters( 'melomaniac_sync_plan', 'free' );
 
 		return in_array( $plan, self::PLANS, true ) ? $plan : 'free';
+	}
+
+	/**
+	 * The plan forced from Diagnostics, when there is one.
+	 *
+	 * Sits below the wp-config.php constant (a host-level override should always
+	 * win) and above Freemius, so a shop owner can try each plan's screens
+	 * without a real subscription.
+	 *
+	 * @return string One of self::PLANS, or empty when no override is set.
+	 */
+	public static function test_plan() {
+		$value = get_option( self::OPTION_TEST_PLAN, '' );
+
+		return in_array( $value, self::PLANS, true ) ? $value : '';
+	}
+
+	/**
+	 * Sets or clears the plan forced from Diagnostics.
+	 *
+	 * @param string $plan One of self::PLANS, or empty to go back to the real plan.
+	 * @return void
+	 */
+	public static function set_test_plan( $plan ) {
+		if ( '' === $plan || ! in_array( $plan, self::PLANS, true ) ) {
+			delete_option( self::OPTION_TEST_PLAN );
+			return;
+		}
+
+		update_option( self::OPTION_TEST_PLAN, $plan, false );
+	}
+
+	/**
+	 * Whether the plan in effect right now is a test override rather than the
+	 * store's real plan.
+	 *
+	 * @return bool
+	 */
+	public static function is_test_plan_active() {
+		if ( defined( 'MELOMANIAC_SYNC_FORCE_PLAN' ) && in_array( MELOMANIAC_SYNC_FORCE_PLAN, self::PLANS, true ) ) {
+			return false;
+		}
+
+		return '' !== self::test_plan();
 	}
 
 	/**

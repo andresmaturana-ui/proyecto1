@@ -17,6 +17,9 @@ $melomaniac_probes      = isset( $data['probes'] ) ? $data['probes'] : array();
 $melomaniac_ran         = ! empty( $data['ran'] );
 $melomaniac_environment = isset( $data['environment'] ) ? $data['environment'] : array();
 $melomaniac_flushed     = ! empty( $data['flushed'] );
+$melomaniac_current_plan = isset( $data['current_plan'] ) ? (string) $data['current_plan'] : 'free';
+$melomaniac_test_plan    = isset( $data['test_plan'] ) ? (string) $data['test_plan'] : '';
+$melomaniac_host_forced  = ! empty( $data['plan_forced_by_host'] );
 $melomaniac_barcode     = isset( $data['barcode'] ) ? (string) $data['barcode'] : '';
 $melomaniac_result      = isset( $data['barcode_result'] ) ? $data['barcode_result'] : null;
 
@@ -33,6 +36,53 @@ $melomaniac_states = array(
 	<p class="melomaniac-intro">
 		<?php esc_html_e( 'Comprueba si este servidor puede alcanzar los servicios que Melomaniac Sync necesita. Si un escaneo falla con "Operation timed out", la respuesta está acá.', 'melomaniac-sync' ); ?>
 	</p>
+
+	<div class="melomaniac-card">
+		<h2><?php esc_html_e( 'Plan para pruebas', 'melomaniac-sync' ); ?></h2>
+		<p class="description">
+			<?php esc_html_e( 'Prueba las pantallas de cada plan sin depender de Freemius ni tener una suscripción real. No cambia el plan de verdad de la tienda, solo lo que el plugin cree mientras esto quede activado.', 'melomaniac-sync' ); ?>
+		</p>
+
+		<?php if ( $melomaniac_host_forced ) : ?>
+			<div class="notice notice-warning inline">
+				<p><?php esc_html_e( 'El plan está fijado desde wp-config.php (MELOMANIAC_SYNC_FORCE_PLAN), así que este selector no tiene efecto hasta que lo quites de ahí.', 'melomaniac-sync' ); ?></p>
+			</div>
+		<?php endif; ?>
+
+		<form method="post" class="melomaniac-plan-test-form">
+			<?php wp_nonce_field( Melomaniac_Sync_Diagnostics_Page::NONCE_PLAN ); ?>
+			<label class="screen-reader-text" for="melomaniac-test-plan">
+				<?php esc_html_e( 'Plan para pruebas', 'melomaniac-sync' ); ?>
+			</label>
+			<select id="melomaniac-test-plan" name="test_plan" <?php disabled( $melomaniac_host_forced ); ?>>
+				<option value="" <?php selected( '' === $melomaniac_test_plan ); ?>>
+					<?php esc_html_e( 'Usar el plan real de la tienda', 'melomaniac-sync' ); ?>
+				</option>
+				<?php foreach ( Melomaniac_Sync_Licensing::PLANS as $melomaniac_plan_key ) : ?>
+					<option value="<?php echo esc_attr( $melomaniac_plan_key ); ?>" <?php selected( $melomaniac_test_plan, $melomaniac_plan_key ); ?>>
+						<?php echo esc_html( Melomaniac_Sync_Licensing::plan_label( $melomaniac_plan_key ) ); ?>
+					</option>
+				<?php endforeach; ?>
+			</select>
+			<button type="submit" name="melomaniac_sync_set_test_plan" value="1" class="button" <?php disabled( $melomaniac_host_forced ); ?>>
+				<?php esc_html_e( 'Aplicar', 'melomaniac-sync' ); ?>
+			</button>
+		</form>
+
+		<p class="melomaniac-plan-test-current">
+			<?php
+			printf(
+				/* translators: %s: plan name currently in effect. */
+				esc_html__( 'Plan en efecto ahora mismo: %s', 'melomaniac-sync' ),
+				'<strong>' . esc_html( Melomaniac_Sync_Licensing::plan_label( $melomaniac_current_plan ) ) . '</strong>'
+			);
+
+			if ( '' !== $melomaniac_test_plan && ! $melomaniac_host_forced ) {
+				echo ' ' . esc_html__( '(prueba activa, no es el plan real)', 'melomaniac-sync' );
+			}
+			?>
+		</p>
+	</div>
 
 	<div class="melomaniac-card">
 		<h2><?php esc_html_e( 'Conexión con los servicios', 'melomaniac-sync' ); ?></h2>

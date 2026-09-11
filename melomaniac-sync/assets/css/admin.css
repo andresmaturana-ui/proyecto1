@@ -519,3 +519,18 @@
 	width: 14em;
 	padding-left: 0;
 }
+
+/* Plan test selector */
+
+.melomaniac-plan-test-form {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.6em;
+	align-items: center;
+	margin: 1em 0;
+}
+
+.melomaniac-plan-test-current {
+	margin: 0.75em 0 0;
+	color: #50575e;
+}

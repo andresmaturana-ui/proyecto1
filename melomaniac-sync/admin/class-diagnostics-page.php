@@ -31,6 +31,11 @@ class Melomaniac_Sync_Diagnostics_Page {
 	const NONCE_BARCODE = 'melomaniac_sync_probe_barcode';
 
 	/**
+	 * Nonce action for the plan selector.
+	 */
+	const NONCE_PLAN = 'melomaniac_sync_set_test_plan';
+
+	/**
 	 * Connectivity checker.
 	 *
 	 * @var Melomaniac_Sync_Connectivity_Check
@@ -84,6 +89,13 @@ class Melomaniac_Sync_Diagnostics_Page {
 			$flushed = true;
 		}
 
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce checked right below.
+		if ( isset( $_POST['melomaniac_sync_set_test_plan'] ) ) {
+			check_admin_referer( self::NONCE_PLAN );
+			// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verified above.
+			Melomaniac_Sync_Licensing::set_test_plan( sanitize_key( wp_unslash( $_POST['test_plan'] ?? '' ) ) );
+		}
+
 		Melomaniac_Sync_Admin::render_view(
 			'page-diagnostics',
 			array(
@@ -93,6 +105,10 @@ class Melomaniac_Sync_Diagnostics_Page {
 				'barcode'        => $this->read_probe_barcode(),
 				'barcode_result' => $this->maybe_probe_barcode(),
 				'environment'    => $this->check->environment(),
+				'current_plan'   => Melomaniac_Sync_Licensing::get_plan(),
+				'test_plan'      => Melomaniac_Sync_Licensing::test_plan(),
+				'plan_forced_by_host' => defined( 'MELOMANIAC_SYNC_FORCE_PLAN' )
+					&& in_array( MELOMANIAC_SYNC_FORCE_PLAN, Melomaniac_Sync_Licensing::PLANS, true ),
 			)
 		);
 	}

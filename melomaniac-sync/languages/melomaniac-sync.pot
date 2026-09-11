@@ -20,7 +20,7 @@ msgid_plural "%d canciones"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/views/page-diagnostics.php:179
+#: admin/views/page-diagnostics.php:229
 msgid "%d edición"
 msgid_plural "%d ediciones"
 msgstr[0] ""
@@ -46,12 +46,16 @@ msgstr ""
 msgid "%1$s (a los %2$d ms)"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:95
+#: admin/views/page-diagnostics.php:145
 msgid "%d ms"
 msgstr ""
 
 #: includes/support/class-connectivity-check.php:283
 msgid "%d segundos"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:81
+msgid "(prueba activa, no es el plan real)"
 msgstr ""
 
 #: includes/helpers/functions-reference-links.php:88
@@ -72,7 +76,7 @@ msgstr ""
 
 #: admin/class-admin-menu.php:119
 #: admin/class-admin-menu.php:120
-#: admin/views/page-diagnostics.php:259
+#: admin/views/page-diagnostics.php:309
 msgid "Ajustes"
 msgstr ""
 
@@ -104,6 +108,10 @@ msgstr ""
 msgid "Anotar fallas de MusicBrainz, Discogs y portadas en el log de WordPress"
 msgstr ""
 
+#: admin/views/page-diagnostics.php:68
+msgid "Aplicar"
+msgstr ""
+
 #: admin/views/partial-manual-form.php:73
 #: includes/services/class-product-factory.php:271
 #: includes/support/class-settings.php:40
@@ -121,7 +129,7 @@ msgstr ""
 msgid "Banda sonora"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:24
+#: admin/views/page-diagnostics.php:27
 msgid "Bien"
 msgstr ""
 
@@ -157,7 +165,7 @@ msgstr ""
 msgid "Buscar en MusicBrainz"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:218
+#: admin/views/page-diagnostics.php:268
 msgid "Búsquedas guardadas"
 msgstr ""
 
@@ -229,7 +237,7 @@ msgstr ""
 msgid "Compilado"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:34
+#: admin/views/page-diagnostics.php:37
 msgid "Comprueba si este servidor puede alcanzar los servicios que Melomaniac Sync necesita. Si un escaneo falla con \"Operation timed out\", la respuesta está acá."
 msgstr ""
 
@@ -241,7 +249,7 @@ msgstr ""
 msgid "Con un lector USB, deja el cursor en el campo y dispáralo: el lector escribe el código y confirma solo."
 msgstr ""
 
-#: admin/views/page-diagnostics.php:38
+#: admin/views/page-diagnostics.php:88
 msgid "Conexión con los servicios"
 msgstr ""
 
@@ -285,11 +293,11 @@ msgstr ""
 msgid "Cuánto espera a MusicBrainz, Cover Art Archive y Discogs antes de darse por vencido. Si ves errores de \"timed out\", subilo y revisa %s."
 msgstr ""
 
-#: admin/views/page-diagnostics.php:58
+#: admin/views/page-diagnostics.php:108
 msgid "Código"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:125
+#: admin/views/page-diagnostics.php:175
 #: admin/views/page-scan.php:38
 #: admin/views/partial-result-preview.php:29
 msgid "Código de barra"
@@ -333,7 +341,7 @@ msgstr ""
 
 #: admin/class-admin-menu.php:132
 #: admin/class-admin-menu.php:133
-#: admin/views/page-diagnostics.php:31
+#: admin/views/page-diagnostics.php:34
 #: admin/views/page-settings.php:244
 #: admin/views/page-settings.php:268
 msgid "Diagnóstico"
@@ -386,7 +394,7 @@ msgstr ""
 msgid "Editar el producto"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:135
+#: admin/views/page-diagnostics.php:185
 msgid "Ej. 016861979546"
 msgstr ""
 
@@ -412,6 +420,10 @@ msgstr ""
 
 #: admin/views/partial-plan-summary.php:72
 msgid "El plan Premium suma discos ilimitados y carga masiva por código de barra."
+msgstr ""
+
+#: admin/views/page-diagnostics.php:48
+msgid "El plan está fijado desde wp-config.php (MELOMANIAC_SYNC_FORCE_PLAN), así que este selector no tiene efecto hasta que lo quites de ahí."
 msgstr ""
 
 #: includes/support/class-connectivity-check.php:178
@@ -443,7 +455,7 @@ msgstr ""
 msgid "En vivo"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:238
+#: admin/views/page-diagnostics.php:288
 msgid "Entorno"
 msgstr ""
 
@@ -495,8 +507,8 @@ msgstr ""
 msgid "Etiquetas"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:26
-#: admin/views/page-diagnostics.php:169
+#: admin/views/page-diagnostics.php:29
+#: admin/views/page-diagnostics.php:219
 msgid "Falla"
 msgstr ""
 
@@ -551,7 +563,7 @@ msgstr ""
 msgid "Genera un token personal en %s. Es de tu tienda: no lo compartas y no lo pongas en ningún archivo del plugin."
 msgstr ""
 
-#: includes/licensing/class-licensing.php:148
+#: includes/licensing/class-licensing.php:205
 msgid "Gratis"
 msgstr ""
 
@@ -564,7 +576,7 @@ msgstr ""
 msgid "Género"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:40
+#: admin/views/page-diagnostics.php:90
 msgid "Hace una petición real a cada servicio y mide cuánto tarda. Puede demorar si el hosting está bloqueando la salida."
 msgstr ""
 
@@ -617,7 +629,7 @@ msgstr ""
 msgid "Latino"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:119
+#: admin/views/page-diagnostics.php:169
 msgid "Le pregunta a cada fuente por separado, sin usar lo guardado. Sirve para ver qué contesta Discogs aunque MusicBrainz también tenga el disco, que es lo que el escaneo normal nunca te deja ver."
 msgstr ""
 
@@ -644,7 +656,7 @@ msgstr ""
 msgid "Melomaniac Sync busca primero en MusicBrainz, que es abierto y no necesita credenciales. Si el disco no está ahí, consulta Discogs con el token de tu tienda."
 msgstr ""
 
-#: admin/views/page-diagnostics.php:220
+#: admin/views/page-diagnostics.php:270
 msgid "Melomaniac Sync guarda un día lo que encuentra, para no repetir peticiones. Si un disco quedó guardado con datos equivocados, vacía esto y vuelve a escanearlo."
 msgstr ""
 
@@ -665,15 +677,15 @@ msgstr ""
 msgid "MusicBrainz"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:266
+#: admin/views/page-diagnostics.php:316
 msgid "MusicBrainz bloquea las IP que hacen más de una petición por segundo. Si compartís IP con otros sitios, puede que el bloqueo no sea por tu tienda."
 msgstr ""
 
-#: admin/views/page-diagnostics.php:152
+#: admin/views/page-diagnostics.php:202
 msgid "MusicBrainz no lo tiene y Discogs sí: este código es justo el caso donde entra el respaldo."
 msgstr ""
 
-#: admin/views/page-diagnostics.php:154
+#: admin/views/page-diagnostics.php:204
 msgid "MusicBrainz no lo tiene y a Discogs no se le pudo preguntar. El escaneo va a ofrecer el formulario manual."
 msgstr ""
 
@@ -689,11 +701,11 @@ msgstr ""
 msgid "MusicBrainz respondió con el código %d."
 msgstr ""
 
-#: admin/views/page-diagnostics.php:150
+#: admin/views/page-diagnostics.php:200
 msgid "MusicBrainz tiene el disco, así que el escaneo normal no va a consultar Discogs."
 msgstr ""
 
-#: admin/views/page-diagnostics.php:156
+#: admin/views/page-diagnostics.php:206
 msgid "Ninguna de las dos lo tiene. El escaneo va a ofrecer el formulario manual."
 msgstr ""
 
@@ -751,7 +763,7 @@ msgstr ""
 msgid "No tienes permisos para usar esta pantalla."
 msgstr ""
 
-#: admin/class-diagnostics-page.php:68
+#: admin/class-diagnostics-page.php:73
 #: admin/class-settings-page.php:170
 msgid "No tienes permisos para ver esta pantalla."
 msgstr ""
@@ -808,6 +820,15 @@ msgstr ""
 msgid "Plan actual: %s"
 msgstr ""
 
+#: admin/views/page-diagnostics.php:76
+msgid "Plan en efecto ahora mismo: %s"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:41
+#: admin/views/page-diagnostics.php:55
+msgid "Plan para pruebas"
+msgstr ""
+
 #: admin/views/page-settings.php:164
 #: admin/views/partial-manual-form.php:203
 msgid "Portada"
@@ -833,31 +854,31 @@ msgstr ""
 msgid "Precio, stock y clasificación"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:138
+#: admin/views/page-diagnostics.php:188
 msgid "Preguntar a las dos fuentes"
 msgstr ""
 
-#: includes/licensing/class-licensing.php:150
+#: includes/licensing/class-licensing.php:207
 msgid "Premium"
 msgstr ""
 
-#: includes/licensing/class-licensing.php:171
+#: includes/licensing/class-licensing.php:228
 msgid "Premium (discos ilimitados + carga masiva)"
 msgstr ""
 
-#: includes/licensing/class-licensing.php:149
+#: includes/licensing/class-licensing.php:206
 msgid "Pro"
 msgstr ""
 
-#: includes/licensing/class-licensing.php:167
+#: includes/licensing/class-licensing.php:224
 msgid "Pro (30 discos al mes) o Premium (discos ilimitados + carga masiva)"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:47
+#: admin/views/page-diagnostics.php:97
 msgid "Probar la conexión ahora"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:117
+#: admin/views/page-diagnostics.php:167
 msgid "Probar un código de barra"
 msgstr ""
 
@@ -867,6 +888,10 @@ msgstr ""
 
 #: includes/services/class-release-dto.php:215
 msgid "Promocional"
+msgstr ""
+
+#: admin/views/page-diagnostics.php:43
+msgid "Prueba las pantallas de cada plan sin depender de Freemius ni tener una suscripción real. No cambia el plan de verdad de la tienda, solo lo que el plugin cree mientras esto quede activado."
 msgstr ""
 
 #: includes/services/class-release-dto.php:217
@@ -910,7 +935,7 @@ msgstr ""
 msgid "Requisitos no cumplidos"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:60
+#: admin/views/page-diagnostics.php:110
 msgid "Resolvió a"
 msgstr ""
 
@@ -927,11 +952,11 @@ msgstr ""
 msgid "Responde bien."
 msgstr ""
 
-#: admin/views/page-diagnostics.php:25
+#: admin/views/page-diagnostics.php:28
 msgid "Responde, con reparos"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:57
+#: admin/views/page-diagnostics.php:107
 msgid "Resultado"
 msgstr ""
 
@@ -964,7 +989,7 @@ msgstr ""
 msgid "Se suma al tipo: un compilado en vivo es Álbum + En vivo."
 msgstr ""
 
-#: admin/views/page-diagnostics.php:224
+#: admin/views/page-diagnostics.php:274
 msgid "Se vaciaron las búsquedas guardadas."
 msgstr ""
 
@@ -979,11 +1004,11 @@ msgstr ""
 msgid "Separadas por coma. Las que no existan se crean."
 msgstr ""
 
-#: admin/views/page-diagnostics.php:56
+#: admin/views/page-diagnostics.php:106
 msgid "Servicio"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:263
+#: admin/views/page-diagnostics.php:313
 msgid "Si arriba dice que no resolvió el dominio, es DNS del hosting."
 msgstr ""
 
@@ -991,15 +1016,15 @@ msgstr ""
 msgid "Si dejas \"Detectar sola\", Melomaniac Sync busca entre tus categorías una que coincida con el formato."
 msgstr ""
 
-#: admin/views/page-diagnostics.php:252
+#: admin/views/page-diagnostics.php:302
 msgid "Si el tiempo de espera se agota"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:265
+#: admin/views/page-diagnostics.php:315
 msgid "Si no pasa nada de lo anterior, pídele a tu hosting que permita conexiones HTTPS salientes a musicbrainz.org, coverartarchive.org y api.discogs.com. Muchos hostings compartidos las bloquean por defecto."
 msgstr ""
 
-#: admin/views/page-diagnostics.php:264
+#: admin/views/page-diagnostics.php:314
 msgid "Si resolvió solo a IPv6 y falla, el hosting no tiene salida IPv6 funcionando. Pídeles que la arreglen o que fuercen IPv4."
 msgstr ""
 
@@ -1021,12 +1046,12 @@ msgstr ""
 msgid "Sin portada en Cover Art Archive"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:27
-#: admin/views/page-diagnostics.php:169
+#: admin/views/page-diagnostics.php:30
+#: admin/views/page-diagnostics.php:219
 msgid "Sin probar"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:173
+#: admin/views/page-diagnostics.php:223
 msgid "Sin resultados"
 msgstr ""
 
@@ -1046,7 +1071,7 @@ msgstr ""
 msgid "Stock por defecto"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:258
+#: admin/views/page-diagnostics.php:308
 msgid "Sube el tiempo de espera en %s. Si la conexión es lenta pero funciona, con 30 segundos suele alcanzar."
 msgstr ""
 
@@ -1066,7 +1091,7 @@ msgstr ""
 msgid "Sí, y eso rompe el plugin"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:59
+#: admin/views/page-diagnostics.php:109
 msgid "Tardó"
 msgstr ""
 
@@ -1106,12 +1131,16 @@ msgstr ""
 msgid "Un LP doble son 2. Un box set de 5 CDs son 5."
 msgstr ""
 
-#: admin/views/page-diagnostics.php:111
+#: admin/views/page-diagnostics.php:161
 msgid "Un código 400 o 404 también cuenta como conexión buena: significa que el servicio contestó. Lo único preocupante es que no conteste nada."
 msgstr ""
 
 #: admin/views/page-settings.php:58
 msgid "Un email o una URL de la tienda. MusicBrainz exige poder identificar quién consulta; si no es real, pueden bloquear tu IP."
+msgstr ""
+
+#: admin/views/page-diagnostics.php:59
+msgid "Usar el plan real de la tienda"
 msgstr ""
 
 #: admin/views/partial-candidate-list.php:67
@@ -1123,7 +1152,7 @@ msgstr ""
 msgid "Usar esta imagen"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:231
+#: admin/views/page-diagnostics.php:281
 msgid "Vaciar las búsquedas guardadas"
 msgstr ""
 
@@ -1195,7 +1224,7 @@ msgstr ""
 msgid "no detectada"
 msgstr ""
 
-#: admin/views/page-diagnostics.php:103
+#: admin/views/page-diagnostics.php:153
 msgid "no resolvió"
 msgstr ""
 

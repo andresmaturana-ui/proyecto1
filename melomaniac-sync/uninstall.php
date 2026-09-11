@@ -18,6 +18,7 @@ $melomaniac_options = array(
 	'melomaniac_sync_cache_index',
 	'melomaniac_sync_mb_last_request',
 	'melomaniac_sync_mb_last_request_discogs',
+	'melomaniac_sync_test_plan',
 );
 
 foreach ( $melomaniac_options as $melomaniac_option ) {
