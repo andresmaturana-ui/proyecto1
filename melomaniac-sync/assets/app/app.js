@@ -564,6 +564,12 @@
 
 		wireCoverPreview( app.querySelector( '[data-cover-input]' ), app.querySelector( '[data-cover-preview]' ) );
 
+		app.querySelector( '[data-action="contribute-musicbrainz"]' ).addEventListener( 'click', function () {
+			if ( window.MelomaniacSyncMusicBrainzSeed ) {
+				window.MelomaniacSyncMusicBrainzSeed.submit( app.querySelector( '[data-form="manual"]' ) );
+			}
+		} );
+
 		app.querySelectorAll( '[data-screen-name="manual"] [data-action="back-to-scan"]' ).forEach( function ( btn ) {
 			btn.addEventListener( 'click', function () {
 				showScreen( 'scan' );
@@ -721,6 +727,7 @@
 		var release = state.rejected;
 
 		form.reset();
+		form.barcode.value = state.barcode;
 		app.querySelector( '[data-cover-preview]' ).hidden = true;
 
 		var title = app.querySelector( '[data-manual-title]' );

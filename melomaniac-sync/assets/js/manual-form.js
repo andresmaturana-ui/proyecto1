@@ -61,5 +61,14 @@
 			$( '#melomaniac-manual-cover' ).val( '' );
 			$( '#melomaniac-cover-preview' ).empty();
 			$( this ).prop( 'hidden', true );
+		} )
+		.on( 'click', '[data-melomaniac-contribute-musicbrainz]', function ( event ) {
+			event.preventDefault();
+
+			var form = $( this ).closest( 'form' ).get( 0 );
+
+			if ( form && window.MelomaniacSyncMusicBrainzSeed ) {
+				window.MelomaniacSyncMusicBrainzSeed.submit( form );
+			}
 		} );
 } )( window.jQuery );

@@ -102,10 +102,11 @@ class Melomaniac_Sync_Pwa {
 	 */
 	private static function asset_urls() {
 		return array(
-			'app_js_url'    => self::asset_url( 'assets/app/app.js' ),
-			'app_css_url'   => self::asset_url( 'assets/app/app.css' ),
-			'camera_js_url' => self::asset_url( 'assets/js/camera-scanner.js' ),
-			'zxing_js_url'  => self::asset_url( 'vendor-libs/zxing/zxing.min.js' ),
+			'app_js_url'           => self::asset_url( 'assets/app/app.js' ),
+			'app_css_url'          => self::asset_url( 'assets/app/app.css' ),
+			'camera_js_url'        => self::asset_url( 'assets/js/camera-scanner.js' ),
+			'zxing_js_url'         => self::asset_url( 'vendor-libs/zxing/zxing.min.js' ),
+			'musicbrainz_seed_url' => self::asset_url( 'assets/js/musicbrainz-seed.js' ),
 		);
 	}
 
@@ -240,12 +241,13 @@ class Melomaniac_Sync_Pwa {
 		$assets   = self::asset_urls();
 
 		$replacements = array(
-			'__CACHE_VERSION__' => MELOMANIAC_SYNC_VERSION,
-			'__SHELL_URL__'     => self::url(),
-			'__APP_JS_URL__'    => $assets['app_js_url'],
-			'__APP_CSS_URL__'   => $assets['app_css_url'],
-			'__CAMERA_JS_URL__' => $assets['camera_js_url'],
-			'__ZXING_JS_URL__'  => $assets['zxing_js_url'],
+			'__CACHE_VERSION__'  => MELOMANIAC_SYNC_VERSION,
+			'__SHELL_URL__'      => self::url(),
+			'__APP_JS_URL__'     => $assets['app_js_url'],
+			'__APP_CSS_URL__'    => $assets['app_css_url'],
+			'__CAMERA_JS_URL__'  => $assets['camera_js_url'],
+			'__ZXING_JS_URL__'   => $assets['zxing_js_url'],
+			'__MB_SEED_JS_URL__' => $assets['musicbrainz_seed_url'],
 		);
 
 		echo str_replace( array_keys( $replacements ), array_values( $replacements ), $template ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static JS template with URL substitutions, not user input.
@@ -262,19 +264,20 @@ class Melomaniac_Sync_Pwa {
 		$assets = self::asset_urls();
 
 		$data = array(
-			'rest_url'      => esc_url_raw( rest_url( Melomaniac_Sync_Rest_Api::NAMESPACE_ ) ),
-			'manifest_url'  => esc_url_raw( self::url() . 'manifest.webmanifest' ),
-			'sw_url'        => esc_url_raw( self::url() . 'sw.js' ),
-			'app_js_url'    => esc_url_raw( $assets['app_js_url'] ),
-			'app_css_url'   => esc_url_raw( $assets['app_css_url'] ),
-			'camera_js_url' => esc_url_raw( $assets['camera_js_url'] ),
-			'zxing_js_url'  => esc_url_raw( $assets['zxing_js_url'] ),
-			'icon_url'      => esc_url_raw( MELOMANIAC_SYNC_URL . 'assets/app/icon-192.png' ),
-			'logo_url'      => esc_url_raw( Melomaniac_Sync_Rest_Api::site_logo_url() ),
-			'site_name'     => get_bloginfo( 'name' ),
-			'profile_url'   => esc_url_raw( admin_url( 'profile.php#application-passwords-section' ) ),
-			'settings_url'  => esc_url_raw( Melomaniac_Sync_Admin_Menu::settings_url() ),
-			'version'       => MELOMANIAC_SYNC_VERSION,
+			'rest_url'             => esc_url_raw( rest_url( Melomaniac_Sync_Rest_Api::NAMESPACE_ ) ),
+			'manifest_url'         => esc_url_raw( self::url() . 'manifest.webmanifest' ),
+			'sw_url'               => esc_url_raw( self::url() . 'sw.js' ),
+			'app_js_url'           => esc_url_raw( $assets['app_js_url'] ),
+			'app_css_url'          => esc_url_raw( $assets['app_css_url'] ),
+			'camera_js_url'        => esc_url_raw( $assets['camera_js_url'] ),
+			'zxing_js_url'         => esc_url_raw( $assets['zxing_js_url'] ),
+			'musicbrainz_seed_url' => esc_url_raw( $assets['musicbrainz_seed_url'] ),
+			'icon_url'             => esc_url_raw( MELOMANIAC_SYNC_URL . 'assets/app/icon-192.png' ),
+			'logo_url'             => esc_url_raw( Melomaniac_Sync_Rest_Api::site_logo_url() ),
+			'site_name'            => get_bloginfo( 'name' ),
+			'profile_url'          => esc_url_raw( admin_url( 'profile.php#application-passwords-section' ) ),
+			'settings_url'         => esc_url_raw( Melomaniac_Sync_Admin_Menu::settings_url() ),
+			'version'              => MELOMANIAC_SYNC_VERSION,
 		);
 
 		include MELOMANIAC_SYNC_PATH . 'includes/frontend/views/view-app-shell.php';

@@ -94,9 +94,17 @@ class Melomaniac_Sync_Admin {
 		);
 
 		wp_enqueue_script(
+			'melomaniac-sync-musicbrainz-seed',
+			MELOMANIAC_SYNC_URL . 'assets/js/musicbrainz-seed.js',
+			array(),
+			self::asset_version( 'assets/js/musicbrainz-seed.js' ),
+			true
+		);
+
+		wp_enqueue_script(
 			'melomaniac-sync-manual-form',
 			MELOMANIAC_SYNC_URL . 'assets/js/manual-form.js',
-			array( 'jquery' ),
+			array( 'jquery', 'melomaniac-sync-musicbrainz-seed' ),
 			self::asset_version( 'assets/js/manual-form.js' ),
 			true
 		);

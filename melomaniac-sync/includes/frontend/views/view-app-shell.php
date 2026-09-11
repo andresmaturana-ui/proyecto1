@@ -12,6 +12,7 @@
  *     @type string $app_css_url   App stylesheet URL.
  *     @type string $camera_js_url Shared camera scanner script URL.
  *     @type string $zxing_js_url  Vendored ZXing decoder, the camera scanner's fallback.
+ *     @type string $musicbrainz_seed_url Opens a pre-filled MusicBrainz "Add Release" page.
  *     @type string $icon_url      App icon URL.
  *     @type string $logo_url      Store's own logo (or site icon), empty when it has neither.
  *     @type string $site_name     Store name.
@@ -33,6 +34,7 @@ $melomaniac_app = wp_parse_args(
 		'app_css_url'   => '',
 		'camera_js_url' => '',
 		'zxing_js_url'  => '',
+		'musicbrainz_seed_url' => '',
 		'icon_url'      => '',
 		'logo_url'      => '',
 		'site_name'     => '',
@@ -160,6 +162,7 @@ $melomaniac_app = wp_parse_args(
 			</div>
 
 			<form data-form="manual">
+				<input type="hidden" name="barcode" />
 				<label for="melomaniac-manual-artist"><?php esc_html_e( 'Artista', 'melomaniac-sync' ); ?> *</label>
 				<input type="text" id="melomaniac-manual-artist" name="artist" required />
 
@@ -196,6 +199,11 @@ $melomaniac_app = wp_parse_args(
 				<div data-fields-mount></div>
 
 				<button type="submit" class="melomaniac-btn melomaniac-btn-primary"><?php esc_html_e( 'Crear producto', 'melomaniac-sync' ); ?></button>
+
+				<button type="button" class="melomaniac-btn" data-action="contribute-musicbrainz"><?php esc_html_e( 'Aportar este disco a MusicBrainz', 'melomaniac-sync' ); ?></button>
+				<p class="melomaniac-app-lead">
+					<?php esc_html_e( 'Abre el formulario de MusicBrainz con estos datos ya escritos, en una pestaña nueva, para que lo revises y lo envíes con tu propia cuenta. Melomaniac Sync no puede crear el disco por ti: MusicBrainz revisa cada aporte a mano.', 'melomaniac-sync' ); ?>
+				</p>
 			</form>
 
 			<button type="button" class="melomaniac-btn-link" data-action="back-to-scan"><?php esc_html_e( '&larr; Volver al escaneo', 'melomaniac-sync' ); ?></button>
@@ -225,6 +233,7 @@ window.MelomaniacSyncApp = {
 };
 </script>
 <script src="<?php echo esc_url( $melomaniac_app['zxing_js_url'] ); ?>"></script>
+<script src="<?php echo esc_url( $melomaniac_app['musicbrainz_seed_url'] ); ?>"></script>
 <script src="<?php echo esc_url( $melomaniac_app['camera_js_url'] ); ?>"></script>
 <script src="<?php echo esc_url( $melomaniac_app['app_js_url'] ); ?>"></script>
 </body>

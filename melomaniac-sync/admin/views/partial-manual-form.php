@@ -331,5 +331,14 @@ $melomaniac_prefill = isset( $data['release'] ) && $data['release'] instanceof M
 		?>
 
 		<?php submit_button( __( 'Crear producto como borrador', 'melomaniac-sync' ) ); ?>
+
+		<p>
+			<button type="button" class="button" data-melomaniac-contribute-musicbrainz>
+				<?php esc_html_e( 'Aportar este disco a MusicBrainz', 'melomaniac-sync' ); ?>
+			</button>
+			<span class="description">
+				<?php esc_html_e( 'Abre el formulario de MusicBrainz con estos datos ya escritos, en una pestaña nueva, para que lo revises y lo envíes con tu propia cuenta. Melomaniac Sync no puede crear el disco por ti: MusicBrainz revisa cada aporte a mano.', 'melomaniac-sync' ); ?>
+			</span>
+		</p>
 	</form>
 </div>

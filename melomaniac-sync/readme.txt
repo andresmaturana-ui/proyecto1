@@ -4,7 +4,7 @@ Tags: woocommerce, vinyl, music, barcode, musicbrainz
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 2.2.0
+Stable tag: 2.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,11 +55,18 @@ No. Se crean siempre como borrador para que los revises, les pongas precio y sto
 
 El plugin lo detecta por SKU y por identificador de MusicBrainz, y te muestra un enlace al producto que ya existe en lugar de duplicarlo.
 
+= ¿El plugin puede subir un disco nuevo a MusicBrainz automáticamente? =
+
+No, y esto es a propósito de MusicBrainz: no ofrecen ninguna API para crear un disco de forma automática, porque cada aporte lo revisa la propia comunidad antes de quedar en la base de datos. Lo que sí hace el botón "Aportar este disco a MusicBrainz" del formulario manual es abrir el formulario real de MusicBrainz en una pestaña nueva, con los datos que ya escribiste puestos ahí (artista, título, sello, catálogo, fecha, país, formato, lista de canciones), para que solo tengas que revisar y enviar. Necesitas tu propia cuenta de MusicBrainz para eso; el plugin no crea ni envía nada por su cuenta.
+
 = ¿Cómo funciona la carga masiva? =
 
 Se procesa en segundo plano con Action Scheduler (la misma librería que usa WooCommerce para sus propias tareas programadas), un código de barra a la vez y espaciados entre sí, así que no hace falta dejar la pestaña abierta. Necesita que el cron de WordPress esté funcionando con normalidad, como cualquier otra tarea programada del sitio. Se puede cargar pegando una lista o subiendo un CSV con columnas código, precio y cantidad (hay una plantilla para descargar en la misma pantalla). Cuando un código tiene más de una edición posible, la carga se detiene en ese disco y muestra las opciones para que elijas cuál es, igual que al escanear uno solo.
 
 == Changelog ==
+
+= 2.3.0 =
+* El formulario de carga manual (en wp-admin y en la app) suma el botón "Aportar este disco a MusicBrainz": abre el formulario de MusicBrainz para agregar un disco nuevo, en una pestaña aparte, con los datos que ya escribiste puestos ahí. Revisas y envías el aporte tú, con tu propia cuenta de MusicBrainz — ver la pregunta nueva en la sección de ayuda para el motivo.
 
 = 2.2.0 =
 * La app cambia a fondo blanco con acentos en negro (antes era oscura), y muestra el logo de la tienda (o su ícono del sitio) en el header y en la pantalla de conectar, cuando la tienda tiene uno configurado.
