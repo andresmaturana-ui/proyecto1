@@ -17,6 +17,8 @@ $melomaniac_probes      = isset( $data['probes'] ) ? $data['probes'] : array();
 $melomaniac_ran         = ! empty( $data['ran'] );
 $melomaniac_environment = isset( $data['environment'] ) ? $data['environment'] : array();
 $melomaniac_flushed     = ! empty( $data['flushed'] );
+$melomaniac_barcode     = isset( $data['barcode'] ) ? (string) $data['barcode'] : '';
+$melomaniac_result      = isset( $data['barcode_result'] ) ? $data['barcode_result'] : null;
 
 $melomaniac_states = array(
 	'ok'      => __( 'Bien', 'melomaniac-sync' ),
@@ -108,6 +110,107 @@ $melomaniac_states = array(
 			<p class="description melomaniac-probe-note">
 				<?php esc_html_e( 'Un código 400 o 404 también cuenta como conexión buena: significa que el servicio contestó. Lo único preocupante es que no conteste nada.', 'melomaniac-sync' ); ?>
 			</p>
+		<?php endif; ?>
+	</div>
+
+	<div class="melomaniac-card">
+		<h2><?php esc_html_e( 'Probar un código de barra', 'melomaniac-sync' ); ?></h2>
+		<p class="description">
+			<?php esc_html_e( 'Le pregunta a cada fuente por separado, sin usar lo guardado. Sirve para ver qué contesta Discogs aunque MusicBrainz también tenga el disco, que es lo que el escaneo normal nunca te deja ver.', 'melomaniac-sync' ); ?>
+		</p>
+
+		<form method="post" class="melomaniac-probe-form">
+			<?php wp_nonce_field( Melomaniac_Sync_Diagnostics_Page::NONCE_BARCODE ); ?>
+			<label class="screen-reader-text" for="melomaniac-probe-barcode">
+				<?php esc_html_e( 'Código de barra', 'melomaniac-sync' ); ?>
+			</label>
+			<input
+				type="text"
+				id="melomaniac-probe-barcode"
+				name="probe_barcode"
+				class="melomaniac-barcode-input"
+				inputmode="numeric"
+				autocomplete="off"
+				value="<?php echo esc_attr( $melomaniac_barcode ); ?>"
+				placeholder="<?php esc_attr_e( 'Ej. 016861979546', 'melomaniac-sync' ); ?>"
+			/>
+			<button type="submit" name="melomaniac_sync_probe_barcode" value="1" class="button button-primary">
+				<?php esc_html_e( 'Preguntar a las dos fuentes', 'melomaniac-sync' ); ?>
+			</button>
+		</form>
+
+		<?php if ( is_wp_error( $melomaniac_result ) ) : ?>
+			<div class="notice notice-error inline"><p><?php echo esc_html( $melomaniac_result->get_error_message() ); ?></p></div>
+		<?php elseif ( is_array( $melomaniac_result ) ) : ?>
+			<?php
+			$melomaniac_mb = $melomaniac_result['musicbrainz'];
+			$melomaniac_dc = $melomaniac_result['discogs'];
+
+			if ( $melomaniac_mb['count'] > 0 ) {
+				$melomaniac_verdict = __( 'MusicBrainz tiene el disco, así que el escaneo normal no va a consultar Discogs.', 'melomaniac-sync' );
+			} elseif ( $melomaniac_dc['count'] > 0 ) {
+				$melomaniac_verdict = __( 'MusicBrainz no lo tiene y Discogs sí: este código es justo el caso donde entra el respaldo.', 'melomaniac-sync' );
+			} elseif ( '' !== $melomaniac_dc['error'] ) {
+				$melomaniac_verdict = __( 'MusicBrainz no lo tiene y a Discogs no se le pudo preguntar. El escaneo va a ofrecer el formulario manual.', 'melomaniac-sync' );
+			} else {
+				$melomaniac_verdict = __( 'Ninguna de las dos lo tiene. El escaneo va a ofrecer el formulario manual.', 'melomaniac-sync' );
+			}
+			?>
+			<p class="melomaniac-probe-verdict"><?php echo esc_html( $melomaniac_verdict ); ?></p>
+
+			<table class="widefat striped melomaniac-probe-table">
+				<tbody>
+				<?php foreach ( array( $melomaniac_mb, $melomaniac_dc ) as $melomaniac_source ) : ?>
+					<tr>
+						<td style="width:12em;"><strong><?php echo esc_html( $melomaniac_source['label'] ); ?></strong></td>
+						<td>
+							<?php if ( '' !== $melomaniac_source['error'] ) : ?>
+								<span class="melomaniac-probe-state is-<?php echo esc_attr( $melomaniac_source['available'] ? 'fail' : 'skipped' ); ?>">
+									<?php echo esc_html( $melomaniac_source['available'] ? __( 'Falla', 'melomaniac-sync' ) : __( 'Sin probar', 'melomaniac-sync' ) ); ?>
+								</span>
+								<p class="melomaniac-probe-message"><?php echo esc_html( $melomaniac_source['error'] ); ?></p>
+							<?php elseif ( 0 === $melomaniac_source['count'] ) : ?>
+								<span class="melomaniac-probe-state is-warn"><?php esc_html_e( 'Sin resultados', 'melomaniac-sync' ); ?></span>
+							<?php else : ?>
+								<span class="melomaniac-probe-state is-ok">
+									<?php
+									printf(
+										/* translators: %d: number of matching releases. */
+										esc_html( _n( '%d edición', '%d ediciones', (int) $melomaniac_source['count'], 'melomaniac-sync' ) ),
+										(int) $melomaniac_source['count']
+									);
+									?>
+								</span>
+								<ul class="melomaniac-probe-matches">
+									<?php foreach ( $melomaniac_source['matches'] as $melomaniac_match ) : ?>
+										<li>
+											<strong><?php echo esc_html( $melomaniac_match['artist'] ); ?></strong>
+											<?php echo esc_html( $melomaniac_match['title'] ); ?>
+											<span class="melomaniac-candidate-meta">
+												<?php
+												echo esc_html(
+													implode(
+														' · ',
+														array_filter(
+															array(
+																$melomaniac_match['year'],
+																$melomaniac_match['label'],
+																$melomaniac_match['format'],
+															)
+														)
+													)
+												);
+												?>
+											</span>
+										</li>
+									<?php endforeach; ?>
+								</ul>
+							<?php endif; ?>
+						</td>
+					</tr>
+				<?php endforeach; ?>
+				</tbody>
+			</table>
 		<?php endif; ?>
 	</div>
 

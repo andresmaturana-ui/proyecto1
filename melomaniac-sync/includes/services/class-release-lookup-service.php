@@ -179,6 +179,88 @@ class Melomaniac_Sync_Release_Lookup_Service {
 	}
 
 	/**
+	 * Asks each source about a barcode separately, for diagnostics.
+	 *
+	 * Unlike find_by_barcode() this does not cascade and does not read or write
+	 * the cache: the point is to see what every source really answers right now,
+	 * including the one the cascade would never have reached.
+	 *
+	 * @param string $barcode Raw or normalised barcode.
+	 * @return array|WP_Error {
+	 *     @type string $barcode     Normalised barcode.
+	 *     @type array  $musicbrainz Result for MusicBrainz.
+	 *     @type array  $discogs     Result for Discogs.
+	 * }
+	 */
+	public function probe_barcode( $barcode ) {
+		$barcode = $this->normalise_barcode( $barcode );
+
+		if ( is_wp_error( $barcode ) ) {
+			return $barcode;
+		}
+
+		return array(
+			'barcode'     => $barcode,
+			'musicbrainz' => $this->describe_probe(
+				__( 'MusicBrainz', 'melomaniac-sync' ),
+				true,
+				'',
+				$this->search_musicbrainz_by_barcode( $barcode )
+			),
+			'discogs'     => $this->describe_probe(
+				__( 'Discogs', 'melomaniac-sync' ),
+				$this->discogs->is_available(),
+				__( 'Falta el token de Discogs, o el respaldo está desactivado en Ajustes.', 'melomaniac-sync' ),
+				$this->discogs->is_available() ? $this->search_discogs_by_barcode( $barcode ) : array()
+			),
+		);
+	}
+
+	/**
+	 * Normalises one source's answer into something a screen can render.
+	 *
+	 * @param string                                $label     Service name.
+	 * @param bool                                  $available Whether the source could be asked at all.
+	 * @param string                                $skipped   Why it was skipped, when it was.
+	 * @param Melomaniac_Sync_Release_DTO[]|WP_Error $results  What the source answered.
+	 * @return array
+	 */
+	private function describe_probe( $label, $available, $skipped, $results ) {
+		$out = array(
+			'label'     => $label,
+			'available' => (bool) $available,
+			'error'     => '',
+			'count'     => 0,
+			'matches'   => array(),
+		);
+
+		if ( ! $available ) {
+			$out['error'] = $skipped;
+			return $out;
+		}
+
+		if ( is_wp_error( $results ) ) {
+			$out['error'] = $results->get_error_message();
+			return $out;
+		}
+
+		$out['count'] = count( $results );
+
+		// Three is enough to tell whether the answer is the right record.
+		foreach ( array_slice( $results, 0, 3 ) as $release ) {
+			$out['matches'][] = array(
+				'artist' => $release->artist,
+				'title'  => $release->title,
+				'year'   => $release->year,
+				'label'  => $release->label,
+				'format' => '' !== $release->format_detail ? $release->format_detail : $release->format_label(),
+			);
+		}
+
+		return $out;
+	}
+
+	/**
 	 * Searches MusicBrainz by barcode.
 	 *
 	 * @param string $barcode Normalised barcode.

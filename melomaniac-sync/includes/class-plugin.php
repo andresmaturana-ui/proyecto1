@@ -153,7 +153,8 @@ final class Melomaniac_Sync_Plugin {
 			new Melomaniac_Sync_Scan_Page( $this->lookup_service() ),
 			$settings_page,
 			new Melomaniac_Sync_Diagnostics_Page(
-				new Melomaniac_Sync_Connectivity_Check( $this->logger() )
+				new Melomaniac_Sync_Connectivity_Check( $this->logger() ),
+				$this->lookup_service()
 			)
 		);
 		$menu->register();
